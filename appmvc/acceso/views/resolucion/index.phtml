@@ -1,0 +1,461 @@
+<div class="row box-cell p-x-3 p-y-1 bg-default darken caja fixed-cabecera col-md-4 ">
+    <div class="row">
+        <h3 class="alert-warning text-center">Resolucion</h3>
+        <div class="col-md-6 text-center">
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <?php for ($i = 1; $i <= 2; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center form-control alert-info"><span id="Nro_resultados"></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon bg-default">R</span>
+                <input type="text" class="form-control initialism  crear-tooltip color-yellow" id="buscar_nro_resolucion" name="buscar_nro_resolucion" placeholder="Buscar por nro resolucion" data-original-title="Buscar por nro resolucion" data-toggle="tooltip">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <select class="form-control color-yellow" id="anio">
+                <?php for ($i = date('Y') + 3; $i >= 2010; $i--) { ?>
+                    <option value="<?php echo $i; ?>" <?php echo ($i == date('Y') ? 'selected' : '') ?>><?php echo $i; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <?php
+            $month = array(0 => 'TODOS', 1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL', 5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO', 9 => 'SETIEMBRE', 10 => 'OCTUBRE', 11 => 'NOVIEMBRE', 12 => 'DICIEMBRE');
+            ?>
+            <select class="form-control color-yellow" id="mes">
+                <?php
+                $m = date("m");
+                foreach ($month as $k => $v) { ?>
+                    <option value="<?php echo $k; ?>" <?php echo ($k == date(0) ? 'selected' : ''); ?>><?php echo $v; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-1">
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_busqueda_total" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar con los criterios indicados"><span class="glyphicon glyphicon-search"></span>&nbsp;Buscar</button>
+        <div class="form-group"></div>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_limpiar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Limpiar Filtros"><span class="glyphicon glyphicon-remove"></span>&nbsp;Limpiar</button>
+        <div class="form-group"></div>
+    </div>
+
+    <div class="col-md-1">
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nueva Resolucion"><span class="glyphicon glyphicon-file"></span>&nbsp;Nuevo</button>
+        <div class="form-group"></div>
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="panel">
+            <div class="panel-heading bg-info">
+                <h4 class="text-center">Resoluciones Registradas</h4>
+            </div>
+
+
+            <div class="panel-body">
+                <table id="tblResolucion" class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th width="5%">Fecha</th>
+                            <th width="10%">Resolución</th>
+                            <th width="30%">Descripción</th>
+                            <th>Oficina</th>
+                            <th>Archivo</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-5">
+        <div class="panel">
+            <div class="panel-heading bg-info">
+                <h4 class="text-center">Planes de Trabajo</h4>
+            </div>
+            <div class="panel-body">
+                <table id="Table_PlanTrabajo" class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th width="100px">Plan</th>
+                            <th width="150px">Oficina</th>
+                            <th width="150px">Descripcion</th>
+                            <th>Archivo</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+<!-- Modal Nuevo Resolucion - Plan de Trabajo  -->
+<div class="modal" id="nuevo-modificar-resolucion" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" name="id_resolucion" id="id_resolucion">
+                <span class="alert-info" id="txt_titulo_resolucion"></span>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Oficina</label>
+                            <select class="form-control fondo-amarillo" id="slc_oficina">
+                                <option id="0">SELECCIONAR</option>
+                                <option id="1">Dirección Ejecutiva</option>
+                                <option id="3">Oficina de Administración</option>
+                                <option id="11">Unidad de Personal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>Fecha : </label><br>
+                        <input type="text" name="fecha_resolucion" id="fecha_resolucion" class="form-control fondo-amarillo crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Fecha de Resolucion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>Numero : </label><br>
+                        <input type="text" id="numeroresolucion" class="form-control fondo-amarillo crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Numero Resolucion" maxlength="3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>Descripcion : </label><br>
+                        <textarea name="descripcion" id="descripcion" class="form-control fondo-amarillo crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Descripcion de Resolucion" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="planTrabajo">Plan de Trabajo</label>
+                            <select class="form-control fondo-amarillo" id="idPlanTrabajo">
+                                <option id="0">SELECCIONAR</option>
+                                <option id="1">SI</option>
+                                <option id="2">NO</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row" id="mostrarPlan">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nombre del Plan</label>
+                            <input id="NombrePlan" type="text" class="form-control fondo-amarillo" id="NombrePlan" placeholder="Descripción Plan">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Dependencia</label>
+                            <select class="form-control fondo-amarillo" id="OficinaPlan">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <hr>
+                        <label class="alert-default">Subir Resolucion: <span id="archivo_resol_pdf" class="alert-danger"> </span> </label><br>
+                        <input type="hidden" name="nombre_archivo" id="nombre_archivo">
+                        <input type="file" name="subir_archivo_resolucion" id="subir_archivo_resolucion" class="form-control alert-warning crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Archivo Resolucion en PDF" data-buttonText="Archivo Resolucion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <span id="msj_subida_resolucion"></span>
+                    </div>
+                </div>
+
+                <?php for ($i = 1; $i <= 3; $i++) {
+                    echo '<div class="form-group"></div>';
+                } ?>
+
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_resolucion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal mensaje emergente -->
+<div class="modal" id="mostrar_mensaje_emergente" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"> -- Importante -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="confirmar_eliminar_resolucion" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id">
+                <input type="hidden" id="resolucion_pdf">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar_resolucion" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="eliminar_plan_trabajo" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar_resolucion" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal" id="modificar-plan_trabajo" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" name="id_plan_trabajo" id="id_plan_trabajo">
+                <input type="hidden" name="id_oficina" id="id_oficina">
+                <input type="hidden" name="descripcion" id="descripcion">
+                <span class="alert-info" id="txt_titulo_pl"></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nombre del Plan</label>
+                            <input id="NombrePlan_mod" type="text" class="form-control fondo-amarillo" id="NombrePlan_mod" placeholder="Descripción Plan">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Dependencia</label>
+                            <select class="form-control fondo-amarillo" id="OficinaPlan_mod">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_pl" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modificar resolucion -->
+<div class="modal" id="modificar-resolucion" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" name="id_resolucion_mod" id="id_resolucion_mod">
+                <input type="hidden" name="id_oficina_mod" id="id_oficina_mod">
+
+
+                <span class="alert-info" id="txt_titulo_resolucion_mod"></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Oficina : </label> <span id="oficina_mod"></span>
+                            <select class="form-control fondo-amarillo" id="slc_oficina_mod">
+                                <option id="0">SELECCIONAR</option>
+                                <option id="1">Dirección Ejecutiva</option>
+                                <option id="3">Oficina de Administración</option>
+                                <option id="11">Unidad de Personal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>Fecha : </label><br>
+                        <input type="text" name="fecha_resolucion_mod" id="fecha_resolucion_mod" class="form-control fondo-amarillo crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Fecha de Resolucion">
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>Numero : </label><br>
+                        <input type="text" id="numeroresolucion_mod" class="form-control fondo-amarillo crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Numero Resolucion" maxlength="3">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>Descripcion : </label><br>
+                        <textarea name="descripcion_mod" id="descripcion_mod" class="form-control fondo-amarillo crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Descripcion de Resolucion" rows="5"></textarea>
+                    </div>
+                </div>
+ 
+                <!-- <div class="row">
+                    <div class="col-md-10">
+                        <hr>
+                        <label class="alert-default">Subir Resolucion: <span id="archivo_resol_pdf_mod" class="alert-danger"> </span> </label><br>
+                        <input type="hidden" name="nombre_archivo_mod" id="nombre_archivo_mod">
+                        <input type="file" name="subir_archivo_resolucion_mod" id="subir_archivo_resolucion_mod" class="form-control alert-warning crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Archivo Resolucion en PDF" data-buttonText="Archivo Resolucion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <span id="msj_subida_resolucion_mod"></span>
+                    </div>
+                </div> -->
+
+                <?php for ($i = 1; $i <= 3; $i++) {
+                    echo '<div class="form-group"></div>';
+                } ?>
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_resolucion_mod" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+

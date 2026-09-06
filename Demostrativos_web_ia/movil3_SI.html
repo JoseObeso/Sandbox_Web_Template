@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SI - Consulta Reportes</title>
+  <style>
+    :root {
+      --red-900: #a80d1d;
+      --red-700: #c3122f;
+      --red-500: #e41d3d;
+      --red-200: #fbd5db;
+      --white: #ffffff;
+      --gray-100: #f7f7f7;
+      --gray-200: #ececec;
+      --gray-300: #d9d9d9;
+      --gray-700: #444;
+      --dark: #1d1d1d;
+      --shadow: 0 10px 30px rgba(168, 13, 29, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, var(--red-200) 0%, #fff 35%, #fff 100%);
+      color: var(--dark);
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .panel {
+      width: min(1100px, 100%);
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      background: var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(168, 13, 29, 0.12);
+    }
+
+    .login-side {
+      background: linear-gradient(180deg, var(--red-700) 0%, var(--red-900) 100%);
+      color: var(--white);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brand {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .subtext {
+      opacity: 0.9;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .login-form label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 14px 14px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .input::placeholder {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--red-700);
+    }
+
+    .content-side {
+      background: var(--white);
+      padding: 32px 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .title {
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      color: var(--red-700);
+      margin: 0;
+    }
+
+    .status {
+      background: var(--red-200);
+      color: var(--red-900);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(140px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #fff 0%, #fff7f8 100%);
+      border: 1px solid var(--gray-200);
+      border-left: 5px solid var(--red-500);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+    }
+
+    .card strong {
+      display: block;
+      font-size: 1.75rem;
+      color: var(--red-700);
+    }
+
+    .form-box {
+      background: linear-gradient(180deg, #fff 0%, #fff5f6 100%);
+      border: 1px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .form-box h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: var(--red-700);
+      font-size: 1.3rem;
+    }
+
+    .query-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gray-700);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid var(--gray-300);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 1rem;
+      background: var(--white);
+      color: var(--dark);
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .actions {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+      color: var(--dark);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--red-500), var(--red-700));
+      color: var(--white);
+    }
+
+    @media (max-width: 840px) {
+      .panel {
+        grid-template-columns: 1fr;
+      }
+
+      .login-side {
+        padding-bottom: 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .query-form {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app {
+        padding: 14px;
+      }
+
+      .login-side,
+      .content-side {
+        padding: 20px 16px;
+      }
+
+      .title {
+        width: 100%;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="panel">
+      <aside class="login-side">
+        <div class="brand">SI</div>
+        <div class="subtext">Sistema integral de gestión y reportes operativos para monitoreo y toma de decisiones.</div>
+
+        <form class="login-form">
+          <div>
+            <label for="usuario">Usuario</label>
+            <input id="usuario" class="input" type="text" placeholder="Ingrese su usuario" />
+          </div>
+
+          <div>
+            <label for="password">Contraseña</label>
+            <input id="password" class="input" type="password" placeholder="Ingrese su contraseña" />
+          </div>
+
+          <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+        </form>
+      </aside>
+
+      <main class="content-side">
+        <div class="topbar">
+          <h1 class="title">Panel de consultas</h1>
+          <span class="status">Activo</span>
+        </div>
+
+        <section class="cards">
+          <div class="card">
+            <h3>Total</h3>
+            <strong>1,284</strong>
+          </div>
+          <div class="card">
+            <h3>Pendientes</h3>
+            <strong>96</strong>
+          </div>
+          <div class="card">
+            <h3>Alertas</h3>
+            <strong>14</strong>
+          </div>
+        </section>
+
+        <section class="form-box">
+          <h2>Reporte / Consulta</h2>
+
+          <form class="query-form">
+            <div class="field">
+              <label for="tipo">Tipo de consulta</label>
+              <select id="tipo">
+                <option>Reporte general</option>
+                <option>Reporte mensual</option>
+                <option>Consulta de incidencias</option>
+                <option>Seguimiento operativo</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="fecha">Fecha</label>
+              <input id="fecha" type="date" />
+            </div>
+
+            <div class="field">
+              <label for="area">Área</label>
+              <input id="area" type="text" placeholder="Ej. Operaciones" />
+            </div>
+
+            <div class="field">
+              <label for="responsable">Responsable</label>
+              <input id="responsable" type="text" placeholder="Nombre" />
+            </div>
+
+            <div class="field full">
+              <label for="detalle">Detalle de la consulta</label>
+              <textarea id="detalle" placeholder="Describa el caso, reporte o solicitud..."></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn-secondary" type="reset">Limpiar</button>
+              <button class="btn btn-accent" type="submit">Enviar consulta</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

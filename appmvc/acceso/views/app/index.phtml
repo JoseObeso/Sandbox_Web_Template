@@ -1,0 +1,47 @@
+ 
+    <?php for ($i = 1; $i <= 6; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+<div class="row">
+
+    <div class="col-md-8 fondo-gris">
+        <?php
+        if ($this->listar_modulos['encontro'] !== 0) :
+            echo '<div align="center"><strong><font color="#cbd9db"> --- SELECCIONE APLICATIVOS --- </font></strong></div><hr>';
+            foreach ($this->listar_modulos['data'] as $v) : ?>
+                <a href="<?php echo $v['vapp_url'] ?>"><img width="200" height="150"  src="<?php echo RUTA_PUBLIC_GRA . $v['imagen'] ?>"></a>
+                 <?php endforeach;
+               
+        else : ?>
+
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span class="panel-title"><i class="fa fa-comment-o"></i>&nbsp;Enlace Equivocado:</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-danger">
+                                <strong>
+                                    <?php echo $this->listar_modulos['msg'] ?>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= 3; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+                </div>
+    </div>
+
+
+
+
+
+
+</div>

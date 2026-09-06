@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      :root {
+        --bg-soft: #f3f4f6;
+        --panel: #ffffff;
+        --panel-alt: #f7f7f8;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --primary: #dc2626;
+        --primary-dark: #b91c1c;
+        --primary-soft: #fee2e2;
+        --shadow: 0 18px 40px rgba(17, 24, 39, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #f5f5f5 0%, #efefef 100%);
+        color: var(--text);
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .app {
+        width: min(100%, 390px);
+        min-height: 760px;
+        background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+        padding: 28px 22px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .app::before,
+      .app::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(220, 38, 38, 0.08);
+      }
+
+      .app::before {
+        width: 220px;
+        height: 220px;
+        top: -80px;
+        right: -50px;
+      }
+
+      .app::after {
+        width: 180px;
+        height: 180px;
+        bottom: -60px;
+        left: -50px;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 26px;
+      }
+
+      .chip {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: var(--primary-soft);
+        display: grid;
+        place-items: center;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .perfil {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d1d5db 0%, #f3f4f6 100%);
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        font-size: 18px;
+        border: 2px solid #fff;
+      }
+
+      .brand {
+        margin-top: 12px;
+        margin-bottom: 18px;
+      }
+
+      .brand small {
+        display: inline-block;
+        color: var(--primary);
+        background: rgba(220, 38, 38, 0.08);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+        margin: 16px 0 8px;
+        line-height: 1.05;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.98rem;
+      }
+
+      .login-card {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        margin-top: 26px;
+        padding: 18px 16px 16px;
+        backdrop-filter: blur(6px);
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+      }
+
+      .field label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .input-wrap {
+        display: flex;
+        align-items: center;
+        background: var(--panel-alt);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 0 14px;
+        transition: 0.2s ease;
+      }
+
+      .input-wrap:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+      }
+
+      .icon {
+        color: var(--muted);
+        font-size: 1.1rem;
+        min-width: 18px;
+      }
+
+      input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 15px 12px;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      input::placeholder {
+        color: #9ca3af;
+      }
+
+      .options {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 4px 2px 12px;
+        font-size: 0.82rem;
+      }
+
+      .remember {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+      }
+
+      .remember input {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--primary);
+        margin: 0;
+      }
+
+      .forgot {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .button {
+        width: 100%;
+        border: none;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 16px 18px;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 12px 22px rgba(220, 38, 38, 0.28);
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 22px 0 18px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--line);
+      }
+
+      .socials {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .social-btn {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 12px;
+        padding: 12px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .social-btn span {
+        display: inline-grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--panel-alt);
+      }
+
+      .signup {
+        text-align: center;
+        margin-top: 22px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .signup a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      @media (max-width: 420px) {
+        body {
+          padding: 0;
+        }
+
+        .app {
+          min-height: 100vh;
+          width: 100%;
+          border-radius: 0;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <div class="content">
+        <div class="topbar">
+          <div class="chip">S</div>
+          <div class="perfil">👤</div>
+        </div>
+
+        <div class="brand">
+          <small>App móvil</small>
+          <h1>Inicia sesión</h1>
+        </div>
+
+        <p class="subtitle">Accede a tu cuenta para continuar con tus actividades y herramientas.</p>
+
+        <form class="login-card">
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <div class="input-wrap">
+              <span class="icon">✉</span>
+              <input id="email" type="email" placeholder="usuario@correo.com" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Contraseña</label>
+            <div class="input-wrap">
+              <span class="icon">🔒</span>
+              <input id="password" type="password" placeholder="••••••••" />
+            </div>
+          </div>
+
+          <div class="options">
+            <label class="remember">
+              <input type="checkbox" />
+              <span>Recordarme</span>
+            </label>
+            <a class="forgot" href="#">¿Olvidaste tu clave?</a>
+          </div>
+
+          <button class="button" type="submit">Entrar</button>
+
+          <div class="divider">o continúa con</div>
+
+          <div class="socials">
+            <button type="button" class="social-btn"><span>G</span> Google</button>
+            <button type="button" class="social-btn"><span>f</span> Facebook</button>
+          </div>
+        </form>
+
+        <div class="signup">¿No tienes cuenta? <a href="#">Regístrate</a></div>
+      </div>
+    </main>
+  </body>
+</html>

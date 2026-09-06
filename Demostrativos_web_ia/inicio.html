@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanzador Web</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #1f2d3d;
+      border: none;
+    }
+
+    .navbar-brand, .navbar-nav > li > a {
+      color: #fff !important;
+    }
+
+    .jumbotron {
+      background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #fff;
+      min-height: 500px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .jumbotron .container {
+      background: rgba(0,0,0,0.35);
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    .btn-primary {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+    }
+
+    .btn-primary:hover {
+      background-color: #c0392b;
+      border-color: #c0392b;
+    }
+
+    .feature-box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 25px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      height: 100%;
+    }
+
+    .feature-box h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      color: #1abc9c;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #1f2d3d;
+      color: #fff;
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menuPrincipal" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">RockeBot</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="inicio" class="jumbotron">
+    <div class="container">
+      <h1>Tu presencia digital, mejorada.</h1>
+      <p>Diseñamos experiencias web modernas, rápidas y profesionales con Bootstrap 3.3.4.</p>
+      <p>
+        <a class="btn btn-primary btn-lg" href="#servicios" role="button">Ver servicios</a>
+        <a class="btn btn-default btn-lg" href="#contacto" role="button">Contactar</a>
+      </p>
+    </div>
+  </section>
+
+  <div id="servicios" class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="feature-box">
+          <div class="feature-icon">★</div>
+          <h3>Diseño moderno</h3>
+          <p>Interfaces limpias y atractivas para presentar tus productos o servicios con estilo profesional.</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="feature-box">
+          <div class="feature-icon">◎</div>
+          <h3>Responsivo</h3>
+          <p>Tu web adapta su diseño a móviles, tablets y computadoras para mejorar la experiencia del usuario.</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="feature-box">
+          <div class="feature-icon">▣</div>
+          <h3>Fácil de usar</h3>
+          <p>Construido con componentes claros, accesibles y funcionales para una navegación sencilla.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top: 30px;">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Lanzador web</h3>
+          </div>
+          <div class="panel-body">
+            <p>Este modelo sirve como punto de inicio para desarrollar una landing page o una web institucional utilizando Bootstrap 3.3.4.</p>
+            <p>Incluye estructura base, navegaci&oacute;n, hero section y bloques de contenido para personalizar seg&uacute;n tus necesidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="contacto">
+    <div class="container text-center">
+      <p>© 2026 RockeBot · Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>

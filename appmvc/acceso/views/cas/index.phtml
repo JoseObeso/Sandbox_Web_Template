@@ -1,0 +1,414 @@
+<div class="row">
+    <?php for ($i = 1; $i <= 6; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+</div>
+
+<div class="row">
+    <div class="container">
+        <h2>UNIDAD DE PERSONAL - CAS </h2>
+        <ul class="nav nav-tabs">
+            <li class="active alert-info"><a data-toggle="tab" href="#boletin"><strong>ARCHIVOS DE CONCURSO</strong></a></li>
+            <li class="alert-info"><a data-toggle="tab" href="#interno"><strong>CONCURSO INTERNO</strong></a></li>
+            <li class="alert-info"><a data-toggle="tab" href="#categorias"><strong>NOMBRES DEL CONCURSO</strong></a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="boletin" class="tab-pane fade in active">
+
+                <!-- Inicio de boletin -->
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_nuevo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nueva"><span class="glyphicon glyphicon-file"></span>&nbsp;Nuevo</button>
+                        <div class="form-group"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span class="form-control text-center alert-info texto-negro">Listado de documentos</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <span class="form-control" id="msj-titular"></span>
+                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                    <tr class="success">
+                                        <th>Nro</th>
+                                        <th>Año</th>
+                                        <th>Descripcion</th>
+                                        <th>Archivo</th>
+                                        <th>Registro</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                    <tbody id="mostrar-datos-documentos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div id="interno" class="tab-pane fade">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_nuevo_interno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nueva"><span class="glyphicon glyphicon-file"></span>&nbsp;Nuevo</button>
+                        <div class="form-group"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span class="form-control text-center alert-info texto-negro">Concurso Interno</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <span class="form-control" id="msj-titular-interno"></span>
+                                <table class="table table-striped table-bordered table-hover table-condensed" id="fichas">
+                                    <tr class="success">
+                                        <th>Accion</th>
+                                        <th>Nro</th>
+                                        <th>Nombre</th>
+                                        <th>Usuario</th>
+                                        <th>Registro</th>
+                                    </tr>
+                                    <tbody id="mostrar-datos-interno">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div id="categorias" class="tab-pane fade">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_nuevo_categoria" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nueva"><span class="glyphicon glyphicon-file"></span>&nbsp;Nuevo</button>
+                        <div class="form-group"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span class="form-control text-center alert-info texto-negro">CONCURSO </span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <span class="form-control" id="msj-titular-categorias"></span>
+                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                    <tr class="success">
+                                        <th>Accion</th>
+                                        <th>Nro</th>
+                                        <th>Nombre</th>
+                                        <th>Usuario</th>
+                                        <th>Registro</th>
+                                    </tr>
+                                    <tbody id="mostrar-datos-categorias">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<!-- Para Resoluciones Calidad -->
+<div class="modal" id="registrar" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 alert-info">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <select class="form-control color-yellow" id="anio">
+                                    <?php for ($i = date('Y'); $i >= 2018; $i--) { ?>
+                                        <option value="<?php echo $i; ?>" <?php echo ($i == date('Y') ? 'selected' : '') ?>><?php echo $i; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control color-yellow" id="mostrar_categoria">
+                                </select>
+                            </div>
+                            <span class="bg-default form-control">Descripcion : </span>
+                            <input type="text" id="txtDescripcion" class="form-control crear-tooltip color-yellow-texto-large initialism" maxlength="150">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <hr>
+                            <label class="alert-default">Subir Archivo (PDF, Excel, Word; Max : 5 Megas, Nombre de Archivo no debe tener caracteres extraños, como : Nº): </label><br>
+                            <input type="hidden" name="nombre_archivo" id="nombre_archivo">
+                            <input type="file" name="subir_archivo" id="subir_archivo" class="form-control alert-warning crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Archivo en PDF" data-buttonText="Archivo PDF">
+                            <br>
+                            <span id="msj_subida"></span>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="mostrar_confirmar_eliminar" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Fin de Resoluciones Calidad -->
+
+
+<!-- registrar Galeria -->
+<!-- <div class="modal" id="registrar_galeria" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 alert-info">
+                    <span class="bg-default form-control">FECHA :</span>
+                    <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="FechaPrensa" data-toggle="tooltip" data-placement="bottom" name="FechaPrensa" placeholder="Fecha Publicacion" value="<?= date("d/m/Y") ?>">
+                    <span class="bg-default form-control">TITULO : (Maximo 190 Caracteres)</span>
+                    <input id="TituloPrensa" type="text" class="form-control crear-tooltip color-yellow-texto-large initialism" maxlength="100">
+                </div>
+                <hr>
+                <input type="file" name="imagen-multiple" id="imagen-multiple" class="form-control alert-warning" multiple>
+                <br>
+                <span id="msj_galeria_imagenes" class="alert-default"></span>
+                <br><br>
+            </div>
+            <div class="row">
+                <button class="btn btn-warning  btn-lg form-control  crear-tooltip" id="btn_grabar_galeria" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Galeria">GRABAR</button>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="mostrar_confirmar_eliminar_galeria" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id_galeria">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar Galeria -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar_galeria" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div> -->
+<!-- Fin de registrar Galeria -->
+
+
+<!-- Registrar Categorias -->
+<div class="modal" id="registrar-categorias" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 alert-info">
+                    <div class="row">
+                        <div class="col-xs-12">
+
+
+                            <span class="bg-default form-control">Concurso CAS : </span>
+                            <input type="text" id="txtDescripcion_Categoria" class="form-control crear-tooltip color-yellow-texto-large initialism" maxlength="150">
+                        </div>
+                    </div>
+                    <hr>
+
+
+
+                    <div class="row">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_Categoria" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="mostrar_eliminar_categoria" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id_categoria">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar Concurso -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar_categoria" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Fin de Categorias -->
+
+
+<!-- inicio de concurso interno -->
+
+<div class="modal" id="registrar-interno" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 alert-info">
+                    <div class="row">
+                        <div class="col-xs-12">
+
+
+                            <span class="bg-default form-control">Nombre Concurso Interno : </span>
+                            <input type="text" id="txtDescripcion_interno" class="form-control crear-tooltip color-yellow-texto-large initialism" maxlength="150">
+                        </div>
+                    </div>
+                    <hr>
+
+
+
+                    <div class="row">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_interno" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="mostrar_eliminar_interno" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id_interno">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar Concurso -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar_interno" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<!-- fin de concurso interno -->

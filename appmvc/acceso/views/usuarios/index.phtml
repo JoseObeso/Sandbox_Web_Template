@@ -1,0 +1,235 @@
+<style>
+    .color-yellow-texto-large {
+        background-color: #f7f5c1;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-3">
+        <label for="permisos" class="form-control label label-primary"> -- USUARIOS REGISTRADOS -- </label>
+
+        <select name="slc_usuarios" size="25" id="slc_usuarios" class="form-control alert-info">
+        </select>
+        <span id="mostrar_espera"></span>
+    </div>
+
+    <div class="col-md-1">
+        <label class="form-control label label-primary"> OPERACIONES </label>
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <center>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="nuevo_registro" data-toggle="tooltip" data-placement="up" title="" data-original-title="Nuevo Registro Usuario"><i class="fa fa-user"></i></button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="modificar_registro" data-toggle="tooltip" data-placement="up" title="" data-original-title="Modificar Usuario"><i class="fa fa-pencil"></i></button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="eliminar_registro" data-toggle="tooltip" data-placement="up" title="" data-original-title="Desactivar Usuario"><i class="fa fa-times"></i></button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="reset_clave" data-toggle="tooltip" data-placement="up" title="" data-original-title="Resetear Clave, Restaura a: 1234 ">R</button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="ver_todos_user" data-toggle="tooltip" data-placement="up" title="" data-original-title="Todos los usuarios">T</button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="ver_operativos" data-toggle="tooltip" data-placement="up" title="" data-original-title="Solo Usuarios Operativos">O</button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="habilitar_user" data-toggle="tooltip" data-placement="up" title="" data-original-title="Habilitar Usuarios">H</button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="nombre_usuario" data-toggle="tooltip" data-placement="up" title="" disabled data-original-title="Solo Cambiar nombre de usuario">Us</button><br><br>
+                        </center>
+                    </div>
+                    <div class="form-group"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <span id="user_op" class="text-center"></span>
+
+
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-control label label-primary"> REGISTRAR </label>
+
+
+        <strong>Nombre de Usuario:</strong>
+        <input name="txt_user" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_user" data-toggle="tooltip" data-placement="up" title="" data-original-title="Ingrese el nombre de usuario y pulse ENTER">
+        <span id="msj_usuario"></span><br>
+
+        <strong>DNI:</strong>
+        <input name="txt_dni" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_dni" data-toggle="tooltip" data-placement="up" title="" onkeypress="return valida_ingreso_de_dni(event)" maxlength="8" data-original-title="Ingrese DNI usuario">
+        <span id="msj_dni"></span>
+
+        <br><strong>Nombres:</strong>
+        <input name="txt_nombre" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_nombre" data-toggle="tooltip" data-placement="up" title="" data-original-title="Ingrese Nombres del Usuario">
+
+        <strong>Paterno:</strong>
+        <input name="txt_paterno" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_paterno" data-toggle="tooltip" data-placement="up" title="" data-original-title="Ingrese Apellidos Paterno">
+
+        <strong>Materno:</strong>
+        <input name="txt_materno" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_materno" data-toggle="tooltip" data-placement="up" title="" data-original-title="Ingrese Apellido Materno">
+
+
+        <strong>Oficina:</strong>
+        <input name="txt_oficina" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_oficina" data-toggle="tooltip" data-placement="up" title="" data-original-title="Ingrese Oficina">
+
+        <strong>Sexo:</strong>
+        <table width="100%">
+            <tr>
+                <td><label><input type="radio" name="txt_sexo" value="M" disabled="disabled" id="sexo_1">MASCULINO</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label><input type="radio" name="txt_sexo" value="F" disabled="disabled" id="sexo_2">FEMENINO</label>
+                </td>
+            </tr>
+        </table>
+
+
+        <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_usuarios" data-toggle="tooltip" disabled data-placement="bottom" title="" data-original-title="Grabar usuarios en el sistema"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+        <span id="espera_grabacion_usuarios"></span><br><br>
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="col-md-4">
+        <label class="form-control label label-primary"> ASIGNACION DE PERMISOS </label>
+        <span id="Nombre_Usuario" class="form-control bg-default text-center">Descripcion de Permisos</span><br><br>
+
+        <div class="col-xs-6">
+            <span class="form-control bg-default text-center">PERMISOS : </span>
+            <select name="slt_permisos" size="20" disabled="disabled" id="slt_permisos" class="form-control alert-info"> </select>
+            <input type="button" value="-- X -- " name="btn_eliminar_permiso_app" id="btn_eliminar_permiso_app" class="bg-danger text-center" disabled="disabled">
+        </div>
+
+
+
+
+        <div class="col-xs-6">
+            <span class="form-control bg-default text-center">APP DISPONIBLES : </span>
+            <select name="slt_app" size="20" disabled="disabled" id="slt_app" class="form-control alert-info"> </select>
+            <center>
+                <input type="button" value="- Agregar / Modificar -" name="btn_agregar_modificar_app" id="btn_agregar_modificar_app" class="bg-success text-center" disabled="disabled">
+                <input type="button" value="-- X -- " name="btn_eliminar_app" id="btn_eliminar_app" class="bg-danger text-center" disabled="disabled">
+            </center>
+
+        </div>
+    </div>
+
+    <div class="col-md-1">
+
+
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal Ingresar / Modificar App   -->
+<div class="modal" id="ingresar_modificar_app" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" name="id_app" id="id_app">
+                <input type="hidden" name="id_grabar_modificar" id="id_grabar_modificar">
+                <label for="lst_mod" class="bg-default">Listo Para Modificar :</label>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="txt_vapp">App : </label><br>
+                        <input type="text" name="txt_vapp" id="txt_vapp" class="bg-warning form-control">
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                    <div class="col-xs-3">
+                        <button class="btn btn-info  btn-md form-control  crear-tooltip" id="btn_nuevo_app" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ingresar Nuevo Registro APP">NUEVO APP</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="txt_imagen">Imagen : </label><br>
+                        <input type="text" name="txt_imagen" id="txt_imagen" class="bg-warning form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="txt_url" class="alert-default">URL : </label><br>
+                        <input type="text" name="txt_url" id="txt_url" class="bg-warning form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_app" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal mensaje emergente -->
+<div class="modal" id="mostrar_mensaje_emergente" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"> -- Importante -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Ingrese Nuevo Nombre de Usuario  -->
+<div class="modal" id="mostrar_ingrese_user" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" > -- Cambiar Usuario -- </h4>
+                <input type="hidden" id="id_dni">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="form-control bg-info text-center" id="nuser_anterior"></span>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span class="alert-success text-center text-bold">Nuevo Nombre Usuario</span>
+                        
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="text" name="id_nombre_user" id="id_nombre_user" class="form-control color-yellow-texto-large crear-tooltip">
+                    </div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" id="btn_grabar_username" disabled>Grabar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>

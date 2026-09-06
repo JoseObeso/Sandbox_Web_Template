@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualizar datos</title>
+    <style>
+      :root {
+        --bg: #fd0f4b;
+        --card: #ffffff;
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --success: #16a34a;
+        --shadow: 0 14px 30px rgba(37, 99, 235, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #edf4ff 0%, var(--bg) 100%);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px 14px;
+      }
+
+      .mobile-form {
+        width: 100%;
+        max-width: 420px;
+        background: var(--card);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+        color: white;
+        padding: 22px 20px 18px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.85;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.2;
+      }
+
+      .content {
+        padding: 22px 18px 18px;
+      }
+
+      .profile-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #f8fbff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px 14px;
+        margin-bottom: 18px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        color: var(--primary-dark);
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .profile-badge strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .profile-badge span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .field {
+        margin-bottom: 16px;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fbfdff;
+        padding: 12px 14px;
+        font-size: 15px;
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      }
+
+      textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .row .field {
+        flex: 1;
+      }
+
+      .switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f8fafc;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin: 8px 0 18px;
+      }
+
+      .switch-row span {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .toggle {
+        position: relative;
+        width: 46px;
+        height: 26px;
+      }
+
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        background: #cbd5e1;
+        transition: 0.2s ease;
+      }
+
+      .slider::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 3px;
+        top: 3px;
+        border-radius: 50%;
+        background: white;
+        transition: 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      }
+
+      .toggle input:checked + .slider {
+        background: var(--success);
+      }
+
+      .toggle input:checked + .slider::before {
+        transform: translateX(20px);
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      button {
+        flex: 1;
+        border: none;
+        border-radius: 12px;
+        padding: 13px 16px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .primary {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+      }
+
+      .secondary {
+        background: #eef2ff;
+        color: var(--primary-dark);
+      }
+
+      @media (max-width: 360px) {
+        .row {
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="mobile-form">
+      <header class="header">
+        <div class="eyebrow">Cuenta</div>
+        <h1>Actualizar datos</h1>
+      </header>
+
+      <section class="content">
+        <div class="profile-badge">
+          <div class="avatar">AL</div>
+          <div>
+            <strong>Ana López</strong>
+            <span>Perfil personal</span>
+          </div>
+        </div>
+
+        <form>
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" type="text" value="Ana López" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" type="tel" value="+34 600 123 456" />
+            </div>
+            <div class="field">
+              <label for="edad">Edad</label>
+              <input id="edad" type="number" value="29" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input id="email" type="email" value="ana.lopez@email.com" />
+          </div>
+
+          <div class="field">
+            <label for="direccion">Dirección</label>
+            <textarea id="direccion">Calle Mayor 24, 2º A</textarea>
+          </div>
+
+          <div class="field">
+            <label for="ciudad">Ciudad</label>
+            <select id="ciudad">
+              <option selected>Madrid</option>
+              <option>Barcelona</option>
+              <option>Valencia</option>
+              <option>Sevilla</option>
+            </select>
+          </div>
+
+          <div class="switch-row">
+            <span>Recibir notificaciones</span>
+            <label class="toggle">
+              <input type="checkbox" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="secondary">Cancelar</button>
+            <button type="submit" class="primary">Guardar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

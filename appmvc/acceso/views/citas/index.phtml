@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon bg-default">N</span>
+                <input type="text" class="form-control crear-tooltip color-yellow" id="buscar" name="buscar" placeholder="Buscar" data-original-title="Buscar" data-toggle="tooltip">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+            <select class="form-control color-yellow" id="anio">
+                <?php for ($i = date('Y'); $i >= 2010; $i--) { ?>
+                    <option value="<?php echo $i; ?>" <?php echo ($i == date('Y') ? 'selected' : '') ?>><?php echo $i; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <?php
+            $month = array(0 => 'TODOS', 1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL', 5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO', 9 => 'SETIEMBRE', 10 => 'OCTUBRE', 11 => 'NOVIEMBRE', 12 => 'DICIEMBRE');
+            ?>
+            <select class="form-control color-yellow" id="mes">
+                <?php
+                $m = date("m");
+                foreach ($month as $k => $v) { ?>
+                    <option value="<?php echo $k; ?>" <?php echo ($k == date(0) ? 'selected' : ''); ?>><?php echo $v; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_busqueda" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar"><span class="glyphicon glyphicon-search"></span>&nbsp;Buscar</button>
+        <div class="form-group"></div>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_limpiar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Limpiar Filtros"><span class="glyphicon glyphicon-remove"></span>&nbsp;Limpiar</button>
+        <div class="form-group"></div>
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-3 col-md-10">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="form-control text-center alert-info texto-negro">Gestion de Citas -- Fila Color Negro : Cita Registrada // Azul : Cita Otorgada</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <span class="form-control" id="msj-titular"></span>
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <tr class="success">
+                                    <th>&#124;Nro</th>
+                                    <th>&#124;Fecha</th>
+                                    <th>&#124;DNI</th>
+                                    <th>&#124;Paciente</th>
+                                    <th>&#124;Celular</th>
+                                    <th>&#124;Consultorio</th>
+                                    <th>&#124;Turno</th>
+                                    <th>&#124;Operacion</th>
+                                    <th>&#124;Voucher</th>
+                                    <th>&#124;CitaSigsalud</th>
+                                    <th>&#124;Fecha</th>
+                                    <th>-- Cita</th>
+                                    <th>-- Cita --</th>
+                                    <th>&#124;Operador</th>
+                                </tr>
+                                <tbody id="mostrar-datos-busqueda">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="registrar" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <input type="hidden" id="txtIdCitaWeb">
+            <h4 class="text-center alert-success">Una vez otorgada la CITA, notifique al celular del paciente</h4>
+            <div class="text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">X</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-xs-12 alert-info">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span class="bg-default form-control">ID Cita : (Maximo 9 Caracteres)</span>
+                            <input type="text" id="txtIdcita" class="form-control crear-tooltip color-yellow-texto-large" maxlength="9">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Fecha : </label><br>
+                            <input type="text" name="fecha_cita" id="fecha_cita" class="form-control alert-warning crear-tooltip" data-toggle="tooltip" data-placement="up" title="" readonly="readonly" data-original-title="Fecha Cita Otorgada">
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span class="bg-default form-control">Precio Cita </span>
+                            <input type="text" id="txtPrecio" class="form-control crear-tooltip color-yellow-texto-large" maxlength="2" value=10>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <hr>
+
+                    <div class="row">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal" id="mostrar_confirmar_eliminar" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" id="id">
+                <h4 class="modal-title text-center"> -- Confirme Eliminar -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="si_eliminar" class="btn btn-danger">Eliminar</button>
+                            <button type="button" id="cancelar" class="btn btn-info">Cancelar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal mensaje emergente -->
+<div class="modal" id="mostrar_mensaje_emergente" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"> -- Importante -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+

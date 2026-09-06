@@ -1,0 +1,174 @@
+.ocultar {
+    display: none;
+}
+
+.bg-principal {
+    background: #9d9d9d!important;
+}
+
+.titulos {
+    background: #f3f3f3;
+    font-family: monospace;
+    color: #000;
+    font-size: 16px;
+    width: 100px;
+}
+
+.ui-datepicker {
+    z-index: 10000 !important;
+}
+
+tr.header {
+    cursor: pointer;
+}
+
+.report span.up {
+    background-position: 0px 0px;
+}
+
+@media (min-width: 992px) {
+    .modal-lg2 {
+        width: 1100px;
+    }
+}
+
+.font-btn {
+    font-size: 16px !important;
+}
+
+.gotop {
+    top: 45px !important;
+}
+
+#botones-flotantes.affix {
+    position: fixed;
+    top: 45px;
+}
+
+.puntero {
+    cursor: pointer;
+}
+
+.plantilla:hover {
+    border: 3px dashed #00AFFF;
+}
+
+.selected-plantilla {
+    border: 3px dashed #00AFFF;
+}
+
+.box {
+    box-shadow: 2px 2px 10px #888
+}
+
+#mostrar-datos-busqueda {
+    color: #000;
+    font-weight: blod;
+}
+
+.bg-panel {
+    background-color: #9cd4bf !important;
+}
+
+.bg-color-input-text {
+    background-color: #f2f291;
+}
+
+.caja {
+    padding: 5px;
+    box-shadow: 10px 10px 50px 1px #d5d5d6;
+    border-radius: 10px;
+}
+
+.caja_azul {
+    padding: 5px;
+    box-shadow: 10px 10px 50px 2px #000000;
+    border-radius: 15px;
+}
+
+.teal-color {
+    color: white;
+}
+
+.color-blanco {
+    color: cornsilk;
+}
+
+.color-yellow {
+    background-color: #f7f5c1;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.text-largo {
+    font-size: x-large
+}
+
+.fixed-cabecera-entrada {
+    position: fixed;
+    width: 85%;
+    z-index: 3;
+}
+
+.fondo-login {
+    background-color: #4b4b4b;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.bg-panel {
+    background-color: #184E9D;
+}
+
+.fondo-azul {
+    background-color: #2B5FC9;
+}
+
+.texto-negro {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.fondo-negro {
+    background-color: #000;
+}
+
+.fondo-amarillo {
+    background-color: rgb(248, 231, 156);
+}
+
+.fondo-gris {
+    background-color: darkslateblue
+}
+
+.color-yellow-texto-large {
+    background-color: #f7f5c1;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}

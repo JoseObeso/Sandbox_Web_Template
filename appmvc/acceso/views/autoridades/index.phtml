@@ -1,0 +1,250 @@
+<div class="row box-cell p-x-3 p-y-1 bg-default darken caja fixed-cabecera col-md-4 ">
+    <div class="row">
+
+        <h3 class="alert-warning text-center">Registro de Nuevas Autoridades</h3>
+
+        <div class="col-md-2">
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="col-md-6 alert-success">
+    Instrucciones :
+    <ul>
+        <li>Los archivos deben estar en formato PDF (Para CV, Nepotismo, Bienes Rentas, Intereses)</li>
+        <li>Los nombres de los archivos deben ser lo mas breves posible, ejemplo, para Jefa de Estadistica e Informatica :</li>
+        <li> CV --> cv_nombre.pdf</li>
+        <li> Nepotismo --> nepotismo_nombre.pdf</li>
+        <li> Bienes rentas --> bienes_nombre.pdf</li>
+        <li> intereses --> intereses_nombre.pdf</li>
+
+
+    </ul>
+
+</div>
+
+
+
+
+<div class="row">
+    <?php for ($i = 1; $i <= 2; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center"><span id="Nro_resultados"></span>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading bg-info">
+                
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover table-condensed" witdh id="Tabla_Expedientes">
+                        <tr class="success">
+                            <th>Nro</th>
+                            <th>Cargo</th>
+                            <th>Nombre</th>
+                            <th>Curriculum</th>
+                            <th>Nepotismo</th>
+                            <th>Bienes y rentas</th>
+                            <th>DJ Intereses</th>
+                            <th>Operaciones</th>
+                        </tr>
+                        <tbody id="mostrar-datos-busqueda">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal Modificar Autoridad  -->
+<div class="modal" id="modificar_autoridad" role="dialog">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <input type="hidden" name="id_autoridad" id="id_autoridad">
+                <span class="alert-info" id="txt_titulo_autoridad"></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <label for="txt_vapp">Cargo : </label><br>
+                        <input type="text" name="txt_cargo" id="txt_cargo" class="form-control alert-warning">
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label for="txt_imagen">Nombre : </label><br>
+                        <input type="text" name="txt_nombre" id="txt_nombre" class="form-control alert-warning">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <hr>
+
+                        <label class="alert-default">Curriculum : <span id="archivo_cv" class="alert-danger"> </span> </label><br>
+                        <input type="file" name="txt_curriculum" id="txt_curriculum" class="form-control alert-warning" data-buttonText="Curriculum Vitae">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <span id="msj_subida_cv"></span>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <hr>
+                        <label class="alert-default">Nepotismo : <span id="nepotismo-pdf"> </span></label><br>
+                        <input type="file" name="txt_nepotismo" id="txt_nepotismo" class="form-control alert-warning">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <span id="msj_subida_nepotismo"></span>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <hr>
+                        <label class="alert-default">Bienes y Rentas : <span id="bienes-rentas-pdf"> </span></label><br>
+                        <input type="file" name="txt_bienes" id="txt_bienes" class="form-control alert-warning">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <span id="msj_subida_bienes"></span>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <hr>
+                        <label class="alert-default">DJ intereses : <span id="dj-intereses-pdf"> </span></label><br>
+                        <input type="file" name="txt_intereses" id="txt_intereses" class="form-control alert-warning">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <span id="msj_subida_intereses"></span>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_autoridad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar  --- ">GRABAR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Eliminar expediente -->
+<div class="modal fade" id="EliminarAdjunto" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">--- CONFIRME ELIMINAR LOS ADJUNTOS --- </h4>
+                <input type="hidden" name="id_autoridad_eliminar" id="id_autoridad_eliminar">
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-11">
+                        <input id="chk_cv" type="checkbox" value="1">--<span id="archivo_cvt"></span><br>
+                        <input id="chk_nepotismo" type="checkbox" value="2">--<span id="archivo_nepotismo"></span><br>
+                        <input id="chk_bienes" type="checkbox" value="3">--<span id="archivo_bienes"></span><br>
+                        <input id="chk_intereses" type="checkbox" value="4">--<span id="archivo_intereses"></span><br>
+                    </div>
+
+                    <div class="form-group"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_eliminar_adjunto" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Confirme eliminar  --- "><i class="fa fa-save"></i>&nbsp;ELIMINAR ADJUNTOS MARCADOS</button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal mensaje emergente -->
+<div class="modal" id="mostrar_mensaje_emergente" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"> -- Importante -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>

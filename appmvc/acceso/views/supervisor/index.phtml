@@ -1,0 +1,201 @@
+<div class="row">
+    <?php for ($i = 1; $i <= 10; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+</div>
+
+<div class="row">
+    <div class="container">
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title alert-info">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#usuario_dni"><strong>&#187;&nbsp;1. USUARIOS EN TABLA USUARIO_WEB (Emergencia, Liquidaciones, etc.) </strong></a>
+                    </h4>
+                </div>
+                <div id="usuario_dni" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-xs-12">
+                            <input type="number" id="txtDNIUsuario" class="form-control color-yellow texto-negro-cita" placeholder="DNI Usuario">
+                            <button class="btn btn-info form-control  crear-tooltip" id="btn_consultar" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Pulse aqui">REVISAR EN USUARIO_WEB</button>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<br>';
+                            } ?>
+                            <span id="msj"></span>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<br>';
+                            } ?>
+
+                            <div class="row alert-info" id="resultado_consulta">
+                                <span class="texto-negro-right" id="vnombres"></span><br>
+                                <span class="texto-negro-right">&#187;&nbsp;Expira :</span>
+                                <span class="texto-negro-right" id="vexpira"></span><br>
+                                <span class="texto-negro-right">&#187;&nbsp;Estado :</span>
+                                <span class="texto-negro-right" id="vtipoestado"></span>
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+                                <div class="col-xs-12">
+                                    <button class="btn btn-success form-control  crear-tooltip" id="btn_cambiarclave" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cambiar clave">CLAVE A 1234</button>
+                                </div>
+
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+
+                                <div class="col-xs-12">
+                                    <button class="btn btn-success form-control  crear-tooltip" id="btn_aumentar" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Aumentar 1 Año">EXPIRAR A 1 AÑO</button>
+                                </div>
+
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+
+                                <div class="col-xs-12">
+                                    <button class="btn btn-success form-control  crear-tooltip" id="btn_desactivado" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Para desactivar">A DESACTIVAR</button>
+                                </div>
+
+
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+
+                                <div class="col-xs-12">
+                                    <button class="btn btn-success form-control  crear-tooltip" id="btn_activo" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Para Activar">A ACTIVAR</button>
+                                </div>
+
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title alert-success">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#nombre_usuario"><strong>&#187;&nbsp;2. NOMBRE DE USUARIO : TABLA USUARIO (Admision y otros con nombre usuario)</strong></a>
+                    </h4>
+                </div>
+                <div id="nombre_usuario" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <input type="text" id="txtnombre" class="form-control color-yellow texto-negro-cita initialism" placeholder="Apellidos y nombres" maxlength="100">
+                        <button class="btn btn-info form-control  crear-tooltip" id="btn_consultar_apellidos" data-toggle="tooltip" data-placement="right" title="" data-original-title="Pulse aqui">REVISAR APELLIDOS</button>
+                        <span id="msj_user_apellido"></span>
+                        <?php for ($i = 1; $i <= 1; $i++) {
+                            echo '<br>';
+                        } ?>
+                        <select name="slt_resultado" id="slt_resultado" disabled="disabled" class="form-control alert-info"></select>
+                        <div class="form-group"></div>
+                        <span id="apellidos_nombres" class="alert-success text-center"></span>
+                        <?php for ($i = 1; $i <= 2; $i++) {
+                            echo '<div class="form-group"></div>';
+                        } ?>
+                        <input type="text" id="txtUsuario" class="form-control color-yellow texto-negro-cita" disabled="disabled" placeholder="Nombre de Usuario" maxlength="15">
+                        <button class="btn btn-info form-control  crear-tooltip" id="btn_consultar_usuario" disabled="disabled" data-toggle="tooltip" data-placement="right" title="" data-original-title="Pulse aqui">REVISAR EN USUARIO</button>
+                        <span id="msj_user"></span>
+                        <?php for ($i = 1; $i <= 2; $i++) {
+                            echo '<br>';
+                        } ?>
+                        <div class="row alert-info" id="resultado_consulta_user">
+
+                            <span class="texto-negro-right" id="vnombres_user"></span><br>
+                            <span class="texto-negro-right">&#187;&nbsp;Expira :</span>
+                            <span class="texto-negro-right" id="vexpira_user"></span><br>
+                            <span class="texto-negro-right">&#187;&nbsp;Estado :</span>
+                            <span class="texto-negro-right" id="vtipoestado_user"></span>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<div class="form-group"></div>';
+                            } ?>
+                            <button class="btn btn-success form-control  crear-tooltip" id="btn_cambiarclave_user" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cambiar clave">CLAVE A 1234</button>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<div class="form-group"></div>';
+                            } ?>
+                            <button class="btn btn-success form-control  crear-tooltip" id="btn_aumentar_user" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Aumentar 1 Año">EXPIRAR A 1 AÑO</button>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<div class="form-group"></div>';
+                            } ?>
+                            <button class="btn btn-success form-control  crear-tooltip" id="btn_desactivado_user" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Para desactivar">A DESACTIVAR</button>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<div class="form-group"></div>';
+                            } ?>
+                            <button class="btn btn-success form-control  crear-tooltip" id="btn_activo_user" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Para Activar">A ACTIVAR</button>
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<div class="form-group"></div>';
+                            } ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title alert-info">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#usuario_tramite"><strong>&#187;&nbsp;3. SOLO USUARIOS DE TRAMITE </strong></a>
+                    </h4>
+                </div>
+                <div id="usuario_tramite" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+
+                        <div class="col-xs-12">
+
+                            <input type="text" id="txtnombre_tramite" class="form-control color-yellow texto-negro-cita initialism" placeholder="Nombres y/o Identificador" maxlength="100">
+                            <button class="btn btn-info form-control  crear-tooltip" id="btn_consultar_apellidos_tramite" data-toggle="tooltip" data-placement="right" title="" data-original-title="Pulse aqui">REVISAR</button>
+
+                            <span id="msj_user_apellido_tramite"></span>
+
+                            <?php for ($i = 1; $i <= 1; $i++) {
+                                echo '<br>';
+                            } ?>
+                            <select name="slt_resultado_tramite" id="slt_resultado_tramite" disabled="disabled" class="form-control alert-info"></select>
+                            <div class="form-group"></div>
+
+
+                            <span id="apellidos_nombres_tramite" class="alert-success text-center"></span>
+
+                            <?php for ($i = 1; $i <= 2; $i++) {
+                                echo '<div class="form-group"></div>';
+                            } ?>
+
+
+
+                            <div class="row alert-info" id="resultado_consulta_user_tramite">
+                                <button class="btn btn-success form-control  crear-tooltip" id="btn_cambiarclave_user_tramite" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cambiar clave">CLAVE A 1234</button>
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+                                <button class="btn btn-success form-control  crear-tooltip" id="btn_aumentar_user_tramite" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Aumentar 1 Año">EXPIRAR A 1 AÑO</button>
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+                                <button class="btn btn-success form-control  crear-tooltip" id="btn_desactivado_user_tramite" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Para desactivar">A DESACTIVAR</button>
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+                                <button class="btn btn-success form-control  crear-tooltip" id="btn_activo_user_tramite" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Para Activar">A ACTIVAR</button>
+                                <?php for ($i = 1; $i <= 2; $i++) {
+                                    echo '<div class="form-group"></div>';
+                                } ?>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
