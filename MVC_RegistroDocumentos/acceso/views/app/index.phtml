@@ -1,0 +1,43 @@
+<div class="row">
+
+    <div class="col-md-3 bg-default">
+        <?php
+        if ($this->listar_modulos['encontro'] !== 0) :
+            echo '<div align="left"><strong><font color="#363636">Usted Tiene acceso a los siguientes Aplicativos...</font></strong></div><hr>';
+            foreach ($this->listar_modulos['data'] as $v) : ?>
+                <a href="<?php echo $v['URL'] ?>"><img width="150" height="100" class = "img-thumbnail img-responsive" src="<?php echo RUTA_PUBLIC_GRA . $v['IMAGEN'] ?>" alt="..." style="height: 100px;"></a>
+                <div class="caption">
+                    <?php echo nl2br(utf8_encode($v['DESCRIPCION'])) ?>
+
+                    
+
+                    <hr>
+                <?php endforeach;
+        else : ?>
+
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span class="panel-title"><i class="fa fa-comment-o"></i>&nbsp;Enlace Equivocado:</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-danger">
+                                <strong>
+                                    <?php echo $this->listar_modulos['msg'] ?>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <?php endif; ?>
+                </div>
+    </div>
+
+
+
+
+
+
+</div>

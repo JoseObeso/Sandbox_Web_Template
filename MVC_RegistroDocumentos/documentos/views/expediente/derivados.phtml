@@ -1,0 +1,207 @@
+<?php
+
+$actor = $_SESSION["usuario"]["actor"];
+ 
+
+
+?>
+
+<div class="row box-cell p-x-3 p-y-1 bg-default darken caja fixed-cabecera">
+
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-addon bg-default">I</span>
+            <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechainicioderivado" data-toggle="tooltip" data-original-title="Fecha de Inicio" name="fechainicioderivado" data-placement="right" placeholder="Fecha Inicio" value="<?= date("d/m/Y") ?>"><br><br>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon bg-default">F</span>
+
+            <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechafinderivado" data-toggle="tooltip" name="fechafinderivado" data-original-title="Fecha Fin" data-toggle="tooltip" data-placement="right" placeholder="Fecha Fin" value="<?= date("d/m/Y") ?>">
+        </div>
+        <div class="form-group"></div>
+        <button class="btn btn-default  btn-xs form-control crear-tooltip" id="mes_transcurrido"><span class="glyphicon glyphicon-calendar">&nbsp;</span><span id="nombre_del_mes_en_curso"></span></button>
+        <button class="btn btn-default  btn-xs  form-control crear-tooltip" id="anio_transcurrido"><span class="glyphicon glyphicon-calendar">&nbsp;</span><span id="nombre_del_anio_en_curso"></span></button>
+
+    </div>
+    <div class="col-md-1">
+
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_busqueda_total" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar por fechas"><span class="glyphicon glyphicon-search"></span>&nbsp;Buscar</button>
+       
+
+
+    </div>
+    <div class="col-md-2">
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_generar_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Generar Cargo"><span class="glyphicon glyphicon-ok"></span>&nbsp;Generar Cargo</button>
+        <div class="form-group"></div>
+        <span id="Nro_resultados"></span>
+        <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_mostrar_sin_cargo" data-toggle="tooltip"   data-placement="bottom" title="" data-original-title="Pulsar aqui, para mostrar expedientes sin cargo..">Mostrar Derivados sin Cargo</button>
+    </div>
+
+    <div class="col-md-2">
+        <span class="form-control bg-default">Cargos generados</span>
+        <select name="slt_ver_cargos" id="slt_ver_cargos" class="form-control"></select>
+
+    </div>
+    <div class="form-group"></div>
+
+
+    <div class="col-xs-12">
+        <div class="col-xs-2 btn-default">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" onClick="toggle(this)" id="btn_selec" />&nbsp;<strong>Selecc/Des. Todos</strong><br>
+            </div>
+        </div>
+
+
+        <?php 
+        
+        if ($actor !== '0109') {
+            echo '<div class="col-xs-1">
+            <button class="btn btn-primary crear-tooltip " id="btn_ver_expedientes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver solo Expedientes Tramite Documentario"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Exp. de OTD</button>
+
+        </div>
+        <div class="col-xs-1">
+            <button class="btn btn-primary crear-tooltip " id="btn_ver_internos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver solo Expedientes Internos"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Exp. Internos</button>
+
+        </div>';
+        }
+
+
+        
+        ?>
+        
+        
+    </div>
+
+
+</div>
+
+ 
+
+<div class="row">
+    <?php for ($i = 1; $i <= 15; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed"" id="tabla_derivados" data-page-length='30'>
+                <thead>
+                    <tr class="info">
+                        <th>Sel</th>
+                        <th>Expediente</th>
+                        <th>Cargo</th>
+                        <th>Nro</th>
+                        <th>Nombre</th>
+                        <th>Asunto</th>
+                        <th>Fecha</th>
+                        <th>Cargo</th>
+                        <th>Destino</th>
+                        <th>Observaciones</th>
+                    </tr>
+                    
+                </thead>
+                <tbody id="mostrar_tablas_derivados"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Imprimir cargo -->
+<div class="modal fade" id="generar_cargo" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="nro_cargo"> -- Imprimir cargo -- </h4>
+                <input type="hidden" name="nro_cargo" id="nro_cargo">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3"><strong> Nro de Cargo : </strong></div>
+                    <div class="col-xs-6">
+                        <input type="text" name="nro_cargo_mostrar" id="nro_cargo_mostrar" readonly>
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                    <span id="mostrar_cantidad_registros"></span>    
+                    <span id="mostrar_espera_grabacion"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_imprimir_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Imprimir cargo --- "> <span class="glyphicon glyphicon-print"></span>&nbsp;IMPRIMIR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Reimprimir cargo -->
+<div class="modal fade" id="reimprimir_generar_cargo" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="nro_cargo"> -- Re Imprimir cargo -- </h4>
+                <input type="hidden" name="nro_cargo" id="nro_cargo">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3"><strong> Nro de Cargo : </strong></div>
+                    <div class="col-xs-6">
+                        <input type="text" name="nro_reimprimir_cargo" id="nro_reimprimir_cargo" readonly>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_reimprimir_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Reimprimir  cargo --- ">&nbsp;REIMPRIMIR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal mensaje emergente -->
+<div class="modal" id="mostrar_mensaje_emergente" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"> -- Importante -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,177 @@
+<?php
+$plantillas_modulos = json_decode($this->listar_app);
+$plantillas_menus = json_decode($this->listar_menu);
+$plantillas_submenus = json_decode($this->listar_submenu);
+$listar_modulos_disponibles = json_decode($this->todoslosmodulos);
+ 
+?>
+
+<!-- registros de APP -->
+<div class="row">
+    <div class="col-md-3 ">
+            <span class="form-control bg-default glyphicon glyphicon-th"> APLICATIVOS : </span>
+            <select name="slt_app_registrados" size="10" class="form-control alert-info" id="slt_app_registrados"></select>
+            <div class="form-group"></div>   
+        <button class="btn  btn-primary  btn-lg crear-tooltip" style="justify-content: center" id="nuevo_modulo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nuevo Modulo"><i class="fa fa-plus"></i></button>
+        <?php for ($i = 1; $i <= 2; $i++) {
+    echo '<br>';
+} ?>
+   <!-- formulario de registro -->
+   <h4 class="form-control bg-default text-center">NUEVO APLICATIVO</h4>
+         
+        <span class="form-control text-center" id="aviso_en_app"></span>
+        <div class="form-group"></div>
+        <span class="form-control color-default">&#8594;NOMBRE :</span>
+        <input type="text" disabled="disabled" required="required" class="form-control alert-warning " id="txt_nombre_app" title="Ingrese nombre del aplicativo">
+
+        <div class="form-group"></div>
+        <span class="form-control color-default">&#8594;URL : (url/dominio/app) </span>
+
+        <input  type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_url_app" title="Ingrese URL del aplicativo">
+
+
+        <div class="form-group"></div>
+        <span class="form-control color-default">&#8594;IMAGEN : (Formato jpg)</span>
+
+        <input type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_url_imagen" title="Ingrese Imagen del aplicativo">
+
+        <div class="form-group"></div>
+        <span class="form-control color-default">&#8594;DESCRIPCION : (Breve descripcion funcional)</span>
+
+
+        <input type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_descripcion_app" title="Ingrese descripcion del aplicativo">
+
+        <div class="form-group"></div>
+        <span class="form-control color-default">&#8594;MANUAL DE USUARIO:</span>
+
+        <input  type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_archivo_manual_app" title="Ingrese archivo manual del aplicativo">
+
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_app" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Aplicativo Registrado" disabled="disabled">GRABAR</button>
+
+        <?php for ($i = 1; $i <= 5; $i++) {
+    echo '<br>';
+} ?> 
+   </div>
+
+
+  <div class="col-md-3">
+
+    <span class="form-control bg-default glyphicon glyphicon-th"> MENU : </span>
+            <select name="slt_menu_registrados" size="10" class="form-control alert-info" id="slt_menu_registrados"></select>
+            <div class="form-group"></div>     
+        <center><button class="btn btn-info  btn-lg crear-tooltip " id="btn_nuevo_menu" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nuevo Menu"><i class="fa fa-plus"></i></button></center>
+        <?php for ($i = 1; $i <= 2; $i++) {
+    echo '<br>';
+} ?>
+
+ <!-- Inicio de formulario nuevo menu -->
+<h4 class="form-control bg-default text-center" id = "Titulo_menu">NUEVO MENU</h4>
+ 
+         
+         <span class="form-control text-center" id="aviso_en_menu"></span>
+         <div class="form-group"></div>
+         <span class="form-control color-default">MENU :</span>
+         <input type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_nombre_menu" title="Ingrese nombre del menu">
+ 
+         <div class="form-group"></div>
+         <span class="form-control color-default">ID HTML : (del menu) </span>
+          <input  type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_url_menu" title="Ingrese URL del menu">
+  
+         <div class="form-group"></div>
+         <span class="form-control color-default">ICONO:  </span> 
+          <input type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_icono_menu" title="Ingrese Icono del menu">
+          <a href="https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp" target="_black">Ver mas iconos</a>
+
+ 
+         <div class="form-group"></div>
+         <span class="form-control color-default">ORDEN : </span>
+ 
+         <input type="number" disabled="disabled" required="required" class="form-control alert-warning" id="txt_orden_menu" title="Ingrese orden del menu solo numeros" onkeypress="return valida_ingreso_numerico(event)"
+         min="1" max="99"   value="1">
+ 
+         <div class="form-group"></div>
+         <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_menu" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Menu Registrado" disabled="disabled">GRABAR</button>
+ 
+         <?php for ($i = 1; $i <= 5; $i++) {
+    echo '<br>';
+} ?> 
+    </div>
+    <div class="col-md-3">
+    <span class="form-control bg-default glyphicon glyphicon-th" id="titulo_submenu" > SUBMENU : </span>
+            <select name="slt_submenu_registrados" size="10" class="form-control alert-info" id="slt_submenu_registrados"></select>
+            <div class="form-group"></div>  
+
+        <center><button class="btn btn-info  btn-lg crear-tooltip " id="nuevo_submenu" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nuevo Sub  Menu"><i class="fa fa-plus"></i></button></center>
+        <?php for ($i = 1; $i <= 2; $i++) {
+    echo '<br>';
+}    ?>
+        
+
+
+<!-- Inicio de formulario nuevo submenu -->
+<h4 class="form-control bg-default text-center" id = "titulo_submenu">NUEVO SUBMENU</h4>
+          <span class="form-control text-center" id="aviso_en_submenu"></span>
+         <div class="form-group"></div>
+         <span class="form-control color-default">SUBMENU :</span>
+         <input type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_nombre_submenu" title="Ingrese nombre del submenu">
+ 
+         <div class="form-group"></div>
+         <span class="form-control color-default">ID HTML : (del submenu) </span>
+          <input  type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_url_submenu" title="Ingrese URL del submenu">
+  
+         <div class="form-group"></div>
+         <span class="form-control color-default">ICONO:  </span> 
+          <input type="text" disabled="disabled" required="required" class="form-control alert-warning" id="txt_icono_submenu" title="Ingrese Icono del submenu">
+          <a href="https://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp" target="_black">Ver mas iconos</a>
+
+         <div class="form-group"></div>
+         <span class="form-control color-default">ORDEN : </span>
+
+         <input type="number" disabled="disabled" required="required" class="form-control alert-warning" id="txt_orden_submenu" title="Ingrese orden del submenu solo numeros" onkeypress="return valida_ingreso_numerico(event)"
+                  min="1" max="99" step="1" value="1">
+
+         <div class="form-group"></div>
+         <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_submenu" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Sub Menu Registrado" disabled="disabled">GRABAR</button>
+         <?php for ($i = 1; $i <= 2; $i++) {
+    echo '<br>';
+}
+
+?>
+
+    </div>
+
+<!-- 
+    <div class="col-md-2">
+
+
+        <div class="panel panel-info widget-support-tickets srcollpanel">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="panel-title-icon fa fa-bars"></i>Para todo usuario :</span>
+                <div class="panel-heading-controls">
+
+                </div>
+            </div>
+            <div class="panel-body tab-content-padding">
+                <select name="modulo" size="10" class="form-control alert-info" id="modulo">
+                    <?php foreach ($listar_modulos_disponibles  as $modulo) : ?>
+                        <option id="<?= $modulo->id_pl_m ?>" nombre="<?= $modulo->nombre ?>">
+                            <?= $modulo->nombre ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <span id="mostrar_espera_modulo"></span>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div> -->
+
+</div>
+
+
+ 

@@ -1,0 +1,252 @@
+<style>
+    .color-yellow-texto-large {
+        background-color: #f7f5c1;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-3">
+        <label for="permisos" class="form-control label label-primary"> -- USUARIOS REGISTRADOS -- </label>
+        <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" size="35" class="form-control color-yellow-texto-large initialism">
+        <select name="slc_usuarios" size="25" id="slc_usuarios" class="form-control alert-info">
+        </select>
+        <span id="mostrar_espera"></span>
+    </div>
+
+
+
+    <div class="col-md-1">
+        <label class="form-control label label-primary"> OPERACIONES </label>
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <center>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="nuevo_registro" data-toggle="tooltip" data-placement="up" title="" data-original-title="Nuevo Registro Usuario"><i class="fa fa-user"></i></button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="modificar_registro" data-toggle="tooltip" data-placement="up" title="" data-original-title="Modificar Usuario"><i class="fa fa-pencil"></i></button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="eliminar_registro" data-toggle="tooltip" data-placement="up" title="" data-original-title="Desactivar Usuario"><i class="fa fa-times"></i></button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="reset_clave" data-toggle="tooltip" data-placement="up" title="" data-original-title="Resetear Clave, Restaura a: 1234 ">R</button><br><br>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="habilitar_usuario" data-toggle="tooltip" data-placement="up" title="" data-original-title="Habilitar Usuario">H</button>
+                        </center>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <span><strong>Condicion : </strong> </span>
+            <span id="tipo_condicion_activo"></span>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-8">
+
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#usuarios"> - USUARIOS - </a></li>
+            <li><a data-toggle="tab" href="#permisos"> - PERMISOS - </a></li>
+            <li><a data-toggle="tab" href="#asignacion"> - ASIGNACION DE COMITES, AREAS - </a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="usuarios" class="tab-pane fade in active">
+                <span class="form-control bg-success text-bold text-md text-center">Digite lo indicado en los casilleros, y, pulse tecla enter.</span>
+                <div class="form-group"></div>
+                <div class="col-xs-4">
+                    <span class="form-control alert-default text-left text-bold"> Nombre Usuario : </span>
+                    <input name="txt_usuario" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_usuario" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ingrese el nombre de usuario">
+                    <span id="msj_usuario"></span>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <span class="form-control alert-default text-left text-bold"> Telefono : </span>
+                    <input name="txt_telefono" type="text" disabled="disabled" class="form-control color-yellow-texto-large crear-tooltip" id="txt_telefono" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Digitos del telefono y pulse enter">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <span class="form-control alert-default text-left text-bold"> Cargo : </span>
+                    <input name="txt_cargo" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cargo del empleado, pulse enter">
+                </div>
+                <div class="col-xs-4">
+                    <span class="form-control alert-default text-left text-bold"> Nombres : </span>
+                    <input name="txt_nombres" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_nombres" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nombre del empleado, pulse enter">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <span class="form-control alert-default text-left text-bold"> Direccion : </span>
+                    <input name="txt_direccion" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_direccion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Direccion del empleado, pulse enter">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <span class="form-control alert-default text-left text-bold"> Actor : (Area / Departamento) </span>
+                    <div class="form-group no-margin-hr posicionaritem">
+                        <input type="text" name="txt_seleccion_actor" id="txt_seleccion_actor" class="form-control color-yellow-texto-large crear-tooltip" disabled="disabled">
+                        <span id="ver_actor"></span><br><span id="ver_descripcion"></span><span id="ver_responsable"></span>
+                        <input type="hidden" name="txt_idactor" id="txt_idactor">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <span class="form-control alert-default text-left text-bold"> Apellidos : </span>
+                    <input name="txt_apellidos" type="text" disabled="disabled" class="form-control color-yellow-texto-large initialism crear-tooltip" id="txt_apellidos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Apellidos del empleado, pulse enter">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <span class="form-control alert-default text-left text-bold"> Expiracion : </span>
+                    <input name="txt_fechaexpiracion" type="text" disabled="disabled" class="form-control clsDatePicker" id="txt_fechaexpiracion" placeholder="Expiracion" title="Fecha de expiracion" value="<?= date('d-m-Y', strtotime('now')) ?>" readonly="readonly">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <span class="form-control alert-default text-left text-bold ">Jefatura : </span>
+                    <table width="100%">
+                        <tr>
+                            <td><label><input type="radio" name="tipo_de_jefatura" value="S" disabled="disabled" id="jefatura_s"> SI</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="radio" name="tipo_de_jefatura" value="N" disabled="disabled" id="jefatura_n"> NO</label>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php for ($i = 1; $i <= 4; $i++) {
+                        echo '<br>';
+                    } ?>
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_usuarios" data-toggle="tooltip" disabled data-placement="bottom" title="" data-original-title="Grabar usuarios en el sistema"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+                    <span id="espera_grabacion_usuarios"></span><br><br>
+                    
+                </div>
+
+
+            </div>
+            <div id="permisos" class="tab-pane">
+                <span class="form-control bg-success text-bold" id="txt_ver_usuario"></span>
+                <div class="form-group"></div>
+
+
+                <div class="col-xs-3">
+                   
+                    <button class="btn btn-info crear-tooltip form-control" id="btn_agregar_nuevo_modulo" disabled="disabled" data-toggle="tooltip" data-placement="right" title="Agregar Nuevo Modulo" data-original-title="Agregar Nuevo Modulo"> -- Agregar Aplicativo </button>
+                    <select name="slt_modulos_disponibles" size="4" disabled="disabled" id="slt_modulos_disponibles" class="form-control"></select>
+                    <br><span id="mostrar_espera_grabacion"></span>
+
+                    <label for="permisos" class="form-control label label-primary"> -- APLICATIVOS DEL USUARIO : </label>
+                    <span id="mostrar_espera"></span>
+                    <select name="slt_modulos_permisos" size="7" disabled="disabled" class="form-control alert-info" id="slt_modulos_permisos" title="Aplicativos Permitidos..."></select><br>
+
+                    
+
+                   
+                </div>
+
+                <div class="col-xs-1">
+                    <?php for ($i = 1; $i <= 10; $i++) {
+                        echo '<br>';
+                    } ?>
+                    <button class="btn btn-info   crear-tooltip pull-left" id="btn_desactivar_modulo" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="Desactivar Modulo" data-original-title="Desactivar Modulo">X</button>
+                </div>
+
+                <div class="col-xs-3">
+                    <label for="menus" class="form-control label label-primary"> -- Menus Permitidos : </label>
+                    <span id="mostrar_espera"></span>
+                    <select name="slt_menus_permitidos" size="10" disabled="disabled" id="slt_menus_permitidos" class="form-control alert-info"> </select>
+
+                    <table width="200">
+                        <tr>
+                            <td bgcolor="#D4D0D0"><label>
+                                    <input name="menu_activar" type="radio" disabled="disabled" id="menu_activar_0" value="1">
+                                    ACTIVAR</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#D4D0D0"><label>
+                                    <input name="menu_activar" type="radio" disabled="disabled" id="menu_activar_1" value="0">
+                                    DESACTIVAR</label>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr>
+                    <br><span id="mostrar_espera_grabacion_menu"></span>
+
+
+                </div>
+
+                <div class="col-xs-3">
+
+                    <label for="sub_menus" class="form-control label label-primary"> -- SUB Menus Permitidos : </label>
+                    <span id="mostrar_espera"></span>
+                    <select name="slt_sub_menus_permitidos" size="10" disabled="disabled" id="slt_sub_menus_permitidos" class="form-control alert-info"> </select>
+                    <table width="200">
+                        <tr>
+                            <td bgcolor="#D4D0D0"><label>
+                                    <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_0" value="1">
+                                    Activar</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#D4D0D0"><label>
+                                    <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_1" value="0">
+                                    Desactivar</label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td bgcolor="#D4D0D0"><label>
+                                    <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_2" value="2">
+                                    Activar Todos</label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td bgcolor="#D4D0D0"><label>
+                                    <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_3" value="3">
+                                    Desactivar Todos</label>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <hr> <br><span id="mostrar_espera_grabacion_sub_menu"></span>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+            <div id="asignacion" class="tab-pane">
+                <span class="form-control bg-success text-bold" id="txt_ver_usuario_asignacion"></span>
+                <div class="form-group"></div>
+                <div class="col-xs-7">
+
+                    <label class="form-control label label-primary"> -- COMITES / AREAS REGISTRADOS : (Digite el codigo y/o nombre del actor y seleccione) </label>
+                    <input name="txt_buscar_comite" type="text" id="txt_buscar_comite" size="35" class="form-control alert-warning initialism color-yellow-texto-large crear-tooltip" placeholder="Codigo o Descripcion" data-original-title="Busque por codigo o descripcion del actor" data-toggle="tooltip">
+                    <select name="slt_comites_registrados" size="15" disabled="disabled" id="slt_comites_registrados" class="form-control alert-info" title="Seleccione doble click para asignacion ..."> </select>
+                    <span id="mostrar_espera_registrados" class="alert-danger"></span>
+                    <div class="form-group"></div>
+
+
+
+                </div>
+
+
+                <div class="col-xs-5">
+                    <label for="asignacion" class="form-control label label-primary"> -- AREA / COMITES REGISTRADOS : </label>
+                    <span id="mostrar_espera"></span>
+
+                    <select name="slt_comites_por_usuario" size="5" disabled="disabled" class="form-control alert-info" id="slt_comites_por_usuario" title="Comites registrados..."></select>
+                    <?php for ($i = 1; $i <= 4; $i++) {
+                        echo '<br>';
+                    } ?>
+                    <button class="btn btn-info   crear-tooltip pull-center" id="btn_desactivar_area" disabled="disabled" data-toggle="tooltip" title="Desactivar Area / Comite">X</button>
+
+                    <br><span id="mostrar_espera_grabacion"></span>
+                </div>
+            </div>
+            <span id="mostrar_espera_registrados"></span>
+        </div>
+
+    </div>

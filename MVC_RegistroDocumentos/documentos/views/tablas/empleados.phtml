@@ -1,0 +1,529 @@
+<div class="row row box-cell p-x-3 p-y-1 bg-panel darken caja">
+    <div class="col-md-2 bg-default">
+        <strong>Empleados :</strong><br>Registros de los trabajadores de la institucion.
+    </div>
+
+    <div class="col-md-2 bg-default">
+        <strong>Comite:</strong><br>
+        Listado de comites que se usan para el registro de expediente.
+    </div>
+
+    <div class="col-md-2 bg-default">
+        <strong>Forma de documento :</strong><br>
+        Caracteristica de los documentos, que podria ser copia y/o original.
+    </div>
+
+    <div class="col-md-2 bg-default">
+        <strong>Tramitador :</strong><br>
+        Secciones de tramitador de mesa de partes y/o otros mensajeros.
+    </div>
+
+    <div class="col-md-2 bg-default">
+        <strong>Plazo de expediente :</strong><br>
+        Tiempo del expediente, a plazo y/o larga duracion.
+    </div>
+
+
+    <div class="col-md-2 bg-default">
+        <strong>Alerta:</strong><br>
+        Caracteristica y alerta de expedientes
+    </div>
+</div>
+
+<div class="form-group"></div>
+<div class="form-group"></div>
+
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#empleados"><strong>Empleados</strong></a></li>
+        <li><a data-toggle="tab" href="#comite"><strong>Comites</strong></a></li>
+        <li><a data-toggle="tab" href="#fdocu"><strong>Forma de documento</strong></a></li>
+        <li><a data-toggle="tab" href="#tramitador"><strong>Tramitador</strong></a></li>
+        <li><a data-toggle="tab" href="#pexpediente"><strong>Plazo Expediente</strong></a></li>
+        <li><a data-toggle="tab" href="#alerta"><strong>Alerta</strong></a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="empleados" class="tab-pane fade in active">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="form-control bg-default">&nbsp; Empleados </span>
+                    <input name="txt_buscar_empleado" type="text" id="txt_buscar_empleado" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" placeholder="Buscar empleado" data-original-title="Buscar empleado" data-toggle="tooltip">
+                    <select name="slt_lista_empleado" size="14" class="form-control" id="slt_lista_empleado" title="Lista de empleados"></select>
+                    <span id="espera_empleados" class="form-control"></span>
+                </div>
+                <div class="col-md-6 bg-default">
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_empleado" data-toggle="tooltip" data-original-title="Nuevo empleado">
+                                <span class="glyphicon glyphicon-file"></span> Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_empleado" data-toggle="tooltip" data-original-title="Editar empleado">
+                                <span class="glyphicon glyphicon-pencil"></span> Editar
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_empleado" data-toggle="tooltip" data-original-title="Eliminar empleado">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span id="msj_eliminado_empleado" class="bg-warning text-center form-control"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <span class="bg-default">ID Empleado:</span>
+                            <input type="text" id="id_empleado" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Empleado">
+                        </div>
+                        <div class="col-xs-6">
+                            <span class="bg-default">ID Tipo actor:</span>
+                            <input type="text" id="id_tactor" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="Tipo de Actor">
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span class="bg-default">Empleado:</span>
+                            <input type="text" id="txt_empleado" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Registre empleado" title="" data-original-title="Registrar empleado">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span class="bg-default">Abreviatura:</span>
+                            <input type="text" id="txt_abreviatura" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Registre abreviatura" title="" data-original-title="Registrar abreviatura">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <span class="bg-default">RUC:</span>
+                            <input type="text" id="txt_ruc" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" maxlength="11" placeholder="Registre RUC" title="" data-original-title="Registrar RUC">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_empleado" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Empleado" disabled="disabled">&nbsp;GRABAR</button>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="comite" class="tab-pane fade">
+            <div class="row">
+                <div class="col-md-4">
+                    <input name="txt_buscar_tcomite" type="text" id="txt_buscar_tcomite" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" placeholder="Buscar comites" data-original-title="Buscar comites" data-toggle="tooltip">
+                    <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                    <select name="slt_lista_comite" size="14" class="form-control" id="slt_lista_comite" title="Lista de tipos de comites"></select>
+                    <span id="espera_comite" class="form-control"></span>
+                </div>
+
+                <div class="col-md-6 bg-default">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_comite" data-toggle="tooltip" data-original-title="Nuevo comite">
+                                <span class="glyphicon glyphicon-file"></span> Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_comite" data-toggle="tooltip" data-original-title="Editar comite">
+                                <span class="glyphicon glyphicon-pencil"></span> Editar
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_comite" data-toggle="tooltip" data-original-title="Eliminar comite">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            </button>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span id="msj_eliminado_comite" class="form-control bg-warning text-center"></span>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" id="id_comite" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo comite">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="text" id="txt_descripcion_comite" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de comite" title="" data-original-title="Registrar comite">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_comite" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar comite" disabled="disabled">&nbsp;GRABAR</button>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <div id="fdocu" class="tab-pane fade">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                    <select name="slt_lista_fdocu" size="14" class="form-control" id="slt_lista_fdocu" title="Lista de tipos de forma de documentos"></select>
+                    <span id="espera_fdocu" class="form-control"></span>
+                </div>
+
+                <div class="col-md-6 bg-default">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_fdocu" data-toggle="tooltip" data-original-title="Nuevo forma de documento">
+                                <span class="glyphicon glyphicon-file"></span> Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_fdocu" data-toggle="tooltip" data-original-title="Editar forma documenti">
+                                <span class="glyphicon glyphicon-pencil"></span> Editar
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_fdocu" data-toggle="tooltip" data-original-title="Eliminar forma documento">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            </button>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <span id="msj_eliminado_fd" class="form-control bg-warning text-center"></span>
+                        <div class="col-xs-6">
+                            <span>ID Forma Documento: </span>
+                            <input type="text" id="id_fd" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" maxlength="1" data-toggle="tooltip" data-original-title="ID Tipo forma documento">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>DESCRIPCION: </span>
+                            <input type="text" id="txt_descripcion_fdocu" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="forma documento" title="" data-original-title="forma documento">
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_fdocu" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_fdocu" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar forma documento" disabled="disabled">&nbsp;GRABAR</button>
+                        </div>
+
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="tramitador" class="tab-pane fade">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                    <select name="slt_lista_tramitador" size="14" class="form-control" id="slt_lista_tramitador" title="Lista de tramitador"></select>
+                    <span id="espera_tramitador" class="form-control"></span>
+                </div>
+                <div class="col-md-6 bg-default">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_tramitador" data-toggle="tooltip" data-original-title="Nuevo tramitador>
+                                <span class="glyphicon glyphicon-file"></span> Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_tramitador" data-toggle="tooltip" data-original-title="Editar tramitador">
+                                <span class="glyphicon glyphicon-pencil"></span> Editar
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_tramitador" data-toggle="tooltip" data-original-title="Eliminar tramitador">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <span id="msj_eliminado_tramitador" class="form-control bg-warning text-center"></span>
+                        <div class="col-xs-6">
+                            <span>ID Tramitador: </span>
+                            <input type="text" id="id_tramitador" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tramitador">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>DESCRIPCION: </span>
+                            <input type="text" id="txt_descripcion_tramitador" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de Tramitador" title="" data-original-title="Registrar tipo de tramitador">
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_tramitador" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_tramitador" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar tramitador" disabled="disabled">&nbsp;GRABAR</button>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+       
+
+
+
+        </div>
+
+        <div id="pexpediente" class="tab-pane fade">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                    <select name="slt_lista_expediente" size="14" class="form-control" id="slt_lista_expediente" title="Lista de plazos de expedientes"></select>
+                    <span id="espera_expediente" class="form-control"></span>
+                </div>
+
+                <div class="col-md-6 bg-default">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_expediente" data-toggle="tooltip" data-original-title="Nuevo plazo expediente">
+                                <span class="glyphicon glyphicon-file"></span> Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_expediente" data-toggle="tooltip" data-original-title="Editar plazo de expediente">
+                                <span class="glyphicon glyphicon-pencil"></span> Editar
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_expediente" data-toggle="tooltip" data-original-title="Eliminar plazo expediente">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            </button>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span id="msj_eliminado_expediente" class="form-control bg-warning text-center"></span>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <span>ID plazo expediente : </span>
+                            <input type="text" id="id_expediente" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID plazo expediente">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>DESCRIPCION: </span>
+                            <input type="text" id="txt_descripcion_expe" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Plazo de expediente" title="" data-original-title="Registrar Plazo de expediente">
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>COLOR: </span>
+                            <input type="text" id="txt_color" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Color del plazo de expediente" title="" data-original-title="Registrar Color del plazo">
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_expe" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                        </div>
+
+
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_expe" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar plazo expediente" disabled="disabled">&nbsp;GRABAR</button>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <div id="alerta" class="tab-pane fade">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="form-control bg-default">&nbsp; Descripcion </span>
+                    <select name="slt_lista_alerta" size="14" class="form-control" id="slt_lista_alerta" title="Lista de tipos de alerta"></select>
+                    <span id="espera_alerta" class="form-control"></span>
+                </div>
+
+                <div class="col-md-6 bg-default">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_alerta" data-toggle="tooltip" data-original-title="Nuevo tipo de alerta">
+                                <span class="glyphicon glyphicon-file"></span> Nuevo
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_alerta" data-toggle="tooltip" data-original-title="Editar Tipo de alerta">
+                                <span class="glyphicon glyphicon-pencil"></span> Editar
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_alerta" data-toggle="tooltip" data-original-title="Eliminar Tipo de alerta">
+                                <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            </button>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span id="msj_eliminado_alerta" class="form-control bg-warning text-center"></span>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <span>ID TIPO ALERTA : </span>
+                            <input type="text" id="id_alerta" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo alerta">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>DESCRIPCION: </span>
+                            <input type="text" id="txt_descripcion_alerta" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de alerta" title="" data-original-title="Registrar tipo de alerta">
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>COLOR: </span>
+                            <input type="text" id="txt_color_alerta" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Color alerta" title="" data-original-title="Registrar color de alerta">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>MAYOR A: </span>
+                            <input type="text" id="txt_mayora" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Mayor alerta" title="" data-original-title="Registrar Mayor A">
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span>MENOR A: </span>
+                            <input type="text" id="txt_menora" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Menor alerta" title="" data-original-title="Registrar MENOR A">
+                        </div>
+                    </div>
+                    <hr>
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_alerta" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                        </div>
+
+
+                        <div class="col-xs-6">
+                            <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_alerta" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar alerta" disabled="disabled">&nbsp;GRABAR</button>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>
+</div>

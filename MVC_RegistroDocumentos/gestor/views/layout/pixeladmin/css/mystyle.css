@@ -1,0 +1,263 @@
+.ocultar {
+    display: none;
+}
+
+.bg-INFORMATICA-04 {
+    background: #9d9d9d!important;
+}
+
+.titulos {
+    background: #f3f3f3;
+    font-family: monospace;
+    color: #000;
+    font-size: 16px;
+    width: 100px;
+}
+
+#datos-personales-paciente {
+    border: 1px solid #999;
+}
+
+#datos-personales-paciente .cuerpo>tr>td {
+    border: 1px solid #999;
+    padding: 4px;
+}
+
+#tabla-codigo-ciex tbody tr:hover {
+    background: #fff2c3 !important;
+    color: #000;
+    cursor: pointer;
+}
+
+.codigo-cie-seleccionado {
+    background: #fff2c3 !important;
+    color: #000;
+}
+
+.theme-adminflare #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #3690E6;
+    color: #f3f3f3;
+}
+
+.theme-fresh #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #64bed8;
+    color: #f3f3f3;
+}
+
+.theme-default #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #1d89cf;
+    color: #f3f3f3;
+}
+
+.theme-asphalt #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #52bdb4;
+    color: #f3f3f3;
+}
+
+.theme-purple-hills #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #857198;
+    color: #f3f3f3;
+}
+
+.theme-dust #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #7a6f6f;
+    color: #f3f3f3;
+}
+
+.theme-frost #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #3daacf;
+    color: #f3f3f3;
+}
+
+.theme-silver #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #64bed8;
+    color: #f3f3f3;
+}
+
+.theme-clean #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #67cea6;
+    color: #f3f3f3;
+}
+
+.theme-white #mostrar-datos-busqueda tr.paciente_seleccionado {
+    background: none repeat scroll 0% 0% #4ab6d5;
+    color: #f3f3f3;
+}
+
+.ui-datepicker {
+    z-index: 10000 !important;
+}
+
+.menu-permisos {
+    font-size: 16px;
+}
+
+.menu-permisos li {
+    margin-top: 6px;
+}
+
+.menu-permisos span {
+    margin: 0px 5px 0px 5px;
+}
+
+.menu-botones li {
+    margin: 7px 0px 7px 0px;
+}
+
+.abrir-submenus {
+    cursor: pointer;
+}
+
+.submenu-abierto {
+    color: #f00;
+}
+
+.submenu-abierto a {
+    color: #f00;
+}
+
+.cantidad {
+    width: 50px;
+}
+
+.estado-2 {
+    background: #f2dede;
+}
+
+.estado-2 td {
+    border: 1px solid #c6c6c6 !important;
+}
+
+.estado-4 {
+    background: #dff0d8;
+}
+
+.estado-4 td {
+    border: 1px solid #c6c6c6 !important;
+}
+
+.estado-5 {
+    background: #d9edf7;
+}
+
+.estado-5 td {
+    border: 1px solid #c6c6c6 !important;
+}
+
+#mostrar-datos-busqueda {
+    cursor: pointer;
+}
+
+tr.header {
+    cursor: pointer;
+}
+
+.report tr.odd td {
+    background: #fff url('../img/row_bkg.png') repeat-x scroll center left;
+    cursor: pointer;
+}
+
+.report span.sign {
+    background: transparent url('../img/arrows.png') no-repeat scroll 0px -16px;
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.report span.up {
+    background-position: 0px 0px;
+}
+
+@media (min-width: 992px) {
+    .modal-lg2 {
+        width: 1100px;
+    }
+}
+
+.font-btn {
+    font-size: 16px !important;
+}
+
+.gotop {
+    top: 45px !important;
+}
+
+#botones-flotantes.affix {
+    position: fixed;
+    top: 45px;
+}
+
+.puntero {
+    cursor: pointer;
+}
+
+.plantilla:hover {
+    border: 3px dashed #00AFFF;
+}
+
+.selected-plantilla {
+    border: 3px dashed #00AFFF;
+}
+
+.box {
+    box-shadow: 2px 2px 10px #888
+}
+
+.subtotal {
+    background: #f4f4f4;
+}
+
+#mostrar-datos-trasladar-pacientes tr.paciente_seleccionado td {
+    border: 1px solid #b0b0b0;
+    color: #000;
+}
+
+#mostrar-datos-trasladar-pacientes tr {
+    cursor: pointer;
+}
+
+#mostrar-datos-trasladar-pacientes tr.paciente_seleccionado {
+    color: #222;
+    background: none repeat scroll 0% 0% #FFC
+}
+
+#mostrar-datos-busqueda {
+    color: #000;
+    font-weight: blod;
+}
+
+.bg-panel {
+    background-color: #9cd4bf !important;
+}
+
+.bg-color-input-text {
+    background-color: #f2f291;
+}
+
+.caja {
+    padding: 5px;
+    box-shadow: 10px 10px 50px 1px #7c7c81;
+    border-radius: 10px;
+}
+
+.teal-color {
+    color: teal;
+}
+
+table td {
+    background-color: #fffcdc;
+}
+
+.color-blanco {
+    color: cornsilk;
+}
+
+.color-yellow {
+    background-color: #f7f5c1;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.text-largo {
+    font-size: x-large
+}

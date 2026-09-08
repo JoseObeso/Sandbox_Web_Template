@@ -1,0 +1,1 @@
+var direccion_url = 'http://' + document.domain + '/tramite/acceso/';

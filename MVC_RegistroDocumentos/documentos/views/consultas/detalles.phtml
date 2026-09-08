@@ -1,0 +1,116 @@
+<style>
+    .fijo-cabecera-entrada {
+        position: fixed;
+        z-index: 3;
+    }
+
+    .fijo-cabecera-tabla {
+        position: fixed;
+
+    }
+</style>
+<?php
+// $listar_expedientes = json_decode( $this->listar_expedientes_consolidado);
+// var_dump($listar_expedientes);
+?>
+
+<div class="row box-cell p-x-3 p-y-1 darken  caja bg-default  fijo-cabecera-entrada center">
+
+    <div class="col-xs-3">
+        <label class="alert-info form-control">INSTRUCCIONES:</label>
+        <p><strong>S</strong>eleccione por rango de fechas</p>
+        <p>Buscar por Expediente</p>
+        <p>Buscar por Asunto/Remitente</p>
+        <p>La busqueda puede ser incluyente (todos los filtros) o Excluyente (un solo filtro)</p>
+    </div>
+    <div class="col-xs-3">
+        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechainicio" data-toggle="tooltip" data-original-title="Busqueda por Fecha de Inicio" name="fechainicio" data-placement="up" placeholder="Seleccione fecha inicio &DownArrow;"><br>
+        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="nro_expediente" data-toggle="tooltip" name="nro_expediente" data-original-title="Busqueda por Nro Expediente" data-placement="bottom" data-toggle="tooltip" placeholder="Busqueda por Nro Expediente"><br>
+        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="remitente" data-toggle="tooltip" data-original-title="Remitente" name="fechainicio" data-placement="bottom" placeholder="Busqueda por Remitente"><br>
+        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="asunto" data-toggle="tooltip" name="Busqueda por asunto" data-original-title="Busqueda por Asunto" data-placement="bottom" data-toggle="tooltip" placeholder="Busqueda por Asunto">
+    </div>
+    <div class="col-xs-3">
+        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechafin" data-toggle="tooltip" name="fechafin" data-original-title="Busqueda por Fecha Final" data-placement="up" data-toggle="tooltip" placeholder="Seleccione fecha final &DownArrow;"><br>
+        <select class="form-control crear-tooltip color-yellow-texto-large" id="slt_tipo_documento" placeholder="Busqueda por Tipo documento"></select><br>
+        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="nro_documento" data-toggle="tooltip" name="nro_documento" data-original-title="Busqueda por Nro Documento" data-placement="bottom" data-toggle="tooltip" placeholder="Busqueda por Nro Documento"><br>
+    </div>
+    <div class="col-xs-2">
+        <div class="col-xs-12">
+            <button class="btn btn-lg btn-success form-control" type="button" id="btn_buscar">BUSCAR</button>
+        </div>
+        <hr>
+        <div class="col-xs-12">
+            <button class="btn btn-lg btn-danger form-control" type="button" id="btn_limpiar">Limpiar Filtros</button>
+        </div>
+
+    </div>
+</div>
+<div class="row" style="margin-top: 200px;">
+    <span id="espera_busqueda" class="text-center"></span>
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm table-bordered">
+                <!-- <thead class="fijo-cabecera-tabla"> -->
+                <thead>
+                    <tr>
+                        <th class="bg-default" width="1%">H/Tramite</th>
+                        <th class="bg-default">Expediente</th>
+                        <th class="bg-default">Deri</th>
+                        <th class="bg-default">Fecha</th>
+                        <th class="bg-default">Hora</th>
+                        <th class="bg-default">Remitente</th>
+                        <th class="bg-default">Asunto</th>
+                        <th class="bg-default">Documento</th>
+                        <th class="bg-default">Nro Documento</th>
+                        <th class="bg-default">Estado</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tabla-contenido">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Ver Ocurrencias  -->
+<div class="modal fade" id="VerOcurrencias" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Ver Ocurrencias / Derivaciones</h4>
+                <span id="mostrar_idexpediente_ocurrencias"></span>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover table-condensed" id="tabla_ocurrencia" data-page-length='30'>
+                                <tr id="titulos_de_celda_ocurrencia" class="warning"></tr>
+                                <tbody id="mostrar_tablas_ocurrencia"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-warning text-center" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

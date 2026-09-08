@@ -1,0 +1,61 @@
+<div class="row box-cell p-x-3 p-y-1 bg-panel darken caja fixed-cabecera-entrada center">
+    <div class="col-md-3">
+        <span class="form-control bg-default text-center">Fechas de consultas:</span>
+        <button type="button" class="btn btn-default pull-left form-control" id="daterange-btn"><span><i class="fa fa-calendar"></i> Rango de fecha</span><i class="fa fa-caret-down"></i></button>
+        <div class="col-xs-4">
+            <span id="espera_resultados"></span>
+        </div>
+        <div class="col-xs-5">
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-2">
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+    </div>
+</div>
+
+<div class="row">
+    <?php for ($i = 1; $i <= 5; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+</div>
+
+ 
+
+<div class="row">
+    <table class="display table table-bordered table-striped dt-responsive" style="width:100%" id="TableExpedientes">
+        <thead>
+            <tr>
+                <th>Expediente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Remitente</th>
+                <th>Asunto</th>
+                <th>Dcoumento</th>
+            </tr>
+        </thead>
+        <tbody id="ver_contenido_Expedientes">
+
+        </tbody>
+        
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Expediente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Remitente</th>
+                <th>Asunto</th>
+                <th>Dcoumento</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+ 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="<?= RUTA_PUBLIC_GRA . 'favicon.ico' ?>" type="image/x-icon">
+	<link href="<?= $_layoutParams['ruta_css']; ?>bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?= $_layoutParams['ruta_css']; ?>pixel-admin.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?= $_layoutParams['ruta_css']; ?>pages.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?= $_layoutParams['ruta_css']; ?>rtl.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?= $_layoutParams['ruta_css']; ?>themes.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?= $_layoutParams['ruta_css']; ?>styleheader.css" rel="stylesheet" type="text/css" />
+	<title>Sistema Informatico Tramite Documentario HJATCH </title>
+</head>
+
+<body class="theme-default page-signin">
+	<div id="page-signin-bg">
+		<img src="<?= RUTA_PUBLIC_GRA . 'wfondotra2.jpg' ?>">
+	</div>
+	<?php for ($i = 1; $i <= 5; $i++) {
+		echo '<div class="form-group"></div>';
+	} ?>
+	<div class="signin-container fondo-login caja">
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-7">
+				<h3 class="text-center text-primary caja">Sistema de Tramite Documentario</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 bg-info caja_azul">
+				<?php for ($i = 1; $i <= 1; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?><center><img src="<?= RUTA_PUBLIC_GRA; ?>logo_hjatch.png" width="200" height="180"><br></center>
+				
+			</div>
+			<div class="col-md-7">
+				<?php for ($i = 1; $i <= 2; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?>
+				<div class="input-group">
+					<span class="input-group-addon bg-default  teal-color">USUARIO:</span>
+					<input type="text" class="form-control initialism  crear-tooltip color-yellow" name="txt_usuario" id="txt_usuario" placeholder="Ingrese usuario" required>
+				</div>
+				<br>
+				<div class="input-group">
+					<span class="input-group-addon bg-default glyphicon glyphicon-key teal-color">CLAVE :&ThinSpace;</span>
+					<input type="password" class="form-control  bg-color-input-text crear-tooltip color-yellow" name="txt_clave" id="txt_clave" required placeholder="Ingrese contraseña">
+				</div>
+				<?php for ($i = 1; $i <= 3; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?>
+				<center>
+					<button class="btn btn-primary  btn-lg crear-tooltip text-center btn-center" id="iniciar_sesion" data-toggle="tooltip" data-placement="right" title="" data-original-title="Inicie sesion en el sistema"><span class="glyphicon glyphicon-off"></span> Iniciar sesion </button>
+				</center>
+				<?php for ($i = 1; $i <= 2; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?>
+				<span id="msg-espera"></span>
+
+
+				<?php for ($i = 1; $i <= 3; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?>
+
+				<span class="text-bold" id="ver_user"></span> 
+				<span id="dependencia"></span>
+				<select name="slt_comites_de_user" id="slt_comites_de_user" class="form-control" disabled="disabled"></select>
+				<?php for ($i = 1; $i <= 2; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?>
+				<center>
+					<button class="btn btn-primary  btn-lg crear-tooltip text-center" id="ingresar" disabled="disabled" data-toggle="tooltip" data-placement="left" title="" data-original-title="Pulse aqui, para ingresar al sistema"><span class="glyphicon glyphicon-log-in"></span> Ingresar </button>
+				</center>
+				<?php for ($i = 1; $i <= 2; $i++) {
+					echo '<div class="form-group"></div>';
+				} ?>
+
+
+
+			</div>
+
+			<div class="col-md-1">
+
+			</div>
+
+
+
+		</div>
+	</div>
+	<script src="<?= $_layoutParams["ruta_js"]; ?>jquery.min.js"></script>
+	<script src="<?= $_layoutParams["ruta_js"]; ?>bootstrap.min.js"></script>
+	<script src="<?= $_layoutParams["ruta_js"]; ?>pixel-admin.min.js"></script>
+	<script src="<?= BASE_URL ?>views/index/js/validar_user.js" type="text/javascript"></script>
+	<script src="<?= RUTA_PUBLIC_JS ?>validaciones.js" type="text/javascript"></script>
+</body>
+
+</html>

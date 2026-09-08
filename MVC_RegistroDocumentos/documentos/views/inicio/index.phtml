@@ -1,0 +1,206 @@
+<?php
+
+$actor = $_SESSION["usuario"]["actor"];
+
+if ($actor == '0109') {
+    $titulo = "EXPEDIENTES REGISTRADOS POR LA OFICINA DE TRAMITE DOCUMENTARIO - OTD";
+} else {
+    $titulo = "EXPEDIENTES : " .  $_SESSION["usuario"]["abreviatura"];
+}
+
+
+?>
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <h4><span class="form-control label label-info"><?php echo $titulo ?> </span></h4>
+
+    </div>
+</div>
+<div class="row">
+
+
+    <div class="col-md-4 col-xs-4 alert-info">
+        <h4><span class="form-control label  "></span></h4>
+        <span id="Nro_resultados"></span>
+        <canvas id="PrimerGraficoBarras" style="width:100%;height:40vh"></canvas>
+
+
+    </div>
+
+    <div class="col-md-4 col-xs-4 ">
+        <span id="Nro_resultados2"></span>
+        <canvas id="SegundoGraficoBarras" style="width:100%;height:40vh"></canvas>
+
+
+    </div>
+
+    <div class="col-md-4 col-xs-4 alert-warning">
+        <input type="hidden" id="Titulo_OTD" value=<?php echo $actor ?>>
+        <span id="Nro_resultados3"></span>
+        <canvas id="TercerGraficoBarras" style="width:100%;height:40vh"></canvas>
+
+
+
+    </div>
+
+
+</div>
+<hr>
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <h4><span class="form-control label label-info">Enlaces Directos :</span></h4>
+        <div class="table-responsive">
+            <table width="100%" class="table table-striped table-bordered table-hover table-condensed">
+                <tr class="success">
+                    <th width="80%">Opciones del sistema: </th>
+                    <th width="20%">Acceso</th>
+                </tr>
+                <tr>
+
+                    <td><span class="text-info text-bold"> Bandeja de Entrada : </span><br>Opcion que da inicio al expediente, que son enviados a la direccion ejecutiva, para su posterior derivacion a oficinas / servicios.
+                    </td>
+                    <td>Acceso exclusivo de la OTD</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group"></div>
+                    </td>
+
+                </tr>
+                <tr class="primary">
+                    <td class=" text-align"><span class="text-info text-bold">Tramite / Recepcion :</span><br> En esta bandeja Ud. Encontrará los expedientes dirigidos a su área, y que posteriormente,
+                        lo recepcionará cuando se lo envien. Selecione las fechas de los expedientes en tramite, por defecto es la fecha del dia.</td>
+                    <td><a href="expediente/tramite" title="" target="_self"><button class="form-control bg-default">Ingresar</button> </a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><span class="text-info text-bold">Bandeja Derivado:</span><br> Aqui, se muestran, los expedientes que Ud. derivo, o los que falta derivar, para su posterior impresion de cargo, puede recuperarlo, editarlo,
+                        y podrá derivarlos a otras áreas. Para eso, deberá darle un click en la caja de opción del expediente, o multiples expedientes, para la generacion total de cargo, asu ves, puede reimprimir cargos pasado.
+                        Selecione las fechas de los expedientes en derivacion, por defecto es la fecha del dia.</td>
+                    <td>
+                        <div class="form-group"></div><a href="expediente/derivados" title="" target="_self"><button class="form-control bg-default">Ingresar</button> </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><span class="text-info text-bold">Busqueda de expedientes:</span><br> Se inicia la busqueda por fecha, hora, remitente, asunto, documento,
+                        nro de documento, le permitira localizar rapidamente los tipos de busqueda en los 10,000 ultimos registros en el sistema de tramite.</td>
+                    <td><a href="consultas/detalles" title="" target="_self"><button class="form-control bg-default">Ingresar</button> </a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="text-info text-bold">Kardex de expedientes:</span><br> Nos permite ver los movimientos de los expedientes desde que ingresaron al sistema, sus derivaciones por servicios, oficinas, en diferentes fechas,
+                        asi como su estado actual, puede ubnicarlo por nro. de expediente, apellidos del remite, nombre del comite, area funcional.
+                    </td>
+                    <td><a href="consultas/kardex" title="" target="_self"><button class="form-control bg-default">Ingresar</button> </a></td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-4">
+        <h4><span class="form-control label label-info">Ruta del Aprendizaje / capacitacion :</span></h4>
+        <div class="table-responsive">
+            <table width="100%" class="table table-striped table-bordered table-hover table-condensed">
+                <tr class="warning">
+                    <th width="80%">Funcionalidad: </th>
+                    <th width="20%">Acceso (*)</th>
+                </tr>
+
+                <tr class="primary">
+                    <td>1. Video tutorial, capacitacion del 01/09/2021
+                    </td>
+                    <td><a href="https://1drv.ms/v/s!AvmQM7bNLEH4gpQeCisE0mqGnrURhg?e=jVkdB8" title="" target="_black"><button class="form-control bg-default">Ver (*)</button> </a></td>
+
+                </tr>
+
+                <tr>
+                    <td>2. Video tutorial, donde se explica el registro de expediente, derivacion, recepcion y funcionalidad propia del sistema, active sus parlantes y/o auriculares
+                    </td>
+                    <td><a href="https://1drv.ms/v/s!AvmQM7bNLEH4gpQfGaOKvg3ZrYRNdQ?e=TWI05f" title="" target="_black"><button class="form-control bg-default">Ver (*)</button> </a></td>
+                </tr>
+
+
+                <tr>
+                   <td>3. Registro de expedientes por areas : cuando se requiere enviar entre unidades o areas de la institucion
+                    </td>
+                    <td><a href="https://1drv.ms/v/s!AvmQM7bNLEH4gpQajTC5baYt0Vzpbg?e=fVnKuT" title="" target="_black"><button class="form-control bg-default">Ver (*)</button> </a></td>
+
+                </tr>
+
+
+
+                <tr>
+                   <td>4. Explicacion de la impresion multiple
+                    </td>
+                    <td><a href="https://1drv.ms/u/s!AvmQM7bNLEH4gpQjtuqa0zhQTTzZ6Q?e=KzZWb4" title="" target="_black"><button class="form-control bg-default">Ver (*)</button> </a></td>
+
+                </tr>
+
+                <tr>
+                   <td>5. Explicacion de adjuntar expedientes
+                    </td>
+                    <td><a href="https://1drv.ms/u/s!AvmQM7bNLEH4gpQkzIg5H-iLELK23A?e=OIc80l" title="" target="_black"><button class="form-control bg-default">Ver (*)</button> </a></td>
+                </tr>
+
+
+                <tr>
+                   <td>6. Problema especifico : Caso de Personal
+                    </td>
+                    <td><a href="https://1drv.ms/v/s!AvmQM7bNLEH4gpQYkFiJBT3D8UMqpg?e=xWaTHp" title="" target="_black"><button class="form-control bg-default">Ver (*)</button> </a></td>
+                </tr>
+
+
+
+                
+
+                <tr>
+                    <td>
+                        <div class="form-group"></div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group"></div>
+                    </td>
+
+                </tr>
+
+
+
+            </table>
+        </div>
+        <p class="text-danger text-center">* Debe tener acceso a Internet</p>
+
+    </div>
+</div>

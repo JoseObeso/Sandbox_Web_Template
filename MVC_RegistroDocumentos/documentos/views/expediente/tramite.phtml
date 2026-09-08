@@ -1,0 +1,1056 @@
+<style>
+    .texto-negro {
+        font: bold;
+    }
+
+    .color-boton {
+        color: teal;
+    }
+</style>
+
+
+
+<?php
+$fechainicio = trim($_GET["fechainiciotramite"]);
+$fechafin = trim($_POST["fechafintramite"]);
+$actor_recepcion = trim($_SESSION["usuario"]["actor"]);
+$actor_descripcion = trim($_SESSION["usuario"]["descripcion_actor"]);
+$codigo_tramite = trim($_SESSION["usuario"]["codigo_tramite"]);
+?>
+<input type="hidden" id="codigo_tramite" value = "<?php echo $codigo_tramite ?>" >
+<div class="row box-cell p-x-3 p-y-1 bg-default darken caja fixed-cabecera">
+    <div class="col-md-2">
+        <div class="input-group">
+            <span class="input-group-addon bg-default">I&thinsp;&thinsp;</span>
+            <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechainiciotramite" data-toggle="tooltip" name="fechainiciotramite" placeholder="Fecha Inicio" value="<?= date("d/m/Y") ?>"><br><br>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon bg-default">F</span>
+
+            <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechafintramite" data-toggle="tooltip" data-placement="bottom" name="fechafintramite" placeholder="Fecha Fin" value="<?= date("d/m/Y") ?>">
+        </div>
+        <div class="form-group"></div>
+        <button class="btn btn-default  btn-xs  form-control crear-tooltip" id="mes_transcurrido"><span class="glyphicon glyphicon-calendar">&nbsp;</span><span id="nombre_del_mes_en_curso"></span></button><br>
+        <button class="btn btn-default  btn-xs  form-control crear-tooltip" id="anio_transcurrido"><span class="glyphicon glyphicon-calendar">&nbsp;</span><span id="nombre_del_anio_en_curso"></span></button>
+
+    </div>
+
+    <div class="col-md-2">
+        <table class="bg-default" width="200">
+            <tr>
+                <td><label>
+                        <input name="radio_tramite" type="radio" id="tramite" value="T" data-toggle="tooltip" data-original-title="Expedientes en tramite" data-toggle="tooltip">
+                        TRAMITE (T)</label></td>
+            </tr>
+            <tr>
+                <td><label>
+                        <input name="radio_tramite" type="radio" id="recepcion" value="R">
+                        RECEPCION (R)</label></td>
+            </tr>
+
+            <tr>
+                <td><label>
+                        <input name="radio_tramite" type="radio" id="derivar" value="D">
+                        DERIVADOS (D)</label></td>
+            </tr>
+
+            <tr>
+                <td><label>
+                        <input name="radio_tramite" type="radio" id="culminado" value="C">
+                        CULMINADO (C)</label></td>
+            </tr>
+        </table>
+
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md form-control  crear-tooltip text-blod " id="btn_crear_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Expedientes entre areas"><span class="glyphicon glyphicon-log-out"></span>&nbsp;CREAR EXPEDIENTE</button>
+
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_busqueda_total" data-toggle="tooltip" data-placement="left" title="" data-original-title="Buscar por fechas"><span class="glyphicon glyphicon-search"></span>&nbsp;Buscar</button>
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md form-control  crear-tooltip text-blod " id="btn_limpiar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Actualizar Numeros / Ocurrencias"><span class="glyphicon glyphicon-refresh"></span>&nbsp;Actualizar</button>
+
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_recibir" data-toggle="tooltip" data-placement="right" title="" data-original-title="Recibir expedientes"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;RECIBIR<div class="form-group"></div></button>
+
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md  crear-tooltip text-blod " id="btn_impresion_masiva_ht" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Impresion Multiple de Hojas de Tramite">IMPRESION MULTIPLE<br>TRAMITE</button>
+
+
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_derivar_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Derivar documento a otra unidad / area"><span class="glyphicon glyphicon-new-window"></span>&nbsp;DERIVAR<div class="form-group"></div></button>
+    </div>
+
+
+    <div class="col-md-1">
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-md form-control  crear-tooltip " id="btn_culminar_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Culminar o finalizar expediente"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;CULMINAR<div class="form-group"></div></button>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group"></div>
+        <span id="msj_derivado" class="text-bold"> (R) Para retornar un derivado <br> (E) Editar / Cambiar destinatario</span>
+        <button class="btn btn-primary  btn-md form-control  crear-tooltip " id="btn_reporte_recibido" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Reporte con Fechas seleccionadas"><span class="glyphicon glyphicon-blackboard"></span>&nbsp;Reportes Expedientes Recibidos<div class="form-group"></div></button>
+    </div>
+    <div class="form-group"></div>
+
+
+
+    <div class="col-xs-12">
+        <div class="col-xs-2 btn-default">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" onClick="toggle(this)" id="btn_selec" />&nbsp;<strong>Selecc/Des. Todos</strong><br>
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <button class="btn btn-primary crear-tooltip " id="btn_ver_expedientes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver solo Expedientes Tramite Documentario"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Exp. de OTD</button>
+
+        </div>
+        <div class="col-xs-1">
+            <button class="btn btn-primary crear-tooltip " id="btn_ver_internos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver solo Expedientes Internos"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Exp. Internos</button>
+
+        </div>
+        <div class="col-xs-4 alert-primary">
+            <span id="Nro_resultados"></span>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <?php for ($i = 1; $i <= 15; $i++) {
+        echo '<div class="form-group"></div>';
+    } ?>
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-condensed" id="tabla_tramite" data-page-length='30'>
+                <tr id="titulos_de_celda" class="info">
+                </tr>
+                <tbody id="mostrar_tablas_tramite"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal Confirma recepcion -->
+<div class="modal fade" id="confirma_recepcion" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="nro_cargo"> -- Confirme recepcion -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-8">
+                        <p class="text-center bg-info text-bold"><strong>-- Confirme recepcion de los expedientes seleccionados --</strong></p>
+                        <span class="form-control bg-default"> Comentario </span>
+                        <textarea name="comentario" rows="4" class="form-control color_textarea" id="comentario" title="Describa comentario y/o recepcion ..."></textarea>
+
+
+                    </div>
+                    <div class="col-xs-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_confirmar_recepcion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Confirmar recepcion --- "> <span class="glyphicon glyphicon-ok"></span>&nbsp;RECIBIR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Imprimir cargo -->
+<div class="modal fade" id="reimprimir_generar_cargo" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="nro_cargo"> -- Re Imprimir cargo -- </h4>
+                <input type="hidden" name="nro_cargo" id="nro_cargo">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-3"><strong> Nro de Cargo : </strong></div>
+                    <div class="col-xs-6">
+                        <input type="text" name="nro_reimprimir_cargo" id="nro_reimprimir_cargo" readonly>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_reimprimir_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Reimprimir  cargo --- ">&nbsp;REIMPRIMIR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal mensaje emergente -->
+<div class="modal" id="mostrar_mensaje_emergente" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"> -- Importante -- </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12"></div>
+                    <p class="text-center mensajes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal para derivar -->
+<div id="md_derivar" class="modal fade lg" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-panel">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="Titulo_expediente"></h4>
+                <input type="hidden" name="id_expediente" id="id_expediente">
+                <input type="hidden" name="id_actor_origen" id="id_actor_origen">
+                <input type="hidden" name="id_tipo_operacion" id="id_tipo_operacion">
+                <input type="hidden" name="expediente_ocurrencia" id="expediente_ocurrencia">
+                <input type="hidden" name="nro_expedientes" id="nro_expedientes">
+
+                <span id="espera_nro_documento"></span>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">FECHA :</span>
+                            <input type="text" id="fecha_expediente_derivacion" class="form-control crear-tooltip color-yellow-texto-large" data-original-title="Fecha derivacion" data-toggle="tooltip">
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">HORA :</span>
+                            <input name="hora_expediente_derivacion" type="time" class="form-control color-yellow-texto-large initialism crear-tooltip" id="hora_expediente_derivacion" data-original-title="Hora de expediente" data-toggle="tooltip">
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="titulo" class="text-success">Si conoce el codigo del actor, digitelo y pulse ENTER, en caso contrario ubiquelo por descripcion y pulse barra espaciadora, y, seleccionelo en el desplegable. </label>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group no-margin-hr mostrarremitente">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default glyphicon glyphicon-user teal-color"></span>
+                                <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip color-yellow" name="txt_remitente" id="txt_remitente" disabled="disabled" placeholder="Seleccione destinatario" required data-original-title="Digite el Actor o Nombre del destinatario y seleccione" data-toggle="tooltip">
+                                <span id="ver_actor"></span>
+                                <input type="hidden" name="txt_idactor" id="txt_idactor">
+                                <input type="hidden" name="txt_nombre_remitente" id="txt_nombre_remitente">
+                                <input type="hidden" name="txt_idtipo_actor" id="txt_idtipo_actor">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">Tipo de actor :</span>
+                            <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip" name="txt_atencion" id="txt_atencion" readonly placeholder="Tipo de actor" data-original-title="Tipo de actor" data-toggle="tooltip">
+                            <input type="hidden" name="txt_actor_atencion" id="txt_actor_atencion">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="form-group no-margin-hr mostrarprioridad">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default teal-color text-bold">Pri</span>
+                                <input name="txt_prioridad" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_prioridad" placeholder="Prioridad" disabled="disabled" data-original-title="Codigo o 2 veces espaciadora" data-toggle="tooltip">
+                                <input type="hidden" name="txt_idprioridad" id="txt_idprioridad">
+                                <input type="hidden" name="txt_plazo" id="txt_plazo">
+
+                                <span id="ver_msj"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group no-margin-hr  mostraraccion1">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default teal-color text-bold">Ac1</span>
+                                <input name="txt_accion1" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_accion1" disabled="disabled" placeholder="Accion 1" data-original-title="Tipo de atencion y pulse ENTER (2 veces barra espaciados para desplegable)" data-toggle="tooltip">
+                                <span id="ver_msjaccion"></span>
+                                <input type="hidden" name="txt_tipo_accion1" id="txt_tipo_accion1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group no-margin-hr  mostraraccion2">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default teal-color text-bold">Ac2</span>
+                                <input name="txt_accion2" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_accion2" disabled="disabled" placeholder="Accion 2" data-original-title="Por corresponder y pulse ENTER (2 veces barra espaciados para desplegable)" data-toggle="tooltip">
+                                <span id="ver_msjaccion2"></span>
+                                <input type="hidden" name="txt_tipo_accion2" id="txt_tipo_accion2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default teal-color text-bold">Nro. Doc</span>
+                            <input name="txt_nrodocumento" type="text" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" id="txt_nrodocumento" disabled="disabled" data-toggle="tooltip">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default teal-color text-bold">Doc.Adj.1</span>
+                            <input name="txt_doc_adj1" type="text" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" id="txt_doc_adj1" disabled="disabled" data-toggle="tooltip">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default teal-color text-bold">Doc.Adj.2</span>
+                            <input name="txt_doc_adj2" type="text" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" id="txt_doc_adj2" disabled="disabled" data-toggle="tooltip">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default teal-color text-bold">Obs.</span>
+                            <textarea name="txt_observacion" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" rows="2" disabled="disabled" id="txt_observacion" placeholder="Registre observacion" required data-original-title="Ingrese observacion adicional" data-toggle="tooltip"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"></div>
+
+
+
+                <div class="row">
+                    <div class="col-xs-1">
+                        <button class="btn btn-info  crear-tooltip" id="btn_cc" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Con copia">Copia</button>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <span class="text-bold form-control bg-default">Seleccione con Cc</span>
+                        <select name="slt_actor_01" id="slt_actor_01" class="form-control  bg-color-input-text" disabled="disabled"></select>
+                    </div>
+
+                    <div class="col-xs-5">
+                        <span class="text-bold form-control bg-default">Lista de actores :</span>
+                        <select name="slt_con_copia_actores" id="slt_con_copia_actores" class="form-control  bg-color-input-text" disabled="disabled" size="4"></select>
+                        <div class="col-xs-10">
+                            <span id="msj_actor_existe" class="text-default bg-success form-control"></span>
+                        </div>
+                        <div class="col-xs-2">
+                            <button disabled="disabled" id="Eliminar_seleccion" class="text-bold text-danger bg-danger" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar CC">X</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">Con Copia:</div>
+                        <span class="form-control alert-warning" id="seleccion_actor"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <span id="espera_grabacion"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer bg-panel">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_derivar" data-toggle="tooltip" data-placement="right" title="" data-original-title="Grabar derivacion">&nbsp;Grabar</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal para editar derivar -->
+<div id="md_derivar_update" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-panel">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="Titulo_expediente_update"></h4>
+                <h5 class="modal-title text-center" id="msg_expediente_update">
+                    </h4>
+                    <input type="hidden" name="id_expediente_update" id="id_expediente_update">
+                    <input type="hidden" name="id_actor_origen_update" id="id_actor_origen_update">
+                    <input type="hidden" name="id_nro_expediente" id="id_nro_expediente">
+                    <input type="hidden" name="id_tipo_operacion_update" id="id_tipo_operacion_update">
+                    <input type="hidden" name="id_codigo_tramite" id="id_codigo_tramite" value="<?php echo $codigo_tramite ?>">
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span id="espera_carga_edicion"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">FECHA :</span>
+                            <input type="text" id="fecha_expediente_derivacion_update" name="fecha_expediente_derivacion_update" class="form-control crear-tooltip color-yellow" data-original-title="Fecha derivacion" data-toggle="tooltip" maxlength="10">
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">HORA :</span>
+                            <input name="hora_expediente_derivacion_update" type="time" class="form-control color-yellow initialism crear-tooltip" id="hora_expediente_derivacion_update" data-original-title="Hora de expediente" data-toggle="tooltip">
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group no-margin-hr mostrarremitente_update">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default glyphicon glyphicon-user teal-color"></span>
+                                <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip color-yellow" name="txt_remitente_update" id="txt_remitente_update" disabled="disabled" placeholder="Seleccione remitente" required data-original-title="Digite el Actor o Nombre del Remitente y seleccione" data-toggle="tooltip">
+                                <span id="ver_actor_update"></span>
+                                <input type="hidden" name="txt_idactor_update" id="txt_idactor_update">
+                                <input type="hidden" name="txt_nombre_remitente_update" id="txt_nombre_remitente_update">
+                                <input type="hidden" name="txt_idtipo_actor_update" id="txt_idtipo_actor_update">
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="form-group"></div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">Tipo de actor :</span>
+                            <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip" name="txt_atencion_update" id="txt_atencion_update" readonly placeholder="Tipo de actor" data-original-title="Tipo de actor" data-toggle="tooltip">
+                            <input type="hidden" name="txt_actor_atencion_update" id="txt_actor_atencion_update">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default">Asunto :</span>
+                            <textarea name="txt_asunto_update" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" rows="3" disabled="disabled" id="txt_asunto_update" placeholder="Asunto del expediente" required data-original-title="Asunto del expediente" data-toggle="tooltip"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+
+
+
+
+                <div class="row">
+
+                    <div class="col-xs-4">
+                        <div class="form-group no-margin-hr mostrarprioridad_update">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default glyphicon glyphicon-bullhorn  teal-color"></span>
+                                <input name="txt_prioridad_update" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_prioridad_update" placeholder="Prioridad" disabled="disabled" data-original-title="Seleccione prioridad y pulse ENTER (2 veces barra espaciados para desplegable)" data-toggle="tooltip">
+                                <input type="hidden" name="txt_idprioridad_update" id="txt_idprioridad_update">
+                                <input type="hidden" name="txt_plazo_update" id="txt_plazo_update">
+
+                                <span id="ver_msj_update"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group no-margin-hr  mostraraccion1_update">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                                <input name="txt_accion1_update" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_accion1_update" disabled="disabled" placeholder="Accion 1" data-original-title="Tipo de atencion y pulse ENTER (2 veces barra espaciados para desplegable)" data-toggle="tooltip">
+                                <span id="ver_msjaccion_update"></span>
+                                <input type="hidden" name="txt_tipo_accion1_update" id="txt_tipo_accion1_update">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group no-margin-hr  mostraraccion2_update">
+                            <div class="input-group">
+                                <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                                <input name="txt_accion2_update" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_accion2_update" disabled="disabled" placeholder="Accion 2" data-original-title="Por corresponder y pulse ENTER (2 veces barra espaciados para desplegable)" data-toggle="tooltip">
+                                <span id="ver_msjaccion2_update"></span>
+                                <input type="hidden" name="txt_tipo_accion2_update" id="txt_tipo_accion2_update">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                            <input name="txt_nrodocumento_update" type="text" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" id="txt_nrodocumento_update" disabled="disabled" placeholder="Nro. documento" data-original-title="Nro documento y pulse ENTER " data-toggle="tooltip">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                            <textarea name="txt_observacion_update" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" rows="3" disabled="disabled" id="txt_observacion_update" placeholder="Registre observacion" required data-original-title="Ingrese observacion adicional" data-toggle="tooltip"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group"></div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer bg-panel">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_grabar_derivar_update" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Grabar derivacion --- ">&nbsp;Grabar</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Modal Confirmar recuperar  -->
+<div class="modal" id="confirmar_recuperar_derivado" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="expediente_retornar"></h4>
+                <input type="hidden" name="expediente_recuperar" id="expediente_recuperar">
+                <input type="hidden" name="nro_en_expediente" id="nro_en_expediente">
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-8">
+                        <p class="bg-success text-center text-bold"> -- Confirmar retornar expediente, pasara a la seccion de RECEPCION (R) -- </p>
+                    </div>
+                    <div class="col-xs-2"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_confirmar_retorno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Retornar expediente a recepcion  --- ">RETORNAR</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Culminar  -->
+<div class="modal" id="confirmar_culminado" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="expediente_culminar"></h4>
+                <input type="hidden" name="nro_expediente_culminar" id="nro_expediente_culminar">
+                <input type="hidden" name="nro_en_expediente_culminar" id="nro_en_expediente_culminar">
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <p class="bg-success text-center text-bold"> -- Confirmar culminar expediente, pasara a la seccion de Culminados (C) -- </p>
+                        <textarea name="txt_motivo_culminacion" id="txt_motivo_culminacion" rows="4" class="form-control"></textarea>
+                    </div>
+                    <div class="col-xs-1"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_confirmar_culminado" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Culminar expediente  --- ">Culminar</button></div>
+            <div class="col-xs-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-3"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal Reporte de Expedientes Remitidos  -->
+
+
+
+<div class="modal" id="Reporte_Expediente_Remitidos" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title"><span class="glyphicon glyphicon-th"></span> Reporte de Expedientes Recibidos : </h4>
+                <button type="button" class="btn btn-default text-center close" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span class="bg-default form-control">DESDE : </span>
+                        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechainicioReporte" data-toggle="tooltip" name="fechainicioReporte" placeholder="Fecha Inicio" value="<?= date("d/m/Y") ?>"><br><br>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <span class="bg-default form-control">HASTA : </span>
+                        <input type="text" class="form-control crear-tooltip color-yellow-texto-large" id="fechafinReporte" data-toggle="tooltip" name="fechafinReporte" placeholder="Fecha Fin" value="<?= date("d/m/Y") ?>"><br><br>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-info" id="btn_enviar_excel">Excel<br> Resumido</button><br><br>
+                        <button type="button" class="btn btn-info" id="btn_enviar_excel_detalle">Excel<br> Detallado</button>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-info" id="btn_enviar_pdf">PDF<br><br></button>
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+
+                <center>
+                    <span id="esperaproceso"></span>
+                </center>
+
+
+
+                </div>
+
+                
+
+
+            </div>
+        </div>
+        <div class="modal-footer bg-primary">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+            <div class="col-xs-4"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Registro Expedientes Areas   -->
+<div class="modal fade" id="md-registroexpediente_areas" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="titulo_expediente_area" class="modal-title text-center"><i class="fa fa-desktop"></i>&nbsp;Registrar Expediente Interareas</h4>
+                <input type="hidden" name="id_actor_origen_para_cc" id="id_actor_origen_para_cc">
+            </div>
+            <div class="modal-body">
+                <div class="tab-content">
+                    <div id="expediente_inter" class="tab-pane fade in active">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon bg-default"><i class="fa fa-calendar teal-color"></i></span>
+                                    <input type="text" id="txt_fecha_documento" class="form-control crear-tooltip color-yellow" data-original-title="Fecha expediente" data-toggle="tooltip">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3">
+                                <input name="txt_hora_documento" type="time" class="form-control color-yellow initialism crear-tooltip" id="txt_hora_documento" data-original-title="Flecha Arriba, abajo para modificar Horas, Minutos" data-toggle="tooltip">
+                            </div>
+
+                            <div class="col-xs-4">
+                                <input name="txt_descripcion_actor" type="text" class="form-control crear-tooltip" id="txt_descripcion_actor" placeholder="Tipo de actor" readonly data-original-title="Tipo de actor" data-toggle="tooltip">
+                                <input type="hidden" name="txt_id_actor" id="txt_id_actor">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon bg-default glyphicon glyphicon-user teal-color"></span>
+                                    <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip" name="txt_destino" id="txt_destino" readonly placeholder="Destinario que atendera" data-original-title="Destinario" data-toggle="tooltip" value="<?php echo $actor_descripcion; ?>">
+                                    <input type="hidden" name="txt_actor_atencion_destino" id="txt_actor_atencion_destino" value="<?php echo $actor_recepcion  ?>">
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon bg-default glyphicon glyphicon-folder-close teal-color"></span>
+                                        <input name="txt_tipo_reporte" type="text" class="form-control bg-color-input-text crear-tooltip" id="txt_tipo_reporte" placeholder="Tipo de reporte" readonly data-original-title="Tipo de reporte" data-toggle="tooltip">
+                                        <input type="hidden" name="txt_idtreporte" id="txt_idtreporte">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group no-margin-hr mostrardocumentoarea">
+                                    <div class="input-group">
+                                        <input name="txt_tdocumento_area" type="text" class="form-control initialism bg-color-input-text crear-tooltip color-yellow" id="txt_tdocumento_area" placeholder="Documento" data-original-title="Seleccione tipo documento y pulse ENTER" data-toggle="tooltip">
+                                        <input type="hidden" name="txt_tipo_doc_area" id="txt_tipo_doc_area">
+                                        <span id="mostrar_msj_si_falta" class="bg-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="input-group">
+                                    <input name="txt_nrodocumento_area" type="text" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" id="txt_nrodocumento_area" placeholder="Nro. documento" data-original-title="Nro documento y pulse ENTER" data-toggle="tooltip">
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="input-group">
+                                    <input name="txt_nfolios_area" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_nfolios_area" disabled="disabled" placeholder="Folios" data-original-title="Registre el Nro de Folios y pulse ENTER" data-toggle="tooltip">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group no-margin-hr mostrarremitentedestino">
+                                    <div class="input-group">
+                                        <span class="input-group-addon bg-default glyphicon glyphicon-user teal-color"></span>
+                                        <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip color-yellow" name="txt_remitente_destino" id="txt_remitente_destino" disabled="disabled" placeholder="Seleccione destinatario" required data-original-title="Digite el destinatario" data-toggle="tooltip">
+                                        <span id="ver_actor_destino"></span>
+                                        <input type="hidden" name="txt_idactor_destino" id="txt_idactor_destino">
+                                        <input type="hidden" name="txt_nombre_remitente_destino" id="txt_nombre_remitente_destino">
+                                        <input type="hidden" name="txt_idtipo_actor_destino" id="txt_idtipo_actor_destino">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon bg-default glyphicon glyphicon-folder-close teal-color"></span>
+                                    <textarea name="txt_asunto_destino" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" rows="3" disabled="disabled" id="txt_asunto_destino" placeholder="Ingrese el asunto del expediente" data-original-title="Registre asunto del expediente" data-toggle="tooltip"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group no-margin-hr mostrarprioridad_destino">
+                                    <div class="input-group">
+                                        <span class="input-group-addon bg-default glyphicon glyphicon-bullhorn  teal-color"></span>
+                                        <input name="txt_prioridad_destino" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_prioridad_destino" placeholder="Prioridad" disabled="disabled" data-original-title="Seleccione prioridad y pulse ENTER (2 veces barra espaciadora para desplegable)" data-toggle="tooltip">
+                                        <input type="hidden" name="txt_idprioridad_destino" id="txt_idprioridad_destino">
+                                        <input type="hidden" name="txt_plazo_destino" id="txt_plazo_destino">
+                                        <span id="ver_msj_destino"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group no-margin-hr  mostraraccion1_destino">
+                                    <div class="input-group">
+                                        <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                                        <input name="txt_accion1_destino" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_accion1_destino" disabled="disabled" placeholder="Accion 1" data-original-title="Tipo de atencion y pulse ENTER (2 veces barra espaciadora para desplegable)" data-toggle="tooltip">
+                                        <span id="ver_msjaccion_destino"></span>
+                                        <input type="hidden" name="txt_tipo_accion1_destino" id="txt_tipo_accion1_destino">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group no-margin-hr  mostraraccion2_destino">
+                                    <div class="input-group">
+                                        <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                                        <input name="txt_accion2_destino" type="text" class="form-control bg-color-input-text crear-tooltip color-yellow" id="txt_accion2_destino" disabled="disabled" placeholder="Accion 2" data-original-title="Por corresponder y pulse ENTER (2 veces barra espaciadora para desplegable)" data-toggle="tooltip">
+                                        <span id="ver_msjaccion2_destino"></span>
+                                        <input type="hidden" name="txt_tipo_accion2_destino" id="txt_tipo_accion2_destino">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group no-margin-hr  mostrarreferencia_destino">
+                                    <div class="input-group">
+                                        <span class="input-group-addon bg-default glyphicon glyphicon-folder-close teal-color"></span>
+                                        <input type="text" name="txt_referencia_destino" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" id="txt_referencia_destino" placeholder="Registre Nro. de referencia" data-original-title="Registre Nro. referencia" data-toggle="tooltip">
+                                        <span id="ver_msjreferencia_destino"></span>
+                                        <input type="hidden" name="txt_idexpediente_destino" id="txt_idexpediente_destino">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn-primary texto-negro color-boton crear-tooltip form-control" id="btn_ccopia_cc" data-original-title="Pulse aqui para Copia" data-toggle="tooltip">Click Con Copia (cc) // Digite el numero de actor o busque por descripcion del actor</button>
+                                <div class="form-group no-margin-hr mostrarremitentedestino_cc">
+                                    <input type="text" class="form-control initialism  bg-color-input-text crear-tooltip color-yellow" name="txt_remitente_cc" id="txt_remitente_cc" disabled="disabled" placeholder="Seleccione con CC" required data-original-title="Digite el destinatario CC" data-toggle="tooltip">
+                                    <span id="ver_actor_destino_cc"></span>
+                                    <input type="hidden" name="txt_idactor_destino_cc" id="txt_idactor_destino_cc">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-12">
+                                <select class="form-control alert-info" id="slc_concopia" size="5" style="font-size : 10px;"></select>
+                                <div class="col-xs-4">
+                                    Total Cc:
+                                </div>
+                                <div class="col-xs-4">
+                                    <span id="nro_cc"></span>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <input type="button" id="btn_eliminar_cc" value=" -- Eliminar con CC -- " class="bg-danger text-right crear-tooltip" disabled data-original-title="Eliminar Cc" data-toggle="tooltip">
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon bg-default glyphicon glyphicon-credit-card teal-color"></span>
+                                    <textarea name="txt_observacion_destino" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" rows="3" disabled="disabled" id="txt_observacion_destino" placeholder="Registre observacion / adjuntos" required data-original-title="Ingrese observacion adicional" data-toggle="tooltip"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="alert-default">Subir Archivo (PDF, Max : 50 Megas, Nombre de Archivo no debe tener caracteres extraños): </label><br>
+                                <input type="hidden" name="nombre_archivo_area" id="nombre_archivo_area">
+                                <input type="file" name="subir_archivo_area" id="subir_archivo_area" class="form-control alert-warning crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Archivo en PDF" data-buttonText="Archivo PDF">
+                                <br>
+                                <span id="msj_subida_area"></span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <span id="msj_esperar_grabar"></span>
+                                <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_grabar_expediente_destino" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar expediente" disabled="disabled"><i class="fa fa-save"></i>&nbsp;GRABAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal Confirmar Impresion Multiple de Hojas de Tramite  -->
+<div class="modal" id="confirmar_impresion_multiple" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="expediente_culminar"></h4>
+                <input type="hidden" name="nro_expedientes_a_imprimir" id="nro_expedientes_a_imprimir">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <p class="bg-success text-center text-bold" id="mostrar_nro_impresion"></p>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span id="mostrar_mensaje_impresion"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer bg-default">
+
+            <div class="col-xs-5"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_confirmar_impresion_multiple_descargar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click para descargar los expedientes...">Descargar Expedientes</button></div>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-5"><button class="btn btn-info  btn-lg form-control  crear-tooltip" id="btn_confirmar_impresion_multiple" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Click aqui, para impresion multiple de hojas de tramite...">Ver Expedientes e Imprimir</button></div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Ver Ocurrencias  -->
+<div class="modal fade" id="VerOcurrencias" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Ver Ocurrencias / Derivaciones</h4>
+                <span id="mostrar_idexpediente_ocurrencias"></span>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover table-condensed" id="tabla_ocurrencia" data-page-length='30'>
+                                <tr id="titulos_de_celda_ocurrencia" class="warning"></tr>
+                                <tbody id="mostrar_tablas_ocurrencia"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-warning text-center" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Modificar Adjuntos  -->
+<div class="modal fade" id="ModificarAdjunto" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Modificar / Anular -- Archivo Adjunto</h4>
+                <span id="mostrar_idexpediente_ad"></span>
+                <input type="hidden" name="idexpediente_ad" id="idexpediente_ad">
+            </div>
+            <div class="modal-body">
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-danger  btn-lg form-control  crear-tooltip " id="btn_eliminar_adjunto" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" - Eliminar Adjunto - ">-X-&nbsp;PULSE AQUI, PARA ELIMINAR ADJUNTO DIGITAL -X- </button>
+                    </div>
+
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_agregar_cambiar_adjunto" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" - Agregar Cambiar Adjunto - ">-A-&nbsp;AGREGAR / CAMBIAR ADJUNTO DIGITAL -A- </button>
+                    </div>
+
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <hr>
+                        <label class="alert-default">Subir Archivo (PDF, Max : 50 Megas, Nombre de Archivo no debe tener caracteres extraños): </label><br>
+                        <input type="hidden" name="nombre_archivo_add" id="nombre_archivo_add">
+                        <input type="file" name="subir_archivo_add" id="subir_archivo_add" class="form-control alert-warning crear-tooltip" data-toggle="tooltip" data-placement="up" title="" data-original-title="Archivo en PDF" data-buttonText="Archivo PDF">
+                        <br>
+                        <span id="msj_subida_add"></span>
+                    </div>
+                </div>
+                <hr>
+
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-info  btn-lg form-control  crear-tooltip " id="btn_actualizar_adjunto" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=" --- Suspender expediente --- "><i class="fa fa-save"></i>&nbsp;GRABAR ACTUALIZACION</button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

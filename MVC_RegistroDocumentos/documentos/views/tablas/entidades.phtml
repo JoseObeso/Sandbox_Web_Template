@@ -1,0 +1,537 @@
+ <div class="row row box-cell p-x-3 p-y-1 bg-panel darken caja">
+         <div class="col-md-2 bg-default">
+             <strong>Entidades (Usuarios) :</strong><br>Conformado por alguna institucion externa, unidad organica, o trabajador.
+         </div>
+
+         <div class="col-md-2 bg-default">
+             <strong>Tipo de Documento :</strong><br>
+             Las categorias de documentos que el usuario selecciona para registrar el expediente.
+         </div>
+
+         <div class="col-md-2 bg-default">
+             <strong>Tipo de Acciones :</strong><br>
+             Acción que se quiere tomar con respecto al expediente por parte del ente destino.
+         </div>
+
+         <div class="col-md-2 bg-default">
+             <strong>Tipo de Prioridad :</strong><br>
+             Son las categorias de prioridad que tiene el expediente para el area destino.
+         </div>
+
+         <div class="col-md-2 bg-default">
+             <strong>Tipo de Reporte :</strong><br>
+             Categorias de reportes en que se utilizan en el expediente, como constancias, certificados.
+         </div>
+     
+
+         <div class="col-md-2 bg-default">
+             <strong>Tipo de Actor :</strong><br>
+              Clasificacion de los actores  en el expediente y que son registrados segun su denominacion.
+         </div>
+ </div>
+
+ <div class="form-group"></div>
+ <div class="form-group"></div>
+
+ <div class="container">
+     <ul class="nav nav-tabs">
+         <li class="active"><a data-toggle="tab" href="#Entidades"><strong>Entidades (Usuarios)</strong></a></li>
+         <li><a data-toggle="tab" href="#tdoc"><strong>Tipo de documento</strong></a></li>
+         <li><a data-toggle="tab" href="#accion"><strong>Tipo de acciones</strong></a></li>
+         <li><a data-toggle="tab" href="#prioridad"><strong>Tipos de prioridad</strong></a></li>
+         <li><a data-toggle="tab" href="#treporte"><strong>Tipo de reporte</strong></a></li>
+         <li><a data-toggle="tab" href="#tactor"><strong>Tipo de actor</strong></a></li>
+     </ul>
+
+     <div class="tab-content">
+         <div id="Entidades" class="tab-pane fade in active">
+             <div class="row">
+                 <div class="col-md-4">
+                     <input name="txt_buscar_entidad" type="text" id="txt_buscar_entidad" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" placeholder="Buscar entidad" data-original-title="Buscar Entidad" data-toggle="tooltip">
+                     <span class="form-control bg-default">Entidad&nbsp;-&nbsp; Descripcion </span>
+                     <select name="slt_lista_entidades" size="14" class="form-control" id="slt_lista_entidades" title="Lista de entidades registradas"></select>
+                     <span id="espera_entidad" class="form-control"></span>
+
+                 </div>
+
+                 <div class="col-md-6 bg-default">
+                     <div class="form-group"></div>
+                     <div class="row">
+
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_entidad" data-toggle="tooltip" data-original-title="Nueva Entidad">
+                                 <span class="glyphicon glyphicon-file"></span> Nuevo
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_entidad" data-toggle="tooltip" data-original-title="Editar entidad">
+                                 <span class="glyphicon glyphicon-pencil"></span> Editar
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_entidad" data-toggle="tooltip" data-original-title="Eliminar entidad">
+                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
+                             </button>
+
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span id="msj_eliminado" class="bg-warning text-center form-control"></span>
+                         </div>
+                     </div>
+
+                     <div class="form-group"></div>
+
+
+                     <div class="row">
+
+                         <div class="col-xs-6">
+                             <input type="text" id="id_identidad" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Entidad">
+                         </div>
+                         <div class="col-xs-6">
+                             <input type="text" id="id_tipo_actor" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="Tipo de Actor">
+                         </div>
+
+                     </div>
+                     <hr>
+
+
+                     <div class="row">
+
+                         <div class="col-xs-12">
+                             <input type="text" id="txt_descripcion" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Registre entidad" title="" data-original-title="Registrar entidad">
+                         </div>
+                     </div>
+
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <input type="text" id="txt_direccion" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Registre direccion" title="" data-original-title="Registrar direccion de la entidad">
+                         </div>
+                     </div>
+
+
+
+                     <div class="row">
+                         <div class="col-xs-6">
+                             <input type="text" id="txt_telefono" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Registre telefono" title="" data-original-title="Registrar telefono de la entidad">
+                         </div>
+                         <div class="col-xs-6">
+                             <input type="text" id="txt_ruc" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Registre RUC" title="" data-original-title="Registrar RUC">
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_entidad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Entidad" disabled="disabled">&nbsp;GRABAR</button>
+                         </div>
+                     </div>
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+
+                 </div>
+             </div>
+
+
+
+
+
+         </div>
+         <div id="tdoc" class="tab-pane fade">
+             <div class="row">
+                 <div class="col-md-4">
+                     <input name="txt_buscar_tdoc" type="text" id="txt_buscar_tdoc" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" placeholder="Buscar documento" data-original-title="Buscar tipo documento" data-toggle="tooltip">
+                     <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                     <select name="slt_lista_tdoc" size="14" class="form-control" id="slt_lista_tdoc" title="Lista de tipos de documento"></select>
+                     <span id="espera_tdoc" class="form-control"></span>
+                 </div>
+
+                 <div class="col-md-6 bg-default">
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+                     <div class="row">
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_tdoc" data-toggle="tooltip" data-original-title="Nuevo tipo de documento">
+                                 <span class="glyphicon glyphicon-file"></span> Nuevo
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_tdoc" data-toggle="tooltip" data-original-title="Editar Tipo documento">
+                                 <span class="glyphicon glyphicon-pencil"></span> Editar
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_tdoc" data-toggle="tooltip" data-original-title="Eliminar Tipo documento">
+                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
+                             </button>
+
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                         <span id="msj_eliminado_tdocumento" class="form-control bg-warning text-center"></span>
+                         <div class="col-xs-6">
+                             <input type="text" id="id_tipodocumento" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo documento">
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <input type="text" id="txt_descripcion_tdocumento" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de documento" title="" data-original-title="Registrar tipo de documento">
+                         </div>
+
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_tdocumento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar tipo documento" disabled="disabled">&nbsp;GRABAR</button>
+                         </div>
+                     </div>
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+
+                 </div>
+
+             </div>
+
+
+
+
+
+
+         </div>
+         <div id="accion" class="tab-pane fade">
+             <div class="row">
+                 <div class="col-md-4">
+                     <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                     <select name="slt_lista_accion" size="14" class="form-control" id="slt_lista_accion" title="Lista de tipos de accion"></select>
+                     <span id="espera_taccion" class="form-control"></span>
+                 </div>
+
+                 <div class="col-md-6 bg-default">
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+                     <div class="row">
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_taccion" data-toggle="tooltip" data-original-title="Nuevo tipo de accion">
+                                 <span class="glyphicon glyphicon-file"></span> Nuevo
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_taccion" data-toggle="tooltip" data-original-title="Editar Tipo de accion">
+                                 <span class="glyphicon glyphicon-pencil"></span> Editar
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_taccion" data-toggle="tooltip" data-original-title="Eliminar Tipo de accion">
+                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
+                             </button>
+
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                         <span id="msj_eliminado_taccion" class="form-control bg-warning text-center"></span>
+                         <div class="col-xs-6">
+                             <span>ID ACCION : </span>
+                             <input type="text" id="id_tipoaccion" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo accion">
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span>DESCRIPCION: </span>
+                             <input type="text" id="txt_descripcion_tacc" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de accion" title="" data-original-title="Registrar tipo de accion">
+                         </div>
+
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_tacc" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                         </div>
+
+
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_tacc" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar tipo accion" disabled="disabled">&nbsp;GRABAR</button>
+                         </div>
+
+
+
+
+                     </div>
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+
+                 </div>
+
+             </div>
+         </div>
+         <div id="prioridad" class="tab-pane fade">
+             <!-- Inicio de prioridad -->
+             <div class="row">
+                 <div class="col-md-4">
+                     <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                     <select name="slt_lista_prioridad" size="14" class="form-control" id="slt_lista_prioridad" title="Lista de tipos de prioridad"></select>
+                     <span id="espera_prioridad" class="form-control"></span>
+                 </div>
+                 <div class="col-md-6 bg-default">
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+                     <div class="row">
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_tprioridad" data-toggle="tooltip" data-original-title="Nuevo tipo de prioridad">
+                                 <span class="glyphicon glyphicon-file"></span> Nuevo
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_tprioridad" data-toggle="tooltip" data-original-title="Editar Tipo de prioridad">
+                                 <span class="glyphicon glyphicon-pencil"></span> Editar
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_tprioridad" data-toggle="tooltip" data-original-title="Eliminar Tipo de prioridad">
+                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
+                             </button>
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                         <span id="msj_eliminado_tprioridad" class="form-control bg-warning text-center"></span>
+                         <div class="col-xs-6">
+                             <span>ID PRIORIDAD : </span>
+                             <input type="text" id="id_tipoprioridad" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo prioridad">
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span>DESCRIPCION: </span>
+                             <input type="text" id="txt_descripcion_prioridad" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de Prioridad" title="" data-original-title="Registrar tipo de prioridad">
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span>DIAS: </span>
+                             <input type="text" id="txt_dias" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Dias de prioridad" title="" data-original-title="Registrar dias de prioridad">
+                         </div>
+                     </div>
+                     <hr>
+
+
+
+                     <div class="row">
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_tprioridad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                         </div>
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_tprioridad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar tipo prioridad" disabled="disabled">&nbsp;GRABAR</button>
+                         </div>
+                     </div>
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+                 </div>
+             </div>
+             <!-- Fin de prioridad -->
+
+
+
+         </div>
+
+         <div id="treporte" class="tab-pane fade">
+
+             <div class="row">
+                 <div class="col-md-4">
+                     <span class="form-control bg-default">Tipo&nbsp;-&nbsp; Descripcion </span>
+                     <select name="slt_lista_reporte" size="14" class="form-control" id="slt_lista_reporte" title="Lista de tipos de reporte"></select>
+                     <span id="espera_treporte" class="form-control"></span>
+                 </div>
+
+                 <div class="col-md-6 bg-default">
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+                     <div class="row">
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_treporte" data-toggle="tooltip" data-original-title="Nuevo tipo de reporte">
+                                 <span class="glyphicon glyphicon-file"></span> Nuevo
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_treporte" data-toggle="tooltip" data-original-title="Editar Tipo de reporte">
+                                 <span class="glyphicon glyphicon-pencil"></span> Editar
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_treporte" data-toggle="tooltip" data-original-title="Eliminar Tipo de reporte">
+                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
+                             </button>
+
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span id="msj_eliminado_treporte" class="form-control bg-warning text-center"></span>
+                         </div>
+
+                         <div class="col-xs-12">
+                             <span>ID TIPO REPORTE : </span>
+                             <input type="text" id="id_treporte" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo reporte">
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span>DESCRIPCION: </span>
+                             <input type="text" id="txt_descripcion_trepo" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de reporte" title="" data-original-title="Registrar tipo de reporte">
+                         </div>
+
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_trepo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                         </div>
+
+
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_trepo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar tipo reporte" disabled="disabled">&nbsp;GRABAR</button>
+                         </div>
+
+
+
+
+                     </div>
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+
+                 </div>
+
+             </div>
+
+
+
+
+
+
+
+
+
+
+         </div>
+
+         <div id="tactor" class="tab-pane fade">
+
+             <div class="row">
+                 <div class="col-md-4">
+                     <span class="form-control bg-default">&nbsp; Descripcion </span>
+                     <select name="slt_lista_tactor" size="14" class="form-control" id="slt_lista_tactor" title="Lista de tipos de actor"></select>
+                     <span id="espera_tactor" class="form-control"></span>
+                 </div>
+
+                 <div class="col-md-6 bg-default">
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+                     <div class="row">
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" id="btn_nuevo_tactor" data-toggle="tooltip" data-original-title="Nuevo tipo de actor">
+                                 <span class="glyphicon glyphicon-file"></span> Nuevo
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_editar_tactor" data-toggle="tooltip" data-original-title="Editar Tipo de actor">
+                                 <span class="glyphicon glyphicon-pencil"></span> Editar
+                             </button>
+                         </div>
+                         <div class="col-md-4">
+                             <button type="button" class="btn btn-info btn-sm crear-tooltip form-control" disabled="disabled" id="btn_eliminar_tactor" data-toggle="tooltip" data-original-title="Eliminar Tipo de actor">
+                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
+                             </button>
+
+                         </div>
+                     </div>
+                     <hr>
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span id="msj_eliminado_tactor" class="form-control bg-warning text-center"></span>
+                         </div>
+
+                         <div class="col-xs-12">
+                             <span>ID TIPO ACTOR : </span>
+                             <input type="text" id="id_tactor" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" readonly data-toggle="tooltip" data-original-title="ID Tipo actor">
+                         </div>
+                     </div>
+                     <hr>
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span>DESCRIPCION: </span>
+                             <input type="text" id="txt_descripcion_tactor" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" data-toggle="tooltip" placeholder="Tipo de actor" title="" data-original-title="Registrar tipo de actor">
+                         </div>
+
+                     </div>
+                     <hr>
+
+
+                     <div class="row">
+                         <div class="col-xs-12">
+                             <span>TIPO : </span>
+                             <input type="text" id="txt_tactor" class="form-control bg-color-input-text initialism crear-tooltip color-yellow" disabled="disabled" maxlength="1" data-toggle="tooltip" placeholder="Tipo de actor" title="" data-original-title="Registrar tipo de actor">
+                         </div>
+
+                     </div>
+                     <hr>
+
+
+
+
+
+                     <div class="row">
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_cancelar_tactor" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar">&nbsp;CANCELAR</button>
+                         </div>
+
+
+                         <div class="col-xs-6">
+                             <button class="btn btn-info btn-lg form-control  crear-tooltip" id="btn_grabar_tactor" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar tipo actor" disabled="disabled">&nbsp;GRABAR</button>
+                         </div>
+
+
+
+
+                     </div>
+                     <div class="form-group"></div>
+                     <div class="form-group"></div>
+
+                 </div>
+
+             </div>
+
+
+
+
+
+
+
+
+
+
+         </div>
+
+
+
+
+     </div>
+ </div>

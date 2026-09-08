@@ -1,0 +1,137 @@
+/* Seccion Add */
+
+.bg-panel {
+    background-color: #9cd4bf !important;
+}
+
+.caja {
+    padding: 5px;
+    box-shadow: 10px 10px 50px 1px #7c7c81;
+    border-radius: 10px;
+}
+
+.color-blanco {
+    color: cornsilk;
+}
+
+.text-largo {
+    font-size: x-large
+}
+
+.fondo-panel-tablas {
+    background-color: #98dbf5;
+}
+
+.fondo-tablas-body {
+    background-color: #c4ccca;
+}
+
+.select2-container {
+    background-color: #FFFEE1;
+}
+
+.select2-search input {
+    background-color: #FFFEE1;
+}
+
+.select2-search {
+    background-color: #FFFEE1;
+}
+
+.select2-options {
+    background-color: #FFFEE1;
+}
+
+.select2-results {
+    background-color: #FFFBD1;
+    max-height: 300px;
+}
+
+.s2id_slt_cargos {
+    background-color: #FFFEE1;
+}
+
+.select2-choice {
+    background-color: #FFFEE1!important;
+}
+
+.select2-results .select2-highlighted {
+    background: #3ea211;
+}
+
+.alert {
+    border: 2px solid #3D8FFF !important;
+}
+
+.color_borde_azul {
+    border: 2px solid #3D8FFF !important;
+}
+
+.color_borde_selector {
+    border: 2px solid #FFFCBB !important;
+}
+
+#select2-drop-mask {
+    background-color: #FFF9DC;
+}
+
+.select2-container--default .select2-results>.select2-results__options {
+    max-height: 450px
+}
+
+.select2-selection__arrow {
+    display: none
+}
+
+.color_textarea {
+    background-color: wheat
+}
+
+.fixed-cabecera {
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+.fixed-cabecera-titulo {
+    padding: 10px 22px;
+}
+
+.bg-color-input-text {
+    background-color: #f2f291;
+}
+
+.teal-color {
+    color: teal;
+}
+
+.color-yellow {
+    background-color: #f7f5c1;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.color-yellow-texto-large {
+    background-color: #f7f5c1;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.bg-color-input-text {
+    background-color: #f2f291;
+}
+
+.color-numeros {
+    background-color: #f2ec9e;
+}
+
+.color-yellow-text-black {
+    background-color: #f7f5c1;
+    font-weight: bold;
+    font-size: 27x;
+    text-align: center;
+}
+
+.bg-oscuro {
+    background-color: #0c2124;
+}

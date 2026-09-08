@@ -1,0 +1,132 @@
+<div class="row row box-cell p-x-3 p-y-1 bg-panel darken caja">
+    <div class="col-md-2 bg-default">
+        <h3><span class="glyphicon glyphicon-th-list"></span> Tabla : Actor </h3>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6 bg-default">
+        <h4>Contiene registros que conforman el origen del expediente entre todas las áreas de la institución y agentes externos a ésta.</h4>
+    </div>
+</div>
+
+<div class="form-group"></div>
+<div class="form-group"></div>
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <label for="txt_buscar_actor" class="bg-info form-control">Actores registrados</label>
+        <input name="txt_buscar_actor" type="text" id="txt_buscar_actor" class="form-control alert-warning text-secondary initialism">
+        <select name="slt_actor_01" size="20" id="slt_actor_01" class="form-control alert-info"></select>
+        <span id="msj_espera" class="form-control"></span>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_agregar_actor" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Nuevo Actor"><i class="fa fa-plus"></i></button><br><br>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_modificar_actor" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Actor"><strong> <i class="fa fa-pencil"></i></strong></button><br><br>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_eliminar_actor"><strong> <i class="fa fa-times"></i></strong></button>
+        <span id="espera_grabacion_eliminar"></span>
+    </div>
+
+    <div class="col-md-5">
+
+        <div class="col-xs-12">
+            <div class="form-group no-margin-hr mostrarareaactorid">
+                <div class="input-group">
+                    <label class="bg-default form-control"><span class="glyphicon glyphicon-check"></span>&nbsp;Actor : (Maximo 10 digitos) </label>
+                    <input name="txt_actor" type="text" disabled="disabled" class="form-control initialism alert-warning" id="txt_actor" maxlength="10">
+                    <input type="hidden" name="txt_id_actor_registrado" id="txt_id_actor_registrado">
+                    <span id="ver_txt_actor"></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-group"></div>
+
+        <div class="col-xs-12">
+            <label class="bg-default form-control"><span class="glyphicon glyphicon-check"></span>&nbsp;Descripcion : (Digite y posteriormente pulse ENTER)</label>
+            <input name="txt_descripcion" type="text" disabled="disabled" class="form-control initialism color-yellow" id="txt_descripcion">
+        </div>
+
+        <div class="form-group"></div>
+
+        <div class="col-xs-12">
+            <label class="bg-default form-control"> <span class="glyphicon glyphicon-check"></span>&nbsp;Abreviatura : </label>
+            <input name="txt_abreviatura" type="text" disabled="disabled" class="form-control initialism color-yellow" id="txt_abreviatura">
+        </div>
+
+        <div class="form-group"></div>
+
+        <div class="col-xs-12">
+            <label class="bg-default form-control"> <span class="glyphicon glyphicon-check"></span>&nbsp;Responsable : </label>
+            <input name="txt_responsable" type="text" disabled="disabled" class="form-control initialism color-yellow" id="txt_responsable">
+            <div class="form-group"></div>
+        </div>
+
+        <div class="col-xs-12">
+            <label class="bg-default"> -- Codigo Cargo, 2 LETRAS Abreviatura/Actor o si es SUB AREA del Responsable </label>
+
+
+            <div class="col-xs-4">
+                <input name="txt_codigo" type="text" disabled="disabled" class="form-control initialism color-yellow" id="txt_codigo" maxlength="2">
+                <span class="alert-success text-bold text-center"> Codigo que se usa para el expediente</span>
+
+            </div>
+
+            <div class="col-xs-3">
+                <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_revisar_codigo" data-toggle="tooltip" data-placement="left" disabled="disabled" title="" data-original-title="Verificar"><span class="glyphicon glyphicon-ok"></span>Revisar</button>
+                <span id="msj_revisar_codigo"></span>
+            </div>
+            <div class="col-xs-5">
+              
+                <select name="slt_codigos" id="slt_codigos" size="5" class="form-control"></select>
+                
+            </div>
+
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="col-xs-12">
+
+            <div class="form-group no-margin-hr mostrarareaactor">
+                <div class="input-group">
+                    <label class="bg-default form-control"><span class="glyphicon glyphicon-check"></span>&nbsp;Area de actor : (Dependencia Jerarquica)</label>
+                    <input name="txt_seleccione_area_actor" type="text" disabled="disabled" class="form-control initialism color-yellow" id="txt_seleccione_area_actor">
+                    <input type="hidden" name="txt_id_area" id="txt_id_area">
+                    <span id="ver_msj_actor"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="form-group">
+                <span class="form-control bg-default"><span class="glyphicon glyphicon-check"></span>&nbsp; Tramite :</span>
+
+                <table width="200">
+                    <tr>
+                        <td><label>
+                                <input name="slt_tramite" type="radio" disabled="disabled" id="slt_tramite_0" value="S">
+                                SI</label></td>
+
+                        <td><label>
+                                <input name="slt_tramite" type="radio" disabled="disabled" id="slt_tramite_1" value="N">
+                                NO</label></td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_actor" data-toggle="tooltip" data-placement="left" disabled="disabled" title="" data-original-title="Grabar Datos actor"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+        <span id="espera_grabacion"></span>
+
+    </div>
+
+
+</div>
