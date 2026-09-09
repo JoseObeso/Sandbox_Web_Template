@@ -1,0 +1,68 @@
+<?php
+$listarpersonal = json_decode( $this->listarpersonal );
+$listarhorario = json_decode( $this->listarhorario );
+
+
+?>
+
+<link rel="stylesheet" href="../../../legajos/views/layout/default/css/themes.min.css">
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>turnos_asignacion_administrativos_asistencial.jpg" width="960" height="80" alt=""/>';
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Seleccione personal Administrativo o Asistencial y asigne horario :</div>
+            <div class="panel-body">
+                <input name="txt_buscar_nombre" type="text" autofocus="autofocus" class="table-primary" id="txt_buscar_nombre" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 300px;" size="53" maxlength="100">
+                <select name="select_documentos" size="30" id="select_documentos" title="Personal Administrativo Asistencial Registro" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 300px;">
+                    <?php foreach($listarpersonal as $ver):?>
+                    <option value="<?= $ver->id ?>" id="<?= $ver->id ?>" dni="<?= $ver->dni ?>" tipo_personal="<?= $ver->tipo_personal ?>" apellidos_nombres="<?= $ver->apellidos_nombres ?>" cargo="<?= $ver->cargo ?>" servicio="<?= $ver->servicio ?>" fecha_ingreso="<?= $ver->fecha_ingreso ?>" fecha_termino="<?= $ver->fecha_termino ?>" codhorario="<?= $ver->codhorario ?>" <font size="-2" color="#000000">
+                        <strong>  <?=$ver->apellidos_nombres ?>    </strong>
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><input name="txt_apellidos_nombres" type="text" disabled="disabled" id="txt_apellidos_nombres" size="55" maxlength="75">
+            </div>
+            <div class="panel-body">
+                <label for="txt_dni" class="label">DNI:</label>
+                <input name="txt_dni" type="text" disabled="disabled" id="txt_dni" size="8" maxlength="8">
+                <label for="txt_tipo_personal" class="label">Tipo:</label>
+                <input name="txt_tipo_personal" type="text" disabled="disabled" id="txt_tipo_personal" size="15" maxlength="15"><br>
+                <label for="txt_servicio" class="label">Servicio:</label>
+                <input name="txt_servicio" type="text" disabled="disabled" id="txt_servicio" size="45" maxlength="55"><br>
+                <label for="txt_cargo" class="label">Cargo:</label>
+                <input name="txt_cargo" type="text" disabled="disabled" id="txt_cargo" size="45" maxlength="45"><br>
+                <label for="txt_fecha_inicio" class="label">Inicio:</label>
+                <input name="txt_fecha_inicio" type="text" disabled="disabled" id="txt_fecha_inicio" size="9" maxlength="9"> <label for="txt_fecha_inicio" class="label">Termino:</label>
+                <input name="txt_fecha_termino" type="text" disabled="disabled" id="txt_fecha_termino" size="9" maxlength="9"><br>
+                <label for="txt_cod_horario" class="label">Codigo Horario:</label>
+                <input name="txt_cod_horario" type="text" disabled="disabled" id="txt_cod_horario" size="20" maxlength="20">
+                <hr><br>
+                <label class="label">Asignar Horario : </label><br>
+                <select name="seleccion_horario" size="5" disabled="disabled" id="seleccion_horario" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 250px;">
+                    <?php foreach($listarhorario as $horario):?>
+                    <option value="<?= $horario->id ?>" id="<?= $horario->id ?>" codigo="<?= $horario->codigo ?>" codigoturno="<?= $horario->codigoturno ?>" horaingreso="<?= $horario->horaingreso ?>" horasalida="<?= $horario->horasalida ?>" horas="<?= $horario->horas ?>" <font size="-2" color="#000000"> <strong>  <?=$horario->codigo?> - <?=$horario->codigoturno?> - <?= $horario->horaingreso ?> - <?= $horario->horasalida ?> - <?= $horario->horas ?> Horas </strong></font> </option> <?php endforeach;?> </select><br>
+                <input name="txt_codigo" type="text" disabled="disabled" id="txt_codigo" size="6" maxlength="6">
+                <input name="txt_turno" type="text" disabled="disabled" id="txt_turno" size="6" maxlength="6">
+                <input name="txt_hingreso" type="text" disabled="disabled" id="txt_hingreso" size="6" maxlength="6">
+                <input name="txt_hsalida" type="text" disabled="disabled" id="txt_hsalida" size="6" maxlength="6">
+                <input name="txt_horas" type="text" disabled="disabled" id="txt_horas" size="6" maxlength="6">
+            </div>
+            <div class="panel-footer"><input name="btn_Grabar" type="button" disabled="disabled" class="btn-primary btn-lg" id="btn_Grabar" title="Grabar registro" value="-- Grabar --">
+            </div>
+        </div>
+    </div>
+
+</div>

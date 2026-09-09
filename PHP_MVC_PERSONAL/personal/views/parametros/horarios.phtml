@@ -1,0 +1,151 @@
+<?php
+/*
+$horarios = json_decode( $this->listarhorarios );
+$turnos = json_decode( $this->turnos );
+
+*/
+
+
+?>
+
+
+<div class="page-header">
+    <div class="col-md-7">
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Parametros : Horarios Registrados</strong>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid  pull-left">
+    
+    
+    <div class="row">
+        <div class="col-md-6">
+            <span class="form-control bg-default glyphicon glyphicon-pushpin">&nbsp;Horarios Registrados : <span id="total_horarios"></span></span>
+            <input name="txt_buscar_horarios" type="text" id="txt_buscar_horarios" class="form-control alert-warning text-secondary initialism">
+            <span class="form-control bg-default">Entrada&nbsp;&#124; Salida &#124; Horas &nbsp;&nbsp;&nbsp;&#124; Descripcion (Codigo) </span>
+            <select name="slt_lista_horarios" size="10" class="form-control" id="slt_lista_horarios"></select>
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_horario" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Nuevo Horario"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_horario" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Horario"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_horario" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Horario"><strong> <i class="fa fa-times"></i> </strong></button>
+                            </center>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+          <div class="col-xs-5">
+                <div class="form-group">
+                    <span class="form-control bg-default glyphicon glyphicon-pushpin">&nbsp;Turno:</span>
+                    <select name="slt_turnos" disabled="disabled" class="form-control" id="slt_turnos"></select>
+                </div>
+
+            </div>
+
+            <div class="col-xs-7">
+                <div class="form-group">
+                    <textarea name="descripcion_turno" rows="3" disabled="disabled" id="descripcion_turno" class="form-control"></textarea>
+                </div>
+            </div>
+
+
+          <div class="col-xs-4">
+                <div class="form-group">
+                    <span class="form-control bg-default">Codigo:</span>
+                    <input name="txt_codigo_horario" type="text" disabled="disabled" required="required" class="form-control initialism" id="txt_codigo_horario" title="Registre Codigo (Requerido)">
+              </div>
+          </div>
+
+
+
+          <div class="col-xs-4">
+                <div class="form-group">
+                    <span class="form-control bg-default">Entrada:</span>
+                    <input name="txt_hora_entrada" type="time" disabled="disabled" class="form-control" id="txt_hora_entrada" title="Registre en HH:mm" value="00:00">
+
+              </div>
+
+          </div>
+
+          <div class="col-xs-4">
+                <div class="form-group">
+                    <span class="form-control bg-default">Salida:</span>
+                    <input name="txt_hora_salida" type="time" disabled="disabled" class="form-control" id="txt_hora_salida" title="Registre en HH:mm" value="00:00">
+                </div>
+
+            </div>
+
+          <div class="col-xs-3">
+                <div class="form-group">
+                    <span class="form-control bg-default">Horas: </span>
+                    <input name="txt_total_horas" type="text" disabled="disabled" class="form-control" id="txt_total_horas" title="Registre en HH:mm" value="0">
+                </div>
+            </div>
+
+          <div class="col-xs-9">
+                <div class="form-group">
+                    <span class="form-control bg-default">Observacion : </span>
+                    <textarea name="txt_observacion" rows="2" disabled="disabled" class="form-control" id="txt_observacion"></textarea>
+                </div>
+            </div>
+
+            
+            <div class="col-xs-12">
+                <textarea name="msj_validacion_codigo" rows="1" disabled="disabled" class="form-control" id="msj_validacion_codigo"></textarea>
+            </div>
+
+
+            <div class="form-group"></div>
+
+
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <center>
+                                        <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_horario" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Horario"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+                                    </center>
+                                </div>
+                                <div class="form-group"></div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span id="espera_grabacion_horarios"></span>
+
+      </div>
+    </div>
+</div>    
+

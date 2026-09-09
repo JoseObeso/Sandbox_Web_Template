@@ -1,0 +1,171 @@
+ <?php
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Agrupar Areas Funcionales</strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container pull-left">
+    <div class="row">
+
+        <div class="col-md-2">
+            <span class="form-control bg-default"> UPSS:</span>
+        </div>
+
+        <div class="col-md-4">
+            <select name="slt_upss_seleccion_servicio" class="form-control alert-warning" id="slt_upss_seleccion_servicio"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <span class="form-control bg-default"> Departamento:</span>
+        </div>
+        <div class="col-md-4">
+            <select name="slt_departamento_seleccion_servicio" class="form-control alert-warning" id="slt_departamento_seleccion_servicio"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <span class="form-control bg-default"> Servicio:</span>
+        </div>
+        <div class="col-md-4">
+            <select name="slt_upss_departamento_servicio" class="form-control alert-warning" id="slt_upss_departamento_servicio"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <span class="form-control bg-default"> Area Funcional Totales :</span>
+            <select name="slt_lista_areas_funcionales_registrado" size="20" disabled="disabled" class="form-control alert-warning" id="slt_lista_areas_funcionales_registrado"></select>
+        </div>
+
+        <div class="col-md-4">
+            <span class="form-control bg-default">Lista de Areas Funcionales registradas :</span>
+            <select name="slt_lista_areas_funcionales_seleccion" disabled="disabled" id="slt_lista_areas_funcionales_seleccion" class="form-control alert-warning" size="10"></select>
+            <span id="total_registrados"></span>
+            <div class="form-group"></div>
+            <span id = "mostrar_espera_de_grabacion"></span>
+        </div>
+
+        <div class="col-md-1">
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+            <center><button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_area_funcional_seleccion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Area Funcional Seleccion" disabled="disabled"><i class="fa fa-times"></i></button>
+            </center>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group"></div>
+        <div class="col-md-4">
+            <div class="col-xs-3">
+                <span class="form-control bg-default">PISO :</span>
+                <span class="form-control bg-default">BLOQUE :</span>
+            </div>
+            <div class="col-xs-9">
+                <span class="form-control alert-info" id="descripcion_piso"></span>
+                <span class="form-control alert-info" id="descripcion_bloque"></span>
+            </div>
+            
+            
+           
+            
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<div id="result"></div>

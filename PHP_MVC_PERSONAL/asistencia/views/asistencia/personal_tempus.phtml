@@ -1,0 +1,416 @@
+<?php
+$personal_tempus = json_decode( $this->listarpersonal_tempus );
+$tempus_marcaciones = json_decode( $this->marcaciones_personal_tempus );
+$ver_ultima_marcacion = json_decode( $this->ver_ultima_marcacion );
+
+
+
+
+
+
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+<style type="text/css">
+.modal-header,
+    h4,
+    .close {
+        background-color: #2D4D31;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+    
+    .modal-footer {
+        background-color: #D0D0D0
+    }
+    
+    .centrar-dialogo-modal {
+        margin-top: 8%;
+    }
+    
+    .flotante {
+        display: scroll;
+        position: fixed;
+        top: 50px;
+        background-color: #584D00;
+        width: 85.5%;
+    }
+    
+    .resaltado {
+        background-color: #FCFBA0;
+        border: solid 1px #000000;
+        height: 20px;
+        width: 170px;
+        font-size: 14px;
+        color: #000000;
+        font-weight: bold;
+        vertical-align: 9px
+    }
+    
+    .resaltar_div {
+        font-feature-settings: normal;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+</style>
+<script type="text/javascript" src="/rrhh/control/public/js/validaciones.js"></script>
+<script src="<?= RUTA_PUBLIC_JS; ?>personal_tempus_variables_data64.js"></script>
+
+
+
+
+<div class="row">
+    <div class="col-sm-10">
+        <div class="panel">
+
+            <div class="panel-heading flotante">
+                <span class="panel-title">
+                    <div class="row ">
+                        <div class="col-md-10">
+                            <form class="form-inline mostrar" id="frm-actualizar" accept-charset="UTF-8">
+                                <div class="form-group ">
+                                    <font color="#FFFFFF"><strong>&#124;&#124; REGISTRO DE MARCACIONES DESDE DICIEMBRE DEL 2017  &#124;&#124; </strong> </font>
+                                    <font color="#FFFFFF"><strong>&#45; &#124;&#124; FECHA/HORA ULTIMA DESCARGA DE RELOG:    
+                                    <span id="msj_carga">
+
+                                    <?php foreach($ver_ultima_marcacion as $ver_ultimo):?>
+                                    <?= $ver_ultimo->fecha_ultimo ?>
+                                    <?php endforeach;?>
+
+                                    </span>
+                                        </strong> </font>
+                                </div>
+                                <input name="btn_actualizar" type="button" class="btn-primary" id="btn_actualizar" form="frm_impresion1" title="Pulse aqui para ultima actualizacion desde la descarga del relog..." value="Actualizar descarga" onClick="window.location.reload()">
+                                <hr>
+
+
+                                <table width="467" border="0" align="center" cellpadding="0" cellspacing="0" id="tbl_botones">
+                                    <tbody>
+                                        <tr>
+                                            <td width="3">&nbsp;</td>
+                                            <td width="181" align="center">
+                                                <center>
+                                                    <strong>
+                                                        <font color="#FFFFFF">Marcaciones</font>
+                                                    </strong>
+                                                </center>
+
+                                                <input type="hidden" id="dni_usuario" name="dni_usuario" value="<?=$_SESSION['usuario']['dni']?>" >
+
+                                                <input name="btn_descargar_formato1" type="button" disabled="disabled" class="btn-primary" id="btn_descargar_formato1" form="frm_impresion1" title="Imprimir Marcaciones en el mismo formato del Relog" value="Descargar" style="background-color:white; 
+                                                    border: solid 2px #000000; height: 30px; font-size:12px; color: #FFFFFF; font-weight: bold; vertical-align:9px">
+
+                                                <input name="btn_imprimir_formato1" type="button" disabled="disabled" class="btn-primary" id="btn_imprimir_formato1" form="frm_impresion1" title="Imprimir Marcaciones en el mismo formato del Relog" value="Visualizar" style="background-color:white; 
+                                                    border: solid 2px #000000; height: 30px; font-size:12px; color: #FFFFFF; font-weight: bold; vertical-align:9px">
+
+                                            </td>
+                                            <td width="10">&nbsp;</td>
+                                            <td width="42" bgcolor="#CBCBCB">&nbsp;</td>
+                                            <td width="25">&nbsp;</td>
+                                            <td width="188" align="center">
+                                                <center>
+                                                    <strong>
+                                                        <font color="#FFFFFF">Entrada / Salida</font>
+                                                    </strong>
+                                                </center>
+
+
+                                                <input name="btn_descargar_formato2" type="button" disabled="disabled" class="btn-primary" id="btn_descargar_formato2" form="frm_impresion1" title="Descargar Marcaciones en formato Entrada / Salida " value="Descargar" style="background-color:white; 
+                                                    border: solid 2px #000000; height: 30px; font-size:12px; color: #FFFFFF; font-weight: bold; vertical-align:9px">
+
+                                                <input name="btn_imprimir_formato2" type="button" disabled="disabled" class="btn-primary" id="btn_imprimir_formato2" form="frm_impresion1" title="Imprimir Marcaciones en formato Entrada / Salida" value="Visualizar" style="background-color:white; 
+                                                    border: solid 2px #000000; height: 30px; font-size:12px; color: #FFFFFF; font-weight: bold; vertical-align:9px">
+                                            </td>
+                                            <td width="20">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </form>
+
+
+                        </div>
+
+
+
+                    </div>
+                </span>
+            </div>
+</div>
+
+
+
+<?php for ( $i = 1; $i <= 4; $i++ ) {echo '<br>';}?>
+
+
+
+<div class="panel-body">
+    <form id="frm_asistencia_tempus">
+
+        <table width="982" border="0" cellspacing="0" cellpadding="0" id="ver_marcaciones_en_tabla">
+            <tbody>
+                <tr>
+                    <td width="21" bgcolor="#CBCBCB">&nbsp;</td>
+                    <td width="350" bgcolor="#CBCBCB" style="text-align: center">&nbsp;</td>
+                    <td width="10" bgcolor="#CBCBCB" style="text-align: center">&nbsp;</td>
+                    <td colspan="3" bgcolor="#CBCBCB" style="text-align: center"> <span id="fecha_dd_mm_aa" class="label"></span> </td>
+                    <td width="18" bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td style="text-align: center">(1) INGRESO APELLIDOS Y NOMBRES O DNI DEL PERSONAL </td>
+                    <td bgcolor="#CBCBCB" style="text-align: center">&nbsp;</td>
+                    <td style="text-align: center"> MES</td>
+                    <td width="11" bgcolor="#CBCBCB" style="text-align: center">&nbsp;</td>
+                    <td width="282" style="text-align: center"> AÑO</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td width="350" rowspan="14" valign="top" bgcolor="#FFFFFF">
+                        <p>
+                            <select name="seleccion-personal" size="25" id="seleccion-personal" form="frm_asistencia_tempus">
+                                <?php foreach($personal_tempus  as $imprimir):?>
+                                <option value="<?=$imprimir->dni?>" codigo_personal_tempus="<?=$imprimir->dni ?>" nombre_personal_tempus="<?=$imprimir->apellidos_nombres_totales ?>" condicion_personal_tempus="<?=$imprimir->condicion ?>" ingreso_personal_tempus="<?=$imprimir->ingreso ?>" cargo_personal_tempus="<?=$imprimir->cargo_planilla ?>" tipo_horario_tempus="<?=$imprimir->tipo_horario ?>" paterno_personal_tempus="<?=$imprimir->paterno ?>" materno_personal_tempus="<?=$imprimir->materno ?>" solo_nombres_personal_tempus="<?=$imprimir->nombres ?>">
+                                    <font size="2"><strong>
+                                          <?=$imprimir->dni?> &#45;&#45;&#45;<?=$imprimir->apellidos_nombres_totales?>
+                                </font></strong>
+                                    
+
+                                </option>
+                                <?php endforeach;?>
+                            </select>
+                        </p>
+                        <div id="nombre_personal" class="resaltar_div"></div>
+                        <div id="dni_personal" class="resaltar_div"></div>
+                        <div id="condicion_personal" class="resaltar_div"></div>
+                        <div id="ingreso_personal" class="resaltar_div"></div>
+                        <div id="cargo_personal" class="resaltar_div"></div>
+                        <div id="aviso_condicion" class="resaltar_div"></div>
+
+
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">
+                        <center>
+                            <p>
+                                <select name="mes_asistencia" size="1" disabled="disabled" class="select2-highlighted resaltado" id="mes_asistencia" form="frm_asistencia_tempus" title="Mes en curso" ng-model="month">
+                                    <option value="1">ENERO</option>
+                                    <option value="2">FEBRERO</option>
+                                    <option value="3">MARZO</option>
+                                    <option value="4">ABRIL</option>
+                                    <option value="5">MAYO</option>
+                                    <option value="6">JUNIO</option>
+                                    <option value="7">JULIO</option>
+                                    <option value="8">AGOSTO</option>
+                                    <option value="9">SEPTIEMBRE</option>
+                                    <option value="10">OCTUBRE</option>
+                                    <option value="11">NOVIEMBRE</option>
+                                    <option value="12">DICIEMBRE</option>
+                                </select>
+                            </p>
+                        </center>
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td align="center" valign="top" bgcolor="#CBCBCB"><input name="anio_asistencia" type="number" disabled="disabled" class="resaltado" id="anio_asistencia" form="frm_asistencia_tempus" max="2050" min="2016" title="Seleccione año, en las flechitas arriba / abajo " onkeypress='return event.charCode >= 2016 && event.charCode <= 2100'>
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td width="260">
+
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">
+
+
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td rowspan="12" valign="top">
+
+                        <table width="300" border="1" align="center" cellspacing="0" id="marcacion1">
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead class="">
+                                <tr>
+                                   <th width="96" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Fecha </th>
+                                    <th width="120" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Dia </th>
+                                    <th width="65" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Hora</th>
+                                    <th width="75" align="center" bgcolor="#E9E9E9" class="" scope="col"> Relog</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="resultado" border="1">
+                            </tbody>
+                        </table>
+
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td rowspan="12" valign="top">
+                        <table width="250" border="1" align="center" cellspacing="0" id="marcacion2">
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead class="">
+                                <tr>
+                                    <th width="92" align="center" bgcolor="#E9E9E9" class="" scope="col"> Nro </th>
+                                    <th width="92" align="center" bgcolor="#E9E9E9" class="" scope="col"> Fecha </th>
+                                    <th width="41" align="center" bgcolor="#E9E9E9" class="" scope="col"> Entrada</th>
+                                    <th width="75" align="center" bgcolor="#E9E9E9" class="" scope="col"> Salida</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="resultado2" border="1">
+                                <?php foreach($tempus_marcaciones   as $imprimir):?>
+                                <tr>
+                                    <td>
+                                        <?= $imprimir->nro ?>
+                                    </td>
+
+
+                                    <td>
+                                        <?= $imprimir->fecha ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->ingreso ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->salida ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach;?>
+
+                            </tbody>
+                        </table>
+
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>
+
+
+
+
+                    </td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                    <td bgcolor="#CBCBCB">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+</div>
+</div>

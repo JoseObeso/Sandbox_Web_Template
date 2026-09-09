@@ -1,0 +1,181 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="row">
+
+	<div class="col-md-3">
+
+
+		<h4><span class="label label-info form-control text-left">(1) Seleccione Piso: </span> </h4>
+		<div class="form-group">
+			<select name="slt_pisos_seleccion" disabled="disabled" id="slt_pisos_seleccion" title="Seleccione Piso" class="form-control">
+				<option id="0">Seleccione</option>
+			</select>
+			<input name="txt_piso_seleccion" type="text" disabled="disabled" id="txt_piso_seleccion" class="form-control initialism">
+		</div>
+
+
+		<h4><span class="label label-info form-control text-left">(2) Nro. de Piso: </span> </h4>
+		<div class="form-group">
+			<input name="txt_nro_piso" type="text" disabled="disabled" id="txt_nro_piso" class="form-control">
+		</div>
+
+		<h4><span class="label label-info form-control text-left">(3) Nombre segun Plano: </span> </h4>
+		<div class="form-group">
+			<input name="txt_nombre_segun_plano" type="text" disabled="disabled" id="txt_nombre_segun_plano" class="form-control initialism">
+		</div>
+
+
+
+		<div class="form-group">
+			<h4><span class="label label-info form-control text-left">(4) Nombre Actual: </span> </h4>
+			<input name="txt_nombre_actual" type="text" disabled="disabled" id="txt_nombre_actual" class="form-control initialism">
+		</div>
+
+
+	</div>
+
+	<div class="col-md-3 ">
+		<h4><span class="label label-info form-control text-left">(5) Nombre Orejera Actual: </span> </h4>
+		<div class="form-group">
+			<input name="txt_nombre_orejera" type="text" disabled="disabled" id="txt_nombre_orejera" class="form-control initialism">
+		</div>
+		<h4><span class="label label-info form-control text-left">(6) Seleccione Especialidad  </span></h4>
+		<select name="slc_tipo_especialidad" id="slc_tipo_especialidad" class="form-control">
+			<option id="0">Seleccione</option>
+		</select>
+		<h4><span class="label label-info form-control text-left">(7) Tipo de Atencion :  </span></h4>
+		<select name="slt_atencion_view" disabled="disabled" id="slt_atencion_view" title="Tipo de atencion seleccionado...." class="form-control">
+			<option id="0">Seleccione</option>
+		</select>
+		<div class="form-group">
+
+			<h4><span class="label label-info form-control text-left">(8) Consultorios :   </span></h4>
+			<select name="slt_consultorios" disabled="disabled" id="slt_consultorios" title="Tipo de consultorios...." class="form-control">
+				<option id="0">Seleccione</option>
+			</select>
+		</div>
+
+		<button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_estado_civil" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+
+
+	</div>
+
+	<div class="col-md-2 ">
+
+	</div>
+
+	<div class="col-md-3  bg-color-oliva">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><span class="glyphicon glyphicon-play" ></span> Agregar Piso : </a></h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h4><span class="label label-info form-control">Pisos Registrados </span> </h4>
+						<select name="slt_pisos" size="10" disabled="disabled" id="slt_pisos" title="Pisos  seleccionado...." class="form-control"></select>
+						<?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+						<center>
+							<button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Pisos"><i class="fa fa-plus"></i></button>
+							<button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar pisos"><strong> <i class="fa fa-pencil"></i></strong></button>
+							<button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Pisos"><strong> <i class="fa fa-times"></i> </strong></button>
+						</center>
+						<?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+						<div class="form-group">
+							<label for="txt_descripcion_pisos" class="form-control">Descripcion : </label>
+							<input name="txt_descripcion_pisos" type="text" disabled="disabled" id="txt_descripcion_pisos" class="form-control initialism">
+						</div>
+
+						<div class="form-group">
+							<label for="txt_ambiente_pisos" class="form-control">Ambiente : </label>
+							<input name="txt_ambiente_pisos" type="text" disabled="disabled" id="txt_ambiente_pisos" class="form-control initialism">
+						</div>
+
+
+
+
+						<button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+						<?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+						<span id="esperando_pisos"></span>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><span class="glyphicon glyphicon-play" ></span>Agregar Tipos de Atencion:</a></h4>
+				</div>
+				<div id="collapse2" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h4><span class="label label-info form-control">Tipos de Atenciones Registradas </span> </h4>
+						<select name="slt_atencion" size="10" disabled="disabled" id="slt_atencion" title="Tipo de atencionatencion seleccionado...." class="form-control"></select>
+						<?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+						<center>
+							<button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_atencion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar tipo de atencion"><i class="fa fa-plus"></i></button>
+							<button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_atencion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar tipo de atencion"><strong> <i class="fa fa-pencil"></i></strong></button>
+							<button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_atencion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar tipo de atencion "><strong> <i class="fa fa-times"></i> </strong></button>
+						</center>
+						<?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+						<div class="form-group">
+							<label for="txt_descripcion_atencion" class="form-control">Descripcion : </label>
+							<input name="txt_descripcion_atencion" type="text" disabled="disabled" id="txt_descripcion_atencion" class="form-control initialism">
+						</div>
+						<button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_atencion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+						<?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+						<span id="esperando_atencion"></span>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="row">
+	
+	<div class="col-md-5">
+		<h4><span class="label label-info form-control text-left">Distribucion :   </span></h4>
+
+
+	<table width="100%" border="1" cellspacing="1" cellpadding="1" class="table form-control">
+		<tbody>
+			<tr>
+				<td width="7%" bgcolor="#B3F9BB"><strong>Piso</strong></td>
+				<td width="9%" bgcolor="#B3F9BB"><strong>Nro.</strong></td>
+				<td width="23%" bgcolor="#B3F9BB"><strong>Nombre segun Plano</strong></td>
+				<td width="17%" bgcolor="#B3F9BB"><strong>Nombre Actual</strong></td>
+				<td width="10%" bgcolor="#B3F9BB"><strong>Nombre Orejera</strong></td>
+				<td width="15%" bgcolor="#B3F9BB"><strong>Especialidad</strong></td>
+				<td width="9%" bgcolor="#B3F9BB"><strong>Tipo</strong></td>
+				<td width="10%" bgcolor="#B3F9BB"><strong>Nombre</strong></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</div>
+
+
+
+<div id="result"></div>

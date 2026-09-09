@@ -1,0 +1,115 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Tipo de Actividad - Actividad </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+    <title>jQuery UI Datepicker - Opciones de localización</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+    <script src="jquery.ui.datepicker-es.js"></script>
+
+    <script>
+        $( function () {
+            $.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
+            $( "#datepicker" ).datepicker(
+		$.extend(
+		$.datepicker.regional['es'],
+		{
+		firstDay:1
+		}
+		)
+		);
+        } );
+    </script>
+</head>
+
+<body>
+    Fecha:
+    <div id="datepicker"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<div id="result"></div>

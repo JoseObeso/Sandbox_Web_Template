@@ -1,0 +1,78 @@
+<?php
+$reportes_upss = json_decode( $this->listar_todo_upss );
+?>
+
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-3">
+            <h4><span class="label label-info form-control">CENTRO DE COSTOS  </span> </h4>
+            <select name="slt_centro_costo" size="25" disabled="disabled" id="slt_centro_costo" title="Centro de costo...." class="form-control"></select>
+        </div>
+
+        <div class="col-md-3">
+            <h4><span class="label label-info form-control">CENTRO DE SUB COSTO   </span> </h4>
+            <select name="slt_centro_sub_costo" size="20" disabled="disabled" id="slt_centro_sub_costo" title="Centro de sub costo...." class="form-control"></select>
+            <h4><span class="label label-info form-control">CENTRO DE SUB TRAS COSTO    </span> </h4>
+            <select name="slt_centro_sub_tras_costo" size="6" disabled="disabled" id="slt_centro_sub_tras_costo" title="Centro de sub tras costo...." class="form-control"></select>
+
+
+        </div>
+
+        <div class="col-md-5">
+            <h4><span class="label label-info form-control">Reporte   </span> </h4>
+            <div class="table-responsive">
+
+                <table width="100%" class="table table-striped" id="tabla_upss"  >
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Sub codigo</th>
+                            <th>Sub Trascodigo</th>
+                            <th>Descripcion</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="mostrar_upss">
+
+                        <?php 
+					foreach($reportes_upss as $llave => $imprimir ): ?>
+                        <tr>
+                            <td>
+                                <?= $imprimir->codigo ?>
+                            </td>
+                            <td>
+                                <?= $imprimir->subcodigo ?>
+                            </td>
+
+                            <td>
+                                <?= $imprimir->subtras ?>
+                            </td>
+
+                            <td>
+                                <?= $imprimir->descripcion ?>
+                            </td>
+
+
+                        </tr>
+                        <?php endforeach;?>
+
+                    </tbody>
+                </table>
+          </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+<div id="result"></div>

@@ -1,0 +1,163 @@
+<?php
+$listar_administrativos = json_decode( $this->listar_administrativos );
+$listar_programacion = json_decode( $this->listar_programacion );
+
+// var_dump($listar_programacion);
+
+
+?>
+
+<link rel="stylesheet" href="../../../legajos/views/layout/default/css/themes.min.css">
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>turnos_asignacion_admin_asis.jpg" width="960" height="80" alt=""/>';
+</div>
+
+
+<div class="row">
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"> Generacion de Programacion Mensual Masivo Administrativa / Asistencial:</div>
+            <div class="panel-body"><input name="txt_buscar_nombre" type="text" autofocus="autofocus" class="table-primary" id="txt_buscar_nombre" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 300px;" size="53" maxlength="150">
+                <select name="select_documentos" size="30" id="select_documentos" title="Personal Administrativo Asistencial Registro" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 300px;">
+                    <?php foreach($listar_administrativos  as $ver):?>
+                    <option value="<?= $ver->id ?>" id="<?= $ver->id ?>" dni="<?= $ver->dni ?>" tipo_personal="<?= $ver->tipo_personal ?>" apellidos_nombres="<?= $ver->apellidos_nombres ?>" cargo="<?= $ver->cargo ?>" servicio="<?= $ver->servicio ?>" fecha_ingreso="<?= $ver->fecha_ingreso ?>" fecha_termino="<?= $ver->fecha_termino ?>" codhorario="<?= $ver->codhorario ?>" <font size="-2" color="#000000">
+                        <strong>  <?=$ver->apellidos_nombres ?>    </strong>
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+            <div class="panel-footer">--</div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading"> <input name="txt_apellidos_nombres" type="text" disabled="disabled" id="txt_apellidos_nombres" size="45" maxlength="75" style="width: 230px;">
+                <label for="txt_dni" class="label">DNI:</label>
+                <input name="txt_dni" type="text" disabled="disabled" id="txt_dni" size="8" maxlength="8">
+                <label for="txt_tipo_personal" class="label">Tipo:</label>
+                <input name="txt_tipo_personal" type="text" disabled="disabled" id="txt_tipo_personal" size="15" maxlength="15"><br>
+                <label for="txt_servicio" class="label">Servicio:</label>
+                <input name="txt_servicio" type="text" disabled="disabled" id="txt_servicio" size="45" maxlength="55"  style="width: 230px;" >
+                <label for="txt_cargo" class="label">Cargo:</label>
+                <input name="txt_cargo" type="text" disabled="disabled" id="txt_cargo" size="45" maxlength="45"  style="width: 230px;"  >
+                <label for="txt_fecha_inicio" class="label">Inicio:</label>
+                <input name="txt_fecha_inicio" type="text" disabled="disabled" id="txt_fecha_inicio" form="frm_documentos" size="9" maxlength="9">
+                <label for="txt_fecha_inicio" class="label">Termino:</label>
+                <input name="txt_fecha_termino" type="text" disabled="disabled" id="txt_fecha_termino" form="frm_documentos" size="9" maxlength="9"><br>
+                <label for="txt_cod_horario" class="label">Codigo Horario:</label>
+                <input name="txt_cod_horario" type="text" disabled="disabled" id="txt_cod_horario" form="frm_documentos" size="20" maxlength="20">
+
+                <label class="label">Mes : </label>
+                <select name="mes_programacion" size="1" class="select2-highlighted resaltado" id="mes_programacion" form="frm_documentos" title="Mes en curso" ng-model="month">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+                </p>
+                <p><label class="label">Año : </label>
+                    <input name="anio_programacion" type="number" class="resaltado" id="anio_programacion" max="2050" min="2016" title="Seleccione año, en las flechitas arriba / abajo " onkeypress='return event.charCode >= 2016 && event.charCode <= 2100'>
+                </p>
+
+
+
+
+            </div>
+            <div class="panel-body">
+
+                <table width="294">
+                    <tr>
+                        <td width="286"><label class="label">
+                          <input type="radio" name="procesar_todo_administrativo" value="1" id="procesar_todo_administrativo_0">
+                          Todo el Personal </label>
+             
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label">
+                          <input name="procesar_todo_administrativo" type="radio" disabled="disabled" id="procesar_todo_administrativo_1" value="2">
+                          Solo para el Personal <span id="personal_seleccionado"></span> </label>
+        
+                        </td>
+                    </tr>
+                </table>
+                <span id="mostrar_espera"></span>
+ 
+            </div>
+            <div class="panel-footer"><center>
+                <input name="btn_Grabar" type="button" disabled="disabled" class="btn btn-info btn-lg" id="btn_Grabar"   title="Grabar registro" value=" Crear Programacion "><?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?> 
+                <input name="btn_eliminar_programacion" type="button" disabled="disabled" class="btn btn-info btn-lg " id="btn_eliminar_programacion"   title="Eliminar Programacion del mes seleccionado..." value="Eliminar Programacion">
+                </center>
+             </div>
+        </div>
+
+
+    </div>
+
+ <!-- 
+ 
+    <div class="col-md-6">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Horario Programado para :</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover" id="table_mostrar_programacion" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="13%" bgcolor="#E3E3E3">DNI</th>
+                            <th width="16%" bgcolor="#E3E3E3">Tipo</th>
+                            <th width="51%" bgcolor="#E3E3E3">Personal</th>
+                            <th width="20%" bgcolor="#E3E3E3">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_mostrar_programacion">
+
+                   <?php 
+        			foreach($listar_programacion  as $llave => $imprimir ): ?>
+                        <tr>
+
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->dni ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->tipo_personal ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->apellidos_nombres ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->estado ?>
+                            </td>
+                        </tr>
+
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+
+ 
+-->
+
+
+</div>
+  

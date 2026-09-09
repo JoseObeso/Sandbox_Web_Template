@@ -1,0 +1,54 @@
+<?php
+$listar_universidad = json_decode( $this->listar_universidad );
+?>
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>legajos_listado_universidades.jpg" width="960" height="80" alt=""/>';
+</div>
+
+<div class="row">
+    <div class="col-sm-7">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="universidades" width="100%">
+                <thead>
+                    <tr>
+
+                        <th bgcolor="#E7E0E0">Universidad</th>
+                        <th bgcolor="#E7E0E0">Gestion</th>
+                        <th bgcolor="#E7E0E0">Condicion</th>
+                        <th bgcolor="#E7E0E0">Region</th>
+                        <th bgcolor="#E7E0E0">Direccion</th>
+                        <th bgcolor="#E7E0E0">Web</th>
+                    </tr>
+                </thead>
+                <tbody id="universidades">
+                    <?php 
+        			foreach($listar_universidad as $llave => $imprimir ): ?>
+                    <tr>
+                        <td bgcolor="#F8F4BD">
+                            <?= $imprimir->nombre ?>
+                        </td>
+                        <td bgcolor="#F8F4BD">
+                            <?= $imprimir->gestion ?>
+                        </td>
+                        <td bgcolor="#F8F4BD">
+                            <?= $imprimir->situacion ?>
+                        </td>
+                        <td bgcolor="#F8F4BD">
+                            <?= $imprimir->region ?>
+                        </td>
+
+                        <td bgcolor="#F8F4BD">
+                            <?= $imprimir->direccion ?>
+                        </td>
+                        <td bgcolor="#F8F4BD">
+                            <?= $imprimir->web ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

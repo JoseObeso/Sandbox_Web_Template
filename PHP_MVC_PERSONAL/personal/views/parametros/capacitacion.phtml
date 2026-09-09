@@ -1,0 +1,63 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid pull-left">
+
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>personal_tipo_capacitacion.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+    <div class="row">
+        <div class="col-md-5 ">
+            <h5><span class="label label-default form-control">LISTA DE CAPACITACION</span> </h5>
+            <select name="slc_lista" size="31" id="slc_lista" class="form-control"></select>
+        </div>
+        <div class="col-md-1 ">
+            <h5><span class="label label-default form-control">OPCION: </span></h5>
+            <div class="form-group">
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar UPSS"><i class="fa fa-plus"></i></button>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar UPSS"><strong> <i class="fa fa-pencil"></i> </strong>
+      </button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar UPSS"><strong> <i class="fa fa-times"></i> </strong></button>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <h5><span class="label label-default form-control" id="titulo"></span></h5>
+
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input name="id" type="text" disabled="disabled" class="form-control" id="id">
+            </div>
+
+            <div class="form-group">
+                <label for="txt_codigo">Codigo</label>
+                <input name="txt_codigo" type="text" disabled="disabled" class="form-control" id="txt_codigo">
+            </div>
+
+            <div class="form-group">
+                <label for="txt_descripcion">Descripcion:</label>
+                <input name="txt_descripcion" type="text" disabled="disabled" class="form-control initialism" id="txt_descripcion">
+            </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+
+            </div>
+
+            <span id="espera_grabacion"></span>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>

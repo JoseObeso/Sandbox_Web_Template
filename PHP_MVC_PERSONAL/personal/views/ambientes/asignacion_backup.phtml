@@ -1,0 +1,197 @@
+ <?php
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Asignacion de Personal : </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container pull-left">
+    
+    <div class="row">
+        <div class="col-md-4">
+             <span class="form-control bg-default">Pisos: </span>
+            <select name="slt_lista_pisos" class="form-control alert-warning" id="slt_lista_pisos" disabled="disabled"></select>
+            <div class="form-group"></div>
+            <span class="form-control bg-default">Bloque Fisico</span>
+            <select name="slt_lista_bloques" class="form-control alert-warning" id="slt_lista_bloques" disabled="disabled"></select>
+            <div class="form-group"></div>
+            
+             <span class="form-control bg-default">Ambientes Funcionales Registrados</span>
+            <select name="slt_lista_ambiente_funcional" size="15" disabled="disabled" class="form-control alert-warning" id="slt_lista_ambiente_funcional"></select>
+            <div class="form-group"></div>
+        </div>
+        
+        <div class="col-md-4">
+            <button class="btn btn-info  btn-lg crear-tooltip form-control " id="btn_asignar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Asignar Personal"><strong><span class="glyphicon glyphicon-user"> Asignar Personal Ambiente Funcional</span></strong></button>
+
+            <div class="form-group"></div>
+            <div class="col-xs-12">
+                <span class="form-control bg-default">Individual / Eleccion:</span>
+                <table width="350">
+                    <tr>
+                        <td><label>
+                      <input type="radio" name="eleccion_individual_conjunto" value="I" id="eleccion_individual_conjunto_0"  disabled="disabled">
+                      Individual</label>
+                        
+                        </td>
+                        <td><label>
+                      <input type="radio" name="eleccion_individual_conjunto" value="C" id="eleccion_individual_conjunto_1"  disabled="disabled">
+                      Conjunto - Eleccion</label>
+                        
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+
+
+            <div class="col-xs-3">
+                <span class="form-control bg-default">Nros.: </span>
+                <input name="txt_numero_profesionales" type="number" disabled="disabled" required="required" class="form-control alert-warning" id="txt_numero_profesionales" max="100" min="1" title="Numero de Profesionales" value="1">
+
+            </div>
+            <div class="col-xs-9">
+                <span class="form-control bg-default">Profesionales:</span>
+                <select name="slt_cargos_profesion" disabled="disabled" id="slt_cargos_profesion" title="Carrera profesional seleccionado...." class="form-control"></select>
+            </div>
+            <div class="form-group"></div>
+
+
+
+            <div class="col-xs-12">
+                <div class="form-group"></div>
+                <span class="form-control bg-default">Mostrar Profesion Seleccionado:</span>
+                <textarea name="txt_mostrar_cargo_profesion" rows="3" disabled="disabled" id="txt_mostrar_cargo_profesion" class="form-control"></textarea>
+            </div>
+            <div class="form-group"></div>
+            <table width="200">
+                <tr>
+                    <td><label>
+                  <input name="seleccion_inclusivo" type="radio" disabled="disabled" required="required" id="seleccion_inclusivo_0" value="I">
+                Exclusivo</label>
+                    
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>
+                  <input name="seleccion_inclusivo" type="radio" disabled="disabled" required="required" id="seleccion_inclusivo_1" value="N">
+                No Exclusivo</label>
+                    
+
+                    </td>
+                </tr>
+            </table>
+
+            <div class="form-group"></div>
+
+            <button class="btn btn-info  btn-lg crear-tooltip form-control " id="btn_grabar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Personal"><strong><span class="glyphicon glyphicon-folder-close"> Grabar Personal</span></strong></button>
+            <div class="form-group"></div>
+            <span id="espera_grabacion_personal"></span>
+            <div class="form-group"></div>
+
+            <span class="form-control bg-default">Personal Asignado</span>
+            <select name="slt_lista_personal" size="8" disabled="disabled" class="form-control alert-warning" id="slt_lista_personal"></select>
+            <div class="form-group"></div>
+            <span id="nro_personas"></span>
+            <div class="form-group"></div>
+            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Personal"><i class="fa fa-times"></i></button>
+
+
+        </div>
+
+            
+
+        
+        
+           
+        
+        </div>
+        
+        
+        
+    
+    
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="result"></div>

@@ -1,0 +1,212 @@
+<?php
+
+/*
+procesar
+$listarpersonal_administrativo = json_decode( $this->listarpersonal_administrativo );
+$listarhorario = json_decode( $this->listarhorario );
+*/
+
+
+// $listar_personal_tempus = $this->ver_personal_tempus;
+
+$listar_personal_tempus = $this->ver_personal_tempus ;
+$ver_ultima_marcacion = json_decode( $this->ver_ultima_marcacion );
+
+var_dump( $listar_personal_tempus );
+
+
+// $ver_final = json_decode($response->getBody()->getContents())[0];
+
+
+
+
+?>
+<style type="text/css">
+    .resaltado {
+        background-color: #A1EBB4;
+        border: solid 1px #000000;
+        height: 20px;
+        width: 170px;
+        font-size: 14px;
+        color: #000000;
+        font-weight: bold;
+        vertical-align: 9px
+    }
+    
+    .color-fondo-columna {
+        background-color: #E7E7E7;
+    }
+    
+    .color-fondo-columna-2 {
+        background-color: #FFFFFF;
+    }
+</style>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>asistencia_marcaciones_relog_tempus.jpg" width="961" height="161" alt=""/>';
+</div>
+
+
+<div class="row ">
+    <div class="col-md-3">
+        <p class="bg-success">
+            <strong>---  Ultima Descarga del Relog :
+            <?php foreach($ver_ultima_marcacion as $ver_ultimo):?>
+            <?= $ver_ultimo->fecha_ultimo ?>
+            <?php endforeach;?></strong>
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-3 color-fondo-columna"><label class="label">Apellidos o Nombres o DNI - Barra Espaciadora (Todos)</label>
+
+        <input name="txt_nombre_tempus" type="text" autofocus="autofocus" class="table-primary" id="txt_nombre_tempus" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:18px; color: #000000; font-weight: bold; vertical-align:9px; height:35px;  350px; width: 350px;  text-transform: uppercase;  " size="53" maxlength="150">
+
+        <select name="ver_personal_tempus" size="28" id="ver_personal_tempus" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 350px;">
+            <?php foreach($listar_personal_tempus as   $ver): ?>
+            <option value="<?= $ver->dni ?>" dni="<?= $ver->dni ?>" apellidos_nombres="<?= $ver->apellidos_nombres_totales ?>" tipo_personal="<?= $ver->tipo_horario ?>" condicion="<?= $ver->condicion?>" tipo_horario="<?= $ver->tipo_horario ?>" cargo="<?= $ver->cargo_planilla ?>" fecha_ingreso="<?= $ver->ingreso ?>" nombre_personal_tempus="<?= $ver->nombres ?>" paterno_personal_tempus="<?= $ver->paterno ?>" materno_personal_tempus="<?= $ver->materno ?>" nombres_personal_tempus="<?= $ver->nombres ?>" solo_nombres_personal_tempus="<?= $ver->nombres ?>" tipo_horario_tempus="<?= $ver->tipo_horario?>" estado="<?= $ver->estadotb?>" <font size="-2" color="#000000"><strong><?= utf8_encode($ver->apellidos_nombres_totales) ?>
+                                </font>
+                    </option>
+                        <?php endforeach;?>
+     </select>
+    <h5><span id = "txt_mostrar_nombre" class="label label-info"></span></h5>
+    <h5><span id = "txt_condicion" class="label label-info"></span></h5>
+    <h5><span id = "txt_estado" class="label label-info"></span></h5>
+    <div id="registro_datos">
+        
+        <form id="registro">
+            <span class = "label">Cargo de Planilla : </span>
+             <input name="id_cargo" type="text" autofocus="autofocus" class="table-primary" id="id_cargo" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; height:35px;  350px; width: 350px;  text-transform: uppercase;  " size="53" maxlength="150">
+          <table width="200">
+               <tr>
+                 <td><label>
+                   <input type="radio" name="tipo_personal" value="1" id="tipo_personal_0">
+                   ADMINISTRATIVO</label></td>
+               </tr>
+               <tr>
+                 <td><label>
+                   <input type="radio" name="tipo_personal" value="2" id="tipo_personal_1">
+                   ASISTENCIAL</label></td>
+               </tr>
+               <tr>
+                 <td><label>
+                   <input type="radio" name="tipo_personal" value="0" id="tipo_personal_2">
+                   NO DEFINIDO</label></td>
+               </tr>
+          </table>
+            
+            <hr>
+            <span class = "label">Condicion del Personal: </span>
+            <table width="200">
+              <tr>
+                <td><label>
+                  <input type="radio" name="condicion_personal" value="1" id="condicion_personal_0">
+                  ACTIVO</label></td>
+              </tr>
+              <tr>
+                <td><label>
+                  <input type="radio" name="condicion_personal" value="2" id="condicion_personal_1">
+                  DAR DE BAJA</label></td>
+              </tr>
+            </table>
+          <input name="btn_grabar" type="button" id="btn_grabar" value="Grabar" class="btn-info btn-lg" disabled="disabled" >
+            
+        </form>
+    
+    
+    
+    
+    </div>
+       
+  </div>
+
+   <div class="col-md-2 color-fondo-columna-2"><center>
+         <label class="label">
+                 Registro de Marcaciones en Relog </label></center>
+        <select name="mes" size="1" disabled="disabled" class="select2-highlighted resaltado" id="mes" title="Seleccion de Mes" ng-model="month" style="width: 155px;" >
+            <option value="1">ENERO</option>
+            <option value="2">FEBRERO</option>
+            <option value="3">MARZO</option>
+            <option value="4">ABRIL</option>
+            <option value="5">MAYO</option>
+            <option value="6">JUNIO</option>
+            <option value="7">JULIO</option>
+            <option value="8">AGOSTO</option>
+            <option value="9">SEPTIEMBRE</option>
+            <option value="10">OCTUBRE</option>
+            <option value="11">NOVIEMBRE</option>
+            <option value="12">DICIEMBRE</option>
+        </select>
+        <input name="anio" type="number" disabled="disabled" class="resaltado" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100' style="width: 75px;" >
+
+      <table width="300" border="1" align="center" cellspacing="0" id="marcacion_relog"><colgroup><col><col><col><col></colgroup><thead class="">
+                            <tr>
+                                <th width="96" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Fecha </th>
+                                <th width="120" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Dia </th>
+                                <th width="65" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Hora</th>
+                                <th width="75" align="center" bgcolor="#E9E9E9" class="" scope="col"> Relog</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="primer_formato_marcacion" border="1"></tbody></table>
+       
+   </div>
+ 
+ 
+ 
+    <div class="col-md-3 color-fondo-columna-2"> 
+        <label class="label">&nbsp;&nbsp;  Registro de Horario Entrada Salida</label> 
+         <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+           
+                    <table width="300" border="1" align="left" cellspacing="0" id="marcacion2">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead id="cabecera_administrativo">
+                            <tr>
+                                <th width="40" align="right" bgcolor="#E9E9E9" class="" scope="col"> Nro </th>
+                                <th width="92" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Entrada </th>
+                                <th width="102" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Dia</th>
+                                <th width="61" align="center" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                <th width="80" align="center" bgcolor="#E9E9E9" class="" scope="col"> Salida</th>
+                                <th width="10" align="center" bgcolor="#E9E9E9" class="" scope="col" border="0"></th>
+
+                            </tr>
+                        </thead>
+
+
+                        <thead id="cabecera_asistencial">
+                            <tr>
+                                <th width="40" align="right" bgcolor="#E9E9E9" class="" scope="col"> Nro </th>
+                                <th width="110" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Entrada </th>
+                                <th width="102" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Dia</th>
+                                <th width="70" align="center" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                <th width="65" align="center" bgcolor="#E9E9E9" class="" scope="col"> Salida</th>
+                                <th width="85" align="center" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                <th width="70" align="center" bgcolor="#E9E9E9" class="" scope="col"> Horas</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="marcaciones_entrada_salida" border="1">
+                        </tbody>
+                    </table><span id="espera_entrada_salida" style="left:inherit" ></span>
+        <?php for ( $i = 1; $i <= 8; $i++ ) {echo '<br>';}?>
+        
+         <input name="btn_imprimir" type="button" disabled="disabled" class="btn-info btn-lg" id="btn_imprimir" form="frm_ver_marcaciones" title="Pulse aqui para descargar impresiones" value="Descargar Marcaciones Relog Tempus" width="30" height="60" style="left:inherit" >
+        <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+          <input name="btn_imprimir_entrada_salida"type="button" disabled="disabled" class="btn-info btn-lg" id="btn_imprimir_entrada_salida" form="frm_ver_marcaciones" value="Descargar Marcaciones Entrada Salida">
+        
+      </div>
+    
+</div>

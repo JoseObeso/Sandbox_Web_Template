@@ -1,0 +1,385 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left ">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <label for="txt_buscar_nombre" class="bg-info form-control">Personas Juridicas: <span id="total_juridicos"> </label>
+            <input name="txt_buscar_juridicos" type="text" id="txt_buscar_juridicos" class="form-control alert-warning text-secondary initialism">
+            <span class="form-control bg-default">RUC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124; Razon social </span>
+            <select name="slt_lista_juridicas" size="20" class="form-control" id="slt_lista_juridicas" title="Relacion de proveedores juridicos asistenciales"></select>
+            <div class="form-group">
+                <input name="chk_debaja_juridicos" type="checkbox" id="chk_debaja_juridicos" title="Mostrar Juridicos de Baja" value="Entidades Juridicas de baja">&nbsp;Entidad Juridica de Baja
+            </div>
+                
+            <center><span id="espera_carga_personal_juridicos"></span>
+            </center>
+            <div class="form-group"></div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#datos_empleado"><span class="form-control bg-default glyphicon glyphicon-plus"><strong>  Datos del Registro: </strong></span> </a></h4>
+                    </div>
+                    <div id="datos_empleado" class="panel-collapse collapse in ">
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <table border="1" cellspacing="0" id="estadistica_total" width="100%">
+                                    <colgroup>
+                                        <col>
+                                        <col>
+                                        <col>
+                                    </colgroup>
+                                    <thead id="cabecera_estadistica_tercero">
+                                        <tr>
+                                            <th width="50%" align="left" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Empleados </th>
+                                            <th width="40%" align="right" valign="top" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Total </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mostrar_estadistica_registro" border="1">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"></div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#datos_registros"><span class="form-control bg-default glyphicon glyphicon-plus"><strong> Usuarios (DNI): </strong> </span></a></h4>
+                    </div>
+                    <div id="datos_registros" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-xs-8">
+                                Ingreso:
+                            </div>
+                            <div class="col-xs-4">
+                                <span id="dni_usuario"></span>
+                            </div>
+                            <div class="col-xs-8">
+                                Fecha:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="fecha_registro"></span>
+                            </div>
+
+
+                            <div class="form-group bg-color-gris"></div>
+                            <div class="col-xs-8">
+                                Ult. Modifico/hab.:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="dni_usuario_modificacion"></span>
+                            </div>
+                            <div class="col-xs-8">
+                                Fecha:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="fecha_modificacion"></span>
+                            </div>
+
+                            <div class="form-group bg-color-gris"></div>
+                            <div class="col-xs-8">
+                                Dio de baja:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="dni_usuario_de_baja"></span>
+                            </div>
+                            <div class="col-xs-8">
+                                Fecha:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="fecha_de_baja"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="col-md-7">
+
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#identificacion">Identificacion</a>
+                    </li>
+                    <li><a data-toggle="tab" href="#servicios">Datos de servicios</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="identificacion" class="tab-pane fade in active">
+
+                        <div class="col-md-1">
+                            <div class="box">
+                                <div class="box-row">
+                                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                        <div class="form-group"></div>
+                                        <div class="form-group">
+                                            <center>
+                                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Personal Juridico"><i class="fa fa-plus"></i></button>
+                                                <div class="form-group"></div>
+                                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Personal Juridico"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                                <div class="form-group"></div>
+                                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja Personal Juridico"><strong> <i class="fa fa-times"></i></strong></button>
+                                                <div class="form-group"></div>
+                                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_habilitar_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Habilitar Juridico dado de baja"><strong> <i class="fa fa-refresh"></i></strong></button>
+
+
+                                            </center>
+                                        </div>
+                                        <div class="form-group"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="col-xs-12">
+                                <span id="personal_juridico_seleccion" class="form-control alert-info"></span>
+                                <div class="form-group"></div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <span class="form-control bg-default text-left">RUC </span>
+                                    <input name="ruc" type="text" disabled="disabled" class="form-control alert-warning" id="ruc" maxlength="11" required>
+                                    <span id="msj_ruc_juridico"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="form-group">
+                                    <span class="form-control bg-default text-left">Razon Social:  </span>
+                                    <textarea name="txt_razon_social" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_razon_social" rows="4"> </textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <span class="form-control bg-default text-left">Cargo:  </span>
+                                    <textarea name="txt_cargo" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_cargo" rows="9"> </textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-7">
+                                <div class="form-group">
+                                    <span class="form-control bg-default">Centro de Costo : </span>
+                                    <select name="slt_servicio_upss" disabled="disabled" id="slt_servicio_upss" title="Servicio UPSS ..." class="form-control"></select>
+                                    <textarea name="txt_descripcion_upss" class="form-control" rows="7" disabled="disabled" id="txt_descripcion_upss"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_juridicos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Juridicos"><span class="glyphicon glyphicon-ok"></span> Grabar Juridicos</button>
+                                <center><span id="espera_grabacion_juridicos"></span>
+                                </center>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="servicios" class="tab-pane fade">
+                        <div class="col-md-8">
+                            <div class="col-xs-12">
+                                <span id="personal_juridico_seleccion_para_servicios" class="form-control alert-info"></span>
+                                <div class="form-group"></div>
+                            </div>
+                            <div class="form-group"></div>
+
+                            <div class="col-xs-6">
+                                <span class="form-control bg-default"> Inicio  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;  Fin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp; Nota Informativa </span>
+                                <select name="slt_listado_servicios" size="5" id="slt_listado_servicios" class="form-control"></select>
+                                <div class="box">
+                                    <div class="box-row">
+                                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                            <div class="form-group"></div>
+                                            <div class="form-group">
+                                                <center>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_juridico_servicio" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Servicio de Proveedor Juridico"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_juridico_servicio" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Servicio de Proveedor  Juridico"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_juridico_servicio" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Servicio de Proveedor Juridico"><strong> <i class="fa fa-times"></i></strong></button>
+                                                </center>
+                                            </div>
+                                            <div class="form-group"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <span class="form-control bg-default">&#9679; Inicio : </span>
+                                    <input name="fecha_inicio" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_inicio" title="Fecha de Inicio de contrato" value="<?=date('d-m-Y')?>" readonly="readonly">
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="form-control bg-default">&#9679; Fin : </span>
+                                    <input name="fecha_fin" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_fin" title="Fecha de Fin de contrato" value="<?=date('d-m-Y')?>" readonly="readonly">
+                                </div>
+                                <div class="form-group"></div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <span class="form-control bg-default text-left">Nota Informativa</span>
+                                        <input name="txt_nota_informativa" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_nota_informativa">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <span class="form-control bg-default text-left">Nro. Expediente</span>
+                                        <input name="txt_nro_expediente" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_nro_expediente">
+                                    </div>
+                                </div>
+
+                               
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <span class="form-control bg-default text-left">Nro. Pedido</span>
+                                        <input name="txt_nro_pedido" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_nro_pedido">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <span class="form-control bg-default text-left">Meta</span>
+                                        <input name="txt_meta" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_meta">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <span class="form-control bg-default text-left">Monto Total</span>
+                                        <input name="txt_monto_total" type="number" required="required" id="txt_monto_total" max="100000" min="0" title="Monto del Servicio" value="" class="form-control alert-warning" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_servicios_juridicos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Servicios Juridicos"><span class="glyphicon glyphicon-ok"></span> Grabar Servicios</button>
+                                    <span id="espera_grabacion_servicios_juridicos"></span>
+                                    <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <span class="form-control bg-default">&#9679; Registro de Empleados :</span>
+                                <select name="slt_listado_empleados_por_servicios" size="5" id="slt_listado_empleados_por_servicios" class="form-control"></select>
+                                <div class="box">
+                                    <div class="box-row">
+                                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                            <div class="form-group"></div>
+                                            <div class="form-group">
+                                                <center>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_empleado_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Empleados de Entidad Juridica"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_empleado_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Empleados de Entidad Juridica"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_empleado_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar (dar de Baja) Empleados de Entidad Juridica"><strong> <i class="fa fa-times"></i></strong></button>
+                                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_habilitar_empleado_juridico" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Habilitar Empleados de Entidad Juridica"><strong> <i class="fa fa-refresh"></i></strong></button>
+                                                </center>
+                                            </div>
+                                            <div class="form-group"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <span class="form-control bg-default text-left">DNI : </span>
+                                    <input name="txt_dni_medico" type="text" disabled="disabled" class="form-control alert-warning" id="txt_dni_medico" maxlength="8">
+                                    
+                                </div>
+                            </div>
+                                
+                             <div class="col-xs-12">
+                                <div class="form-group">
+                                    <span class="form-control text-left" id="msj_dni_empleado"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <span class="form-control bg-default text-left">APELLIDOS Y NOMBRES :</span>
+                                    <input name="txt_apellidos_nombres" type="text" disabled="disabled" class="form-control alert-warning initialism" id="txt_apellidos_nombres">
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <button class="btn btn-info form-control btn-lg crear-tooltip alert-warning" id="btn_grabar_empleados" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Empleados de Juridicos"><span class="glyphicon glyphicon-ok"></span> Grabar Empleados</button>
+                                <span id="espera_grabacion_empleados"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="result"></div>

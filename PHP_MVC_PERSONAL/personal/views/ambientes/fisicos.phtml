@@ -1,0 +1,175 @@
+ <?php
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Gestion de Pisos, Bloques y Ambientes Fisicos  : </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container pull-left">
+ 
+    <div class="row">
+        
+        
+        
+                    <div class="col-md-3">
+                        <span class="form-control bg-default">Pisos Registrados</span>
+                        <select name="slt_lista_pisos" size="8" class="form-control alert-warning" id="slt_lista_pisos" disabled="disabled"></select>
+                        <div class="form-group"></div>
+                        <span class="form-control" id="espera_de_carga"></span>
+                        <div class="form-group"></div>
+
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Pisos"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Pisos" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Pisos" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                            </center>
+                            <div class="form-group"></div>
+                            <div class="form-group"></div>
+                        </div>
+
+                        <span class="form-control bg-default">Registrar Pisos:</span>
+                        <input name="txt_pisos" type="text" disabled="disabled" required="required" id="txt_pisos" class="form-control alert-warning initialism">
+                        <div class="form-group"></div> <center>
+                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_grabar_pisos" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Piso Registrado" disabled="disabled"><strong><span class="fa fa-floppy-o"></span></strong></button>  </center>
+                        <span id="espera_de_grabacion"></span>
+
+                    </div>
+                    <div class="col-md-4">
+
+                         <span class="form-control bg-default">Bloques Registrados</span>
+                        <select name="slt_lista_bloques" size="8" class="form-control alert-warning" id="slt_lista_bloques" disabled="disabled"></select>
+                        <div class="form-group"></div>
+                        <span class="form-control" id="espera_de_carga_bloques"></span>
+                        <div class="form-group"></div>
+
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_bloques" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Bloques" disabled="disabled"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_bloques" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Bloques" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_bloques" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Bloques" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                            </center>
+                            <div class="form-group"></div>
+                            <div class="form-group"></div>
+                        </div>
+
+                        <span class="form-control bg-default">Registrar Bloques:</span>
+                        <textarea name="txt_bloques" type="text" disabled="disabled" required="required" id="txt_bloques" class="form-control alert-warning initialism"></textarea>
+                        <div class="form-group"></div> <center>
+                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_grabar_bloques" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Bloque Registrado" disabled="disabled"><strong><span class="fa fa-floppy-o"></span></strong></button>  </center>
+                        <span id="espera_de_grabacion_bloque"></span>
+
+                        
+                    </div>
+                    <div class="col-md-4">
+                        
+                        <span class="form-control bg-default">Ambientes Fisicos</span>
+                        <select name="slt_lista_ambientes" size="8" class="form-control alert-warning" id="slt_lista_ambientes" disabled="disabled"></select>
+                        <div class="form-group"></div>
+                        <span class="form-control" id="espera_de_carga_ambientes"></span>
+                        <div class="form-group"></div>
+
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_ambientes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Ambientes" disabled="disabled"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_ambientes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar BAmbientes" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_ambientes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Ambientes" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                            </center>
+                            <div class="form-group"></div>
+                            <div class="form-group"></div>
+                        </div>
+
+                        <span class="form-control bg-default">Registrar Ambientes Fisicos:</span>
+                        <textarea  name="txt_ambientes" type="text" disabled="disabled" required="required" id="txt_ambientes" class="form-control alert-warning initialism"></textarea>
+                        <div class="form-group"></div> <center>
+                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_grabar_ambientes" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Ambiente fisicos" disabled="disabled"><strong><span class="fa fa-floppy-o"></span></strong></button>  </center>
+                        <span id="espera_de_grabacion_ambiente"></span>
+
+                        
+                        
+
+                    </div>
+        
+        
+
+     </div>
+
+</div>
+
+
+
+<div id="result"></div>

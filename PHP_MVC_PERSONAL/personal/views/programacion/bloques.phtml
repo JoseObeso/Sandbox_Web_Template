@@ -1,0 +1,223 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Bloques de Programacion -  Seleccion y asignacion de personal : </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container  pull-left">
+    <div class="col-md-4">
+        <span class="form-control bg-default">Bloques:</span>
+        <select name="slt_lista_bloques_funcionales" size="15" disabled="disabled" class="form-control alert-warning" id="slt_lista_bloques_funcionales"></select>
+        <div class="form-group"></div>
+        <span class="form-control bg-default">Detalle:</span>
+        <select name="slt_lista_bloques_funcionales_detalle" size="10" disabled="disabled" class="form-control alert-warning" id="slt_lista_bloques_funcionales_detalle"></select>
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control " id="btn_asignar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Asignar Personal"><strong><span class="glyphicon glyphicon-user"> Asignar Personal Ambiente Funcional</span></strong></button>
+
+        <div class="form-group"></div>
+
+        <div class="form-group"></div>
+        <div class="col-xs-3">
+            <span class="form-control bg-default">Nros.: </span>
+            <input name="txt_numero_profesionales" type="number" disabled="disabled" required="required" class="form-control alert-warning" id="txt_numero_profesionales" max="100" min="1" title="Numero de Profesionales" value="1">
+
+        </div>
+        <div class="col-xs-9">
+            <span class="form-control bg-default">Profesionales:</span>
+            <select name="slt_cargos_profesion" disabled="disabled" id="slt_cargos_profesion" title="Carrera profesional seleccionado...." class="form-control"></select>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group"></div>
+            <span class="form-control bg-default">Mostrar Profesion Seleccionado:</span>
+            <textarea name="txt_mostrar_cargo_profesion" rows="3" disabled="disabled" id="txt_mostrar_cargo_profesion" class="form-control"></textarea>
+        </div>
+        <div class="form-group"></div>
+        <table width="200">
+            <tr>
+                <td><label>
+                  <input name="seleccion_inclusivo" type="radio" disabled="disabled" required="required" id="seleccion_inclusivo_0" value="I">
+                  Inclusivo</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>
+                  <input name="seleccion_inclusivo" type="radio" disabled="disabled" required="required" id="seleccion_inclusivo_1" value="N">
+                  No Inclusivo</label>
+                </td>
+            </tr>
+        </table>
+        <div class="form-group"></div>
+
+        <button class="btn btn-info  btn-lg crear-tooltip form-control " id="btn_grabar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Personal"><strong><span class="glyphicon glyphicon-folder-close"> Grabar Personal</span></strong></button>
+        <div class="form-group"></div>
+        <span id="espera_grabacion_personal"></span>
+        <div class="form-group"></div>
+
+        <span class="form-control bg-default">Personal Asignado</span>
+        <select name="slt_lista_personal" size="8" disabled="disabled" class="form-control alert-warning" id="slt_lista_personal"></select>
+        <div class="form-group"></div>
+        <span id="nro_personas"></span>
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Personal"><i class="fa fa-times"></i></button>
+
+
+
+
+
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group"></div>
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_bloque" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar bloque" disabled="disabled"><i class="fa fa-plus"></i></button>
+                            <div class="form-group"></div>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_bloque" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar bloque" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+                            <div class="form-group"></div>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_bloque" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja bloque" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                        </center>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <span class="form-control bg-default">Registre Nombre del Bloque:</span>
+        <input name="txt_bloque_funcional" type="text" disabled="disabled" required="required" class="form-control alert-warning initialism" id="txt_bloque_funcional" title="Describa el Bloque">
+        <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_crear_bloque" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear Bloque de Programacion" disabled="disabled">Crear bloque de programación</button>
+
+
+        <div class="form-group"></div>
+        <div class="col-xs-4">
+            <span class="form-control bg-default">Pisos: </span>
+            <select name="slt_lista_pisos" class="form-control alert-warning" id="slt_lista_pisos"></select>
+        </div>
+        <div class="col-xs-8">
+            <span class="form-control bg-default">Bloque Fisico</span>
+            <select name="slt_lista_bloques" class="form-control alert-warning" id="slt_lista_bloques" disabled="disabled"></select>
+        </div>
+        <div class="form-group"></div>
+        <div class="col-xs-12">
+            <span class="form-control bg-default">Ambientes Funcionales Registrados</span>
+            <div class="form-group"></div>
+            <select name="slt_lista_ambiente_funcional" size="15" disabled="disabled" class="form-control alert-warning" id="slt_lista_ambiente_funcional"></select>
+            <div class="form-group"></div>
+            <span class="form-control bg-default">Nro. de Cupos:</span>
+            <input name="txt_nro_cupos" type="text" disabled="disabled" required="required" class="form-control alert-warning initialism" id="txt_nro_cupos" title="Nro de Cupos">
+            <div class="form-group"></div>
+
+            <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_cerrar_bloque" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cerrar Bloque de programacion" disabled="disabled"><span class="fa fa-floppy-o"></span> Cerrar Bloque Programacion</button>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+
+
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <span class="form-control bg-default">Seleccion : </span>
+        <select name="slt_lista_ambiente_funcional_seleccion" size="10" disabled="disabled" class="form-control alert-warning" id="slt_lista_ambiente_funcional_seleccion"></select>
+        <span id="proceso_de_carga"></span>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <center>
+            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_item_bloque" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Item de bloque de programacion" disabled="disabled"><i class="fa fa-times"></i></button>
+        </center>
+
+
+        <div class="form-group"></div>
+    </div>
+
+</div>
+
+
+<div id="result"></div>

@@ -1,0 +1,198 @@
+<?php
+$personal = json_decode( $this->listarpersonal );
+
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+<style type="text/css">
+    .modal-header,
+    h4,
+    .close {
+        background-color: #2D4D31;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+    
+    .modal-footer {
+        background-color: #D0D0D0
+    }
+    
+    .centrar-dialogo-modal {
+        margin-top: 8%;
+    }
+    
+    .flotante {
+        display: scroll;
+        position: fixed;
+        bottom: 780px;
+        background-color: #2D4D31;
+        width: 85.5%;
+    }
+</style>
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>legajos_datos_personales.jpg" width="961" height="161" alt=""/>';
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel">
+
+            <div class="panel-heading flotante">
+                <span class="panel-title">
+                    <div class="row ">
+                        <div class="col-md-8">
+                            <form class="form-inline" id="frm-buscar">
+                                <label class="label" for="nombres">Apellidos, Nombres, DNI o Cargo : </label>
+                                <div class="form-group ">
+                                    <input name="nombres" type="text" class="form-control" id="nombres" placeholder="Apellidos o Nombres o DNI de Empleados Registrados RRHH " size="60" maxlength="60"  style="background-color:#FCFBA0; border: solid 1px #000000; height: 35px; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-13">
+                            <input class="btn btn-info btn-lg " name="btn-recargar-empleados" type="button" id="btn-recargar-empleados" data-toggle="tooltip" data-original-title="Actualizar Listado Empleados SIGALEN" value="Actualizar" onClick="window.location.reload()">
+                            <?php while($imprimir = $this->listarbotones->fetch(PDO::FETCH_OBJ)): ?>
+                            <button class="btn btn-info  btn-lg crear-tooltip" id="<?php echo $imprimir->ID_HTML ?>" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<?php echo $imprimir->NOMBRE_BOTON ?>">
+                                <?php echo $imprimir->ICONO ?>
+                            </button>
+                            <?php endwhile; ?>
+                        </div>
+                </span>
+                </div>
+            </div>
+            <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+
+            <div class="panel-body">
+                <div class="table-primary">
+                    <div class="table-header ">
+                        <div class="table-caption" id="mostrar-cebera-busqueda">
+                            <?php
+                            if ( $personal[ 0 ]->estadorespuesta = 1 ):
+                                $texto = count( $personal ) > 1 ? 'Empleados' : 'Empleado';
+                            $num_registro = count( $personal );
+                            else :
+                                $texto = 'usuario';
+                            $num_registro = 0;
+                            endif;
+                            ?>
+                            <?= "Resultado: ".$num_registro." -  ".$texto." encontrados " ?>
+                        </div>
+
+                    </div>
+                    <font size="-2">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>DNI</th>
+                                    <th>Plaza</th>
+                                    <th>Contrato</th>
+                                    <th>Proceso</th>
+                                    <th>Nombres</th>
+                                    <th>RUC</th>
+                                    <th>Cargo</th>
+                                    <th>Servicio</th>
+                                    <th>Ingreso</th>
+                                    <th>Termino</th>
+                                    <th>Retiro</th>
+                                    <th>Direccion</th>
+                                    <th>Tipo</th>
+                                    <th>Sueldo</th>
+                                    <th>Estado</th>
+                                </tr>
+
+
+                            </thead>
+                            <tbody id="mostrar-datos-busqueda">
+
+                                <?php 
+							if($personal[0]->estado_respuesta==1):
+							foreach($personal as $llave => $imprimir ): ?>
+                                <tr>
+                                    <td><label class="px-single"><input type="radio" id="<?= $imprimir->idpersonal ?>" name="single-radio" value="" class="px usuarios"><span class="lbl"></span></label>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->dni ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->plaza ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->nro_contrato ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->nro_proceso ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->apellidosnombres ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->ruc ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->cargo ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->servicio ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->fechaingreso ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->fechatermino ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->fechaultimoretiro ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->direccion ?>
+                                    </td>
+
+                                    <td>
+                                        <?= $imprimir->tipo_personal ?>
+                                    </td>
+
+                                   <td>
+                                        <?= $imprimir->sueldo ?>
+                                    </td>
+                                    
+                                    
+                                    <td>
+                                        <?= $imprimir->estado ?>
+                                    </td>
+
+                                </tr>
+
+
+                                <?php endforeach;
+							else:
+							?>
+                                <tr>
+                                    <td colspan="11">
+                                        <div class="alert alert-danger"><strong></strong>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </font>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

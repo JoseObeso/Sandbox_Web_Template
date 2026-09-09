@@ -1,0 +1,89 @@
+<?php
+
+$listar_personal_tempus = json_decode( $this->ver_personal_tempus );
+$ver_ultima_marcacion = json_decode( $this->ver_ultima_marcacion );
+
+
+?>
+ 
+
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>asistencia_no_marcan_n_dias.jpg" width="960" height="80" alt=""/>';
+</div>
+
+
+<div class="row ">
+    <div class="col-md-3">
+        <p class="bg-success">
+            <strong>---  Ultima Descarga del Relog :
+            <?php foreach($ver_ultima_marcacion as $ver_ultimo):?>
+            <?= $ver_ultimo->fecha_ultimo ?>
+            <?php endforeach;?></strong>
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-3">
+        <h4><span class="label label-primary">Personal No Marcan al dia : </span></h4>
+         <hr>
+        <input type="text" id="mostrar_fecha_seleccion" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:18px; color: #000000; font-weight: bold; vertical-align:9px; height:35px;  350px; width: 350px;"/>
+
+
+        <select name="slc_mostrar" size="40" id="slc_mostrar" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px;  width: 350px;">
+        </select>
+        <span id="esperar_proceso"></span>
+        
+        
+
+    </div>
+
+    <div class="col-md-3">
+        <h5><span class="label label-primary">PERSONAL : </span></h5>
+        <hr>
+        <h5><span id = "apellidos_nombres" ></span></h5>
+        <h5><span id = "no_marcacion" class="label label-warning"></span></h5>
+        <h5><span id = "ultima_marcacion" ></span></h5>
+        <h6><span id = "dni"></span></h6>
+        <h6><span id = "cargo"></span></h6>
+        <h6><span id = "fecha"></span></h6>
+        <h6><span id = "estado"></span></h6>
+        <hr size="15" align="center" color="#838383" width="100%">
+
+        <input name="btn_descargar_excel" type="button" disabled="disabled" id="btn_descargar_excel" title="Generar Reporte de Excel" value="Descargar Excel" class="btn-info btn-lg"  >
+        
+        
+        
+    </div>
+
+
+
+    <div class="col-md-3">
+        <h5><span id = "ultimo_mes" class="label label-primary">MARCACIONES EN RELOG : </span></h5>
+         <hr>
+        <table width="300" border="1" align="left" cellspacing="0" id="marcacion">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead id="cabecera_administrativo">
+                <tr>
+                    <th width="40" align="right" bgcolor="#E9E9E9" class="" scope="col"> Nro </th>
+                    <th width="92" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Entrada </th>
+                    <th width="102" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Dia</th>
+                    <th width="61" align="center" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                </tr>
+            </thead>
+            <tbody id="primer_formato_marcacion" border="1">
+            </tbody>
+        </table><span id="espera_mientras_muestra_marcaciones" style="left:inherit"></span>
+ 
+    </div>
+
+</div>

@@ -1,0 +1,756 @@
+<?php
+$listarpersonal = json_decode( $this->listarpersonal );
+$pre_contar = count( $listarpersonal );
+$registros = $pre_contar > 1 ? $pre_contar : 0;
+?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="container-fluid  pull-left">
+
+    <div class="row">
+        <div class="col-md-3 bg-color-gris">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5>Apellidos o Nombres o DNI o Especialidad :</h5>
+                    <input name="txt_nombre_empleado" type="text" autofocus="autofocus" id="txt_nombre_empleado" class="form-control initialism input-sm" size="300" maxlength="500"><br>
+                    <span id="ver_espera_procesos"></span>
+                    <strong><span id="total_registrado"><?=   $registros.' - Empleados Registrados.'; ?></span></strong><br>
+                </div>
+                <div class="panel-body">
+
+                    <select name="ver_personal" size="10" id="ver_personal" class="form-control">
+                        <?php foreach($listarpersonal as   $ver): ?>
+                        <option value="<?= $ver->idempleado ?>" idempleado="<?= $ver->idempleado ?>" dni="<?= $ver->dni ?>" apellidos_nombres="<?= $ver->apellidos_nombres ?>" fecha_nacimiento="<?= $ver->FechaNacimiento ?>" sexo="<?= $ver->sexo ?>" Tipo_condicion_trabajo="<?= $ver->Tipo_condicion_trabajo ?>" Tipo_Condicion_empleado="<?= $ver->Tipo_Condicion_empleado ?>" activo="<?= $ver->activo ?>" tipo_condicion="<?= $ver->tipo_condicion ?>" edad="<?= $ver->edad ?>" telefono="<?= $ver->telefono ?>" usuario="<?= $ver->usuario ?>" <font size="-2" color="#000000"><strong><?= $ver->apellidos_nombres ?></strong>
+                            </font>
+                        </option>
+                        <?php endforeach;?>
+                    </select>
+
+                    <div class="table-responsive">
+                        <font size="0">
+
+                            <table width="100%" border="1" align="left" cellspacing="0" id="registro" class="table table-bordered">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                </colgroup>
+
+                                <thead id="cabecera_registro">
+                                    <tr>
+                                        <th width="350" align="right" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Registro en SIGALEN </th>
+                                        <th width="40" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Fecha </th>
+                                        <th width="40" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Hora</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="mostrar_registro" border="1">
+                                </tbody>
+                            </table><span id="espera_registro" style="left:inherit"></span>
+
+                        </font>
+                    </div>
+                    <h4><span class="label label-default form-control">En Recursos Humanos : </span> </h4>
+                    <select name="personal_rrhh" size="5" disabled="disabled" class="form-control" id="personal_rrhh"></select>
+
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                              Datos Personales :
+                            </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+                          </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <span id="dni"></span>
+                                    <span id="ruc"></span>
+                                    <span id="nacimiento"></span>
+                                    <span id="edad"></span>
+                                    <span id="estado_civil"></span>
+                                    <span id="hijos"></span>
+                                    <span id="telefono"></span>
+                                    <span id="correo"></span>
+                                    <span id="direccion"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                               Datos Laborales :
+                            </a><i class="indicator glyphicon glyphicon-chevron-up  pull-right"></i>
+                          </h4>
+                            
+
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <font color="#000000" size="-1">
+                                        <span id="fecha_ingreso"></span>
+                                        <span id="nro_contrato"></span>
+                                        <span id="nro_proceso"></span>
+                                        <span id="especialidad"></span>
+                                        <span id="servicio"></span>
+                                        <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                        <span id="grupo_ocupacional"></span>
+                                        <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                        <span id="cargo"></span>
+                                        <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                        <span id="profesion"></span>
+                                        <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                        <span id="unidad"></span>
+                                        <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                        <span id="sueldo"></span>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                              Datos Educaci&oacute;n:
+                            </a><i class="indicator glyphicon glyphicon-chevron-up pull-right"></i>
+                          </h4>
+                            
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                    <span id="universidad"></span>
+                                    <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                    <span id="colegiatura"></span>
+                                    <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                    <span id="segunda_especialidad"></span>
+                                    <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                    <span id="universidad_especialidad"></span>
+                                    <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                                    <span id="maestria_doctorado"></span>
+                                    <?php for ($i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <span id="result"></span>
+
+
+
+
+        </div>
+
+
+        <div class="col-md-2">
+            <font size="1">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong><span class="">Apellidos y Nombres: </span><span id="ver_apellidos_nombres"></span>
+                    <span class=""> &#124;&#124;  ID Empleado: </span><span id="ver_id"></span></strong>
+                    </div>
+
+                    <div class="panel-body">
+                        <strong><span>DNI: </span></strong>
+                        <span id="ver_dni"></span>
+                        <strong><span> &#124;&#124; Nacimiento: </span></strong>
+                        <span id="ver_nacimiento"></span>
+                        <strong><span>&#124;&#124; Sexo : </span></strong>
+                        <span id="ver_sexo"></span>
+                        <strong><span>&#124;&#124; Telef.: </span></strong>
+                        <span id="ver_fono"></span>
+                        <strong><span> Usuario: </span></strong>
+                        <span id="ver_usuario"></span>
+                        <strong><span>&#124;&#124; Edad :  </span></strong>
+                        <span id="ver_edad"></span>
+                        <strong><span>&#124;&#124; Operativo :  </span></strong>
+                        <span id="ver_operativo"></span>
+                        <strong><span> &#124;&#124;  Condicion :  </span></strong>
+                        <span id="ver_condicion"></span>
+                        <strong><span> &#124;&#124;  Cargo:  </span></strong>
+                        <span id="ver_cargo"></span>
+                        <strong><span> &#124;&#124;  Colegiatura:  </span></strong>
+                        <span id="ver_colegiatura"></span>
+                        <span id="ver_rne"></span><strong>
+                        <span id="ver_id_medico"></span></strong>
+                    
+
+                        <hr>
+                        <strong><span id="ver_tipo_condicion_laboral"></span></strong>
+                        <hr>
+                        <div class="table-responsive">
+                            <table width="100%" border="1" align="left" cellspacing="0" id="especialidad" class="table table-bordered">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                </colgroup>
+                                <thead id="cabecera_especialidad">
+                                    <tr>
+                                        <th width="40" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Departamento : </th>
+                                        <th width="40" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Especialidad :</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mostrar_especialidad" border="1">
+                                </tbody>
+                            </table><span id="espera_especialidad" style="left:inherit"></span>
+                        </div>
+            </font>
+
+            </div>
+            </div>
+
+            <!--mostrar asistencia-->
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Registro de Marcaciones en Relog<br>
+
+                    <select name="mes" size="1" disabled="disabled" class="select2-highlighted resaltado" id="mes" title="Seleccion de Mes" ng-model="month" style="width: 100px;">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                    <input name="anio" type="number" disabled="disabled" class="resaltado" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100' style="width: 55px;">
+                </div>
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <font size="-2">
+
+
+                            <table width="90%" border="1" cellspacing="0" id="marcacion_relog" class="table table-bordered">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                </colgroup>
+                                <thead class="">
+                                    <tr>
+                                        <th width="96" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Fecha </th>
+                                        <th width="80" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Dia </th>
+                                        <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Hora</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="primer_formato_marcacion" border="1"></tbody>
+                            </table>
+                            <span id="espera_mientras_muestra_marcaciones" style="left:inherit"></span>
+
+                    </div>
+                    </font>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--inicio de mostrar actividades-->
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center><strong><h6>MES &#124;&#124;  AÑO </h6></strong>
+                        <select name="mes_actividad" size="1" class="select2-highlighted resaltado" id="mes_actividad" title="Seleccion de Mes" ng-model="month" style="width: 100px;">
+                            <option value="1">ENERO</option>
+                            <option value="2">FEBRERO</option>
+                            <option value="3">MARZO</option>
+                            <option value="4">ABRIL</option>
+                            <option value="5">MAYO</option>
+                            <option value="6">JUNIO</option>
+                            <option value="7">JULIO</option>
+                            <option value="8">AGOSTO</option>
+                            <option value="9">SEPTIEMBRE</option>
+                            <option value="10">OCTUBRE</option>
+                            <option value="11">NOVIEMBRE</option>
+                            <option value="12">DICIEMBRE</option>
+                        </select>
+                        <input name="anio_actividad" type="number" class="resaltado" id="anio_actividad" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100' style="width: 100px;">
+                    </center>
+                </div>
+                <div class="panel-body">
+                    <strong><span id="apellidos"></span></strong>
+                    <span id="mostrar_espera"></span>
+
+                    <span id="total_horas" class="label"></span>
+
+                    <font size="-4">
+                        <div class="table-responsive">
+                            <span id="departamento"></span>
+                            <table width="50%" border="1" align="left" cellspacing="0" id="actividad" class="table table-bordered">
+                                <!--   <table id="actividad" class="form-control table table-bordered">-->
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                </colgroup>
+                                <thead id="cabecera_actividades">
+                                    <tr>
+
+                                        <th width="40" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Servicio</th>
+                                        <th width="40" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Actividad</th>
+                                        <th width="10" align="center" bgcolor="#E9E9E9" class="" scope="col"> Fecha</th>
+                                        <th width="5" align="center" bgcolor="#E9E9E9" class="" scope="col"> Turno</th>
+                                        <th width="5" align="center" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mostrar_actividades" border="1">
+                                </tbody>
+
+
+
+
+                            </table>
+                        </div>
+                    </font>
+
+                    <span id="espera_mostrar" style="left:inherit"></span>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--fin de mostrar actividades-->
+        <div class="col-md-4">
+
+
+            <!--Inicio de acordeon-->
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1">
+                              <span class="glyphicon glyphicon-check" ></span> Ver Citas Programadas, Atencion CE, Emergencia :
+                            </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+                          </h4>
+                    
+
+
+                    </div>
+                    <div id="collapseOne1" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            <div id="tab_datos_personales" class="container">
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="#1a" data-toggle="tab">
+                                            <icon class="fa fa-home"></icon> Citas Programadas</a>
+                                    </li>
+                                    <li><a href="#2a" data-toggle="tab"><span class="glyphicon glyphicon-align-justify"></span> Atencion CE</a>
+                                    </li>
+                                    <li><a href="#3a" data-toggle="tab"><span class="glyphicon glyphicon-align-justify"></span> Emergencia</a>
+                                    </li>
+
+
+
+                                </ul>
+
+                                <div class="tab-content clearfix">
+
+                                    <div class="tab-pane active" id="1a">
+                                        <font size="-4">
+                                            <div class="table-responsive">
+                                                <table width="40%" border="1" align="left" cellspacing="0" id="citas">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                    </colgroup>
+                                                    <thead id="cabecera_citas">
+                                                        <tr>
+                                                            <th width="2" align="left" bgcolor="#E9E9E9" class="" scope="col"> Fecha </th>
+                                                            <th width="25" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Inicio</th>
+                                                            <th width="25" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Fin</th>
+                                                            <th width="30" align="center" bgcolor="#E9E9E9" class="" scope="col"> Cita</th>
+                                                            <th width="90" align="left" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                            <th width="40" align="left" bgcolor="#E9E9E9" class="" scope="col"> UPSS</th>
+                                                            <th width="60" align="left" bgcolor="#E9E9E9" class="" scope="col"> Servicio</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="mostrar_citas" border="1">
+                                                    </tbody>
+                                                </table>
+                                        </font>
+                                        <br><span id="espera_mostrar_citas" style="left:inherit"></span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="tab-pane" id="2a">
+
+                                        <font size="-4">
+                                            <div class="table-responsive">
+                                                <table width="40%" border="1" align="left" cellspacing="0" id="atenciones">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                    </colgroup>
+                                                    <thead id="cabecera_atenciones">
+                                                        <tr>
+                                                            <th width="60" align="left" bgcolor="#E9E9E9" class="" scope="col"> Programado </th>
+                                                            <th width="50" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                            <th width="40" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Destino</th>
+                                                            <th width="30" align="left" bgcolor="#E9E9E9" class="" scope="col"> Fech.Inicio</th>
+                                                            <th width="30" align="left" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                                            <th width="30" align="left" bgcolor="#E9E9E9" class="" scope="col"> Fech.Fin</th>
+                                                            <th width="30" align="left" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                                            <th width="30" align="left" bgcolor="#E9E9E9" class="" scope="col"> Condicion</th>
+                                                            <th width="30" align="left" bgcolor="#E9E9E9" class="" scope="col"> Minutos</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="mostrar_atenciones" border="1">
+                                                    </tbody>
+                                                </table>
+                                        </font><br>
+                                        <br><span id="mostrar_espera_atenciones"></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane" id="3a">
+
+                                        <font size="-4">
+                                            <div class="table-responsive">
+                                                <table width="40%" border="1" align="left" cellspacing="0" id="emergencia">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                    </colgroup>
+                                                    <thead id="cabecera_emergencia">
+                                                        <tr>
+                                                            <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Ingreso </th>
+                                                            <th width="80" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                            <th width="20" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Destino</th>
+                                                            <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Fech.Egreso</th>
+                                                            <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                                            <th width="5" align="left" bgcolor="#E9E9E9" class="" scope="col"> Condicion</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="mostrar_emergencia" border="1">
+                                                    </tbody>
+                                                </table>
+                                        </font><br>
+                                        <br><span id="mostrar_espera_emergencia"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo2">
+                               <span class="glyphicon glyphicon-check" ></span> Ver Hospitalizacion, Apoyo Al tratamiento, Centro Qx:
+                            </a><i class="indicator glyphicon glyphicon-chevron-up  pull-right"></i>
+
+                          </h4>
+                    
+
+
+
+                    </div>
+                    <div id="collapseTwo2" class="panel-collapse collapse">
+                        <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+
+
+                        <div class="container">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active">
+                                    <a href="#home" role="tab" data-toggle="tab">
+                                        <icon class="fa fa-home"></icon> Hospitalizacion
+                                    </a>
+                                </li>
+                                <li><a href="#profile" role="tab" data-toggle="tab">
+                                  <i class="fa fa-cog"></i> Apoyo Tx
+                                  </a>
+                                
+
+
+
+
+
+
+                                </li>
+                                <li>
+                                    <a href="#messages" role="tab" data-toggle="tab">
+                                      <i class="fa fa-cog"></i> Centro Qx
+                                  </a>
+                                
+
+
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="home">
+                                    <font size="-4">
+                                        <div class="table-responsive">
+                                            <table width="45%" border="1" align="left" cellspacing="0" id="hospitalizacion">
+                                                <colgroup>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                </colgroup>
+                                                <thead id="cabecera_hospitalizacion">
+                                                    <tr>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Ingreso </th>
+                                                        <th width="80" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                        <th width="20" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Destino</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Fech.Egreso</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                                        <th width="5" align="left" bgcolor="#E9E9E9" class="" scope="col"> Condicion</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="mostrar_hospitalizacion" border="1">
+                                                </tbody>
+                                            </table>
+                                    </font><br>
+                                    <br><span id="mostrar_espera_hospitalizacion"></span>
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="tab-pane fade" id="profile">
+                                    <font size="-3">
+                                        <div class="table-responsive">
+                                            <table width="55%" border="1" align="left" cellspacing="0" id="tratamiento">
+                                                <colgroup>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                </colgroup>
+                                                <thead id="cabecera_tratamiento">
+                                                    <tr>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Ingreso </th>
+                                                        <th width="80" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                        <th width="20" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Destino</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Fech.Egreso</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                                                        <th width="5" align="left" bgcolor="#E9E9E9" class="" scope="col"> Condicion</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="mostrar_tratamiento" border="1">
+                                                </tbody>
+                                            </table>
+                                    </font><br>
+                                    <br><span id="mostrar_espera_tratamiento"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="messages">
+                                    <font size="-3">
+                                        <div class="table-responsive">
+                                            <table width="45%" border="1" align="left" cellspacing="0" id="qx">
+                                                <colgroup>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                </colgroup>
+                                                <thead id="cabecera_qx">
+                                                    <tr>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Registro </th>
+                                                        <th width="80" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                        <th width="10" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Cirugia</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Ingr. Sala</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Salida</th>
+                                                        <th width="5" align="left" bgcolor="#E9E9E9" class="" scope="col"> Condicion</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="mostrar_qx" border="1">
+                                                </tbody>
+                                            </table>
+                                    </font><br>
+                                    <br><span id="mostrar_espera_qx"></span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                               <span class="glyphicon glyphicon-check" ></span> Ver Emision de Recetas :
+                            </a><i class="indicator glyphicon glyphicon-chevron-up  pull-right"></i>
+
+                          </h4>
+                    
+
+
+
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+
+
+                        <div class="container">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active">
+                                    <a href="#home" role="tab" data-toggle="tab">
+                                        <icon class="fa fa-home"></icon> Recetas
+                                    </a>
+                                </li>
+                                <li>
+
+
+
+
+
+
+                                </li>
+                                <li>
+
+                                    </a>
+
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="home">
+                                    <font size="-4">
+                                        <div class="table-responsive">
+                                            
+                                             <table width="45%" border="1" align="left" cellspacing="0" id="qx">
+                                                <colgroup>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                    <col>
+                                                </colgroup>
+                                                <thead id="cabecera_receta">
+                                                    <tr>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> Registro </th>
+                                                        <th width="80" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Paciente</th>
+                                                        <th width="10" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Servicio</th>
+                                                        <th width="20" align="left" bgcolor="#E9E9E9" class="" scope="col"> estado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="mostrar_receta" border="1"></tbody>
+                                            </table>
+                                        </div>
+                                    </font>
+                                     <span id="mostrar_espera_receta"></span>
+
+                                </div>
+                                <div class="tab-pane fade" id="profile">
+                                    <font size="-3">
+                                        <div class="table-responsive">
+
+
+                                        </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="messages">
+                                    <font size="-3">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</div>
+</div>
+</div>
+
+
+<div id="result"></div>
+
+</div>

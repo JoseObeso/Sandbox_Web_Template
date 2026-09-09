@@ -1,0 +1,87 @@
+<?php
+// $turnos = json_decode( $this->turnos );
+?>
+
+<link href="/rrhh/control/personal/views/layout/pixeladmin/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="page-header">
+    <div class="col-md-7">
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Parametros : Turnos y codigos </strong>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container pull-left">
+
+
+    <div class="col-md-4">
+        <span class="form-control bg-default">Turnos:</span>
+        <select name="slt_turnos" size="15" disabled="disabled" class="form-control alert-warning" id="slt_turnos"></select>
+        <div class="form-group"></div>
+        <span id="espera_en_carga"></span>
+        <div class="form-group"></div>
+    </div>
+
+    <div class="col-md-1">
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_turno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar turno"><i class="fa fa-plus"></i></button><div class="form-group"></div>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_turno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar turno"><strong> <i class="fa fa-pencil"></i></strong></button><div class="form-group"></div>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_turno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar turno" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                        </center>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+    <div class="col-md-5">
+            <div class="form-group"></div>
+            <div class="col-xs-12">
+                <label class="label form-control">Codigo de Turno:</label>
+                <input name="codigo_turno" type="text" disabled="disabled" id="codigo_turno" size="20" maxlength="10" class="form-control initialism alert-warning">
+            </div>
+            <div class="form-group"></div>
+            <div class="col-xs-12">
+                <label class="label form-control">Denominacion del Turno : </label>
+                <input name="nombre_turno" type="text" disabled="disabled" class="form-control alert-warning initialism" id="nombre_turno"   maxlength="50">
+            </div>
+            <div class="form-group"></div>
+
+
+            <div class="col-xs-12">
+
+                <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_turno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar turno" disabled="disabled"><strong><span class="fa fa-floppy-o"></span> </strong></button>
+            </div>
+            <div class="form-group"></div>
+        <span id="espera_grabacion_turno"></span>
+        
+        
+        
+    </div>
+    
+</div>
+
+
+
+
+</div>
+
+<div id="result"></div>
+

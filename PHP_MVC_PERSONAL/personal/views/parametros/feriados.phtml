@@ -1,0 +1,147 @@
+<?php
+$feriados = json_decode( $this->feriados );
+
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid  pull-left">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>administracion_feriados.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="label bg-info form-control">Feriados Registrado : </label>
+            <select name="registrados" size="25" id="registrados" class="form-control">
+                <?php foreach($feriados  as $imprimir):?>
+                <option value="<?= $imprimir->idferiado ?>" id_feriado_nuevo="<?= $imprimir->idferiado ?>" dia="<?= $imprimir->dia ?>" mes="<?= $imprimir->mes ?>" anio="<?= $imprimir->anio ?>" descripcion="<?= $imprimir->descripcion ?>" condicion="<?= $imprimir->condicion ?>" <font size="-2" color="#000000"><strong><?=$imprimir->dia ?> -  <?=$imprimir->mes ?> - <?=$imprimir->descripcion ?> -  <?= $imprimir->condicion ?></font></strong>
+                </option>
+                <?php endforeach;?>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <table width="200">
+                <tr>
+                    <td><label>
+                  <input type="radio" name="operacion" value="1" id="operacion1">
+                  Nuevo</label>
+                    
+
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>
+                  <input type="radio" name="operacion" value="2" id="operacion2">
+                  Editar</label>
+                    
+
+
+
+                    </td>
+                </tr>
+            </table>
+            <button class="btn btn-info  btn-lg crear-tooltip " id="eliminar_feriados" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Feriado"><strong> <i class="fa fa-times"></i> </strong></button>
+        </div>
+
+        <div class="col-md-2">
+
+            <div class="form-group">
+                <label class="label form-control">Dia (Numero de Dia):</label>
+                <input name="dia" type="text" disabled="disabled" id="dia" size="3" maxlength="2" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label class="label form-control">Mes (Numero de Mes):</label>
+                <input name="mes" type="text" disabled="disabled" id="mes" size="3" maxlength="2" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="label form-control">Descripcion:</label>
+                <textarea name="descripcion" cols="22" rows="4" disabled="disabled" id="descripcion" class="form-control initialism"></textarea>
+            </div>
+
+            <label class="label form-control">Tipo de Feriado:</label><br>
+            <table width="200">
+                <tr>
+                    <td><label>
+                              <input name="tipo_feriado" type="radio" disabled="disabled" id="tipo_feriado_1" value="1">
+                              Repetitivo - todos los años</label>
+                    
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>
+                              <input name="tipo_feriado" type="radio" disabled="disabled" id="tipo_feriado_2" value="2">
+                              Feriado Unico(registre año)</label>
+                    
+
+
+
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input name="txt_anio_unico" type="text" id="txt_anio_unico" size="6" maxlength="4" disabled="disabled" class="form-control">
+
+            </div>
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn-guardar-nuevo-edicion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Pulse aqui para guardar"><strong>Grabar</strong></button>
+            
+            
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="tabla_feriados">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#EFEBEB"></th>
+                            <th bgcolor="#EFEBEB">Dia</th>
+                            <th bgcolor="#EFEBEB">Mes</th>
+                            <th bgcolor="#EFEBEB">Descripcion</th>
+                            <th bgcolor="#EFEBEB">Condición</th>
+                            <th bgcolor="#EFEBEB">Año (Unico) </th>
+                            <th bgcolor="#EFEBEB">Registro</th>
+                            <th bgcolor="#EFEBEB">Modificacion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_feriados">
+                        <?php 
+							foreach($feriados as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0"><label class="px-single"><input type="radio" id="<?= $imprimir->idferiado ?>" name="single-radio" value="" class="px feriado"><span class="lbl"></span></label>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->dia ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->tipo_mes ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->descripcion ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->tipo_condicion ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->anio ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->registro ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->fecha_mostrar ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

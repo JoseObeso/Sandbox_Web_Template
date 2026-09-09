@@ -1,0 +1,74 @@
+<?php
+$listarusuarios = json_decode( $this->ver_estadistica_final );
+$listarmodulos = json_decode( $this->ver_estadistica_modulo );
+$listar_usuarios_soporte_tecnico = json_decode( $this->ver_usuarios_soporte_tecnico);
+
+
+?>
+ 
+ 
+<div class="row">
+    <hr>
+    <div class="col-md-2">
+        <h4><span class="form-control label label-info">Administrador del Sistema :</span></h4>
+        <hr>
+
+        <ul class="list-group">
+            <li class="list-group-item"><a href="<?=BASE_URL ?>mantenimiento/usuarios" title="Enlace Directo a Gestion de Usuarios" target="_self">&#8226; Administrar y Gestionar Usuarios </a>: Permite Listar los usuarios, por DNI, nombre, unidad, registro, muestra los botones de actualizacion de Modulos, registrar nuevos usuarios y eliminar. </li>
+            <li class="list-group-item"><a href="<?=BASE_URL ?>mantenimiento/plantillas" title="Enlace directo a Gestion de Modulos" target="_self">&#8226; Modulos</a> : Registra Nuevo Modulo, Nuevo Menu, Sub menu, botones. Al desarrollar un nuevo modulo, es necesario registrarlo con todas sus caracteristicas para la administracion y asignacion de permisos a usuarios. </li>
+        </ul>
+    </div>
+
+    <div class="col-md-3">
+        <h4><span class="form-control label label-info">Estadisticas del sistema de Administracion:</span></h4>
+        <hr>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <?php 
+            			foreach($listarusuarios as  $llave => $imprimir ): 
+                   echo $imprimir->total;
+                 endforeach;
+                ?>
+            </li>
+
+
+            <li class="list-group-item">
+
+                <?php 
+    			foreach($listarmodulos  as  $llave1 => $imprimir1 ): 
+                   echo $imprimir1->total;
+                 endforeach;
+                
+                ?>
+
+
+            </li>
+          
+            
+            
+        </ul>
+
+    </div>
+
+
+
+    <div class="col-md-4">
+         <h4><span class="form-control label label-info"> Problemas Reportados por usuarios  :</span></h4>
+          <li class="list-group-item"><hr>
+                 <?php 
+    			foreach($listar_usuarios_soporte_tecnico as  $llave2 => $imprimir2 ): 
+                   echo $imprimir2->total;
+                 endforeach;
+                
+                ?>
+            
+            </li>
+      
+
+    </div>
+
+
+</div>
+
+ 

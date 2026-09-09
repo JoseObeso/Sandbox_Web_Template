@@ -1,0 +1,69 @@
+<?php
+$reportes_carreras_profesion = json_decode( $this->listar_carreras_profesion );
+?>
+
+
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>personal_carrera_profesion.jpg" class="img-responsive" width="954" height="66" alt=""/>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <h4><span class="label label-info form-control">Carreras - Profesion </span> </h4>
+            <select name="slt_carrera" size="20" disabled="disabled" id="slt_carrera" title="Carrera profesional seleccionado...." class="form-control"></select>
+            <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+            <center>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Carrera"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Carrera"><strong> <i class="fa fa-pencil"></i></strong></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Carrera"><strong> <i class="fa fa-times"></i> </strong></button>
+            </center>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <div class="form-group">
+                <label for="txt_descripcion_carrera" class="form-control">Descripcion : </label>
+                <input name="txt_descripcion_carrera" type="text" disabled="disabled" id="txt_descripcion_carrera" class="form-control initialism">
+            </div>
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <span id="esperando_carrera"></span>
+ 
+
+
+        </div>
+
+        <div class="col-md-5">
+            <h4><span class="label label-info form-control">Reporte   </span> </h4>
+            <div class="table-responsive">
+                <table width="100%" class="table table-striped" id="tabla_carrera">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mostrar_carrera">
+                        <?php 
+					foreach($reportes_carreras_profesion as $llave => $imprimir ): ?>
+                        <tr>
+                            <td>
+                                <?= $imprimir->id ?>
+                            </td>
+                            <td>
+                                <?= $imprimir->descripcion ?>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div id="result"></div>

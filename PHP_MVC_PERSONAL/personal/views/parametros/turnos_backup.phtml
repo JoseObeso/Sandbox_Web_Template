@@ -1,0 +1,173 @@
+<?php
+$turnos = json_decode( $this->turnos );
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+  
+<div class="page-header">
+    <div class="col-md-7">
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Parametros : Turnos y codigos </strong>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid  pull-left">
+    
+    <div class="row">
+
+        <div class="col-md-1">
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="agregar_tipo_turno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar / Editar Turnos"><strong>T</strong></button><br><br><br><br>
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="eliminar_turno" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Turno"><strong> <i class="fa fa-times"></i> </strong></button>
+        </div>
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="tabla_turno">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#EFEBEB"></th>
+                            <th bgcolor="#EFEBEB">Codigo</th>
+                            <th bgcolor="#EFEBEB">Nombre</th>
+                           
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_turno">
+                        <?php 
+							 
+							foreach($turnos as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0"><label class="px-single"><input type="radio" id="<?= $imprimir->id_turno ?>" name="single-radio" value="" class="px usuarios"><span class="lbl"></span></label>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->codigo_turno ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->nombre ?>
+                            </td>
+                            
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div id="modal-agregar-turno" class="modal fade" role="dialog">
+    <!-- style="display: none;"> -->
+    <div class="modal-dialog modal-mg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="<?= RUTA_PUBLIC_GRA?>asignar_tipos_turnos.jpg" width="550" height="72" alt=""/>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-success" role="alert">
+                    <center>
+                        <h5 class="alert-heading">Agregar / Modificar Tipos de Turno</h5>
+                    </center>
+                </div>
+                <form id="frm_agregar_tipo_turno" title="Registro de Asignacion de Turno">
+
+                    <table width="500" border="0" align="center" cellpadding="0" cellspacing="0" id="id_tabla_registro">
+                        <tbody>
+                            <tr>
+                                <td colspan="3" align="center" bgcolor="#D4D4D4"><strong>TURNOS REGISTRADOS</strong>
+                                </td>
+                                <td width="170" valign="top" bgcolor="#D4D4D4"><input name="operacion_turno" type="radio" id="operacion_turno1" form="frm_agregar_tipo_turno" value="1">
+                                    <strong>
+                                <label for="nuevo_turno">NUEVO</label></strong>
+                                
+
+
+
+                                </td>
+                                <td width="100" valign="top" bgcolor="#D4D4D4">
+
+                                    <input name="operacion_turno" type="radio" disabled="disabled" id="operacion_turno2" form="frm_agregar_tipo_turno" value="2">
+                                    <strong>
+                                <label for="nuevo_turno">EDITAR</label></strong>
+                                
+
+
+
+                                </td>
+                                <td width="28" valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="63" valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td width="75" valign="top" bgcolor="#D4D4D4">
+                                    <select name="turnos_registrados" size="15" id="turnos_registrados" form="frm_agregar_tipo_turno">
+                                        <?php foreach($turnos  as $imprimir):?>
+                                        <option value="<?=$imprimir->codigo_turno?>" id_turno="<?=$imprimir->id ?>" turno_seleccion="<?=$imprimir->nombre ?>" codigo_seleccion="<?=$imprimir->codigo ?>">
+                                            <font size="-2" color="#000000"><strong>
+                                                 <?=$imprimir->codigo_turno?> - <?=$imprimir->nombre?>
+                        </font></strong>
+                                            
+
+
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </td>
+                                <td width="64" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td colspan="2" align="center" valign="top" bgcolor="#D4D4D4">
+                                    <input name="codigo_turno" type="text" id="codigo_turno" form="frm_agregar_tipo_turno" style="background-color:#FCFBA0; border: solid 1px #000000; height: 35px; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" size="23" maxlength="22" readonly="readonly">
+                                    <span style="text-align: center"></span>
+                                    <textarea name="id_descripcion" cols="22" rows="10" readonly="readonly" required="required" id="id_descripcion" style="background-color:#FCFBA0; border: solid 1px #000000; height: 210px; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px" form="frm_agregar_tipo_turno" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"></textarea>
+
+                                </td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+
+
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <input name="btn-guardar-nuevo-edicion-turno" type="button" disabled="disabled" class="btn btn-primary btn-lg  " id="btn-guardar-nuevo-edicion-turno" form="frm_agregar_tipo_turno" title="Pulse aqui para guardar" value="Grabar Nuevo Turno">
+                <input name="btn-cerrar-modal" type="button" class="btn btn-primary btn-lg" id="btn-cerrar-modal" form="frm_agregar_tipo_turno" title="Cerrar Modal " onClick="window.location.reload()" value="Cerrar" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>

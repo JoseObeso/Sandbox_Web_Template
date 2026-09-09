@@ -1,0 +1,1132 @@
+ <?php
+ $listar_personal_cas_existente = json_decode( $this->listar_personal_cas_existente );
+ $listar_paises = json_decode( $this->listar_paises );
+ $listar_tipos_documentos = json_decode( $this->listar_tipos_documentos );
+
+
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container pull-left ">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="txt_buscar_nombre" class="bg-info form-control">Personal CAS Registrado </label>
+            <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" class="form-control alert-warning text-secondary initialism" autocomplete="off">
+            <select name="select_personal_cas_existente" size="35" id="select_personal_cas_existente" class="form-control">
+                <?php foreach($listar_personal_cas_existente as   $ver): ?>
+                <option value="<?=$ver->id ?>" id="<?=$ver->id ?>" plaza="<?=$ver->plaza ?>" nro_contrato="<?=$ver->nro_contrato ?>" nro_proceso="<?=$ver->nro_proceso ?>" tipo_personal="<?=$ver->tipo_personal ?>" sexo="<?=$ver->sexo ?>" paterno="<?=$ver->paterno ?>" materno="<?=$ver->materno ?>" nombre="<?=$ver->nombre ?>" apellidos_nombre="<?=$ver->apellidos_nombres ?>" fecha_nacimiento="<?=$ver->fecha_nacimiento ?>" edad="<?=$ver->edad ?>" estado_civil="<?=$ver->estado_civil ?>" direccion="<?=$ver->direccion ?>" direccion_distrito="<?=$ver->direccion_distrito ?>" direccion_provincia="<?=$ver->direccion_provincia ?>" direccion_departamento="<?=$ver->direccion_departamento ?>" sueldo="<?=$ver->sueldo ?>" cargo="<?=$ver->cargo ?>" dni="<?=$ver->dni ?>" ruc="<?=$ver->ruc ?>" essalud="<?=$ver->essalud ?>" carnet_extranjeria="<?=$ver->carnet_extranjeria ?>" gs="<?=$ver->gs ?>" telefono_fijo="<?=$ver->telefono_fijo?>" telefono_celular="<?=$ver->telefono_celular?>" correo_electronico="<?=$ver->correo?>" hijos="<?=$ver->hijos?>" <font size="-2" color="#000000"><strong><?= $ver->apellidos_nombres ?></font></option> <?php endforeach;?>
+           </select>
+     </div>
+ 
+    
+    
+    <div class="col-md-9">
+    
+                       <div class="container">
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#identificacion">Datos Personal</a></li>
+                            <li><a data-toggle="tab" href="#contratos">Datos Laborales</a></li>
+                            <li><a data-toggle="tab" href="#desvinculacion">Desvinculacion</a></li>
+                          </ul>
+
+                          <div class="tab-content">
+                            <div id="identificacion" class="tab-pane fade in active">
+                                
+                                <!---  INICIO DE PESTAÑAS DE DATOS PERSONALES  --->
+                                      <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#identificacion_datos_personales">Identificacion</a></li>
+                                        <li><a data-toggle="tab" href="#datos_educacion">Educacion</a></li>
+                                      </ul>
+
+                                      <div class="tab-content">
+                                        <div id="identificacion_datos_personales" class="tab-pane fade in active">
+
+                                            <!--- inicio de datos personales -->
+                                            
+                                            
+                   <div class="col-md-4">
+                           <div class="form-group">
+                              <span class="form-control bg-default">&#9679; Personal :</span>
+                               <span id = "personal_seleccion_nombre" class="form-control bg-info"></span>
+                           </div>   
+                       
+
+                                                                     
+                        <div class="box">
+                            
+                          <div class="box-row">
+                              
+                            <div class="box-cell p-x-3 p-y-1 bg-default darken"><div class="form-group"></div>
+                                                        
+                                <div class="form-group"><center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Personal CAS"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Personal CAS"><strong> <i class="fa fa-pencil"></i></strong>
+                    </button>
+                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Personal CAS "><strong> <i class="fa fa-times"></i></strong></button>
+                    </center>
+        </div>
+        <div class="form-group"></div>
+    </div>
+
+</div>
+
+</div>
+
+
+
+<div class="form-group">
+    <div class="col-xs-5">
+        <span class="form-control bg-default glyphicon glyphicon-pushpin"> Registrado</span>
+        <span id="nombre_pais_registrado" class="form-control "></span>
+
+    </div>
+    <div class="col-xs-7">
+
+
+        <span class="form-control bg-default">&#9679; Pais :</span>
+        <select name="slt_pais" disabled="disabled" id="slt_pais" title="Seleccione el Pais" class="form-control">
+            <option id="174" pais="PERU">PERU</option>
+            <?php foreach($listar_paises as $mostrar):?>
+            <option id="<?=$mostrar->codigo ?>" documento="<?=$mostrar->descripcion ?>">
+                <font size="2">
+                    <?=$mostrar->descripcion ?>
+                </font>
+            </option>
+            <?php endforeach;?>
+        </select>
+
+
+
+
+    </div>
+
+</div>
+
+<div class="form-group">
+
+    <div class="col-xs-5">
+        <span class="form-control bg-default glyphicon glyphicon-pushpin"> Registrado</span>
+        <span id="nombre_documento_registrado" class="form-control "></span>
+    </div>
+
+    <div class="col-xs-7">
+        <span class="form-control bg-default">&#9679; Tipo de Documento:</span>
+
+        <select name="slt_tipo_documento" disabled="disabled" id="slt_tipo_documento" title="Seleccione el Tipo de Documento del Personal" class="form-control">
+            <option id="0">Seleccione :</option>
+            <?php foreach($listar_tipos_documentos as $mostrar):?>
+            <option id="<?=$mostrar->codigo ?>" documento="<?=$mostrar->descripcion ?>">
+                <font size="2">
+                    <?=$mostrar->descripcion ?>
+                </font>
+            </option>
+            <?php endforeach;?>
+        </select>
+        <span id="msj_tipo_documento"></span>
+    </div>
+
+</div>
+
+
+<div class="col-xs-12">
+    <div class="form-group">
+        <span id="txt_documento_descripcion" class="form-control bg-default text-left"></span>
+        <input name="txt_nro_documento" type="text" disabled="disabled" class="form-control" id="txt_nro_documento">
+    </div>
+</div>
+
+
+
+
+
+<div class="col-xs-5">
+    <span class="form-control bg-default glyphicon glyphicon-pushpin"> Registrado</span>
+    <span id="sexo_registrado" class="form-control "></span>
+
+</div>
+
+
+<div class="col-xs-7">
+    <div class="form-group">
+        <span class="form-control bg-default">&#9679; Sexo :</span>
+        <select name="slt_sexo" disabled="disabled" id="slt_sexo" title="Sexo del Personal" class="form-control">
+            <option lc_sexo="0">Sexo</option>
+            <option lc_sexo="1">MASCULINO</option>
+            <option lc_sexo="2">FEMENINO</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="form-group">
+        <span class="form-control bg-default">&#9679; Apellido Paterno: </span>
+        <input name="txt_paterno" type="text" disabled="disabled" class="form-control initialism" id="txt_paterno">
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="form-group">
+        <span class="form-control bg-default">&#9679; Apellido Materno: </span>
+        <input name="txt_materno" type="text" disabled="disabled" class="form-control initialism" id="txt_materno">
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="form-group">
+        <span class="form-control bg-default">&#9679; Apellido de Casada: </span>
+        <input name="apellido_casada" type="text" disabled="disabled" class="form-control initialism" id="apellido_casada">
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="form-group">
+        <span class="form-control bg-default">&#9679; Nombres: </span>
+        <input name="txt_nombres" type="text" disabled="disabled" class="form-control initialism" id="txt_nombres">
+    </div>
+</div>
+
+<div class="form-group">
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Nacimiento: </span>
+    </div>
+    <div class="col-xs-6">
+        <input name="txt_nacimiento" type="text" disabled="disabled" class="form-control clsDatePicker" id="txt_nacimiento" placeholder="Nacimiento" title="Fecha de Nacimiento del Personal" value="<?=date('d-m-Y', strtotime('now - 20 year')) ?>" readonly="readonly">
+
+    </div>
+</div>
+
+ <div class="form-group">
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Edad : </span>
+    </div>
+    <div class="col-xs-6">
+        <input name="txt_edad" type="text" disabled="disabled" class="form-control" id="txt_edad" placeholder="Edad" title="Edad del Personal" readonly="readonly">
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="col-md-4">
+
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Estado Civil: </span>
+    </div>
+    <div class="col-xs-6">
+        <select name="slt_estado_civil" disabled="disabled" id="slt_estado_civil" title="Estado Civil seleccionado...." class="form-control"></select>
+    </div>
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Nro. de Hijos : </span>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <input name="txt_nro_hijos" type="number" disabled="disabled" class="form-control" id="txt_nro_hijos" max="20" min="0" value="0">
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <span class="form-control bg-default ">&#9679; Detalle de Hijos (Ejem: 1H/2M): </span>
+        <textarea name="txt_detalle_hijos" rows="2" disabled="disabled" class="form-control initialism" id="txt_detalle_hijos"></textarea>
+    </div>
+
+
+
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Departamento : </span>
+    </div>
+    <div class="col-xs-6">
+        <select name="slc_departamento" id="slc_departamento" class="form-control">
+            <option id="0">Seleccione : </option>
+        </select>
+    </div>
+
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Provincia :</span>
+    </div>
+    <div class="col-xs-6">
+        <select name="slc_provincia" disabled="disabled" class="form-control" id="slc_provincia">
+            <option id="0">Seleccione : </option>
+        </select>
+    </div>
+
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Distrito : </span>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <select name="slc_distrito" disabled="disabled" class="form-control" id="slc_distrito"></select>
+        </div>
+        </select>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="form-control bg-default">&#9679; Direccion Descriptiva : </span>
+        <textarea name="txt_area_direccion" disabled="disabled" class="form-control initialism" id="txt_area_direccion"></textarea>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="form-control bg-default">&#9679; Correo Electronico Personal: </span>
+        <input name="txt_correo_electronico" type="text" disabled="disabled" class="form-control" id="txt_correo_electronico" value=" @ ">
+    </div>
+
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Telefono Fijo : </span>
+    </div>
+
+    <div class="col-xs-6">
+        <input name="txt_telefono_fijo" type="text" disabled="disabled" class="form-control initialism" id="txt_telefono_fijo">
+    </div>
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Celular :  </span>
+    </div>
+
+    <div class="col-xs-6">
+        <input name="txt_telefono_celular" type="text" disabled="disabled" class="form-control initialism" id="txt_telefono_celular">
+    </div>
+
+
+    <div class="col-xs-6">
+        <span class="form-control bg-default">&#9679; Cel. Emergencia :  </span>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <input name="telefono_emergencia" class="form-control" disabled="disabled" id="telefono_emergencia">
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <span class="form-control bg-default">&#9679; Grupo Sanguineo:  </span>
+        <input name="grupo_sanguineo" class="form-control" disabled="disabled" id="grupo_sanguineo">
+    </div>
+
+
+    <div class="col-xs-12">
+        <span class="form-control bg-default">&#9679; Observacion:  </span>
+        <div class="form-group">
+            <textarea name="observacion" class="form-control initialism" rows="4" disabled="disabled" id="observacion"></textarea>
+        </div>
+    </div>
+
+
+    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_datos_personales" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Datos Personales CAS"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+    <span id="espera_grabacion_cas"></span>
+</div>
+
+
+
+
+
+
+<!--- fin de datos personales - identificacion --->
+
+
+
+
+
+</div>
+<div id="datos_educacion" class="tab-pane fade">
+
+    <!--- Inicio de datos educacion --->
+
+    <div class="col-md-5">
+
+        <span class="form-control bg-default">&#9679; Personal :</span>
+        <span id="personal_seleccion_nombre_educacion" class="form-control bg-info"></span>
+
+
+        <select name="slt_educacion_seleccion" size="5" class="form-control" id="slt_educacion_seleccion"></select>
+
+        <div class="box">
+
+            <div class="box-row">
+
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+
+                    <div class="form-group">
+                        <center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_educacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Nivel Educativo"><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_educacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Nivel Educativo"><strong> <i class="fa fa-pencil"></i></strong></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_educacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Nivel Educativo"><strong> <i class="fa fa-times"></i></strong></button>
+                        </center>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <table width="200">
+            <tr>
+                <td><label>
+                              <input type="radio" name="tipo_educacion_total" value="1" id="tipo_educacion_total_0">
+                              Universidad</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>
+                              <input type="radio" name="tipo_educacion_total" value="2" id="tipo_educacion_total_1">
+                              Instituto</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>
+                              <input type="radio" name="tipo_educacion_total" value="3" id="tipo_educacion_total_2">
+                              Centro de Enseñanza</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>
+                              <input type="radio" name="tipo_educacion_total" value="4" id="tipo_educacion_total_3">
+                              Educacion basica</label>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>
+                              <input type="radio" name="tipo_educacion_total" value="5" id="tipo_educacion_total_4">
+                              SERUM</label>
+                </td>
+            </tr>
+
+
+        </table>
+
+        <div class="form-group">
+            <span id="titulo_educacion"></span>
+
+            <div class="form-group" id="contiene_universidad">
+                <select name="slc_lista_universidad" id="slc_lista_universidad" class="form-control"></select>
+            </div>
+
+            <textarea name="txt_descripcion_universidad" class="form-control" rows="3" disabled="disabled" id="txt_descripcion_universidad"></textarea>
+            <textarea name="txt_instituto" class="form-control" rows="4" disabled="disabled" id="txt_instituto"></textarea>
+
+        </div>
+
+
+        <div class="col-xs-6">
+            <span class="form-control bg-default">Inicio : </span>
+        </div>
+        <div class="col-xs-6">
+            <input name="fecha_inicio_educacion" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_inicio_educacion" title="Fecha de Inicio " value="<?=date('d-m-Y')?>" readonly="readonly">
+
+        </div>
+
+
+        <div class="col-xs-6">
+            <span class="form-control bg-default">Fin  : </span>
+        </div>
+        <div class="col-xs-6">
+            <input name="fecha_fin_educacion" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_fin_educacion" title="Fecha de Fin  de Educacion" value="<?=date('d-m-Y')?>" readonly="readonly">
+
+        </div>
+
+
+
+
+        <input name="chk_no_culmino_estudio" type="checkbox" disabled="disabled" id="chk_no_culmino_estudio" title="No Culmino Estudios" value="0"> No Culmino Estudios <br>
+
+        <label for="condicion">Condicion de Egresado : </label>
+        <textarea name="txt_condicion" class="form-control" rows="4" disabled="disabled" id="txt_condicion"></textarea>
+
+        <div class="form-group">
+            <label for="titulo">Titulo o Especialidad : </label>
+            <textarea name="txt_titulo" class="form-control" rows="4" disabled="disabled" id="txt_titulo"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_datos_educacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar educacion"><span class="glyphicon glyphicon-ok"></span> Grabar </button>
+        </div>
+        <span id="espera_grabacion_educacion"></span>
+        <!--- fin de datos educacion --->
+
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--Fin de datos personales-->
+
+
+</div>
+
+<div id="contratos" class="tab-pane fade">
+
+
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#info_contrato">Informacion del contrato</a>
+        </li>
+        <li><a data-toggle="tab" href="#carrera_colegio">Carrera y Colegio Profesional</a>
+        </li>
+        <li><a data-toggle="tab" href="#competencias">Competencias</a>
+        </li>
+        <li><a data-toggle="tab" href="#capacitacion">Capacitacion</a>
+        </li>
+        <li><a data-toggle="tab" href="#entrenamiento">Entrenamiento</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="info_contrato" class="tab-pane fade in active">
+            <!---- inicio de informacion del contrato ---->
+            <div class="col-md-5">
+                <span class="form-control bg-default">&#9679; Personal :</span>
+                <span id="personal_seleccion_contrato" class="form-control bg-info"></span>
+                <span class="form-control bg-default">Nro.Contrato &nbsp;&#124;&nbsp; Inicio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124; Termino&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp; Desvinculacion</span>
+                <div class="form-group">
+                    <select name="slt_contratos_seleccion" size="5" class="form-control" id="slt_contratos_seleccion"></select>
+                </div>
+
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_contrato" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Nuevo Contrato"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_contrato" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Contrato Existente"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_contrato" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Contrato (En caso de registrado por error) "><strong> <i class="fa fa-times"></i> </strong></button>
+                                </center>
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            
+                <div id="contenedor_listado_adenda">
+                        <span class="form-control bg-default">Nro. Adenda &nbsp;&nbsp;&#124;  Inicio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;Termino &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;Desvinculac.  &#124;Estado</span>
+                        <div class="form-group">
+                            <select name="slc_contratos_adendas" id="slc_contratos_adendas" class="form-control" size="5">
+                            </select>
+                        </div>
+                        <div class="box">
+                            <div class="box-row">
+                                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                    <div class="form-group"></div>
+                                    <div class="form-group">
+                                        <center>
+                                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_adenda" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Nuevo Adenda"><i class="fa fa-plus"></i></button>
+                                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_adenda" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Adenda Existente"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_adenda" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Adenda (En caso de registrado por error) "><strong> <i class="fa fa-times"></i> </strong></button>
+                                        </center>
+                                    </div>
+                                    <div class="form-group"></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                
+                
+                <div id="contenedor-contratos">
+ 
+
+                            <div class="col-xs-12">
+                                <span class="form-control bg-default">Condicion Laboral:</span>
+                                <div class="form-group">
+                                    <select name="slc_condicion_laboral" id="slc_condicion_laboral" class="form-control">
+                                        <option id="0">Seleccione : </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <span class="form-control bg-default" id="lugar_origen">Origen de destaque:</span>
+                                <div class="form-group">
+                                    <input name="txt_buscar_establecimiento" type="text" id="txt_buscar_establecimiento" class="form-control  initialism">
+                                    <div id="lgr_origen_destaque">
+                                        <select name="slc_origen_destaque" id="slc_origen_destaque" class="form-control" size="4">
+                                            <option id="0">Seleccione : </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <textarea name="txt_renaes" cols="3" rows="3" readonly="readonly" class="form-control" id="txt_renaes"></textarea>
+                                <span id="msj_condicion_laboral"></span>
+                            </div>
+                            <div class="col-xs-5">
+                                <span class="form-control bg-default text-right">Nro. Proceso : </span>
+                            </div>
+                            <div class="col-xs-7">
+                                <input name="txt_nro_proceso" type="text" disabled="disabled" class="form-control initialism" id="txt_nro_proceso">
+                            </div>
+                            <div class="col-xs-5">
+                                <span class="form-control bg-default text-right">Nro. Contrato : </span>
+                            </div>
+                            <div class="col-xs-7">
+                                    <input name="txt_nro_contrato" type="text" disabled="disabled" class="form-control initialism" id="txt_nro_contrato">
+                            </div>
+                            <div class="col-xs-5">
+                                <span class="form-control bg-default text-right">Inicio  : </span>
+                            </div>
+                            <div class="col-xs-7">
+                                <input name="fecha_inicio_contrato" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_inicio_contrato" title="Fecha de Inicio de contrato" value="<?=date('d-m-Y')?>" readonly="readonly">
+                            </div>
+
+                            <div class="col-xs-5">
+                                <span class="form-control bg-default text-right">Fin : </span>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="form-group">
+                                    <input name="fecha_fin_contrato" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_fin_contrato" title="Fecha Fin de Contrato" value="<?=date('d-m-Y')?>" readonly="readonly">
+                                </div>
+                            </div>
+                     <div class="col-xs-7">
+                           <span class="form-control bg-default text-right">Fecha de Desvinculacion : </span>
+                     </div>
+                    <div class="col-xs-5">
+                      <div class="form-group">
+                        <input name="fecha_fin_desvinculacion" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_fin_desvinculacion" title="Fecha desvinculacion" value="<?=date('d-m-Y')?>" readonly="readonly">
+                      </div>
+
+                    </div>
+                    
+                    
+                    
+                    </div>
+                
+                
+                  <div id="contenedor_adendas" class="bg-info" >
+
+                        <div class="col-xs-6">
+                            <span class="form-control bg-default text-right">Adenda Vigente: </span>
+                        </div>
+                        <div class="col-xs-6">
+                            <input name="txt_nro_adenda" type="text" disabled="disabled" class="form-control initialism" id="txt_nro_adenda">
+                        </div>
+                        <div class="col-xs-6">
+                            <span class="form-control bg-default text-right">Inicio  : </span>
+                        </div>
+                        <div class="col-xs-6">
+                            <input name="fecha_inicio_adenda" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_inicio_adenda" title="Fecha de Inicio de adenda" value="<?=date('d-m-Y')?>" readonly="readonly">
+                        </div>
+
+                        <div class="col-xs-6">
+                            <span class="form-control bg-default text-right">Fin : </span>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <input name="fecha_fin_adenda" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_fin_adenda" title="Fecha Fin de Adenda" value="<?=date('d-m-Y')?>" readonly="readonly">
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_adenda" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Adenda"><span class="glyphicon glyphicon-ok"></span>&nbsp; Grabar </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-md-4">
+                  
+                <div class="col-xs-4">
+                    <span class="form-control bg-default text-right">RUC : </span>
+                </div>
+                <div class="col-xs-8">
+                    <input name="ruc" type="text" disabled="disabled" class="form-control" id="ruc" title="RUC del Titular">
+                </div>
+
+                <div class="col-xs-4">
+                    <span class="form-control bg-default text-right">Cargo : </span>
+                </div>
+                <div class="col-xs-8">
+                    <select name="slt_cargos" size="20" disabled="disabled" id="slt_cargos" title="Cargos seleccionado...." class="form-control"></select>
+                </div>
+
+                <div class="col-xs-12">
+                    <span class="form-control bg-default text-center">Grupo Ocupacional </span>
+                    <textarea name="grupo_ocupacional" cols="3" rows="2" readonly="readonly" class="form-control" id="grupo_ocupacional"></textarea>
+                </div>
+
+
+                <div class="form-group"></div>
+                <div class="col-xs-4">
+                    <span class="form-control bg-default text-right">Sueldo : </span>
+                </div>
+                <div class="col-xs-8">
+                    <input name="sueldo" type="text" disabled="disabled" class="form-control" id="sueldo" title="Registre Sueldo" value="">
+                </div>
+                
+                 <div class="col-xs-4">
+                    <span class="form-control bg-default text-right">Meta: </span>
+                </div>
+                <div class="col-xs-8">
+                    <input name="meta" type="text" disabled="disabled" class="form-control" id="sueldo" title="Registre Meta" value="">
+                </div>
+                
+                 <div class="col-xs-12">
+                    <span class="form-control bg-default text-center">Cadena Programatica </span>
+                     <select name="slt_cadena_programatica"   id="slt_cadena_programatica" title="Seleccion de cadena programatica" class="form-control">
+                    </select>
+                    <textarea name="nombre_cadena_programatica" rows="4" readonly="readonly" class="form-control" id="nombre_cadena_programatica"></textarea>
+                </div>
+                <div class="form-group"></div>
+                
+                 <div class="col-xs-6">
+                    <span class="form-control bg-default text-right">Tipo Empleado: </span>
+                </div>
+                <div class="col-xs-6">
+
+                    <select name="slt_asistencial" disabled="disabled" id="slt_asistencial" title="Asistencial / Administrativo" class="form-control">
+                        <option lc_tipo_servicio="0">Seleccione</option>
+                        <option lc_tipo_servicio="S">ASISTENCIAL</option>
+                        <option lc_tipo_servicio="A">ADMINISTRATIVO</option>
+                    </select>
+
+                </div>
+                
+                
+                
+
+                <div class="col-xs-12">
+                    <span class="form-control bg-default">Unidad Organica/Organo/Servicio/UPSS: </span>
+                    <select name="slt_servicio_upss" disabled="disabled" id="slt_servicio_upss" title="Servicio UPSS ..." class="form-control"></select>
+                    <textarea name="txt_descripcion_upss" class="form-control" rows="6" disabled="disabled" id="txt_descripcion_upss"></textarea>
+                </div>
+                <div class="form-group"></div>
+                <div class="col-xs-12">
+                    <span class="form-control bg-default">Especialidad : </span>
+                    <select name="slc_tipo_especialidad" id="slc_tipo_especialidad" class="form-control"></select>
+                    <textarea name="txt_descripcion_especialidad" class="form-control" rows="4" disabled="disabled" id="txt_descripcion_especialidad"></textarea>
+                    <span class="form-control bg-default">Nro. RNE : </span>
+                    <input name="rne" type="text" disabled="disabled" class="form-control" id="rne" title="Registre RNE" value="S/N">
+
+                </div>
+                <div class="form-group"></div>
+                <div class="col-xs-12">
+                        <div class="form-group">
+                            
+                            
+                            
+                             <!--<button type="button" class="form-control btn btn-primary" data-container="body" data-toggle="popover" data-state="primary" data-placement="top" data-content="Grabacion Conforme de registros Laborales" data-title="Primary title"><span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>-->
+                            
+                            
+                        
+                            <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_contrato" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Contrato"><span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+                       
+                            
+                            
+                            
+                        </div>
+                        <span id="espera_grabacion_contratos"></span>
+                        <?php for ( $i = 1; $i <= 4; $i++ ) {echo '<br>';}?>
+                </div>
+
+            </div>
+            
+            
+            <!---- fin de informacion del contrato ---->
+
+
+
+        </div>
+        <div id="carrera_colegio" class="tab-pane fade">
+
+            <!--- inicio de carrera colegio profesional --->
+
+
+            <div class="col-md-4">
+                <span class="form-control bg-default">&#9679; Personal :</span>
+                <span id="personal_seleccion_carrera" class="form-control bg-info"></span>
+                <div class="form-group">
+                    <select name="slt_carrera_profesional" size="5" class="form-control" id="slt_carrera_profesional"></select>
+                </div>
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Carrera Profesional o Tecnica"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Carrera Profesional o Tecnica"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Carrera Profesional o Tecnica "><strong> <i class="fa fa-times"></i> </strong></button>
+
+                                </center>
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <center>
+                    </center>
+                </div>
+
+
+
+
+
+
+                <div class="col-xs-12">
+                    <span class="form-control bg-default">Carrera Profesional  : </span>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <select name="slt_carrera" disabled="disabled" id="slt_carrera" title="Carrera profesional ...." class="form-control"></select>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12">
+                    <span class="form-control bg-default">Colegio Profesional : </span>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <select name="slc_colegios_profesionales" size="25" id="slc_colegios_profesionales" class="form-control"></select>
+                        <input name="nro_colegiatura" type="text" disabled="disabled" class="form-control" id="nro_colegiatura" placeholder="Numero" value="S/N" maxlength="10">
+                    </div>
+                </div>
+
+                <center>
+                    <div class="col-xs-12">
+                        <span class="form-control bg-default">Habilidad  </span>
+                    </div>
+                </center>
+                <div class="col-xs-6">
+                    <span class="form-control bg-default">Emision : </span>
+                </div>
+                <div class="col-xs-6">
+                    <input name="fecha_inicio_habilitacion" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_inicio_habilitacion" title="Fecha de Inicio de Habilitacion" value="<?=date('d-m-Y')?>" readonly="readonly">
+                </div>
+
+
+                <div class="col-xs-6">
+                    <span class="form-control bg-default">Expira : </span>
+                </div>
+                <div class="col-xs-6">
+                    <input name="fecha_fin_habilitacion" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_fin_habilitacion" title="Fecha Fin de Habilitacion" value="<?=date('d-m-Y')?>" readonly="readonly">
+                </div>
+
+
+                <div class="col-xs-6">
+                    <span class="form-control bg-default">Nro : </span>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <input name="nro_de_habilitacion" type="text" disabled="disabled" class="form-control" id="nro_de_habilitacion" title="Nro de Habilitacion" value="S/N">
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12">
+
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_carrera" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Contrato"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+
+                </div>
+
+
+                <span id="espera_grabacion_carrera"></span>
+
+                <?php for ( $i = 1; $i <= 5; $i++ ) {echo '<br>';}?>
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+            <!--- Fin  de carrera colegio profesional --->
+
+
+
+
+
+        </div>
+        <div id="competencias" class="tab-pane fade">
+
+            <!--- inicio de competencias ---->
+
+            <div class="col-md-4">
+
+                <span class="form-control bg-default">&#9679; Personal :</span>
+                <span id="personal_seleccion_competencia" class="form-control bg-info"></span>
+
+                <span class="form-control bg-default">Competencias Registradas: </span>
+                <div class="form-group">
+                    <select name="slt_resgistro_especialidad" size="5" class="form-control" id="slt_resgistro_especialidad"></select>
+                </div>
+
+
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_competencia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Competencia"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_competencia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Competencia"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_competencia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Competencia "><strong> <i class="fa fa-times"></i> </strong></button>
+                                </center>
+                            </div>
+
+
+
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <strong> Competencia : </strong>
+                    <select name="slc_lista_competencia" id="slc_lista_competencia" class="form-control"></select>
+                    <textarea name="txt_descripcion_competencia" class="form-control" rows="3" disabled="disabled" id="txt_descripcion_competencia"></textarea>
+                </div>
+
+                <div class="col-xs-12">
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabarcompetencia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Especialidad"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+                </div>
+                <span id="espera_grabacion_competencia"></span>
+                <?php for ( $i = 1; $i <= 5; $i++ ) {echo '<br>';}?>
+
+
+            </div>
+
+            <!--- fin de competencias ---->
+
+
+        </div>
+        <div id="capacitacion" class="tab-pane fade">
+
+            <!--- inicio de capacitacion ---->
+            <div class="col-md-4">
+                <span class="form-control bg-default">&#9679; Personal :</span>
+                <span id="personal_seleccion_capacitacion" class="form-control bg-info"></span>
+                <span class="form-control bg-default">Capacitacion  Registradas: </span>
+                <div class="form-group">
+                    <select name="slt_capacitacion" size="5" class="form-control" id="slt_capacitacion"></select>
+                </div>
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_capacitacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Capacitacion"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_capacitacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Capacitacion"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_capacitacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Capacitacion"><strong> <i class="fa fa-times"></i> </strong></button>
+                                </center>
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <strong> Capacitacion : </strong>
+                    <select name="slc_lista_capacitacion" id="slc_lista_capacitacion" class="form-control"></select>
+                    <textarea name="txt_descripcion_capacitacion" class="form-control" rows="4" disabled="disabled" id="txt_descripcion_capacitacion"></textarea>
+                </div>
+
+                <div class="col-xs-12">
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_capacitacion" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Capacitacion"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+                </div>
+                <span id="espera_grabacion_capacitacion"></span>
+                <?php for ( $i = 1; $i <= 5; $i++ ) {echo '<br>';}?>
+
+            </div>
+
+            <!--- fin de capacitacion ---->
+
+
+        </div>
+
+
+        <div id="entrenamiento" class="tab-pane fade">
+
+            <!--- inicio de entrenamiento ---->
+
+
+            <div class="col-md-4">
+                <span class="form-control bg-default">&#9679; Personal :</span>
+                <span id="personal_seleccion_entrenamiento" class="form-control bg-info"></span>
+                <span class="form-control bg-default">Entrenamiento Registrado: </span>
+                <div class="form-group">
+                    <select name="slt_entrenamiento_registrado" size="5" class="form-control" id="slt_entrenamiento_registrado"></select>
+                </div>
+
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_entrenamiento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Entrenamiento"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_entrenamiento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Entrenamiento"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_entrenamiento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Entrenamiento"><strong> <i class="fa fa-times"></i> </strong></button>
+                                </center>
+                            </div>
+
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <strong> Entrenamiento : </strong>
+                    <select name="slc_lista_entrenamiento" id="slc_lista_entrenamiento" class="form-control"></select>
+                    <textarea name="txt_descripcion_entrenamiento" class="form-control" rows="4" disabled="disabled" id="txt_descripcion_entrenamiento"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_datos_laborales" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Laborales Personales CAS"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+                </div>
+                <span id="espera_grabacion_laborales"></span>
+
+
+
+            </div>
+
+            <!--- fin de entrenamiento ---->
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<div id="desvinculacion" class="tab-pane fade">
+
+    <!--inicio de datos renuncias-->
+
+    <div class="col-md-5">
+
+        <span class="form-control bg-default">&#9679; Personal :</span>
+        <span id="personal_seleccion_renuncia" class="form-control bg-info"></span>
+
+        <span class="form-control bg-default">Contratos Registrados : </span>
+        <div class="form-group">
+            <select name="slt_contratos" size="5" class="form-control" id="slt_contratos"></select>
+        </div>
+
+
+
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Renuncia"><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Renuncia"><strong> <i class="fa fa-pencil"></i></strong></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Renuncia"><strong> <i class="fa fa-times"></i> </strong></button>
+                        </center>
+                    </div>
+
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-xs-12">
+            <span class="form-control bg-default">Motivos de Renuncia:</span>
+            <div class="form-group">
+                <select name="slc_motivos_renuncia" id="slc_motivos_renuncia" class="form-control">
+                    <option id="0">Seleccione : </option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-xs-6">
+            <span class="form-control bg-default">Fecha de desvinculacion  : </span>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <input name="fecha_ultimo_dia_trabajo" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_ultimo_dia_trabajo" title="Fecha ultimo dia de trabajo" value="<?=date('d-m-Y')?>" readonly="readonly">
+            </div>
+
+        </div>
+
+        <div class="col-xs-12">
+            <span class="form-control bg-default">Observacion :</span>
+            <div class="form-group">
+                <textarea name="txt_observacion_renuncia" rows="3" disabled="disabled" id="txt_observacion_renuncia" class="form-control"></textarea>
+            </div>
+
+        </div>
+
+        <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+
+    </div>
+
+
+    <span id="espera_grabacion_renuncia"></span>
+
+</div>
+
+
+<!--Fin de datos renuncias-->
+
+
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div id="result"></div>

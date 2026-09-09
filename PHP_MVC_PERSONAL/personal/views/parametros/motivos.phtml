@@ -1,0 +1,165 @@
+<?php
+$motivos = json_decode( $this->motivos );
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+
+<div class="container-fluid  pull-left">
+
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>administracion_motivos_cese.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-1">
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="agregar_editar_motivo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar / Editar Motivos"><strong>A</strong></button><br><br><br><br>
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="eliminar_motivo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Motivo"><strong> <i class="fa fa-times"></i> </strong></button>
+        </div>
+        <div class="col-md-8">
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover" id="tabla_motivo">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#EFEBEB"></th>
+                            <th bgcolor="#EFEBEB">Id</th>
+                            <th bgcolor="#EFEBEB">Motivo</th>
+                            <th bgcolor="#EFEBEB">Registro</th>
+                            <th bgcolor="#EFEBEB">Modificacion</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_motivo">
+                        <?php 
+							foreach($motivos as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0"><label class="px-single"><input type="radio" id="<?= $imprimir->idmotivo ?>" name="single-radio" value="" class="px usuarios"><span class="lbl"></span></label>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->idmotivo ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->motivo ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->fecha ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->modificacion ?>
+                            </td>
+                        </tr>
+
+                        <?php endforeach;
+							 
+							?>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div id="modal-agregar_editar_motivo" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-mg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="<?= RUTA_PUBLIC_GRA?>agregar_editar_motivos_de_cese.jpg" width="550" height="72" alt=""/>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-success" role="alert">
+                    <center>
+                        <h5 class="alert-heading">AGREGAR / MODIFICAR MOTIVOS </h5>
+                    </center>
+                </div>
+                <form id="frm_agregar" title="Registro de Agregacion">
+
+                    <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" id="id_tabla_registro">
+                        <tbody>
+                            <tr>
+                                <td colspan="3" align="center" bgcolor="#D4D4D4">
+                                    <span class="badge badge-secondary"><strong>MOTIVOS REGISTRADOS</strong></span>
+                                </td>
+                                <td width="140" valign="top" bgcolor="#D4D4D4"><input name="operacion" type="radio" id="operacion1" form="frm_agregar" value="1">
+                                    <strong>
+                                <label for="nuevo">NUEVO</label></strong>
+                                
+
+                                </td>
+                                <td width="136" valign="top" bgcolor="#D4D4D4">
+                                    <input name="operacion" type="radio" disabled="disabled" id="operacion2" form="frm_agregar" value="2">
+                                    <strong>
+                                <label for="editar">EDITAR</label></strong>
+                                
+
+
+                                </td>
+                                <td width="96" valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="27" valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td width="208" valign="top" bgcolor="#D4D4D4">
+                                    <select name="registrados" size="25" id="registrados" form="frm_agregar">
+                                        <?php foreach($motivos  as $imprimir):?>
+                                        <option value="<?= $imprimir->idmotivo ?>" idmotivo="<?= $imprimir->idmotivo ?>" motivo="<?= $imprimir->motivo ?>" <font size="-2" color="#000000"><strong>
+                                                  <?=$imprimir->motivo ?>    </font></strong>
+                                        
+
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+
+                                </td>
+                                <td width="43" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td colspan="2" align="left" valign="top" bgcolor="#D4D4D4">
+                                    <label class="label">Motivo:</label>
+                                    <br>
+
+                                    <textarea name="motivo" cols="22" rows="10" disabled="disabled" id="motivo" style="background-color:#FCFBA0; border: solid 1px #000000; height: 55px; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px" form="frm_agregar" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"></textarea>
+
+
+
+                                    <label> </label>
+                                </td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <input name="btn-guardar-nuevo-edicion" type="button" disabled="disabled" class="btn btn-primary btn-lg  " id="btn-guardar-nuevo-edicion" form="frm_agregar" title="Pulse aqui para guardar" value="Grabar Motivo">
+                <input name="btn-cerrar-modal" type="button" class="btn btn-primary btn-lg" id="btn-cerrar-modal" form="frm_agregar_horarios" title="Cerrar Modal " onClick="window.location.reload()" value="Cerrar" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>

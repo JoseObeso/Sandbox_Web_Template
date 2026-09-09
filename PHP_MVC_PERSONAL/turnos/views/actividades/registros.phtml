@@ -1,0 +1,234 @@
+<?php
+$listarpersonal = json_decode( $this->listar_personal_sigalen );
+$listarturno = json_decode( $this->listarturno );
+$listaractividades = json_decode( $this->listar_actividades );
+$listardepartamentos = json_decode( $this->listardepartamento );
+
+?>
+
+
+
+
+<style type="text/css">
+    .modal-footer {
+        background-color: #D0D0D0
+    }
+    
+    .centrar-dialogo-modal {
+        margin-top: 8%;
+    }
+    
+    .flotante {
+        display: scroll;
+        position: fixed;
+        bottom: 780px;
+        background-color: #2D4D31;
+        width: 85.5%;
+    }
+    
+    .resaltado {
+        background-color: #FCFBA0;
+        border: solid 1px #000000;
+        height: 20px;
+        width: 130px;
+        font-size: 14px;
+        color: #000000;
+        font-weight: bold;
+        vertical-align: 9px
+    }
+</style>
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>turnos_registro_actividades.jpg" width="961" height="77" alt=""/>';
+</div>
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center>
+                    <strong><h5>Personal Asistencial SIGALEN : Asignacion de Actividades</h5></strong>
+                    <input name="txt_buscar_nombre" type="text" autofocus="autofocus" id="txt_buscar_nombre" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:18px; color: #000000; font-weight: bold; vertical-align:9px; width: 350px;" size="51" maxlength="150">
+                </center>
+            </div>
+            <div class="panel-body">
+                <select name="ver_personal" size="35" id="ver_personal" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 350px;">
+                    <?php foreach($listarpersonal as   $ver): ?>
+                    <option value="<?= $ver->idempleado ?>" idempleado="<?= $ver->idempleado ?>" dni="<?= $ver->dni ?>" apellidos_nombres="<?= $ver->apellidos_nombres ?>" fecha_nacimiento="<?= $ver->FechaNacimiento ?>" sexo="<?= $ver->sexo ?>" Tipo_condicion_trabajo="<?= $ver->Tipo_condicion_trabajo ?>" Tipo_Condicion_empleado="<?= $ver->Tipo_Condicion_empleado ?>" activo="<?= $ver->activo ?>" edad="<?= $ver->edad ?>" telefono="<?= $ver->telefono ?>" usuario="<?= $ver->usuario ?>" <font size="-2" color="#000000"><strong>   <?= $ver->dni ?> - <?= $ver->apellidos_nombres ?></strong>
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span id="cargo"></span>
+            </div>
+            <div class="panel-body">
+                <span id="tipo"></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center><strong><h6>MES &#124;&#124;  AÑO </h6></strong>
+                    <select name="mes" size="1" class="select2-highlighted resaltado" id="mes" title="Seleccion de Mes" ng-model="month">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                    <input name="anio" type="number" class="resaltado" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100'>
+                    <hr>
+                    <input name="btn_crear_horario" type="button" disabled="disabled" class="btn btn-info btn-lg" id="btn_crear_horario" title="Crear Horario " value="Crear Horario">
+                </center>
+
+            </div>
+            <div class="panel-body">
+                <strong><span id="apellidos"></span></strong>
+                <span id="mostrar_espera"></span>
+                <select name="id_programacion" size="31" multiple="MULTIPLE" disabled="disabled" id="id_programacion" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 280px;" title="programacion Mensual Asistencial"></select>
+                <span id="total_horas" class="label"></span>
+
+                <font size="-3">
+                    <table width="280" border="1" align="left" cellspacing="0" id="actividad">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead id="cabecera_actividades">
+                            <tr>
+                                <th width="70" align="right" bgcolor="#E9E9E9" class="" scope="col"> Depart. </th>
+                                <th width="65" align="center" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Servicio</th>
+                                <th width="102" align="left" valign="top" bgcolor="#E9E9E9" class="" scope="col"> Actividad</th>
+                                <th width="61" align="center" bgcolor="#E9E9E9" class="" scope="col"> Fecha</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col"> Turno</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col"> Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mostrar_actividades" border="1">
+                        </tbody>
+
+               
+
+
+                </table> </font>
+                    
+                    <span id="espera_mostrar" style="left:inherit"></span>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Seleccione Departamento : </h3>
+            </div>
+            <div class="panel-body">
+                <select name="seleccion_departamento" size="1" disabled="disabled" id="seleccion_departamento" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 220px; height: 25px">
+                    <option>Seleccione : </option>
+                    <?php foreach($listardepartamentos as $depar):?>
+                    <option value="<?=$depar->id ?>" id="<?=$depar->id ?>" nombre="<?=$depar->nombre ?>" <font size="-2" color="#000000"> <strong>
+                    <?= $depar->nombre ?>
+                   </strong>
+                    
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Servicio: </h3>
+            </div>
+            <div class="panel-body">
+                <select name="seleccion_servicio" size="1" disabled="disabled" id="seleccion_servicio" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 220px; height: 25px">
+                <option>Seleccione : </option>
+                </select>
+               
+            
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Actividad : </h3>
+            </div>
+            <div class="panel-body">
+                <select name="seleccion_actividades" size="1" disabled="disabled" id="seleccion_actividades" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 220px; height: 25px">
+                    <option>Seleccione : </option>
+                    <?php foreach($listaractividades as $acti):?>
+                    <option value="<?=$acti->id ?>" id="<?=$acti->id ?>" nombre="<?=$acti->nombre ?>" abreviatura="<?=$acti->abreviatura ?>" <font size="-2" color="#000000"> <strong>
+                    <?= $acti->nombre ?>
+                   </strong>
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Seleccion de Turnos : </h3>
+            </div>
+            <div class="panel-body">
+                <select name="seleccion_turno" size="1" disabled="disabled" id="seleccion_turno" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 260px; height: 25px">
+                    <option>Seleccione : </option>
+                    <?php foreach($listarturno as $turno):?>
+                    <option value="<?=$turno->codigo ?>" nombre="<?=$turno->nombre ?>" codigo="<?=$turno->codigo ?>" <font size="-2" color="#000000"> <strong>
+                    <?= $turno->nombre ?>
+                   </strong>
+          
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Asignacion de Horas : (Totales por turno)</h3>
+            </div>
+            <div class="panel-body">
+                <input name="numero_horas" id="numero_horas" type="number" disabled="disabled" max="48" min="1" step="1" value="0" style="background-color:#FCFBA0;">
+            </div>
+        </div>
+
+        <input name="btn_Grabar" type="button" disabled="disabled" class="btn btn-info btn-lg" id="btn_Grabar" title="Grabar Actividad" value="-- Grabar Actividad --">
+        </p>
+        <p><span id="mostrar_grabacion_actividad"></span> </p>
+
+
+    </div>
+
+
+
+    <div class="col-md-3">
+
+
+
+
+    </div>

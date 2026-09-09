@@ -1,0 +1,59 @@
+<?php
+$personal = json_decode( $this->listarpersonal_tempus, true );
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+<div class="container-fluid pull-left">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>gestion_administracion_personal_tempus.jpg" class="img-responsive" width="960" height="80" alt=""/>'
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="personal_tempus" width="100%">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#E7E0E0">DNI</th>
+                            <th bgcolor="#E7E0E0">Nombres</th>
+                            <th bgcolor="#E7E0E0">Condicion</th>
+                            <th bgcolor="#E7E0E0">Ingreso</th>
+                            <th bgcolor="#E7E0E0">Cargo</th>
+                            <th bgcolor="#E7E0E0">Tarjeta</th>
+                            <th bgcolor="#E7E0E0">Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mostrar_personal_tempus">
+                        <?php foreach($personal as  $mostrar ): ?>
+                        <tr>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo utf8_encode(trim($mostrar['codigo'])) ?>
+                            </td>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo $mostrar['apellidos_nombres_totales'] ?>
+                            </td>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo $mostrar['condicion'] ?>
+                            </td>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo date( 'd/m/Y', strtotime( trim( $mostrar['ingreso']))) ?>
+                            </td>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo $mostrar['cargo_planilla'] ?>
+                            </td>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo $mostrar['tarjeta_tmp'] ?>
+                            </td>
+                            <td bgcolor="#F8F4BD">
+                                <?php echo $mostrar['estadotb'] ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>

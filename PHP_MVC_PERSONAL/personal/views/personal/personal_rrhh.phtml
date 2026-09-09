@@ -1,0 +1,103 @@
+<?php
+$personal = json_decode( $this->listarpersonal );
+
+?>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid pull-left">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>gestion_administracion_personal_rrhh.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="form control table table-condensed" id="personal_rrhh">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#E3E3E3">ID SIGALEN</th>
+                            <th bgcolor="#E3E3E3">DNI</th>
+                            <th bgcolor="#E3E3E3">Plaza</th>
+                            <th bgcolor="#E3E3E3">Contrato</th>
+                            <th bgcolor="#E3E3E3">Proceso</th>
+                            <th bgcolor="#E3E3E3">Nombres</th>
+                            <th bgcolor="#E3E3E3">RUC</th>
+                            <th bgcolor="#E3E3E3">Cargo</th>
+                            <th bgcolor="#E3E3E3">Grupo Ocupacional</th>
+                            <th bgcolor="#E3E3E3">Especialidad</th>
+                            <th bgcolor="#E3E3E3">Profesion</th>
+                            <th bgcolor="#E3E3E3">Unidad Organica</th>
+                            <th bgcolor="#E3E3E3">Ingreso</th>
+                            <th bgcolor="#E3E3E3">Direccion</th>
+                            <th bgcolor="#E3E3E3">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenido_personal_rrhh" class="table-condensed">
+                        <?php foreach($personal as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->idsigalen ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->dni ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->plaza ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->nro_contrato ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->nro_proceso ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->apellidosnombres ?>
+                            </td>
+
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->ruc ?>
+                            </td>
+
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->cargo ?>
+                            </td>
+
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->grupo_ocupacional ?>
+                            </td>
+
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->especialidad ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->profesional ?>
+                            </td>
+
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->unidad_organica ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->fechaingreso ?>
+                            </td>
+                            <td bgcolor="#FBF5A4">
+                                <?= $imprimir->direccion?>
+                            </td>
+
+                            <td bgcolor="#FBF5A4">
+                                <?=$imprimir->estado?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>

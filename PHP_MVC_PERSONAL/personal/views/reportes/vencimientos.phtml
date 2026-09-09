@@ -1,0 +1,104 @@
+<?php
+
+?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+    .resaltado {
+        background-color: #A1EBB4;
+        border: solid 1px #000000;
+        height: 30px;
+        color: #000000;
+        font-weight: bold;
+        vertical-align: 9px
+    }
+    
+    .color-fondo-columna {
+        background-color: #E7E7E7;
+    }
+    
+    .color-fondo-columna-2 {
+        background-color: #FFFFFF;
+    }
+</style>
+
+
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-6">
+            <span class="form-control bg-info text-center">Reporte de Vencimientos de Contratos</span>
+            <div class="form-group"></div>
+            <div class="col-xs-6">
+                <select name="mes" size="1" class="select2-highlighted form-control resaltado" id="mes" title="Seleccion de Mes" ng-model="month">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+
+            <div class="col-xs-6">
+                <input name="anio" type="number" class="form-control resaltado" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100'>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group"></div>
+        
+        <div class="col-md-10">
+        <table border="1" align="center" cellspacing="0" id="vencimientos">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead class="">
+                <tr>
+                    <th width="150" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; RUC </th>
+                    <th width="145" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; DNI </th>
+                    <th width="600" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Apellidos y Nombres</th>
+                    <th width="150" align="center" bgcolor="#E9E9E9" class="" scope="col"> Condicion Laboral</th>
+                    <th width="100" align="center" bgcolor="#E9E9E9" class="" scope="col"> Nro. Contrato</th>
+                    <th width="100" align="center" bgcolor="#E9E9E9" class="" scope="col"> Ingreso</th>
+                    <th width="100" align="center" bgcolor="#E9E9E9" class="" scope="col"> Termino</th>
+                    <th width="75" align="center" bgcolor="#E9E9E9" class="" scope="col"> Sueldo</th>
+                    <th width="75" align="center" bgcolor="#E9E9E9" class="" scope="col"> Labor</th>
+                    <th width="100" align="center" bgcolor="#E9E9E9" class="" scope="col"> Fin Adenda</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="contenido_vencimientos" border="1"></tbody>
+        </table>
+        <span id="espera_mientras_muestra_vencimientos" style="left:inherit"></span>
+
+
+       </div>
+
+    </div>
+        
+
+
+</div>
+
+
+
+
+<div id="result"></div>

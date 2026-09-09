@@ -1,0 +1,133 @@
+<?php
+$ver_si_tiene_permisos = $this->listarmenuysubmenu;
+?>
+<link href="/rrhh/control/estadistica/views/layout/pixeladmin/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-4">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#egresos">Reporte de Tramas SEEM</a></h4>
+                    </div>
+                    <div id="egresos" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <label class="label bg-info form-control">Seleccione Mes / Año</label>
+                            <div class="col-xs-6">
+                              <select name="mes" size="1"  class="form-control alert-warning" id="mes" title="Seleccion de Mes" ng-model="month">
+                                    <option value="1">ENERO</option>
+                                    <option value="2">FEBRERO</option>
+                                    <option value="3">MARZO</option>
+                                    <option value="4">ABRIL</option>
+                                    <option value="5">MAYO</option>
+                                    <option value="6">JUNIO</option>
+                                    <option value="7">JULIO</option>
+                                    <option value="8">AGOSTO</option>
+                                    <option value="9">SEPTIEMBRE</option>
+                                    <option value="10">OCTUBRE</option>
+                                    <option value="11">NOVIEMBRE</option>
+                                    <option value="12">DICIEMBRE</option>
+                                </select>
+                            </div>
+
+                          <div class="col-xs-6">
+                                <div class="form-group">
+                              <input name="anio" type="number"   class="form-control alert-warning" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100'>
+                                </div>
+                            </div>
+                            <table width="200">
+                              <tr>
+                                <td><label>
+                                  <input type="radio" name="tramas" value="1" id="tramas_0">
+                                  Trama Egresos (SEEM)</label></td>
+                              </tr>
+                              <tr>
+                                <td><label>
+                                  <input type="radio" name="tramas" value="2" id="tramas_1">
+                                  Trama Emergencias (SEEM)</label></td>
+                              </tr>
+                              <tr>
+                                <td><label>
+                                  <input type="radio" name="tramas" value="3" id="tramas_2">
+                                  Consultorios CE</label></td>
+                              </tr>
+                            </table>
+             
+                          <div class="form-group">                            
+                                    <div class="col-xs-12">
+                                      <input name="btn_procesar" type="button" disabled="disabled" class="btn-info btn-lg form-control" id="btn_procesar"   title="Procesar Tramas" value="Procesar Tramas">
+                                    </div>
+                          </div>
+                            
+                            <span id="espera_proceso_tramas"></span>
+                            
+                            
+                         
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#emergencias">Emergencias</a>
+                                        </h4>
+                    
+                    </div>
+                    <div id="emergencias" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#consultorios">Consultorios Externos</a>
+                                        </h4>
+                    
+                    </div>
+                    <div id="consultorios" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+</div>

@@ -1,0 +1,243 @@
+ <?php
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;UPSS - Departamento - Servicios </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container pull-left">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#upss">UPSS</a>
+        </li>
+        <li><a data-toggle="tab" href="#departamento">Departamento</a>
+        </li>
+        <li><a data-toggle="tab" href="#servicio">Servicios</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="upss" class="tab-pane fade in active">
+            <!---------------- Inicio de UPSS----------------------->
+            <div class="col-md-4">
+                <span class="form-control bg-default">UPSS : </span>
+                <select name="slt_upss_registrados" size="10" class="form-control alert-warning" id="slt_upss_registrados"></select>
+
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_upss" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar UPSS"><i class="fa fa-plus"></i></button>
+
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_upss" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar UPSS" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_upss" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja UPSS" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+
+                                </center>
+
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+                <span class="form-control bg-default">Descripcion UPSS:</span>
+                <input name="txt_upss" type="text" disabled="disabled" required="required" class="form-control alert-warning initialism" id="txt_upss" title="Describa UPSS">
+                <div class="form-group"></div>
+                <button class="btn btn-info  btn-lg crear-tooltip form-control" id="bn_grabar_upss" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar UPSS" disabled="disabled">Registrar</button>
+            </div>
+
+
+            <!------------------- Fin de UPSS------------------------->
+
+        </div>
+        <div id="departamento" class="tab-pane fade">
+
+            <!----------------------------- Inicio de Departamento ------------------------------->
+
+             <div class="col-md-4">
+                <span class="form-control bg-default">Departamento : </span>
+                <select name="slt_departamento_registrados" size="10" class="form-control alert-warning" id="slt_departamento_registrados"></select>
+
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_departamento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Departamento"><i class="fa fa-plus"></i></button>
+
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_departamento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Departamento" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_departamento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja Departamento" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+
+                                </center>
+
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+                <span class="form-control bg-default" id="nombre_seleccion">Seleccion de UPSS:</span>
+                 <select name="slt_upss_seleccion" class="form-control alert-warning" id="slt_upss_seleccion"></select>
+                <div class="form-group"></div>
+                 <span class="form-control bg-default">Departamento:</span>
+                <input name="txt_departamento" type="text" disabled="disabled" required="required" class="form-control alert-warning initialism" id="txt_departamento" title="Describa UPSS">
+                 <div class="form-group"></div>
+                 
+                <div class="form-group"></div>
+                <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_departamento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Departamento" disabled="disabled">Registrar</button>
+                 <div class="form-group"></div>
+                 <div class="form-group"></div>
+                 <div class="form-group"></div><div class="form-group"></div>
+                 
+                 
+            </div>
+            
+
+
+
+
+
+            <!------------------------------- Fin de Departamento -------------------------------------->
+
+        </div>
+        <div id="servicio" class="tab-pane fade">
+            <!--------------------------------- Inicio de servicio -------------------------------------------------->
+            <div class="col-md-4">
+                <span class="form-control bg-default">Servicios : </span>
+                <select name="slt_servicios_registrados" size="10" class="form-control alert-warning" id="slt_servicios_registrados"></select>
+
+                <div class="box">
+                    <div class="box-row">
+                        <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_servicios" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Servicios"><i class="fa fa-plus"></i></button>
+
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_servicios" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Servicios" disabled="disabled"><strong> <i class="fa fa-pencil"></i></strong></button>
+
+                                    <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_servicios" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja Servicios" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+
+                                </center>
+
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+                <span class="form-control bg-default" id="nombre_seleccion_servicio">Seleccion de UPSS:</span>
+                 <select name="slt_upss_seleccion_servicio" class="form-control alert-warning" id="slt_upss_seleccion_servicio"></select>
+                <div class="form-group"></div>
+                
+                <div class="form-group"></div>
+                <span class="form-control bg-default" id="departamento_servicio">Seleccion Departamento:</span>
+                 <select name="slt_departamento_seleccion_servicio" class="form-control alert-warning" id="slt_departamento_seleccion_servicio"></select>
+                <div class="form-group"></div>
+                            
+                
+                
+                 <span class="form-control bg-default">Servicio:</span>
+                <input name="txt_servicios" type="text" disabled="disabled" required="required" class="form-control alert-warning initialism" id="txt_servicios" title="Describa Servicios">
+                 <div class="form-group"></div>
+                 
+                <div class="form-group"></div>
+                <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_servicios" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar
+                Servicios" disabled="disabled">Registrar</button>
+                <div class="form-group"></div>
+                <div class="form-group"></div>
+                
+            </div>
+            
+
+            
+
+
+
+            <!--------------------------------------- fin  de servicio ---------------------------------------------------->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="result"></div>

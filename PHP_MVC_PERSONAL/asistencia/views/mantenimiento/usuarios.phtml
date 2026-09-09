@@ -1,0 +1,448 @@
+<?php
+$usuarios = json_decode( $this->listarusuarios );
+$unidades_organicas = json_decode( $this->listar_unidad_organica );
+$modulos = json_decode( $this->todoslosmodulos );
+?>
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+<div class="page-header">
+    <img src="http://www.heves.gob.pe/rrhh/logos/administracion_usuarios.jpg" width="961" height="161" alt=""/>';
+</div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="form-inline" id="frm-buscar">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="nombres">Nombres:</label>
+                                        <input name="nombres" type="text" autofocus="autofocus" class="form-control" id="nombres" placeholder="Apellidos del usuario" size="60" maxlength="60" >
+                                    </div>
+                                    <button type="submit" class="btn btn-primary crear-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <button class="btn btn-primary crear-tooltip" id="recargar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Actualizar los datos" ><i class="fa fa-refresh"></i></button> &nbsp;
+                                
+                                <?php while($imprimir = $this->listarbotones->fetch(PDO::FETCH_OBJ)): ?>
+                                
+                                <button class="btn btn-primary crear-tooltip" id="<?php echo $imprimir->ID_HTML ?>" data-toggle="tooltip" data-placement="bottom"  title="" data-original-title="<?php echo $imprimir->NOMBRE_BOTON ?>"><?php echo $imprimir->ICONO ?>
+                                </button> 
+                                <?php endwhile; ?>
+                                
+                                
+                                
+                                
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <!-- Light table -->
+                    <div class="table-primary">
+                        <div class="table-header">
+                            <div class="table-caption" id="mostrar-cebera-busqueda">
+                                <?php
+                                if ( $usuarios[ 1 ]->estadorespuesta = 1 ):
+                                    $texto = count( $usuarios ) > 1 ? 'usuarios' : 'usuario';
+                                $num_registro = count( $usuarios );
+                                else :
+                                    $texto = 'usuario';
+                                $num_registro = 0;
+                                endif;
+                                ?>
+                                <?= "Resultado: ".$num_registro." ".$texto." encontrados " ?>
+                            </div>
+                            <div class="table-caption" id="mostrar-cebera-busqueda-cargando" style="display: none !important;">
+                                <img src="<?= BASE_URL ?>public/img/loading.gif">&nbsp; Cargando...
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>DNI</th>
+                                    <th>Nombres</th>
+                                    <th>Cargo</th>
+                                    <th>Fecha Expiración</th>
+                                    <th>Sesion</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mostrar-datos-busqueda">
+                                <?php 
+							if($usuarios[0]->estado_respuesta==1):
+							foreach($usuarios as $llave => $imprimir ): ?>
+                                <tr>
+                                    <td><label class="px-single"><input type="radio" id="<?= $imprimir->dni ?>" name="single-radio" value="" class="px usuarios"><span class="lbl"></span></label>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->dni ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->nombres ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->cargo ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->fecha_expiracion ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->sesion ?>
+                                    </td>
+                                    <td>
+                                        <?= $imprimir->estado ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach;
+							else:
+							?>
+                                <tr>
+                                    <td colspan="11">
+                                        <div class="alert alert-danger"><strong></strong>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal-nuevo" class="modal" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-mg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user"></i>&nbsp; Registrar Nuevo Usuario:</h4>
+                </div>
+                <form action="" class="form-horizontal" id="frm-registrar">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mensajes">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-dni">DNI:</label>
+                                    <input name="n-dni" type="text" autofocus="autofocus" class="form-control" id="n-dni" maxlength="8">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-clave">CLAVE:</label>
+                                    <input type="password" name="n-clave" id="n-clave" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-nombres">NOMBRES:</label>
+                                    <input type="text" name="n-nombres" id="n-nombres" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-clave-conf">CONFIRMAR CLAVE:</label>
+                                    <input type="password" name="n-clave-conf" id="n-clave-conf" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-paterno">PATERNO:</label>
+                                    <input type="text" name="n-paterno" id="n-paterno" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-materno">MATERNO:</label>
+                                    <input type="text" name="n-materno" id="n-materno" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-sexo">SEXO:</label>
+                                    <select id="n-sexo" name="n-sexo" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-unidad-organica">UNIDAD ORGANICA:</label>
+
+                                    <select id="n-unidad-organica" name="n-unidad-organica" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <?php foreach($unidades_organicas as $imprimir):?>
+                                        <option value="<?=$imprimir->codigo?>">
+
+                                            <font size="2">
+                                                <?=$imprimir->nombre?>
+                                            </font>
+
+
+
+
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-email">EMAIL:</label>
+                                    <input type="text" name="n-email" id="n-email" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-cargo">CARGO:</label>
+                                    <select id="n-cargo" name="n-cargo" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+                                        <option value="ASISTENCIAL">ASISTENCIAL</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-fecha-expiracion">FECHA EXPIRACION:</label>
+                                    <input type="text" name="n-fecha-expiracion" id="n-fecha-expiracion" class="form-control clsDatePicker" value="<?= date(" d/m/Y ")?>">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="n-estado">ESTADO:</label>
+                                    <select id="n-estado" name="n-estado" class="form-control">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Desactivado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- FIN DE MODAL NUEVO -->
+
+    <!-- MODAL EDITAR -->
+    <div id="modal-editar" class="modal" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-mg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil"></i>&nbsp; Editar Usuario:</h4>
+                </div>
+                <form action="" class="form-horizontal" id="frm-editar">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="mensaje-error-fv">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-dni">DNI:</label>
+                                    <input type="text" name="e-dni" id="e-dni" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-nombres">NOMBRES:</label>
+                                    <input type="text" name="e-nombres" id="e-nombres" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-paterno">PATERNO:</label>
+                                    <input type="text" name="e-paterno" id="e-paterno" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-materno">MATERNO:</label>
+                                    <input type="text" name="e-materno" id="e-materno" class="form-control">
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-sexo">SEXO:</label>
+                                    <select id="e-sexo" name="e-sexo" class="form-control">
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-unidad-organica">UNIDAD ORGANICA:</label>
+                                    <select id="e-unidad-organica" name="e-unidad-organica" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option value="as">Trauma</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-email">EMAIL:</label>
+                                    <input type="text" name="e-email" id="e-email" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-cargo">CARGO:</label>
+                                    <select id="e-cargo" name="e-cargo" class="form-control">
+                                        <option value="">Seleccionar</option>
+                                        <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+                                        <option value="ASISTENCIAL">ASISTENCIAL</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-fecha-expiracion">FECHA EXPIRACION:</label>
+                                    <input type="text" name="e-fecha-expiracion" id="e-fecha-expiracion" class="form-control clsDatePicker">
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label" for="e-estado">ESTADO:</label>
+                                    <select id="e-estado" name="e-estado" class="form-control">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Desactivado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        
+        </div>
+        
+    </div>
+    <!-- /.modal -->
+    <!-- FIN DE MODAL EDITAR -->
+    
+    <!-- MODAL ACTUALIZAR -->
+    <div id="modal_actualizar_modulo" class="modal" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-desktop"></i>&nbsp; Actualizar Modulo:</h4>
+                </div>
+                <form action="" class="form-horizontal" id="frm_actualizar_modulo">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mensajes">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label">Nombre:</label>
+                                    <select class="form-control" name="modulo" id="modulo">
+                                        <option value="">Seleccionar</option>
+                                        <?php foreach($modulos as $modulo):?>
+                                        <option value="<?= $modulo->id_pl_m ?>">
+                                            <?= $modulo->nombre ?>
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn_actualizar_modulo">Guardar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="mensaje-error" class="modal modal-alert modal-danger fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-times-circle" style="font-size:40px;"></i>
+                </div>
+                <div class="modal-title"></div>
+                <div class="modal-body" id="mensaje-error-descripcion"> </div>
+                <div id="mensaje-descripcion"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>

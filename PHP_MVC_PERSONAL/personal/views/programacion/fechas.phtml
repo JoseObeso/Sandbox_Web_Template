@@ -1,0 +1,210 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<strong> &nbsp;Periodos de programacion : </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <span class="form-control bg-default">Tiempo:</span>
+            </div>
+            <div class="col-xs-4">
+                <input name="meses" type="number" class="form-control alert-warning" id="meses" max="12" min="1" title="Seleccion de Mes"  value="1"  >
+            </div>
+            <div class="col-xs-4">
+                <span class="form-control">MESES </span>
+            </div>
+
+
+
+            <div class="form-group"></div>
+
+
+            <div class="col-xs-4">
+                <span class="form-control bg-default">Inicio:</span>
+            </div>
+            <div class="col-xs-7">
+                <input name="txt_inicio_fecha" type="text" class="form-control clsDatePicker" id="txt_inicio_fecha" placeholder="Inicio de Programacion" title="Fecha de programacion del Personal" value="<?=date('d/m/Y', strtotime('now')) ?>" readonly="readonly">
+            </div>
+
+            <div class="col-xs-4">
+                <span class="form-control bg-default">Fin:</span>
+            </div>
+            <div class="col-xs-7">
+                <input name="txt_fecha_fin" type="text" class="form-control" id="txt_fecha_fin" placeholder="Fin de Programacion" title="Fecha de fin programacion del Personal" readonly="readonly">
+
+            </div>
+
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        &nbsp;&nbsp;<strong> &nbsp;Registro de programacion : </strong>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+
+
+            <div class="col-xs-4">
+                <span class="form-control bg-default">Tiempo:</span>
+            </div>
+            <div class="col-xs-7">
+                <input name="dias" type="number" class="form-control alert-warning" id="dias" min="1" max="31"  title="Seleccion de Dias"  value="1">
+
+            </div>
+
+            <div class="col-xs-1">
+                <span>DIAS </span>
+            </div>
+
+
+
+
+            <div class="form-group"></div>
+
+
+            <div class="col-xs-4">
+                <span class="form-control bg-default">Inicio:</span>
+            </div>
+            <div class="col-xs-7">
+                <input name="txt_inicio_registro" type="text" class="form-control clsDatePicker" id="txt_inicio_registro" placeholder="Inicio de Registro" title="Fecha de registro" value="<?=date('d/m/Y', strtotime('now')) ?>" readonly="readonly">
+            </div>
+
+
+            <div class="form-group"></div>
+
+            <div class="col-xs-4">
+                <span class="form-control bg-default">Fin:</span>
+            </div>
+            <div class="col-xs-7">
+                <input name="txt_fin_registro" type="text" class="form-control" id="txt_fin_registro" placeholder="Fin de Programacion" title="Fecha de fin programacion" readonly="readonly">
+
+            </div>
+
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+
+            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_grabar_fechas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar fechas" disabled="disabled"><strong><span class="fa fa-floppy-o"></span></strong></button>
+
+
+        </div>
+        
+        <div class="col-md-1"></div>
+
+
+
+
+
+
+        <div class="col-md-6">
+
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<strong> &nbsp;Periodos Registrados : </strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <span class="form-control bg-default">Periodos de Programacion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Registro de programacion</span>
+            
+            <span class="form-control bg-default">Aper.&nbsp;&nbsp;Inicio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meses&nbsp;|&nbsp;&nbsp;&nbsp; Inicio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dias&nbsp;</span>
+            
+
+            <select name="slt_periodos_registrados" size="20" id="slt_periodos_registrados" class="form-control alert-warning" disabled="disabled"></select>
+             <div class="form-group"></div>
+             <center>
+                 <button class="btn btn-info  btn-lg crear-tooltip " id="btn_aperturar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Aperturar fechas registrados..." disabled="disabled"><strong>Aperturar</strong></button>
+                
+                 <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_registrados" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar fechas registrados..." disabled="disabled"><strong><i class="fa fa-times"></i></strong></button>
+                </center>
+
+            
+            
+            
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div id="result"></div>

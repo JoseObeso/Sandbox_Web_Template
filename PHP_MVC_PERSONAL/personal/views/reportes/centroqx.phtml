@@ -1,0 +1,129 @@
+<?php
+
+?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>reportes_centroqx.jpg" class="img-responsive" width="960" height="80" alt=""/>
+</div>
+
+<div class="container-fluid  pull-left">
+    <div class="row">
+
+    </div>
+
+</div>
+</div>
+
+
+
+<div class="container-fluid  pull-left">
+
+    <div class="row">
+        <div class="col-md-2">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center><strong><h6>MES &#124;&#124;  AÑO </h6></strong>
+                    </center>
+                </div>
+                <div class="panel-body">
+                    <input name="mes" type="number" id="mes" max="12" min="1" title="Seleccion de Mes" onkeypress='return event.charCode >= 1 && event.charCode <= 12' class="form-control">
+                    <input name="anio" type="number" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100' class="form-control">
+
+
+                </div>
+                <div class="panel-footer">
+                    <span id="nombre_mes" class="form-control"></span>
+                </div>
+            </div>
+
+            <span id="total_registros"></span>
+
+            <table width="90%" border="1" cellspacing="0" id="reporte_qx_cabecera_operativos" class="table table-bordered">
+                <colgroup>
+                    <col>
+                    <col>
+                </colgroup>
+                <thead class="">
+                    <tr>
+                        <th width="96" align="center" bgcolor="#E9E9E9" class="" scope="col">Condicion </th>
+                        <th width="80" align="center" bgcolor="#E9E9E9" class="" scope="col">Total </th>
+                    </tr>
+                </thead>
+                <tbody id="reporte_qx_operativos" border="1"></tbody>
+            </table>
+            
+            <span id="total_cirugia_minutos" style = "text-align:center" ></span>
+            
+            
+            
+            
+        </div>
+
+
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <font size="-2">
+                    <table width="90%" border="1" cellspacing="0" id="reporte_qx_cabecera" class="table table-bordered">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+
+                        <thead class="">
+                            <tr>
+                                <th width="96" align="center" bgcolor="#E9E9E9" class="" scope="col">Registro </th>
+                                <th width="80" align="center" bgcolor="#E9E9E9" class="" scope="col">Paciente </th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Medico</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Colegiatura</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">RNE</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Fecha Llego CQx</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Ingreso Sala </th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Salida Sala</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Diferencia Sala </th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Inicio Anestecia </th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Salida Anest.</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Diferencia Anest.</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Inicio Cirugia </th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Salida Cirugia</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Diferencia Cirugia</th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Cirugia </th>
+                                <th width="50" align="center" bgcolor="#E9E9E9" class="" scope="col">Estado </th>
+                            </tr>
+                        </thead>
+                        <tbody id="reporte_qx" border="1"></tbody>
+                    </table>
+                    <center><span id="espera_reporte"></span>
+                    </center>
+                </font>
+
+            </div>
+
+
+        </div>
+
+        <!--
+        --- Registro, Paciente, Medico, Colegiatura, RNE, Fecha llegada, Ingreso Sala, Salida, diferencia, Anestecia Inicio, Salida,, diferencia, Inicio Cirugia, Salida, Diferencia, anestecia, cirugia, estado
+        
+-->
+
+
+    </div>
+
+
+</div>
+
+
+<div id="result"></div>

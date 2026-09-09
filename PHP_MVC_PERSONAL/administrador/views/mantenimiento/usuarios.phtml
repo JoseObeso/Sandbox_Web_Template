@@ -1,0 +1,213 @@
+<?php
+$listar_usuarios_web = json_decode( $this->listarusuarios_web );
+$listar_usuarios_reporte = json_decode( $this->listarusuarios_reporte );
+$unidades_organicas = json_decode( $this->listar_unidad_organica );
+$listar_modulos_disponibles = json_decode( $this->todoslosmodulos );
+
+?>
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+<script type="text/javascript" src="<?=RUTA_PUBLIC_JS?>/validaciones.js"></script>
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <label for="permisos" class="form-control label label-primary"> -- Usuarios Registrados : </label>
+        <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" size="35" class="form-control alert-warning">
+        <select name="slc_usuarios" size="30" id="slc_usuarios" class="form-control">
+            <?php foreach($listar_usuarios_web  as   $ver): ?>
+            <option value="<?=$ver->dni ?>" dni="<?=$ver->dni ?>" usu_paterno="<?=$ver->usu_paterno ?>" usu_materno="<?=$ver->usu_materno ?>" usu_nombre="<?=$ver->usu_nombre ?>" sexo="<?=$ver->sexo ?>" cargo="<?=$ver->cargo ?>" email="<?=$ver->email ?>" unidad="<?=$ver->unidad_organica ?>" descripcion="<?=$ver->descripcion ?>" estado="<?=$ver->estado ?>" <font size="-2" color="#000000"><strong><?= $ver->nombres ?></font></option>
+                        <?php endforeach;?>
+            </select>
+         <span id="mostrar_espera"></span>
+     </div>
+ 
+
+
+ <div class="col-md-1">
+      <label class="form-control label label-primary"> Operaciones : </label>
+                            <div class="box">
+                                <div class="box-row">
+                                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                        <div class="form-group"></div>
+                                        <div class="form-group">
+                                            <center>
+                                                 <button class="btn btn-info   btn-lg crear-tooltip" id="nuevo_registro" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nuevo Registro Usuario"><i class="fa fa-user"></i></button><br><br>
+                <button class="btn btn-info  btn-lg crear-tooltip" id="modificar_registro" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Usuario"><i class="fa fa-pencil"></i></button><br><br>
+                <button class="btn btn-info  btn-lg crear-tooltip" id="eliminar_registro" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Usuario"><i class="fa fa-times"></i></button><br><br>
+                <button class="btn btn-info  btn-lg crear-tooltip" id="reset_clave" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Resetear Clave, Restaura a: 1234 ">R</button>
+                                            </center>
+                                        </div>
+                                        <div class="form-group"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+    <div class="col-md-2">
+        <label for="permisos" class="form-control label label-primary"> -- Registro  : </label>  <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+                <strong>DNI:</strong>
+                <input name="txt_dni" type="text" disabled="disabled" id="txt_dni" size="8" maxlength="8" class="form-control alert-warning">
+                <span id="dni_incorrecto"></span>
+        
+      <strong>PATERNO :</strong>
+                <input name="txt_paterno" type="text" disabled="disabled" id="txt_paterno" class="form-control initialism alert-warning">
+                <strong>MATERNO :</strong>
+                <input name="txt_materno" type="text" disabled="disabled" id="txt_materno" class="form-control initialism alert-warning">
+                <strong>NOMBRES :</strong>
+                <input name="txt_nombres" type="text" disabled="disabled" id="txt_nombres" class="form-control initialism alert-warning">
+                <strong>Correo : </strong>
+                <input name="txt_correo" type="text" disabled="disabled" id="txt_correo" class="form-control alert-warning" value="  @heves.gob.pe">
+                <strong>Sexo : </strong>
+        
+        
+      <select name="slt_sexo" disabled="disabled" id="slt_sexo" class="form-control alert-warning">
+                    <option value="0" sexo='0'>Seleccione</option>
+                    <option value="1" sexo='M'>MASCULINO</option>
+                    <option value="2" sexo='F'>FEMENINO</option>
+                </select>
+        
+               <!-- <table width="200">
+                  <tr>
+                    <td><label>
+                      <input name="sexo" type="radio" disabled="disabled" id="sexo_0" value="M">
+                      MASCULINO</label></td>
+                  </tr>
+                  <tr>
+                    <td><label>
+                      <input name="sexo" type="radio" disabled="disabled" id="sexo_1" value="F">
+                      FEMENINO</label></td>
+                  </tr>
+                </table>
+        -->
+        
+        
+        
+        
+        
+<strong>Expira : </strong>
+                <input name="fecha_expiracion" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_expiracion" title="Fecha de expiracion" value="<?php $fecha = date('Y-m-j'); $nuevafecha = strtotime ( '+12 month' , strtotime ( $fecha ) ) ;$nuevafecha = date ( 'd/m/Y' , $nuevafecha ); echo $nuevafecha; ?>" readonly="readonly">
+                <strong>Cargo : </strong>
+                <select name="slt_cargo" disabled="disabled" id="slt_cargo" class="form-control">
+                    <option value="0" cargo='0'>Seleccione</option>
+                    <option value="1" cargo='ADMINISTRATIVO'>ADMINISTRATIVO</option>
+                    <option value="2" cargo='ASISTENCIAL'>ASISTENCIAL</option>
+                </select>
+                <strong>Unidad : </strong><br>
+                <span id="codigo_unidad"></span><br> <span id="unidad_registrada"></span>
+                <select name="slt_unidad" disabled="disabled" id="slt_unidad">
+                    <?php foreach($unidades_organicas as $imprimir):?>
+                    <option value="<?=$imprimir->codigo?>" codigo="<?=$imprimir->codigo?>">
+                        <font size="2">
+                            <?=$imprimir->nombre?>
+                        </font>
+                    </option>
+                    <?php endforeach;?>
+                </select>
+                <strong>Estado : </strong>
+                <select name="slt_estado" disabled="disabled" id="slt_estado" class="form-control">
+                    <option value="0" estado='0'>Seleccione</option>
+                    <option value="1" estado='1'>ACTIVO</option>
+                    <option value="2" estado='2'>DADO DE BAJA</option>
+                </select>
+                <br>
+                <button class="btn btn-info  btn-lg crear-tooltip pull-center" id="grabar_registro" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><i class="fa fa-save"></i></button>
+
+    </div>
+
+
+
+    <div class="col-md-2">
+        <label for="permisos" class="form-control label label-primary"> -- Modulos que accesa : </label>
+        <span id="mostrar_espera"></span>
+        <select name="slt_modulos_permisos" size="15" disabled="disabled" class="form-control" id="slt_modulos_permisos" title="Modulos Permitidos..."></select><br>
+        <button class="btn btn-info crear-tooltip " id="btn_agregar_nuevo_modulo" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="Agregar Nuevo Modulo" data-original-title="Agregar Nuevo Modulo"><i class="fa fa-chevron-circle-right"></i>&nbsp;Agregar </button>
+
+        <select name="slt_modulos_disponibles" size="1" disabled="disabled" id="slt_modulos_disponibles" class="form-control">
+            <option>Seleccione: </option>
+            <?php foreach($listar_modulos_disponibles as   $ver): ?>
+            <option value="<?=$ver->id_pl_m ?>" id="<?=$ver->id_pl_m ?>" nombre="<?=$ver->nombre ?>" descripcion="<?=$ver->descripcion ?>" <font size="-2" color="#000000"><strong><?= $ver->nombre ?></font></option>
+                            <?php endforeach;?>
+         </select>
+         <hr>
+         <button class="btn btn-info   crear-tooltip pull-left" id="btn_desactivar_modulo" disabled="disabled" data-toggle="tooltip" data-placement="bottom" title="Desactivar Modulo" data-original-title="Desactivar Modulo"><i class="fa fa-angle-double-down"></i>&nbsp;Desactivar</button>
+        <hr>
+        <br><span id="mostrar_espera_grabacion"></span>
+
+    </div>
+  
+
+    <div class="col-md-2 ">
+         <label for="menus" class="form-control label label-primary"> -- Menus Permitidos : </label>
+            <span id="mostrar_espera"></span>
+            <select name="slt_menus_permitidos" size="15" disabled="disabled" id="slt_menus_permitidos" class="form-control"> </select>
+
+            <table width="200">
+                <tr>
+                    <td bgcolor="#D4D0D0"><label>
+                          <input name="menu_activar" type="radio" disabled="disabled" id="menu_activar_0" value="1">
+                          ACTIVAR</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#D4D0D0"><label>
+                          <input name="menu_activar" type="radio" disabled="disabled" id="menu_activar_1" value="0">
+                          DESACTIVAR</label>
+                    </td>
+                </tr>
+            </table>
+
+            <hr>
+            <br><span id="mostrar_espera_grabacion_menu"></span>
+        
+       
+    </div>
+
+   <div class="col-md-2">
+  
+      <label for="sub_menus" class="form-control label label-primary"> -- SUB Menus Permitidos : </label>
+            <span id="mostrar_espera"></span>
+            <select name="slt_sub_menus_permitidos" size="15" disabled="disabled" id="slt_sub_menus_permitidos" class="form-control">    </select>
+            <table width="200">
+                <tr>
+                    <td bgcolor="#D4D0D0"><label>
+                      <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_0" value="1">
+                      Activar</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#D4D0D0"><label>
+                      <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_1" value="0">
+                      Desactivar</label>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#D4D0D0"><label>
+                      <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_2" value="2">
+                      Activar Todos</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td bgcolor="#D4D0D0"><label>
+                      <input name="activar_sub_menu" type="radio" disabled="disabled" id="activar_sub_menu_3" value="3">
+                      Desactivar Todos</label>
+                    </td>
+                </tr>
+                
+            </table>
+            <hr> <br><span id="mostrar_espera_grabacion_sub_menu"></span>
+
+   </div>
+
+  
+
+</div>

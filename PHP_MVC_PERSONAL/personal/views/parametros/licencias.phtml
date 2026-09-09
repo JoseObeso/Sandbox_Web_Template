@@ -1,0 +1,159 @@
+<?php
+
+$licencias = json_decode( $this->licencias );
+
+?>
+
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+<div class="container-fluid  pull-left">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>administracion_licencias.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="agregar_editar_licencias" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar / Editar Licencias"><strong>L</strong></button><br><br><br><br>
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="anular_licencia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Licencias"><strong> <i class="fa fa-times"></i> </strong></button>
+        </div>
+
+        <div class="col-md-10">
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover" id="tabla_licencias">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#DDDBDB"></th>
+                            <th bgcolor="#DDDBDB">Licencia</th>
+                            <th bgcolor="#DDDBDB">Procede Descuento</th>
+                            <th bgcolor="#DDDBDB">Registro</th>
+                            <th bgcolor="#DDDBDB">Modificacion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_licencia">
+                        <?php 
+							foreach($licencias as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0"><label class="px-single"><input type="radio" id="<?= $imprimir->IDTIPOLICENCIA ?>" name="single-radio" value="" class="px usuarios"><span class="lbl"></span></label>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->NOMBRE ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->tipo_descuento?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->registro ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->modificacion ?>
+                            </td>
+
+
+
+                        </tr>
+                        <?php endforeach;	?>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div id="modal-agregar-licencias" class="modal fade" role="dialog">
+
+        <div class="modal-dialog modal-mg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="<?= RUTA_PUBLIC_GRA?>agregar_licencias.jpg" width="550" height="72" alt=""/>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-success" role="alert">
+                        <center>
+                            <h5 class="alert-heading">Agregar / Modificar Licencias </h5>
+                        </center>
+                    </div>
+                    <form id="frm_agregar_licencias" title="Registro de Agregacion de Licencias ">
+
+                        <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" id="id_tabla_registro">
+                            <tbody>
+                                <tr>
+                                    <td colspan="3" align="center" bgcolor="#D4D4D4">
+                                        <span class="badge badge-secondary"><strong>LICENCIAS REGISTRADAS</strong></span>
+                                    </td>
+                                    <td width="140" valign="top" bgcolor="#D4D4D4"><input name="operacion" type="radio" id="operacion1"   value="1">
+                                        <strong>
+                                <label for="nuevo_horario">NUEVO</label></strong>
+                                    </td>
+                                    <td width="136" valign="top" bgcolor="#D4D4D4">
+
+                                        <input name="operacion" type="radio" disabled="disabled" id="operacion2"   value="2">
+                                        <strong>
+                                <label for="editar_horario">EDITAR</label></strong>
+                                    </td>
+                                    <td width="96" valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="27" valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td width="208" valign="top" bgcolor="#D4D4D4">
+                                        <select name="licencia_registrados" size="25" id="licencia_registrados"  >
+                                            <?php foreach($licencias  as $imprimir):?>
+                                            <option value="<?=$imprimir->IDTIPOLICENCIA ?>" id_tipo_licencia="<?=$imprimir->IDTIPOLICENCIA ?>" nombre_licencia="<?=$imprimir->NOMBRE ?>" procede_descuento="<?=$imprimir->PROCEDE_DESCUENTO  ?>" <font size="-2" color="#000000"><strong>
+                                                 <?=$imprimir->NOMBRE ?> - <?=$imprimir->PROCEDE_DESCUENTO ?> </font></strong>
+                                            </option>
+                                            <?php endforeach;?>
+                                        </select>
+
+                                    </td>
+                                    <td width="43" bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td colspan="2" align="left" valign="top" bgcolor="#D4D4D4">
+                                        <label for="Codigo_li" class="label">Descripcion de la Licencia:</label><br>
+
+                                        <textarea name="nombre_licencia" cols="22" rows="7" disabled="disabled" id="nombre_licencia" style="background-color:#FCFBA0; border: solid 1px #000000; height: 55px; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px" form="frm_agregar_licencias" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"></textarea>
+
+                                        <br>
+
+                                        <label for="ingreso" class="label">Procede descuento<br> (1) Si Procede <br> (0) - No Procede: </label><br>
+
+
+
+                                        <input name="procede_descuento" type="text" disabled="disabled" id="procede_descuento" form="frm_agregar_licencias" style="background-color:#FCFBA0; border: solid 1px #000000; height: 35px; font-size:20px; color: #000000; font-weight: bold; vertical-align:9px" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" size="3" maxlength="1"><br>
+
+
+
+                                    </td>
+                                    <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                    <td valign="top" bgcolor="#D4D4D4">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <input name="btn-guardar-nuevo-edicion-licencia" type="button" disabled="disabled" class="btn btn-primary btn-lg  " id="btn-guardar-nuevo-edicion-licencia" form="frm_agregar_licencias" title="Pulse aqui para guardar" value="Grabar Licencia">
+                    <input name="btn-cerrar-modal" type="button" class="btn btn-primary btn-lg" id="btn-cerrar-modal" form="frm_agregar_horarios" title="Cerrar Modal " onClick="window.location.reload()" value="Cerrar" data-dismiss="modal">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

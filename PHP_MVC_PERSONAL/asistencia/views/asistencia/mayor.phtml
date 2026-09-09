@@ -1,0 +1,167 @@
+<?php
+
+$frecuencia_marcaciones = json_decode( $this->ver_mayor_frecuencia_marcaciones );
+$ver_ultima_marcacion = json_decode( $this->ver_ultima_marcacion );
+
+
+
+?>
+<style type="text/css">
+    .resaltado {
+        background-color: #A1EBB4;
+        border: solid 1px #000000;
+        height: 20px;
+        width: 170px;
+        font-size: 14px;
+        color: #000000;
+        font-weight: bold;
+        vertical-align: 9px
+    }
+    
+    .color-fondo-columna {
+        background-color: #E7E7E7;
+    }
+</style>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>asistencia_mayor_cantidad_marcaciones.jpg" width="960" height="80" alt=""/>';
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <p class="bg-success">
+            <strong>---  Ultima Descarga del Relog :
+            <?php foreach($ver_ultima_marcacion as $ver_ultimo):?>
+            <?= $ver_ultimo->fecha_ultimo ?>
+            <?php endforeach;?></strong>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <form id="frm_ver_marcaciones">
+        <div class="col-md-2"><label for="label">MES:</label><br>
+            <select name="mes" size="1" class="select2-highlighted resaltado" id="mes" form="frm_ver_marcaciones" title="Seleccion de Mes" ng-model="month">
+                <option value="1">ENERO</option>
+                <option value="2">FEBRERO</option>
+                <option value="3">MARZO</option>
+                <option value="4">ABRIL</option>
+                <option value="5">MAYO</option>
+                <option value="6">JUNIO</option>
+                <option value="7">JULIO</option>
+                <option value="8">AGOSTO</option>
+                <option value="9">SEPTIEMBRE</option>
+                <option value="10">OCTUBRE</option>
+                <option value="11">NOVIEMBRE</option>
+                <option value="12">DICIEMBRE</option>
+            </select>
+            </td>
+        </div>
+        <div class="col-md-2"><label for="label">AÑO:</label><br>
+            <input name="anio" type="number" class="resaltado" id="anio" form="frm_ver_marcaciones" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100'>
+        </div>
+    </form>
+</div>
+
+
+<div class="row">
+    <hr size="100%">
+    <div class="col-md-2 color-fondo-columna  ">
+        <center><span class="label label-default"> FRECUENCIA DE MARCACIONES </span>
+            <hr>
+            <span class="label label-info"> --- D N I   -------  FECHA ----- MARCACIONES</span>
+            <span id="espera_de_frecuencia"></span>
+            <select name="slc_mayor_marcaciones" size="35" id="slc_mayor_marcaciones" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 220px;" form="frm_ver_marcaciones">
+                <?php foreach($frecuencia_marcaciones as   $ver): ?>
+                <option value="<?=$ver->dni ?>" dni="<?=$ver->dni ?>" fecha="<?=$ver->fecha ?>" <font size="-2" color="#000000"><strong><?= $ver->dni ?>  -- <?= $ver->fecha ?> -- <?= $ver->marcaciones ?></font></option>
+                        <?php endforeach;?>
+     
+          </select>
+    </center>
+    </div>
+
+
+<div class="col-md-2" ><center><span class="label label-default"> DETALLE DE MARCACIONES</span></center>
+     <center>
+    <hr><p class="bg-warning"><span id="nombre_personal"></span></p>
+        <p class="bg-warning"><span id="condicion"></span></p>
+    <p class="bg-warning"><span id="cargo"></span></p>
+        <span class="label label-info"> ---FECHA ---  MARCACIONES</span>
+        <select name="slc_detalle" size="20" id="slc_detalle" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 140px;" form="frm_ver_marcaciones">
+          </select>
+    
+    
+    <form id = "frm_seleccion" >
+       <input name="btn_seleccion" type="button" disabled="disabled" class="btn-primary btn-lg" id="btn_seleccion" form="frm_seleccion" title="En el cuadro anterior seleccione la fecha y marcaciones para activar este boton" value="Seleccion de Personal">
+        <center><span class="label label-default"> ::: PERSONAL SELECCIONADO REGISTRADO ::: </span></center>
+        <span id="espera_personal_seleccion"></span>
+        
+          <select name="ver_seleccion" size="13" id="ver_seleccion" style="background-color:#C8F9D6; border: solid 1px #000000; font-size:9px; color: #000000; font-weight: bold; vertical-align:9px; width: 300px;" form="frm_seleccion">
+          </select>
+        
+    <input name="btn_eliminar_seleccion" type="button" disabled="disabled" class="btn btn-info" id="btn_eliminar_seleccion" form="frm_seleccion" title="Seleccione personal para eliminar..." value="Eliminar">
+        
+         <input name="btn_imprimir_seleccion" type="button" class="btn btn-info" id="btn_imprimir_seleccion" form="frm_seleccion" title="Impresion de personal seleccionado..." value="Imprimir">
+        
+    
+    </form>
+    
+    
+    
+    
+    </center>
+  </div>
+
+
+    <div class="col-md-2 color-fondo-columna"><center>
+
+        <span class="label label-default"><CENTER> DETALLE DE MARCACIONES DIARIAS </CENTER></span>
+    <hr>
+        <span class="label label-info">--&nbsp; FECHA &nbsp;&nbsp;&nbsp;--- &nbsp;&nbsp;&nbsp;DIA &nbsp;-- &nbsp; &nbsp;&nbsp;&nbsp;HORA -- &nbsp; &nbsp;TERMINAL</span>
+        <select name="slc_detalle_dia" size="20" id="slc_detalle_dia" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 260px;" form="frm_ver_marcaciones">
+          </select>
+    </center>
+
+</div>
+
+
+
+    <div class="col-md-2"><center> 
+        <span class="label label-default">  LISTADO DE MARCACIONES EN RELOG  </span>  </center>
+    <hr>
+         
+             <table width="300" border="1" align="center" cellspacing="0" id="marcacion_relog">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead class="">
+                            <tr>
+                                <th width="96" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Fecha </th>
+                                <th width="120" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Dia </th>
+                                <th width="65" align="center" bgcolor="#E9E9E9" class="" scope="col">&nbsp; Hora</th>
+                                <th width="75" align="center" bgcolor="#E9E9E9" class="" scope="col"> Relog</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="primer_formato_marcacion" border="1">
+                            
+                        </tbody>
+                    </table><span id="espera_marcaciones_relog"></span>
+        
+        
+        
+        
+
+    </div>
+        
+</div>

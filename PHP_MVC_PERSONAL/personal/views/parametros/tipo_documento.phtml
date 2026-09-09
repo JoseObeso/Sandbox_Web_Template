@@ -1,0 +1,77 @@
+<?php
+
+$listar_tipo_documento = json_decode( $this->listar_tipo_documentos );
+
+?>
+
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid  pull-left">
+
+
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>personal_tipo_documento.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4 bg-color-gris">
+            <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+            <div class="table-responsive">
+                <select name="slc_tipo_documentos" size="20" id="slc_tipo_documentos" class="form-control">
+                    <?php foreach($listar_tipo_documento as   $ver): ?>
+                    <option value="<?=$ver->codigo ?>" codigo="<?=$ver->codigo ?>" descripcion="<?=$ver->descripcion ?>" <font size="-2" color="#000000"><strong> <?=$ver->codigo ?> - <?= $ver->descripcion ?></font></option>
+                    <?php endforeach;?>
+            </select>
+        <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+       
+        </div>
+    </div>
+
+    <div class="col-md-1">
+        <div class="form-group">
+        <button class="btn btn-info  btn-lg crear-tooltip" style="position:fixed;" id="agregar_tipo_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Tipo de Documento"><i class="fa fa-plus"></i></button>
+       </div>
+          <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+        <div class="form-group">
+        <button class="btn btn-info  btn-lg crear-tooltip" style="position:fixed;" id="modificar_tipo_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Tipo de Documento"><strong> <i class="fa fa-pencil"></i> </strong>
+                        </button>
+            </div>
+          <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <div class="form-group">
+                <button class="btn btn-info  btn-lg crear-tooltip" style="position:fixed;" id="eliminar_tipo_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Tipo de Documento"><strong> <i class="fa fa-times"></i> </strong></button>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Registro :</div>
+                <div class="panel-body">
+                    <strong>Codigo :</strong>
+                    <input name="txt_codigo" type="text" disabled="disabled" id="txt_codigo" class="form-control">
+
+                    <strong>Descripcion :</strong><input name="txt_descripcion" id="txt_descripcion" type="text" class="form-control  initialism">
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="grabar_documento" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Tipo de Documento"><strong> <i class="fa fa-save"></i></strong></button>
+                    <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+
+                </div>
+            </div>
+
+
+            <span id="espera_grabacion"></span>
+
+
+
+        </div>
+
+    </div>
+
+</div>

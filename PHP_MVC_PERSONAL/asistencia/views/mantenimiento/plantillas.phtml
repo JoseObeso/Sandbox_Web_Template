@@ -1,0 +1,544 @@
+<?php
+
+	$plantillas_modulos = json_decode($this->listar_plantilla_modulos);
+	$plantillas_menus = json_decode($this->listar_plantilla_menus);
+	$plantillas_submenus = json_decode($this->listar_plantilla_submenus);
+	$plantillas_botones = json_decode($this->listar_plantilla_botones);
+?>
+<div class="page-header">
+  <img src="http://www.heves.gob.pe/rrhh/logos/administracion_plantillas.jpg" width="961" height="161" alt=""/>
+    <br><br>
+    <br>
+    
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-success widget-support-tickets srcollpanel">
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-desktop"></i>Modulos</span>
+				<div class="panel-heading-controls">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Opciónes&nbsp;<i class="fa fa-caret-down"></i></button>
+						<ul class="dropdown-menu">
+							<li><a class="puntero" id="nuevo_modulo">Nuevo</a></li>
+							<li><a class="puntero" id="editar_modulo">Editar</a></li>
+							<li><a class="puntero" id="eliminar_modulo">Eliminar</a></li>
+						</ul>
+					</div>
+				</div>
+			</div> 
+			<div class="panel-body tab-content-padding">
+				
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_modulos">							
+					<?php foreach($plantillas_modulos as $modulo):?>
+					<div class="ticket puntero">
+						<?php if($modulo->estado==1):?>
+						<span class="label label-success ticket-label">Activo</span>
+						<?php else:?>
+						<span class="label label-danger ticket-label">Desactivado</span>
+						<?php endif;?>
+						<input type="hidden" value="<?= $modulo->id_pl_m ?>">
+						<a title="" class="ticket-title"><?= $modulo->nombre ?></a>
+						
+						
+						</span>
+					</div> 
+					<?php endforeach;?>
+				</div>
+			</div> 
+		</div> 
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-success widget-support-tickets srcollpanel">
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-bars"></i>Menus</span>
+				<div class="panel-heading-controls">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Opciónes&nbsp;<i class="fa fa-caret-down"></i></button>
+						<ul class="dropdown-menu">
+							<li><a class="puntero" id="nuevo_menu">Nuevo</a></li>
+							<li><a class="puntero" id="editar_menu">Editar</a></li>
+							<li><a class="puntero" id="eliminar_menu">Eliminar</a></li>
+						</ul>
+					</div>
+				</div>
+			</div> 
+			<div class="panel-body tab-content-padding">
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_menu">
+					<div class='alert'>Debe de seleccionar un "Modulo".</div>
+				</div>
+			</div> 
+		</div> 
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-success widget-support-tickets srcollpanel" >
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-bars"></i>Sub Menus</span>
+				<div class="panel-heading-controls">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Opciónes&nbsp;<i class="fa fa-caret-down"></i></button>
+						<ul class="dropdown-menu">
+							<li><a class="puntero" id="nuevo_submenu">Nuevo</a></li>
+							<li><a class="puntero" id="editar_submenu">Editar</a></li>
+							<li><a class="puntero" id="eliminar_submenu">Eliminar</a></li>
+						</ul>
+					</div>
+				</div>
+			</div> <!-- / .panel-heading -->
+			<div class="panel-body tab-content-padding">
+				<!-- Panel padding, without vertical padding -->
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_submenu">							
+					<div class='alert'>Debe de seleccionar un "Menu".</div>
+				</div>
+			</div> <!-- / .panel-body -->
+		</div> <!-- / .panel -->
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-success widget-support-tickets srcollpanel">
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-check-square-o"></i>Botones</span>
+				<div class="panel-heading-controls">
+					 <div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Opciónes&nbsp;<i class="fa fa-caret-down"></i></button>
+						<ul class="dropdown-menu">
+							<li><a class="puntero" id="nuevo_boton">Nuevo</a></li>
+							
+						</ul>
+					</div> 
+				</div>
+			</div> 
+			<div class="panel-body tab-content-padding" >
+				
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_botones">							
+					<div class='alert'>Debe de seleccionar un "Sub Menu".</div>
+				</div>
+			</div> 
+		</div> 
+	</div>
+</div>
+
+
+<!-- MODALES DEL SISTEMA -->
+
+<!-- MODAL NUEVO MODULO -->
+
+<div id="modal_nuevo_modulo" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-desktop"></i>&nbsp; Nuevo Modulo:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_nuevo_modulo">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" name="n_nombre_modulo" id="n_nombre_modulo" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">URL(de la forma : http://wwww.heves.gob.pe/rrhh/nuevo_modulo) : </label>
+							<input class="form-control" type="text" name="n_url_modulo" id="n_url_modulo" value = "http://localhost/">
+						</div>
+            		</div>
+                    
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Imagen o Logotipo del Modulo (nombre del Archivo):</label>
+							<input class="form-control" type="text" name="n_imagen_modulo" id="n_imagen_modulo" value = " .jpg">
+						</div>
+            		</div>
+
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Plantilla:</label>
+							<select class="form-control" name="n_plantilla_modulo" id="n_plantilla_modulo">
+								<option value="">Seleccionar</option>
+								<option value="theme-adminflare">theme-adminflare</option>
+
+							</select>
+						</div>
+            		</div>
+            	</div>
+	        </div>	    	
+	    </div>
+	    <div class="modal-footer">
+        	<button type="button" class="btn btn-primary" id="btn_nuevo_modulo" >Guardar</button>
+        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+        </div>
+        </form>
+	</div>
+</div>
+<div id="modal_editar_modulo" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-desktop"></i>&nbsp; Editar Modulo:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_editar_modulo">
+            <input type="hidden" id="e_id_pl_m_modulo" name="e_id_pl_m_modulo">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" id="e_nombre_modulo" name="e_nombre_modulo" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">URL:</label>
+							<input class="form-control" type="text" id="e_url_modulo" name="e_url_modulo" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Plantilla:</label>
+							<select class="form-control" id="e_plantilla_modulo" name="e_plantilla_modulo" >
+								<option value="">Seleccionar</option>
+								<option value="theme-adminflare">Adminflare</option>
+                                
+							</select>
+						</div>
+            		</div>
+            	</div>
+	        </div>	
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary" id="btn_editar_modulo">Guardar</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+	        </div>
+	        </form> 	
+	    </div>	    
+	</div>
+</div>
+<!-- FIN DE MODAL MODULOS-->
+
+<!-- INICIO DE MODAL NUEVO MENU -->
+
+<div id="modal_nuevo_menu" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bars"></i>&nbsp; Nuevo Menu:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_nuevo_menu">
+            <input type="hidden" id="n_id_pl_m_menu" name="n_id_pl_m_menu">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Modulo:</label>
+							<input class="form-control" type="text" readonly="" id="n_menu_modulo">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" id="n_nombre_menu" name="n_nombre_menu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Icono:</label>
+							<input class="form-control" type="text" id="n_icono_menu" name="n_icono_menu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">URL:</label>
+							<input class="form-control" type="text" id="n_url_menu" name="n_url_menu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Orden:</label>
+							<input class="form-control" type="text" id="n_orden_menu" name="n_orden_menu" >
+						</div>
+            		</div>
+            	</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary" id="btn_nuevo_menu">Guardar</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+	        </div>
+	        </form>	    	
+	    </div>	    
+	</div>
+</div>
+<div id="modal_editar_menu" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bars"></i>&nbsp; Nuevo Menu:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_editar_menu">
+            <input type="hidden" id="e_id_pl_menu_menu" name="e_id_pl_menu_menu">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Modulo:</label>
+							<input class="form-control" type="text" readonly="" id="e_menu_modulo">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" id="e_nombre_menu" name="e_nombre_menu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Icono:</label>
+							<input class="form-control" type="text" id="e_icono_menu" name="e_icono_menu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">URL:</label>
+							<input class="form-control" type="text" id="e_url_menu" name="e_url_menu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Orden:</label>
+							<input class="form-control" type="text" id="e_orden_menu" name="e_orden_menu">
+						</div>
+            		</div>
+            	</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary" id="btn_editar_menu">Guardar</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+	        </div>
+	    	</form>
+	    </div>	    
+	</div>
+</div>
+ 
+<!-- INICIO MODAL SUB MENU -->
+<div id="modal_nuevo_submenu" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bars"></i>&nbsp; Nuevo Sub Menu:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_nuevo_submenu">
+            <input type="hidden" id="n_id_pl_m_submenu" name="n_id_pl_m_submenu">
+            <input type="hidden" id="n_id_pl_menu_submenu" name="n_id_pl_menu_submenu">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Modulo:</label>
+							<input class="form-control" type="text" readonly="" id="n_submenu_modulo">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Menu:</label>
+							<input class="form-control" type="text" readonly="" id="n_submenu_menu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" id="n_nombre_submenu" name="n_nombre_submenu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Icono:</label>
+							<input class="form-control" type="text" id="n_icono_submenu" name="n_icono_submenu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">URL:</label>
+							<input class="form-control" type="text" id="n_url_submenu" name="n_url_submenu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Orden:</label>
+							<input class="form-control" type="text" id="n_orden_submenu" name="n_orden_submenu" >
+						</div>
+            		</div>
+            	</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary" id="btn_nuevo_submenu">Guardar</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+	        </div>
+	        </form>	    	
+	    </div>	    
+	</div>
+</div>
+<div id="modal_editar_submenu" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bars"></i>&nbsp; Nuevo Sub Menu:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_editar_submenu">
+            <input type="hidden" id="e_id_pl_submenu_submenu" name="e_id_pl_submenu_submenu">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Modulo:</label>
+							<input class="form-control" type="text" readonly="" id="e_submenu_modulo">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Menu:</label>
+							<input class="form-control" type="text" readonly="" id="e_submenu_menu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" id="e_nombre_submenu" name="e_nombre_submenu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Icono:</label>
+							<input class="form-control" type="text" id="e_icono_submenu" name="e_icono_submenu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">URL:</label>
+							<input class="form-control" type="text" id="e_url_submenu" name="e_url_submenu" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Orden:</label>
+							<input class="form-control" type="text" id="e_orden_submenu" name="e_orden_submenu" >
+						</div>
+            		</div>
+            	</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary" id="btn_editar_submenu">Guardar</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+	        </div>
+	        </form>	    	
+	    </div>	    
+	</div>
+</div>
+<!-- FIN DE MODAL SUB MENU -->
+<!-- INICIO DE MODAL BOTONES -->
+<div id="modal_nuevo_boton" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check-square-o"></i>&nbsp; Nuevo Boton:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_nuevo_boton">
+            <input type="hidden" id="n_id_pl_m_boton" name="n_id_pl_m_boton">
+            <input type="hidden" id="n_id_pl_menu_boton" name="n_id_pl_menu_boton">
+            <input type="hidden" id="n_id_pl_submenu_boton" name="n_id_pl_submenu_boton">
+            <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Modulo:</label>
+							<input class="form-control" type="text" readonly="" id="n_boton_modulo">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Menu:</label>
+							<input class="form-control" type="text" readonly="" id="n_boton_menu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Sub Menu:</label>
+							<input class="form-control" type="text" readonly="" id="n_boton_submenu">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<input class="form-control" type="text" id="n_nombre_boton" name="n_nombre_boton" >
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Icono:</label>
+							<input class="form-control" type="text" id="n_icono_boton" name="n_icono_boton">
+						</div>
+            		</div>
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">ID HTML:</label>
+							<input class="form-control" type="text" id="n_id_html_boton" name="n_id_html_boton" >
+						</div>
+            		</div>
+            	</div>
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary" id="btn_nuevo_boton">Guardar</button>
+	        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+	        </div>
+	        </form>	    	
+	    </div>	    
+	</div>
+</div>

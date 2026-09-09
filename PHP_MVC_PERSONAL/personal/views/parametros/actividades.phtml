@@ -1,0 +1,157 @@
+ <link href="/rrhh/control/personal/views/layout/pixeladmin/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="container pull-left">
+    
+<div class="page-header">
+    <div class="col-md-7">
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Parametros : Actividades / Sub Actividades </strong>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+    <div class="col-md-4">
+        <span class="form-control bg-default">Actividades (DA. 207-MINSA):</span>
+        <select name="slt_actividad" size="15" disabled="disabled" class="form-control alert-warning" id="slt_actividad"></select>
+        <div class="form-group"></div>
+        <span id="espera_en_carga"></span>
+        <div class="form-group"></div>
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group"><center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar actividad" ><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar actividad" ><strong> <i class="fa fa-pencil"></i></strong></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar actividad" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+
+                        </center>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group"></div>
+        <div class="col-xs-12">
+            <label class="label form-control">Actividad:</label>
+            <input name="nombre" type="text" disabled="disabled" id="nombre" size="20" maxlength="20" class="form-control initialism alert-warning">
+        </div>
+        <div class="form-group"></div>
+      <div class="col-xs-12">
+        <label class="label form-control">Abreviatura:</label>
+          <input name="abreviatura" type="text" disabled="disabled" class="form-control alert-warning initialism" id="abreviatura" size=" " maxlength="5">
+        </div>
+          <div class="form-group"></div>
+
+        
+         <div class="col-xs-12">
+           <label class="label form-control">Titulo :</label>
+           <textarea name="titulo" disabled="disabled" id="titulo" class="form-control alert-warning initialism"></textarea>
+        </div>
+        
+        <div class="form-group"></div>
+        
+        <div class="col-xs-12">
+        
+         <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar actividad" disabled="disabled"><strong><span class="fa fa-floppy-o"></span> </strong></button>
+           </div>
+   
+        
+        
+             
+    </div>
+    
+     
+    <div class="col-md-4">
+     <span class="form-control bg-default">Sub Actividades (HEVES):</span>
+        <select name="slt_sub_actividad" size="15" disabled="disabled" class="form-control alert-warning" id="slt_sub_actividad"></select>
+        <div class="form-group"></div>
+        <span id="espera_en_carga_sub_actividad"></span>
+        <div class="form-group"></div>
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group"><center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_sub_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Sub Actividad" disabled="disabled"><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_sub_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Sub actividad" ><strong> <i class="fa fa-pencil"></i></strong></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_sub_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja Sub actividad" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                        </center>
+                        
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group"></div>
+        
+        <div class="col-xs-12">
+            <label class="label form-control">Sub Actividad :</label>
+            <input name="nombre_sub_actividad" type="text" disabled="disabled" id="nombre_sub_actividad" class="form-control initialism alert-warning">
+        </div>
+          <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_sub_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Sub actividad" disabled="disabled"><strong><span class="fa fa-floppy-o"></span></strong></button>
+
+     
+    </div>
+
+    
+    
+    
+     
+    <div class="col-md-4">
+     <span class="form-control bg-default">Tipo de Actividades:</span>
+        <select name="slt_tipo_actividad" size="15" disabled="disabled" class="form-control alert-warning" id="slt_tipo_actividad"></select>
+        <div class="form-group"></div>
+        <span id="espera_en_carga_tipo_actividad"></span>
+        <div class="form-group"></div>
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                    <div class="form-group"></div>
+                    <div class="form-group"><center>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_tipo_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar tipo Actividad" disabled="disabled"><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_tipo_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar tipo actividad" ><strong> <i class="fa fa-pencil"></i></strong></button>
+                            <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_tipo_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Dar de baja tipo actividad" disabled="disabled"><strong> <i class="fa fa-times"></i></strong></button>
+                        </center>
+                        
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group"></div>
+        
+        <div class="col-xs-12">
+            <label class="label form-control">Tipo de Actividad :</label>
+            <input name="nombre_tipo_actividad" type="text" disabled="disabled" id="nombre_tipo_actividad" class="form-control initialism alert-warning">
+            <textarea name="txt_ver_actividad" id="txt_ver_actividad" rows="3" disabled="disabled" class="form-control initialism alert-warning"></textarea>
+        </div>
+        
+        <div class="col-xs-12">
+           <label class="label form-control">Actividad :</label>
+           <select name="slt_actividad_add"   disabled="disabled" class="form-control alert-warning" id="slt_actividad_add"></select>
+            
+        </div>
+
+        
+        
+        
+          <div class="form-group"></div>
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="btn_grabar_tipo_actividad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Tipo actividad" disabled="disabled"><strong><span class="fa fa-floppy-o"></span></strong></button>
+     
+    </div>
+    
+
+</div>
+
+
+<div id="result"></div>

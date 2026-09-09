@@ -1,0 +1,160 @@
+<?php
+$reportes_organo = json_decode( $this->listar_unidad_organica );
+?>
+
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="page-header">
+    <div class="col-md-7">
+        <div class="box">
+            <div class="box-row">
+                <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Parametros : Estructura según cuadro para Asignación de Personal Vigente (Aprobado con R.D. 002-2018-DE-HEVES)</strong>
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-3 ">
+            <strong><span class="form-control bg-default glyphicon glyphicon-pushpin">&nbsp;UNIDAD ORGANICA/SERVICIOS :</span></strong>
+            <input name="txt_buscar_unidad_organica" type="text" id="txt_buscar_unidad_organica" class="form-control alert-warning text-secondary initialism">
+            <select name="select_unidad_organica" size="10" class="form-control initialism " id="select_unidad_organica"></select>
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_unidad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Unidad Organica"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_unidad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Unidad Organica"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_unidad" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Unidad Organica"><strong> <i class="fa fa-times"></i> </strong></button>
+                            </center>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txt_descripcion_organica" class="form-control">Unidad Organica : </label>
+                <input name="txt_descripcion_organica" type="text" disabled="disabled" id="txt_descripcion_organica" class="form-control initialism alert-warning text-secondary">
+            </div>
+
+            <div class="form-group">
+                <label for="txt_mostrar_organo" class="form-control">Seleccion de Organos : </label>
+                <textarea name="mostrar_organo" rows="3" disabled="disabled" class="form-control" id="mostrar_organo"></textarea>
+            </div>
+
+            <div class="form-group">
+                <select name="slt_organo_seleccion" disabled="disabled" id="slt_organo_seleccion" title="Seleccion de organo..." class="form-control alert-warning text-secondary"></select>
+            </div>
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_unidad_organica" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Unidad Organica"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+
+
+
+            <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+
+            <span id="esperando_unidad_organica"></span>
+        </div>
+
+        <div class="col-md-3">
+
+            <span class="form-control bg-default glyphicon glyphicon-pushpin">&nbsp;ORGANOS:</span>
+            <input name="txt_buscar_organo" type="text" id="txt_buscar_organo" class="form-control">
+            <select name="select_organo" size="10" class="form-control" id="select_organo"></select>
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_organo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Organo"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_organo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Organo"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_organo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Organo"><strong> <i class="fa fa-times"></i> </strong></button>
+                            </center>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="txt_descripcion_organo" class="form-control">Organo : </label>
+                <input name="txt_descripcion_organo" type="text" disabled="disabled" id="txt_descripcion_organo" class="form-control initialism alert-warning text-secondary">
+
+            </div>
+
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_organo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Organo"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <span id="esperando_organo"></span>
+            <table width="100%" border="1" align="left" cellspacing="0" id="tabla_unidades_organicas" class="table table-bordered">
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                </colgroup>
+
+                <thead id="cabecera_unidades_organicas">
+                    <tr>
+                        <th width="350" align="right" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Unidades Organicas : </th>
+                    </tr>
+                </thead>
+                <tbody id="mostrar_unidades_organicas" border="1">
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+        <div class="col-md-5">
+            <span class="form-control bg-default glyphicon glyphicon-pushpin">&nbsp;REPORTE :</span>
+            <div class="form-group"></div>
+            <div class="form-group">
+
+                <div class="table-responsive">
+                    <table width="100%" class="table table-striped" id="tabla_organo">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Unidad Organica</th>
+                                <th>Organo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mostrar_organo">
+                            <?php 
+                            foreach($reportes_organo as $llave => $imprimir ): ?>
+                            <tr>
+                                <td>
+                                    <?= $imprimir->codigo ?>
+                                </td>
+                                <td>
+                                    <?= $imprimir->unidad ?>
+                                </td>
+
+                                <td>
+                                    <?= $imprimir->organo ?>
+                                </td>
+
+                            </tr>
+                            <?php endforeach;?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

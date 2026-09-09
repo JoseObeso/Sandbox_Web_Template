@@ -1,0 +1,26 @@
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="container-fluid pull-left">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>personal_tipos_estado_civil.png" class="img-responsive" width="960" height="66" alt=""/>
+    </div>
+    <div class="row">
+        <div class="col-md-4 bg-color-gris">
+            <h4><span class="label label-info form-control">Tipos de Estado Civil </span> </h4> 
+            <select name="slt_estado_civil" size="20" disabled="disabled" id="slt_estado_civil" title="Estado Civil seleccionado...." class="form-control"></select>
+            <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+            <center>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_estado_civil" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar estado civil"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_estado_civil" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar estado_civil"><strong> <i class="fa fa-pencil"></i></strong></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_estado_civil" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Estado Civil "><strong> <i class="fa fa-times"></i> </strong></button>
+            </center>
+             <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <div class="form-group">
+                <label for="txt_descripcion_estado_civil" class="form-control">Descripcion : </label>
+                <input name="txt_descripcion_estado_civil" type="text" disabled="disabled" id="txt_descripcion_estado_civil" class="form-control initialism">
+            </div>
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_estado_civil" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+              <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <span id="esperando_estado_civil"></span>
+        </div>
+    </div>
+</div>

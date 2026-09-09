@@ -1,0 +1,93 @@
+<?php
+	$modulos = json_decode($this->todoslosmodulos);
+?>
+
+
+<div class="page-header">
+	<img src="http://www.heves.gob.pe/rrhh/logos/administracion_usuarios_mantenimiento.jpg" width="961" height="161" alt=""/>
+
+</div>
+
+
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="panel">
+			<div class="panel-heading bg-default">
+				<span class="panel-title">
+					<div class="row" id = "">						
+						<div class="col-md-12">
+							<form class="form-inline" id="frm-buscar">
+								<div class="form-group">
+									<label class="sr-only" for="nombres">DNI:</label>
+									<input type="text" class="form-control" id="dni2" name="dni" placeholder="N° de DNI" maxlength="8">
+								</div>
+								<button type="submit" class="btn btn-primary crear-tooltip" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar"><i class="fa fa-search"></i></button>  
+							</form>
+						</div>
+                        
+					</div>
+				</span>	
+                
+			</div>
+             <div  id="ver_nombre_dni">
+				 
+			</div>
+            
+			 <div class="panel-body" id="listar_permisos_usuario">
+				<div class="alert">
+					Debe de ingresar el N° de DNI del usuario registrado para poder asignarle permisos.
+				</div>
+			</div> 
+            
+		</div>
+	</div>
+</div>
+<!-- INICIO DE MODAL AGREGAR MODULO -->
+
+
+<div id="modal_nuevo_modulo" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-desktop"></i>&nbsp; Nuevo Modulo:</h4>
+            </div>
+            <form action="" class="form-horizontal" id="frm_nuevo_modulo">
+             <div class="modal-body">
+        		<div class="row">
+            		<div class="col-sm-12">
+            			<div class="mensajes">           				
+            			</div>
+            		</div>
+            	</div>
+            	<div class="row">
+                
+                      <table width="200" border="1">
+                                   <tr>
+                                    <td>  mostrar_nombre</td>
+                                    </tr>
+                      </table>
+
+            		<div class="col-sm-12">
+            			<div class="form-group no-margin-hr">
+							<label class="control-label">Nombre:</label>
+							<select class="form-control" name="modulo" id="modulo">
+								<option value="">Seleccionar</option>
+								<?php foreach($modulos as $modulo):?>
+								<option value="<?= $modulo->id_pl_m ?>"><?= $modulo->nombre ?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+            		</div>
+            	</div>
+	        </div>	    	
+	    </div>
+	    <div class="modal-footer">
+        	<button type="button" class="btn btn-primary" id="btn_nuevo_modulo" >Guardar</button>
+        	<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+        </div>
+        </form>
+	</div>
+</div>

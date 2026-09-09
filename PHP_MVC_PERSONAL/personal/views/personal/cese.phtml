@@ -1,0 +1,298 @@
+ <?php
+
+ $listar_paises = json_decode( $this->listar_paises );
+ $listar_tipos_documentos = json_decode( $this->listar_tipos_documentos );
+
+
+ ?>
+
+
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container pull-left ">
+
+
+    <div class="container">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tercero">Personal Tercero</a>
+            </li>
+            <li><a data-toggle="tab" href="#juridico">Personal Juridico</a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="tercero" class="tab-pane fade in active">
+
+                <div class="col-md-3">
+                    <label for="txt_buscar_nombre" class="bg-info form-control">Personal Tercero Registrado:  </label>
+                    <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" class="form-control alert-warning text-secondary initialism">
+                    <select name="select_personal_existente" size="35" id="select_personal_existente" class="form-control"></select>
+                    <div class="form-group"></div>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#datos_empleado"><span class="glyphicon glyphicon-plus"></span> Datos del Registro: </a></h4>
+                            </div>
+                            <div id="datos_empleado" class="panel-collapse collapse in ">
+                                <div class="panel-body">
+
+                                    <div class="col-xs-8">
+                                        Total Registrados:
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <span id="total_registrados"></span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group"></div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#datos_registros"><span class="glyphicon glyphicon-plus"></span>Usuarios : </a></h4>
+                            </div>
+                            <div id="datos_registros" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="col-xs-8">
+                                        Registro (DNI):
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <span id="dni_usuario"></span>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        Fecha:
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <span id="fecha_registro"></span>
+                                    </div>
+
+
+                                    <div class="form-group bg-color-gris"></div>
+                                    <div class="col-xs-8">
+                                        Modificacion (DNI):
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <span id="dni_usuario_modificacion"></span>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        Fecha:
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <span id="fecha_modificacion"></span>
+                                    </div>
+
+                                    <div class="form-group bg-color-gris"></div>
+                                    <div class="col-xs-8">
+                                        De baja (DNI):
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <span id="dni_usuario_de_baja"></span>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        Fecha:
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <span id="fecha_de_baja"></span>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="col-md-5">
+
+                    <span class="form-control bg-default">&#9679; Personal :</span>
+                    <span id="personal_seleccion_renuncia" class="form-control bg-info"></span>
+
+                    <span class="form-control bg-default">Servicios Registrados : </span>
+                    <div class="form-group">
+                        <select name="slt_servicios" size="5" class="form-control" id="slt_servicios"></select>
+                    </div>
+
+
+                    <div class="box">
+                        <div class="box-row">
+                            <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <center>
+                                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_cese" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Cese"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_cese" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Cese"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_cese" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Cese"><strong> <i class="fa fa-times"></i> </strong></button>
+                                    </center>
+                                </div>
+
+                                <div class="form-group"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12">
+                        <span class="form-control bg-default">Motivos de Cese:</span>
+                        <div class="form-group">
+                            <select name="slc_motivos_renuncia" id="slc_motivos_renuncia" class="form-control">
+                                <option id="0">Seleccione : </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <span class="form-control bg-default">Fecha de Cese  : </span>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <input name="fecha_de_cese" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_de_cese" title="Fecha ultimo dia de trabajo" value="<?=date('d-m-Y')?>" readonly="readonly">
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12">
+                        <span class="form-control bg-default">Observacion :</span>
+                        <div class="form-group">
+                            <textarea name="txt_observacion_renuncia" rows="3" disabled="disabled" id="txt_observacion_renuncia" class="form-control alert-warning  initialism"></textarea>
+                        </div>
+
+                    </div>
+
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+                    <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+
+                    <span id="espera_grabacion_cese"></span>
+                    <?php for ( $i = 1; $i <= 5; $i++ ) {echo '<br>';}?>
+
+
+
+                </div>
+
+
+
+            </div>
+            <div id="juridico" class="tab-pane fade">
+
+
+                <div class="col-md-4">
+                    <label for="txt_buscar_nombre" class="bg-info form-control">Personas Juridicas: <span id="total_juridicos"> </label>
+                    <input name="txt_buscar_juridicos" type="text" id="txt_buscar_juridicos" class="form-control alert-warning text-secondary initialism">
+                    <span class="form-control bg-default">RUC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124; Razon social </span>
+                    <select name="slt_lista_juridicas" size="20" class="form-control" id="slt_lista_juridicas" title="Relacion de proveedores juridicos asistenciales"></select>
+                </div>
+                       <div class="col-md-5">
+
+                    <span class="form-control bg-default">&#9679; Personal :</span>
+                    <span id="personal_seleccion_renuncia" class="form-control bg-info"></span>
+
+                    <span class="form-control bg-default">Servicios Registrados : </span>
+                    <div class="form-group">
+                        <select name="slt_servicios" size="5" class="form-control" id="slt_servicios"></select>
+                    </div>
+
+
+                    <div class="box">
+                        <div class="box-row">
+                            <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <center>
+                                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_cese" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Cese"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_cese" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Cese"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_cese" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Anular Cese"><strong> <i class="fa fa-times"></i> </strong></button>
+                                    </center>
+                                </div>
+
+                                <div class="form-group"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12">
+                        <span class="form-control bg-default">Motivos de Cese:</span>
+                        <div class="form-group">
+                            <select name="slc_motivos_renuncia" id="slc_motivos_renuncia" class="form-control">
+                                <option id="0">Seleccione : </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <span class="form-control bg-default">Fecha de Cese  : </span>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <input name="fecha_de_cese" type="text" disabled="disabled" class="form-control clsDatePicker" id="fecha_de_cese" title="Fecha ultimo dia de trabajo" value="<?=date('d-m-Y')?>" readonly="readonly">
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12">
+                        <span class="form-control bg-default">Observacion :</span>
+                        <div class="form-group">
+                            <textarea name="txt_observacion_renuncia" rows="3" disabled="disabled" id="txt_observacion_renuncia" class="form-control alert-warning  initialism"></textarea>
+                        </div>
+
+                    </div>
+
+                    <button class="btn btn-info form-control  btn-lg crear-tooltip " id="btn_grabar_renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><span class="glyphicon glyphicon-ok"></span> Grabar</button>
+                    <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+
+                    <span id="espera_grabacion_cese"></span>
+                    <?php for ( $i = 1; $i <= 5; $i++ ) {echo '<br>';}?>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+    <div id="result"></div>

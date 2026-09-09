@@ -1,0 +1,220 @@
+ <?php
+
+
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+
+
+<div class="container pull-left ">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="txt_buscar_nombre" class="bg-info form-control">Personal CAS Registrado </label>
+            <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" class="form-control alert-warning text-secondary initialism" autocomplete="off">
+            <select name="select_personal_cas_existente" size="25" id="select_personal_cas_existente" class="form-control">
+           </select>
+        
+            <span id="espera_mientras_carga_personal" class="form-control"></span>
+
+            <div class="form-group">
+                <input name="chk_debaja" type="checkbox" id="chk_debaja" title="Mostrar Personal de Baja" value="Personal de baja">&nbsp;Mostrar Personal de Baja
+            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#datos_empleado"><span class="form-control bg-default glyphicon glyphicon-plus"><strong>  Datos del Registro: </strong>
+                    </span>
+                    </a>
+                    </h4>
+                    </div>
+                    <div id="datos_empleado" class="panel-collapse collapse in ">
+                        <div class="panel-body">
+                            <div class="col-xs-12">
+                                <table border="1" cellspacing="0" id="estadistica_total" width="100%">
+                                    <colgroup>
+                                        <col>
+                                        <col>
+                                        <col>
+                                    </colgroup>
+                                    <thead id="cabecera_estadistica_tercero">
+                                        <tr>
+                                            <th width="50%" align="left" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Empleados </th>
+                                            <th width="40%" align="right" valign="top" bgcolor="#E9E9E9" class="" scope="col">&nbsp;Total </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mostrar_estadistica_registro" border="1">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"></div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#datos_registros"><span class="form-control bg-default glyphicon glyphicon-plus"><strong> Usuarios (DNI): </strong> </span></a></h4>
+                    </div>
+                    <div id="datos_registros" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="col-xs-8">
+                                Ingreso:
+                            </div>
+                            <div class="col-xs-4">
+                                <span id="dni_usuario"></span>
+                            </div>
+                            <div class="col-xs-8">
+                                Fecha:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="fecha_registro"></span>
+                            </div>
+
+
+                            <div class="form-group bg-color-gris"></div>
+                            <div class="col-xs-8">
+                                Ult. Modifico/hab.:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="dni_usuario_modificacion"></span>
+                            </div>
+                            <div class="col-xs-8">
+                                Fecha:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="fecha_modificacion"></span>
+                            </div>
+
+                            <div class="form-group bg-color-gris"></div>
+                            <div class="col-xs-8">
+                                Dio de baja:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="dni_usuario_de_baja"></span>
+                            </div>
+                            <div class="col-xs-8">
+                                Fecha:
+                            </div>
+
+                            <div class="col-xs-4">
+                                <span id="fecha_de_baja"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+
+
+
+            <div class="form-group">
+                <span id="personal_seleccion_nombre" class="form-control bg-info"></span>
+                <span id="condicion_personal" class="form-control"></span>
+            </div>
+
+
+
+            <div class="box">
+
+                <div class="box-row">
+
+                    <div class="box-cell p-x-3 p-y-1 bg-default darken">
+                        <div class="form-group"></div>
+
+                        <div class="form-group">
+                            <center>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Personal CAS"><i class="fa fa-plus"></i></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Personal CAS"><strong> <i class="fa fa-pencil"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Personal CAS "><strong> <i class="fa fa-times"></i></strong></button>
+                                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_habilitar_cas" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Habilitar Personal CAS "><strong> <i class="fa fa-refresh"></i></strong></button>
+
+                                
+                            </center>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div id="result"></div>

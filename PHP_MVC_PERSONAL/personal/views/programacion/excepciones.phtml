@@ -1,0 +1,209 @@
+ <?php
+
+ ?>
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-container {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search input {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-search {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-options {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-results {
+        background-color: #FFFBD1;
+        max-height: 300px;
+    }
+    
+    .select2-drop-mask {}
+    
+    .s2id_slt_cargos {
+        background-color: #FFFEE1;
+    }
+    
+    .select2-choice {
+        background-color: #FFFEE1!important;
+    }
+    
+    .select2-results .select2-highlighted {
+        background: #3ea211;
+    }
+    
+    .alert {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_azul {
+        border: 2px solid #3D8FFF !important;
+    }
+    
+    .color_borde_selector {
+        border: 2px solid #FFFCBB !important;
+    }
+    
+    #select2-drop-mask {
+        background-color: #FFF9DC;
+    }
+</style>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="box">
+                <div class="box-row">
+                    <div class="box-cell p-x-3 p-y-1  darken" style="background: #DEF0FC;">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            &nbsp;&nbsp;<span class="fa fa-hospital-o"></span><strong> &nbsp;Administracion de excepciones</strong>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container pull-left">
+    <div class="row">
+        <div class="col-md-3">
+            <span class="form-control bg-default text-right"> UPSS:</span>
+        </div>
+
+        <div class="col-md-4">
+            <select name="slt_upss_seleccion" class="form-control alert-warning" id="slt_upss_seleccion" title="Seleccione UPSS Respectivo (UPSS: Unidad Prestadora de Servicio)"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <span class="form-control bg-default text-right"> Departamento:</span>
+        </div>
+        <div class="col-md-4">
+            <select name="slt_departamento_seleccion" class="form-control alert-warning" id="slt_departamento_seleccion"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <span class="form-control bg-default text-right"> Servicio:</span>
+        </div>
+        <div class="col-md-4">
+            <select name="slt_servicio_seleccion" class="form-control alert-warning" id="slt_servicio_seleccion"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <span class="form-control bg-default text-right"> Personal:</span>
+        </div>
+        <div class="col-md-4">
+            <select name="slt_personal_a_seleccionar" class="form-control alert-warning" id="slt_personal_a_seleccionar"></select>
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <span class="form-control bg-default text-light"> Profesion:</span>
+            <span class="form-control" id="descripcion_profesion"></span>
+            <input name="dni_personal" type="hidden" id="dni_personal">
+        </div>
+
+      <div class="col-md-2">
+            <span class="form-control bg-default text-light"> Labor:</span>
+            <span class="form-control" id="tipo_de_labor"></span>
+        </div>
+        
+
+      <div class="col-md-2">
+            <span class="form-control bg-default text-light"> Condicion:</span>
+            <span class="form-control" id="condicion_laboral"></span>
+        </div>
+        <div class="form-group"></div>
+        
+        
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <span class="form-control bg-default text-right"> Periodo de Programacion:</span>
+        </div>
+        <div class="col-md-2">
+            <select name="slt_mes" size="1" disabled="disabled" class="select2-highlighted form-control alert-warning" id="slt_mes" title="Seleccion de Mes" ng-model="month"  >
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            
+            <div class="form-group"></div>
+        </div>
+        <div class="col-md-2">
+             <input name="anio" type="number" disabled="disabled" class="form-control alert-warning" id="anio" max="2050" min="2016" title="Seleccion de Año" onkeypress='return event.charCode >= 2016 && event.charCode <= 2100' > 
+            <div class="form-group"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <span class="form-control bg-default text-center"> Lista de Excepciones :</span>
+            <div class="form-group"></div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <select name="slt_excepciones_registradas" size="18" disabled="disabled" class="form-control alert-warning" id="slt_excepciones_registradas"></select>
+            <div class="form-group"></div>
+            <span id="espera_traslado"></span>
+
+            
+        </div>
+        <div class="col-md-4">
+            <select name="slt_excepciones_personal" size="18" disabled="disabled" class="form-control alert-warning" id="slt_excepciones_personal"></select>
+            <div class="form-group"></div>
+            <center>
+                <button class="btn btn-info  btn-lg crear-tooltip" id="btn_eliminar_excepcion_a_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Excepcion a Personal...."> <strong> <i class="fa fa-times"></i></strong></button>
+            </center>
+            <div class="form-group"></div>
+            <div class="form-group"></div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div id="result"></div>

@@ -1,0 +1,93 @@
+<?php
+
+$reportes_especialidad = json_decode( $this->listar_especialidades_tabla );
+
+?>
+
+
+
+
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>personal_tipo_especialidad.jpg" class="img-responsive" width="960" height="80" alt=""/>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h5><span class="label label-info form-control"> LISTA DE TIPO DE ESPECIALIDAD  </span></h5>
+        <select name="slc_tipo_especialidad" id="slc_tipo_especialidad" class="form-control"></select>
+        <h5><span class="label label-default form-control">OPERACIONES: </span></h5>
+        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Tipo de Especialidad"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Tipo de Especialidad"><strong> <i class="fa fa-pencil"></i> </strong></button>
+        <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Registro"><strong> <i class="fa fa-times"></i> </strong></button>
+        <h5><span class="label label-default form-control" id="titulo"></span></h5>
+
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input name="id" type="text" disabled="disabled" class="form-control" id="id">
+        </div>
+
+        <div class="form-group">
+            <label for="txt_codigo_minsa">Codigo:</label>
+            <input name="txt_codigo_minsa" type="text" disabled="disabled" class="form-control" id="txt_codigo_minsa">
+        </div>
+
+        <div class="form-group">
+            <label for="txt_descripcion_especialidad">Especialidad:</label>
+            <input name="txt_descripcion_especialidad" type="text" disabled="disabled" class="form-control initialism" id="txt_descripcion_especialidad">
+        </div>
+        <div class="form-group">
+            <label for="slt_colegios">Colegio: </label><span id="colegio" class="form-control glyphicon glyphicon-arrow-down"></span>
+            <select name="slt_colegios" disabled="disabled" class="form-control" id="slt_colegios">
+                <option value="0">Seleccione Colegio Profesional : </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+
+        </div>
+
+        <span id="espera_grabacion"></span>
+    </div>
+
+
+  <div class="col-md-6">
+
+        <div class="table-responsive">
+
+            <table   class="table table-striped" id="tabla_especialidades"  >
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
+                        <th>Colegio</th>
+
+                    </tr>
+                </thead>
+                <tbody id="mostrar_especialidades">
+
+                    <?php 
+					foreach($reportes_especialidad as $llave => $imprimir ): ?>
+                    <tr>
+                        <td>
+                            <?= $imprimir->codigo ?>
+                        </td>
+                        <td>
+                            <?= $imprimir->descripcion ?>
+                        </td>
+
+                        <td>
+                            <?= $imprimir->colegio ?>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+</div>

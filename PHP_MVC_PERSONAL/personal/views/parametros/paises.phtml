@@ -1,0 +1,38 @@
+<?php
+
+$listar_paises = json_decode( $this->listar_paises );
+
+?>
+<div class="container-fluid  pull-left">
+    
+    <link rel="stylesheet" href="../layout/default/css/themes.min.css">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>personal_lista_de_paises.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+    <div class="row">
+        <div class="col-md-6 ">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="tabla_paises">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#DDDBDB">Codigo</th>
+                            <th bgcolor="#DDDBDB">Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_paises">
+                        <?php foreach($listar_paises as  $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->codigo ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->descripcion ?>
+                            </td>
+                        </tr>
+                        <?php endforeach;   ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

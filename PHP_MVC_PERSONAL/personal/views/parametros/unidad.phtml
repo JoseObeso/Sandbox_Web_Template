@@ -1,0 +1,170 @@
+<?php
+$unidad = json_decode( $this->unidad );
+$servicios_centrosubcosto = json_decode( $this->listar_servicios_centrosubcosto );
+$usuarios = json_decode( $this->listarusuarios );
+
+?>
+
+
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+<div class="container-fluid  pull-left">
+
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>administracion_unidades.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-1">
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="asignar_usuario_uo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Asignar usuarios a Unidad Organica"><strong>U</strong></button><br><br><br><br>
+            <button class="btn btn-info  btn-lg crear-tooltip " style="position:fixed;" id="desactivar_usuarios_uo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Desactivar Usuario en Unidad Organica"><strong> <i class="fa fa-times"></i> </strong></button>
+        </div>
+
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-hover" id="tabla_unidad">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#EFEBEB"></th>
+                            <th bgcolor="#EFEBEB">Codigo</th>
+                            <th bgcolor="#EFEBEB">Descripcion</th>
+                            <th bgcolor="#EFEBEB">DNI Autorizado</th>
+                            <th bgcolor="#EFEBEB">Autorizado</th>
+                            <th bgcolor="#EFEBEB">Fecha</th>
+                            <th bgcolor="#EFEBEB">Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_unidad">
+                        <?php 
+							foreach($unidad as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0"><label class="px-single"><input type="radio" id="<?= $imprimir->codigo ?>" name="single-radio" value="" class="px usuarios"><span class="lbl"></span></label>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->codigo ?>
+                            </td>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->descripcion ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->dni_autorizado ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->nombres_autorizado ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->fecha ?>
+                            </td>
+
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->nombres_registro ?>
+                            </td>
+
+                        </tr>
+
+
+                        <?php endforeach;
+							 
+                            ?>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<div id="modal-asignar-usuario-a-uo" class="modal fade" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-mg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="<?= RUTA_PUBLIC_GRA?>asignacion_usuarios_uo.jpg" width="550" height="72" alt=""/>
+            </div>
+            <center>
+                <font color="#670102">Para el registro de personal autorizado, siga las secuencia numerica: </font>
+            </center>
+            <div class="modal-body">
+
+                <div class="alert alert-success" role="alert">
+                    <h5 class="alert-heading">(1) Seleccione Unidad Organica</h5>
+                </div>
+                <form id="frm_registrar_usuario_uo" title="Registro de Asignacion de Usuarios a Unidad Organica">
+
+                    <select name="seleccion-unidad-organica" size="5" id="seleccion-unidad-organica" form="frm_registrar_usuario_uo">
+                        <option value="">Seleccionar</option>
+                        <?php foreach($servicios_centrosubcosto as $imprimir):?>
+                        <option value="<?=$imprimir->codigo ?>" codigo_uo="<?=$imprimir->codigo ?>" nombre_uo="<?=$imprimir->nombre ?>">
+                            <font size="2">
+                                <?=$imprimir->nombre?>
+                            </font>
+                        </option>
+                        <?php endforeach;?>
+                    </select>
+                    <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                    <div class="alert alert-success" role="alert">
+                        <h5 class="alert-heading">(2) Seleccione Usuario Autorizado</h5>
+                    </div>
+
+                    <table width="550" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td width="116" rowspan="3">
+
+                                    <select name="seleccion-usuarios" size="12" disabled="disabled" id="seleccion-usuarios" form="frm_registrar_usuario_uo">
+                                        <?php foreach($usuarios  as $imprimir):?>
+                                        <option value="<?=$imprimir->dni?>" dni_usuario="<?=$imprimir->dni ?>" usuario_seleccion="<?=$imprimir->nombres ?>">
+                                            <font size="2">
+                                                <?=$imprimir->nombres?>
+                                            </font>
+                                        </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </td>
+                                <td width="30" height="19" </td>
+                                    <td width="300" bgcolor="#BCE8E6">
+                                        <div id="unidad_organica_seleccion"></div>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td bgcolor="#BCE8E6">
+                                    <div id="usuario_seleccion"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <input name="btn-guardar-asignacion-usuario" type="button" disabled="disabled" class="btn btn-primary btn-lg  " id="btn-guardar-asignacion-usuario" form="frm_registrar_usuario_uo" title="Pulse aqui para guardar" value="Grabar Asignacion de Usuario a Unidad Organica">
+                <input name="btn-cerrar-modal" type="button" class="btn btn-primary btn-lg" id="btn-cerrar-modal" form="frm_registrar_usuario_uo" title="Cerrar Modal " onClick="window.location.reload()" value="Cerrar Asignacion" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>

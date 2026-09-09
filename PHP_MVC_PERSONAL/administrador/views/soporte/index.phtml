@@ -1,0 +1,37 @@
+<?php
+$listarusuarios = json_decode( $this->ver_estadistica_final );
+$listarmodulos = json_decode( $this->ver_estadistica_modulo );
+
+?>
+
+<div class="row">
+    <div class="col-md-4">
+        <span class="form-control bg-default">Soporte Tecnico / Mesa de Ayuda del Sistema :</span>
+        <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+        <div class="col-md-3">
+            <span class="form-control  bg-default">Usuario : </span>
+        </div>
+        <div class="col-md-8">
+            <span class="form-control">
+                <?= $_SESSION["usuario"]["nombres"] ?>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+        <span class="form-control bg-default">En la caja de texto siguiente, describa el problema funcional del sistema : </span>
+        <textarea name="problema" rows="5" required="required" class="form-control alert-warning" id="problema" title="Describa el problema y al culminar, pulse boton grabar..."></textarea>
+        <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+        <input name="btn_grabar_problema" type="button" disabled="disabled" id="btn_grabar_problema" value="Registrar" class="btn btn-primary btn-lg">
+        <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+        <span id="proceso_grabar"></span>
+        <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+
+  </div>
+
+
+
+</div>

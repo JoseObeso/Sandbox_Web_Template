@@ -1,0 +1,503 @@
+<?php
+$personal = json_decode( $this->listarpersonal_renunciante );
+
+$personal_renunciante = json_decode( $this->listarpersonal_renunciante );
+$servicios_centrosubcosto = json_decode( $this->listar_servicios_centrosubcosto );
+$cargos_seleccion = json_decode( $this->listar_cargos );
+$listar_todos_los_motivos = json_decode( $this->listar_motivos );
+
+?>
+ 
+
+ 
+
+<style type="text/css">
+    .modal-header,
+    h4,
+    .close {
+        background-color: #7F8A84;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+    
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+    
+    #revisar_fechas {
+        font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+        background-color: #D9F4F4;
+    }
+    
+    #txt_area_observaciones_m {
+        font-size: 10px;
+        font: normal;
+        background-color: #FCFBA0;
+    }
+</style>
+
+
+<link href="../layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid pull-left">
+
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>registro_personal_renunciante.jpg" class="img-responsive" width="960" height="81" alt=""/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+
+            <span id="total_personal_registrado" style="text-align: right"></span>
+            <div class="form-group">
+                <input name="txt_buscar_nombre" type="text" autofocus="autofocus" class="form-control initialism" id="txt_buscar_nombre"><br>
+                <select name="slc_personal_renuncia" size="25" id="slc_personal_renuncia" class="form-control">
+                    <?php foreach($personal_renunciante  as   $ver): ?>
+                    <option value="<?=$ver->idpersonal ?>" idpersonal="<?=$ver->idpersonal ?>" dni="<?=$ver->dni ?>" apellidos_nombres="<?=$ver->apellidosnombres ?>" unidad="<?=$ver->unidad ?>" cargo="<?=$ver->cargo ?>" fechaingreso="<?=$ver->fechaingreso ?>" fecharenuncia="<?=$ver->fecharenuncia ?>" fechaultimodiatrabajo="<?=$ver->fechaultimodiatrabajo ?>" motivo="<?=$ver->motivo ?>" observacion="<?=$ver->observacion ?>" <font size="-2" color="#000000"><strong><?=$ver->apellidosnombres ?></font></option>
+                     <?php endforeach;?>
+                </select>
+       </div> 
+    
+       </div>
+
+   <div class="col-md-1">
+       <div class="form-group">
+        <button class="btn btn-info btn-lg crear-tooltip form-control" id="nuevo_registro" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Personal Renunciante"><i class="fa fa-user"></i></button>
+           </div>
+       <div class="form-group">
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="modificar-personal-renuncia" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificacion"><i class="fa fa-pencil"></i></button>
+       </div>
+       <div class="form-group">
+        <button class="btn btn-info  btn-lg crear-tooltip form-control" id="eliminar-personal-renunciante" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Ingreso"><i class="fa fa-times"></i></button>
+           </div>
+       
+
+</div>    
+
+
+            
+            <div class="col-md-8">
+                 <div class="table-responsive">
+        <table class="table table-bordered table-condensed" id="Tabla_Personal_Renuncia">
+            <thead>
+                <tr>
+                    <th width="200" bgcolor="#C8C8C8">Apellidos y Nombres</th>
+                    <th bgcolor="#C8C8C8">DNI</th>
+                    <th width="350" bgcolor="#C8C8C8">Unidad</th>
+                    <th bgcolor="#C8C8C8">Cargo</th>
+                    <th bgcolor="#C8C8C8">Fecha Ingreso</th>
+                    <th bgcolor="#C8C8C8">Fecha Renuncia</th>
+                    <th bgcolor="#C8C8C8">Ultimo Dia Trabajo</th>
+                    <th bgcolor="#C8C8C8">Motivo</th>
+                    <th bgcolor="#C8C8C8">Observacion</th>
+
+                </tr>
+            </thead>
+
+            <tbody id="mostrar-datos-busqueda" bgcolor="#FFFEEB">
+                <?php 
+			foreach($personal as $llave => $imprimir ): ?>
+                <tr>
+
+                    <th width="200" bgcolor="#FBF5A4">
+                        <?= $imprimir->apellidosnombres ?>
+                    </th>
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->dni ?>
+                    </td>
+
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->unidad ?>
+                    </td>
+
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->cargo ?>
+                    </td>
+
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->fechaingreso ?>
+                    </td>
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->fecharenuncia ?>
+                    </td>
+
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->fechaultimodiatrabajo ?>
+                    </td>
+
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->motivo ?>
+                    </td>
+
+                    <td bgcolor="#FBF5A4">
+                        <?= $imprimir->observacion ?>
+                    </td>
+
+
+                </tr>
+                <?php endforeach; ?>
+
+
+            </tbody>
+        </table>
+    </div>
+           
+                
+    </div>
+
+
+
+</div>
+
+</div>
+
+
+
+<div id="modal-registrar-personal-renunciante" class="modal fade" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-mg  ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img src="<?= RUTA_PUBLIC_GRA?>modal-registro-personal-renunciante.jpg" width="550" height="72" alt=""/>';
+            </div>
+            <form action="" class="form-horizontal posicion_fn" id="frm-registrar-personal-renunciante">
+                <table width="560" border="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td bgcolor="#EDEDED">
+                             
+                                    <strong>
+                                        <font size="2" color="#7C2828" style="font-family: Constantia, 'Lucida Bright', 'DejaVu Serif', Georgia, 'serif'">Registre en orden correlativo siguiendo los casilleros de color amarillo, en todos los tipos de fechas, seleccione los desplegables, formato dd/mm/aaaa</font>
+                                    </strong>
+                           
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal-body">
+                    <table width="560" border="0">
+                        <tbody>
+                            <tr>
+                                <td bgcolor="#DEE0E0">
+
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label puntero" for="nombres_buscar">(1) Ubicar Personal (Digite, Apellidos y nombres):</label>
+                                            <input type="hidden" id="dni_personal" name="dni_personal">
+                                            <input type="hidden" id="origen_personal" name="origen_personal">
+                                            <input type="hidden" id="paterno_personal" name="paterno_personal">
+                                            <input type="hidden" id="materno_personal" name="materno_personal">
+                                            <input type="hidden" id="solo_nombres_personal" name="solo_nombres_personal">
+                                            <input type="hidden" id="codigo-tempus" name="codigo-tempus">
+                                            <div class="input-group">
+                                                <input name="nombres_personal" type="text" id="nombres_personal" form="frm-registrar-personal-renunciante" size="85" style="background-color:white; 
+                                                    border: solid 1px #000000;
+                                                     height: 30px; 
+                                                     font-size:12px; 
+                                                     color: #000000
+                                                     font-weight: bold;
+                                                     vertical-align:9px">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-8">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="seleccion-cargo">(2) Cargo (Seleccione Cargo):</label>
+                                            <select name="seleccion-cargo" class="form-control" id="seleccion-cargo" title="Seleccione el tipo de cargo que le corresponde al personal">
+                                                <option value="">Seleccionar</option>
+                                                <?php foreach($cargos_seleccion  as $imprimir):?>
+                                                <option value="<?=$imprimir->idtipoempleado ?>">
+
+                                                    <font size="2">
+                                                        <?=$imprimir->descripcion ?>
+                                                    </font>
+                                                </option>
+                                                <?php endforeach;?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="seleccion-unidad-organica">(3) Servicios: (Seleccione Servicios)</label>
+
+                                            <select id="seleccion-unidad-organica" name="seleccion-unidad-organica" class="form-control">
+                                                <option value="">Seleccionar</option>
+                                                <?php foreach($servicios_centrosubcosto as $imprimir):?>
+                                                <option value="<?=$imprimir->codigo?>">
+                                                    <font size="2">
+                                                        <?=$imprimir->nombre?>
+                                                    </font>
+                                                </option>
+                                                <?php endforeach;?>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="fecha-ingreso">(4) Fecha Ingreso :</label>
+                                            <input name="fecha-ingreso" type="text" required="required" class="form-control clsDatePicker" id="fecha-ingreso" title="Fecha que ingreso el personal" value="<?= date(" d/m/Y ")?>" readonly="readonly">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-sm-8">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="fecha-renuncia">(5) Fecha Renuncia:</label>
+                                            <input name="fecha-renuncia" type="text" class="form-control clsDatePicker" id="fecha-renuncia" title="Fecha en que el personal renuncio (Mayor o igual que la fecha de ingreso)" value="<?= date(" d/m/Y ")?>" readonly="readonly">
+                                            <input name="chk_ver_fecha_renuncia_blanco" type="checkbox" id="chk_ver_fecha_renuncia_blanco" form="frm-registrar-personal-renunciante" title="Confirme Fecha de Renuncia en Blanco" value="1"> No se dispone de Fecha de Renuncia
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="fecha-ultimo-dia-trabajo">(6) Ultimo dia de trabajo:</label>
+                                            <input name="fecha-ultimo-dia-trabajo" type="text" class="form-control clsDatePicker" id="fecha-ultimo-dia-trabajo" title="Fecha de ultimo dia de trabajo" value="<?= date(" d/m/Y ")?>" readonly="readonly">
+
+
+                                            <input name="chk_ver_fecha_ultimo_dia_trabajo" type="checkbox" id="chk_ver_fecha_ultimo_dia_trabajo" form="frm-registrar-personal-renunciante" title="Confirme Fecha de ultimo dia de trabajo en Blanco" value="1"> No se dispone dato.
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="seleccion-motivo">(7) Motivo:</label>
+                                            <select name="seleccion-motivo" required="required" class="form-control" id="seleccion-motivo" title="Seleccione los tipos de motivos de renuncia (Obligatorio)">
+                                                <option value="">Seleccionar</option>
+                                                <?php foreach($listar_todos_los_motivos as $imprimir):?>
+                                                <option value="<?=$imprimir->idtipomotivo ?>">
+                                                    <font size="2">
+                                                        <?=$imprimir->motivo ?>
+                                                    </font>
+                                                </option>
+                                                <?php endforeach;?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="txt_area_observaciones">(8) Observaciones :</label>
+                        <textarea name="txt_area_observaciones" cols="18" id="txt_area_observaciones" form="frm-registrar-personal-renunciante" title="Registre alguna observacion"></textarea>
+
+                    </div>
+                </div>
+        </div>
+
+        </td>
+        </tr>
+        </tbody>
+        </table>
+
+        <div class="modal-footer">
+            <input name="btn-guardar-personal-renunciante" type="button" disabled="disabled" class="btn btn-primary btn-lg  " id="btn-guardar-personal-renunciante" form="frm-registrar-personal-renunciante" title="Pulse aqui para guardar" value="Grabar Personal Renunciante">
+            <input name="btn-cerrar-modal-personal-renunciante" type="button" class="btn btn-primary btn-lg" id="btn-cerrar-modal-personal-renunciante" form="frm-registrar-personal-renunciante" title="Cerrar Personal Modal " data-dismiss="modal" value="Cerrar" onClick="window.location.reload()">
+        </div>
+        </form>
+    </div>
+
+</div>
+</div>
+</div>
+
+
+<div id="modal-modificar-personal-renunciante" class="modal fade" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-mg  ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img src="<?= RUTA_PUBLIC_GRA?>modal-registro-personal-renunciante.jpg" width="550" height="72" alt=""/>';
+            </div>
+
+            <form action="" class="form-horizontal posicion_fn" id="frm-modificar-personal-renunciante">
+
+                <table width="560" border="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td bgcolor="#EDEDED">
+                                <p align="center">
+                                    <strong>
+                                        <font size="2" color="#7C3A3A" style="font-family: Constantia, 'Lucida Bright', 'DejaVu Serif', Georgia, 'serif'">Los casilleros de color amarillo, muestra los datos conforme estan registrado, proceda a modificar en su respectiva zona inferior. Casillero verde no se modificar, fecha en formato dd/mm/aaaa</font>
+                                    </strong>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal-body">
+                    <table width="560" border="0">
+                        <tbody>
+                            <tr>
+                                <td bgcolor="#DEE0E0">
+                                    <div class="col-sm-10">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label" for="nombres_personal_m">APELLIDOS Y NOMBRES (Datos se modifica desde personal):</label>
+                                            <input name="nombres_personal_m" type="text" id="nombres_personal_m" form="frm-modificar-personal-renunciante" size="85" style="background-color:#69EFB2; 
+                                                    border: solid 1px #000000;
+                                                     height: 30px; 
+                                                     font-size:12px; 
+                                                     color: #000000
+                                                     font-weight: bold;
+                                                     vertical-align:9px" readonly="readonly">
+                                        </div>
+                                        <input type="hidden" id="id_personal" name="id_personal">
+                                        <input type="hidden" id="idtipoempleado" name="idtipoempleado">
+                                        <input type="hidden" id="idcentrosubcosto" name="idcentrosubcosto">
+                                        <input type="hidden" id="id_motivo_cese" name="id_motivo_cese">
+                                        <input type="hidden" id="fecha_ingreso_registrada" name="fecha_ingreso_registrada">
+                                        <input type="hidden" id="fecha_renuncia_registrada" name="fecha_renuncia_registrada">
+                                        <input type="hidden" id="fecha_ultimo_dia_registrada" name="fecha_ultimo_dia_registrada">
+
+
+
+                                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="seleccion-cargo">(2) Cargo registrado :</label>
+                        <input type="text" name="cargo_m" id="cargo_m" align="middle" readonly="readonly" size="45" style="background-color:#FFFE87; 
+                                                    border: solid 1px #767676;
+                                                     height: 30px; 
+                                                     font-size:9px; 
+                                                     color: #000000
+                                                     font-weight: bold;
+                                                     vertical-align:9px">
+
+                        <select name="seleccion-cargo-m" class="form-control" id="seleccion-cargo-m" title="Seleccione el tipo de cargo que le corresponde al personal">
+                            <option value="">Seleccionar para modificar:</option>
+                            <?php foreach($cargos_seleccion  as $imprimir):?>
+                            <option value="<?=$imprimir->idtipoempleado ?>">
+
+                                <font size="2">
+                                    <?=$imprimir->descripcion ?>
+                                </font>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="seleccion-unidad-organica">(3) Servicios: (Registrado)</label>
+                        <input type="text" name="unidad_m" id="unidad_m" align="middle" readonly="readonly" size="60" style="background-color:#FFFE87; 
+                                                    border: solid 1px #767676;
+                                                     height: 30px; 
+                                                     font-size:9px; 
+                                                     color: #000000
+                                                     font-weight: bold;
+                                                     vertical-align:9px">
+
+                        <select id="seleccion-unidad-organica-m" name="seleccion-unidad-organica-m" class="form-control">
+                            <option value="">Seleccionar para Modificar</option>
+                            <?php foreach($servicios_centrosubcosto as $imprimir):?>
+                            <option value="<?=$imprimir->codigo?>">
+                                <font size="2">
+                                    <?=$imprimir->nombre?>
+                                </font>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-6">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="fecha_ingreso_m">(4) Fecha Ingreso :</label>
+                        <input name="fecha_ingreso_m" type="text" required="required" class="form-control clsDatePicker" id="fecha_ingreso_m" title="Fecha que ingreso el personal" readonly="readonly">
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="fecha_renuncia_m">(5) Fecha Renuncia:</label>
+                        <input name="fecha_renuncia_m" type="text" class="form-control clsDatePicker" id="fecha_renuncia_m" title="Fecha en que el personal renuncio (Mayor o igual que la fecha de ingreso)" readonly="readonly">
+
+                        <input name="chk_ver_fecha_renuncia_blanco_m" type="checkbox" id="chk_ver_fecha_renuncia_blanco_m" value="1"> No se dispone de Fecha de Renuncia
+                    </div>
+                </div>
+
+
+                <div class="col-sm-5">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="fecha-ultimo-dia-trabajo">(6) Ultimo dia de trabajo:</label>
+
+                        <input name="fecha_ultimo_dia_trabajo_m" type="text" class="form-control clsDatePicker" id="fecha_ultimo_dia_trabajo_m" title="Fecha de ultimo dia de trabajo" readonly="readonly">
+
+                        <input name="chk_ver_fecha_ultimo_dia_trabajo_m" type="checkbox" id="chk_ver_fecha_ultimo_dia_trabajo_m" title="Confirme Fecha de ultimo dia de trabajo en Blanco" value="1"> No se dispone dato.
+
+                    </div>
+                </div>
+                <div class="col-lg-12">
+
+                    <div id="revisar_fechas" align="center"><input name="chk_regresar_todas_las_fechas" type="checkbox" id="chk_regresar_todas_las_fechas" title="Confirme fechas Iniciales" value="1"> Pulse aqui, para restaurar fechas registradas, en caso se borraron</div>
+
+                </div>
+
+                <div class="col-sm-8">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label" for="seleccion-motivo">(7) Motivo:</label>
+                        <input type="text" name="motivo_m" id="motivo_m" align="middle" readonly="readonly" size="30" style="background-color:#FFFE87; 
+                                                    border: solid 1px #767676;
+                                                     height: 30px; 
+                                                     font-size:12px; 
+                                                     color: #000000
+                                                     font-weight: bold;
+                                                     vertical-align:9px">
+
+
+                        <select name="seleccion-motivo-m" required="required" class="form-control" id="seleccion-motivo-m" title="Seleccione los tipos de motivos de renuncia (Obligatorio)">
+                            <option value="">Seleccionar</option>
+                            <?php foreach($listar_todos_los_motivos as $imprimir):?>
+                            <option value="<?=$imprimir->idtipomotivo ?>">
+                                <font size="2">
+                                    <?=$imprimir->motivo ?>
+                                </font>
+                            </option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group no-margin-hr">
+                <label class="control-label" for="txt_area_observaciones">(8) Observaciones :</label>
+                <textarea name="txt_area_observaciones_m" cols="25" id="txt_area_observaciones_m" title="Registre alguna observacion" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"></textarea>
+            </div>
+        </div>
+    </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="modal-footer">
+        <input name="btn-guardar-modificacion-personal-renunciante" type="button" disabled="disabled" class="btn btn-primary btn-lg" id="btn-guardar-modificacion-personal-renunciante" title="Pulse aqui para guardar" value="Grabar modificacion">
+        <input name="btn-cerra-modal-modificar-personal-renunciante" type="button" class="btn btn-primary btn-lg" id="btn-cerra-modal-modificar-personal-renunciante" title="Cerrar Personal Modal " data-dismiss="modal" value="Cerrar" onClick="window.location.reload()">
+    </div>
+    </form>
+</div>
+
+</div>
+</div>
+</div>

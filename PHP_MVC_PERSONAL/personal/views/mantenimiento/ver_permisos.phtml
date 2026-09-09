@@ -1,0 +1,86 @@
+<?php
+	$plantillas_modulos = json_decode($this->listar_acceso_modulos);
+ ?>
+<div class="panel-padding no-padding-vr" id="ver_nombre">	
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-success panel-dark widget-support-tickets srcollpanel">
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-desktop"></i>Modulos</span>
+				<div class="panel-heading-controls">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Opciónes&nbsp;<i class="fa fa-caret-down"></i></button>
+						<ul class="dropdown-menu">
+							<li><a class="puntero" id="nuevo_modulo">Nuevo</a></li>
+							<li><a class="puntero" id="eliminar_modulo">Eliminar</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>  
+			<div class="panel-body tab-content-padding">
+				 
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_modulos">	
+					<?php  if($plantillas_modulos[0]->estado_respuesta): ?>
+					<?php foreach($plantillas_modulos as $modulo): ?>
+					<div class="ticket puntero">
+						<?php if($modulo->estado==1): ?>
+						<span class="label label-success ticket-label">Activo</span>
+						<?php else: ?>
+						<span class="label label-danger ticket-label">Desactivado</span>
+						<?php endif; ?>
+						<input type="hidden" value="<?= $modulo->id_am ?>">
+						<a title="" class="ticket-title"><?= $modulo->nombre ?></a>
+						
+					</div>  
+					<?php endforeach;?>
+					<?php else:?>
+					<div class="alert"><?=$plantillas_modulos[0]->mensaje?></div>
+					<?php endif;?>
+				</div>
+			</div>  
+		</div>  
+</div>
+	<div class="col-md-6">
+		<div class="panel panel-success panel-dark widget-support-tickets srcollpanel">
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-bars"></i>Menus</span>
+			</div>  
+			<div class="panel-body tab-content-padding">
+				 
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_menu">
+					<div class='alert'>Debe de seleccionar un "Modulo".</div>
+				</div>
+			</div>  
+		</div>  
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-success panel-dark widget-support-tickets srcollpanel" >
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-bars"></i>Sub Menus</span>
+			</div>  
+			<div class="panel-body tab-content-padding">
+				 
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_submenu">							
+					<div class='alert'>Debe de seleccionar un "Menu".</div>
+				</div>
+			</div>  
+		</div>  
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-success panel-dark widget-support-tickets srcollpanel">
+			<div class="panel-heading">
+				<span class="panel-title"><i class="panel-title-icon fa fa-check-square-o"></i>Botones</span>
+			</div>  
+			<div class="panel-body tab-content-padding" >
+				 
+				<div class="panel-padding no-padding-vr" id="listado_plantilla_botones">							
+					<div class='alert'>Debe de seleccionar un "Sub Menu".</div>
+				</div>
+			</div>  
+		</div>  
+	</div>
+</div>

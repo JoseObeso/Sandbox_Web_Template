@@ -1,0 +1,168 @@
+<?php
+
+$listar_personal_legajos = json_decode( $this->listar_personal_legajos );
+$listar_departamentos = json_decode( $this->listar_departamentos );
+
+
+
+?>
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>legajos_datos_filiacion.jpg" width="961" height="81" alt=""/>';
+</div>
+
+
+<div class="row">
+    <div class="col-md-2">
+        <center><strong>PERSONAL CON LEGAJOS</strong>
+            <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" size="35" class="form-control">
+            <select name="slc_personal" size="35" id="slc_personal" class="form-control">
+                <?php foreach($listar_personal_legajos as   $ver): ?>
+                <option value="<?=$ver->id ?>" id="<?=$ver->id ?>" plaza="<?=$ver->plaza ?>" nro_contrato="<?=$ver->nro_contrato ?>" nro_proceso="<?=$ver->nro_proceso ?>" tipo_personal="<?=$ver->tipo_personal ?>" sexo="<?=$ver->sexo ?>" paterno="<?=$ver->paterno ?>" materno="<?=$ver->materno ?>" nombre="<?=$ver->nombre ?>" apellidos_nombre="<?=$ver->apellidos_nombres ?>" fecha_nacimiento="<?=$ver->fecha_nacimiento ?>" edad="<?=$ver->edad ?>" estado_civil="<?=$ver->estado_civil ?>" direccion="<?=$ver->direccion ?>" direccion_distrito="<?=$ver->direccion_distrito ?>" direccion_provincia="<?=$ver->direccion_provincia ?>" direccion_departamento="<?=$ver->direccion_departamento ?>" sueldo="<?=$ver->sueldo ?>" cargo="<?=$ver->cargo ?>" dni="<?=$ver->dni ?>" ruc="<?=$ver->ruc ?>" essalud="<?=$ver->essalud ?>" carnet_extranjeria="<?=$ver->carnet_extranjeria ?>" gs="<?=$ver->gs ?>" telefono_fijo="<?=$ver->telefono_fijo?>" telefono_celular="<?=$ver->telefono_celular?>" correo_electronico="<?=$ver->correo?>" hijos="<?=$ver->hijos?>" <font size="-2" color="#000000"><strong><?= $ver->apellidos_nombres ?></font></option>
+                        <?php endforeach;?>
+          </select>
+    </center>
+    </div>
+ 
+
+ 
+ 
+    <div class="col-md-8">
+        
+        <div id="tab_datos_personales" class="container">
+        <ul class="nav nav-pills">
+                <li class="active">
+                    <a href="#1a" data-toggle="tab">Datos Personales</a>
+                </li>
+                <li><a href="#2a" data-toggle="tab">Estado Civil</a>
+                </li>
+        <li><a href="#3a" data-toggle="tab">Notificacion en caso de Emergencia</a>
+                </li>
+                
+                 
+            </ul>
+
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="1a">
+                    
+                   <div class="col-xs-3 col-md-3">ID : <span id="id" class="form-control"></span>
+                       <strong>Apellidos Paterno :</strong> <input name="paterno" type="text" disabled="disabled" id="paterno" class="form-control">
+                    <strong>Apellido Materno :</strong> <input name="materno" type="text" disabled="disabled" id="materno" class="form-control">
+                    <strong>Nombres :</strong> <input name="nombres" type="text" id="nombres" class="form-control" readonly="readonly">
+                    <strong>Sexo :</strong> <input name="sexo" type="text" disabled="disabled" id="sexo" class="form-control">
+                    <strong>Fecha Nacimiento :</strong><input type="text" id="fecha_nacimiento" class="form-control"><br>
+                    <span id="edad"></span><br>
+                    <span class="label label-primary">Lugar de Nacimiento :</span><br>
+                    <select name="slt_nacimiento_departamento" size="1" disabled="disabled" id="slt_nacimiento_departamento" class="form-control">
+                        <option value="X">Seleccione Departamento:</option>
+                        <?php foreach($listar_departamentos as   $ver): ?>
+                        <option value="<?=$ver->dpto ?>" dpto_naci="<?=$ver->dpto ?>" prov_naci="<?=$ver->prov ?>" dist_naci="<?=$ver->dist?>" nombre="<?=$ver->nombre ?>" <font size="-2" color="#000000"><strong><?= $ver->nombre ?></font></option>
+                        <?php endforeach;?>
+                        </select>
+                    <select name="slt_nacimiento_provincia" size="1" disabled="disabled" id="slt_nacimiento_provincia"  class="form-control" >
+                             <option value="X">Seleccione Provincia :</option>
+                        </select>
+                    <select name="slt_nacimiento_distrito" size="1" disabled="disabled" id="slt_nacimiento_distrito"  class="form-control">
+                             <option value="X">Seleccione Distrito:</option>
+                        </select>
+                    <label for="txt_direccion_actual">Direccion Actual :</label>
+                    <textarea name="txt_direccion_actual" cols="70" rows="3" disabled="disabled" id="txt_direccion_actual" class="form-control"></textarea>
+                    <label for="txt_referencia_domicilio">Referencia Domicilio :</label>
+                    <textarea name="txt_referencia_domicilio" cols="70" rows="3" disabled="disabled" id="txt_referencia_domicilio" class="form-control" ></textarea><br>
+                    
+                      
+                    </div>
+                     <div class="col-xs-3 col-md-3">
+                         <strong>DNI:</strong>
+                            <input name="dni" type="text" disabled="disabled" id="dni" class="form-control">
+                            <strong>RUC:</strong>
+                            <input name="ruc" type="text" disabled="disabled" id="ruc" class="form-control">
+
+                            <strong>Carnet Extranjeria:</strong>
+                            <input name="ce" type="text" disabled="disabled" id="ce" class="form-control">
+
+
+                            <strong>ESSALUD (Centro de Atencion) </strong>
+                            <input name="essalud" type="text" disabled="disabled" id="essalud" class="form-control">
+
+
+                            <strong>Grupo Sanguineo</strong>
+                            <input name="gs" type="text" disabled="disabled" id="gs" class="form-control">
+
+
+                            <strong>Telefono Fijo:</strong>
+                            <input name="telefono_fijo" type="text" disabled="disabled" id="telefono_fijo" class="form-control">
+
+
+                            <strong>Celular :</strong>
+                            <input name="telefono_celular" type="text" disabled="disabled" id="telefono_celular" class="form-control">
+
+                            <strong>Correo Electronico:</strong>
+                            <textarea name="txt_correo_electronico" cols="15" rows="3" disabled="disabled" id="txt_correo_electronico" class="form-control"></textarea>
+
+                            <span class="label label-primary">Lugar Domicilio :</span><br>
+                            <span id="direccion_departamento"></span>
+                            <span id="direccion_provincia"></span>
+                            <span id="direccion_distrito"></span>
+                            <select name="slt_direccion_departamento" size="1" disabled="disabled" id="slt_direccion_departamento" class="form-control">
+                                <option value="X">Seleccione Departamento :</option>
+                            </select>
+                            <select name="slt_direccion_provincia" size="1" disabled="disabled" id="slt_direccion_provincia" class="form-control">
+                                <option value="X">Seleccione Provincia:</option>
+                            </select>
+                            <select name="slt_direccion_distrito" size="1" disabled="disabled" id="slt_direccion_distrito" class="form-control">
+                                <option value="X">Seleccione Distrito:</option>
+                            </select>
+                            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                            <button class="btn btn-info  btn-lg crear-tooltip pull-left " id="btn_grabar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro Personal"><i class="fa fa-save"></i></button>
+
+    </div>
+
+
+    <div class="col-xs-1 col-md-1">
+        <button class="btn btn-info  btn-lg crear-tooltip pull-right" id="btn_nuevo_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Nuevo Personal"><i class="fa fa-user"></i></button>
+        <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+        <button class="btn btn-info  btn-lg crear-tooltip pull-right " id="btn_modificar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Personal"><i class="fa fa-pencil"></i></button>
+        <?php for ( $i = 1; $i <= 3; $i++ ) {echo '<br>';}?>
+        <button class="btn btn-info  btn-lg crear-tooltip pull-right " id="btn_eliminar_personal" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Desactivar Personal"><i class="fa fa-times"></i></button>
+
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<div class="tab-pane" id="2a">
+       <div class="col-xs-2 col-md-2">
+    
+
+    Estado Civil
+    <input name="estado_civil" type="text" disabled="disabled" id="estado_civil" class="form-control">
+    
+    Numero de Hijos:
+    <input name="numero_hijos" type="text" disabled="disabled" id="numero_hijos" class="form-control">
+
+
+ </div>
+
+
+</div>
+
+<div class="tab-pane" id="3a">
+
+
+    <h5>Notificacion</h5>
+
+
+
+
+</div>
+
+
+
+</div>

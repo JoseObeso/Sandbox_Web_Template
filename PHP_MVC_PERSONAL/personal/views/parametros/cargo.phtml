@@ -1,0 +1,111 @@
+<?php
+
+$reportes_cargo = json_decode( $this->listar_cargos_reportes );
+
+?>
+
+
+
+
+<link href="/rrhh/control/personal/views/layout/default/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+<div class="container-fluid pull-left">
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>parametros_cargo_grupo_ocupacional.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+    <div class="row">
+
+        <div class="col-md-3 bg-color-gris">
+            <h4><span class="label label-info form-control">LISTA DE CARGOS </span> </h4>
+            <input name="txt_buscar_cargo" type="text" id="txt_buscar_cargo" class="form-control initialism">
+            <select name="slt_cargos" size="20" disabled="disabled" id="slt_cargos" title="Cargos seleccionado...." class="form-control"></select>
+            <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+            <center>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Cargo y Grupo Ocupacional"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Cargo y Grupo Ocupacional"><strong> <i class="fa fa-pencil"></i></strong></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Cargo y Grupo Ocupacional"><strong> <i class="fa fa-times"></i> </strong></button>
+            </center>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <div class="form-group">
+                <label for="txt_descripcion_cargo" class="form-control">Descripcion : </label>
+                <input name="txt_descripcion_cargo" type="text" disabled="disabled" id="txt_descripcion_cargo" class="form-control initialism">
+                <span id="grupo_ocupacional"></span>
+                <label for="slt_seleccion_grupo" class="form-control">Seleccion  : </label>
+                <select name="slt_seleccion_grupo" disabled="disabled" id="slt_seleccion_grupo" title="Seleccion de grupo ocupacional..." class="form-control"></select>
+            </div>
+
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_cargo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+
+            <span id="esperando_turno"></span>
+
+        </div>
+        <div class="col-md-3 bg-color-gris">
+            <h4><span class="label label-info form-control">LISTA DE GRUPOS OCUPACIONALES </span> </h4>
+            <input name="txt_buscar_grupo" type="text" id="txt_buscar_grupo" class="form-control initialism">
+            <select name="slt_grupo" size="20" disabled="disabled" id="slt_grupo" title="Grupo seleccionado...." class="form-control"></select>
+            <?php for ( $i = 1; $i <= 1; $i++ ) {echo '<br>';}?>
+            <center>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_agregar_grupo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Agregar Grupo Ocupacional"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_modificar_grupo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Modificar Grupo Ocupacional"><strong> <i class="fa fa-pencil"></i></strong></button>
+                <button class="btn btn-info  btn-lg crear-tooltip " id="btn_eliminar_grupo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Eliminar Grupo Ocupacional"><strong> <i class="fa fa-times"></i> </strong></button>
+            </center>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <div class="form-group">
+                <label for="txt_descripcion_grupo" class="form-control">Grupo : </label>
+                <input name="txt_descripcion_grupo" type="text" disabled="disabled" id="txt_descripcion_grupo" class="form-control initialism">
+            </div>
+
+            <button class="btn btn-info btn-lg crear-tooltip form-control" id="btn_grabar_grupo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grabar Registro"><strong> <span class="glyphicon glyphicon-floppy-disk" ></span></strong></button>
+            <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+            <span id="esperando_grupo"></span>
+        </div>
+
+        <div class="col-md-5 col-sm-offset-1">
+
+            <div class="table-responsive">
+
+                <table class="table table-striped" id="tabla_cargos_grupos">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#DDDBDB">Codigo</th>
+                            <th bgcolor="#DDDBDB">Descripcion</th>
+                            <th bgcolor="#DDDBDB">Grupo</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="mostrar_cargos_grupos">
+
+                        <?php 
+					foreach($reportes_cargo as $llave => $imprimir ): ?>
+                        <tr>
+                            <td>
+                                <?= $imprimir->codigo ?>
+                            </td>
+                            <td>
+                                <?= $imprimir->cargo ?>
+                            </td>
+
+                            <td>
+                                <?= $imprimir->descripcion ?>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <span id="result"></span>
+
+</div>

@@ -1,0 +1,60 @@
+<?php
+$listar_tipo_educacion = json_decode( $this->listar_tipo_educacion);
+?>
+ 
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>legajos_tipo_educacion.jpg" width="960" height="80" alt=""/>';
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Lista de Tipo de Educaci&oacute;n registrado:</div>
+            <div class="panel-body">  <select name="select_documentos" size="30" id="select_documentos" form="frm_documentos" title="Tipo de Eventos" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 300px;">
+                        <?php foreach($listar_tipo_educacion as $ver):?>
+                        <option value="<?= $ver->id ?>" id="<?= $ver->id ?>" nombre="<?= $ver->nombre ?>"  <font size="-2" color="#000000"><strong>  <?=$ver->nombre ?>    </strong></font>
+                        </option>
+                        <?php endforeach;?>
+
+                    </select>
+               
+            </div>
+            <div class="panel-footer"> </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Operaciones</div>
+            <div class="panel-body"><center>
+                <input name="btn_nuevo" type="button" class="btn btn-info btn-lg " id="btn_nuevo" form="frm_documentos" title="Registrar Nuevo Documento" value="- Nuevo - ">
+                
+              <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                <input name="btn_modificar" type="button" disabled="disabled" class="btn btn-info btn-lg " id="btn_modificar" form="frm_documentos" title="Modificar registro de un documento" value="Modificar">
+            
+             <?php for ( $i = 1; $i <= 2; $i++ ) {echo '<br>';}?>
+                <input name="btn_eliminar" type="button" disabled="disabled" class="btn btn-info btn-lg" id="btn_eliminar" form="frm_documentos" title="Eliminar Registro de couemnto" value="Eliminar">
+
+          </center>
+                
+            </div>
+            <div class="panel-footer"> </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Registre Tipo de Educacion:</div>
+            <div class="panel-body"> <input name="txt_documento" type="text" disabled="disabled" id="txt_documento" form="frm_documentos" style="background-color:#FCFBA0; border: solid 1px #000000; height: 35px; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" size="50" maxlength="150">
+                
+      
+            </div>
+            <div class="panel-footer">
+                <input name="btn_Grabar" type="button" disabled="disabled" class="btn-primary btn-lg" id="btn_Grabar" form="frm_documentos" title="Grabar registro" value="-- Grabar --">
+        </div>
+        </div>
+    </div>
+</div>

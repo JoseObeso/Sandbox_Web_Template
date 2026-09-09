@@ -1,0 +1,76 @@
+<?php
+$ver_unidades = json_decode( $this->unidad );
+?>
+
+<div class="container-fluid  pull-left">
+
+    <div class="page-header">
+        <img src="<?= RUTA_PUBLIC_GRA?>asignacion_servicios_uo.jpg" class="img-responsive" width="960" height="80" alt=""/>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"><label class="bg-info">UNIDADES ORGANICAS REGISTRADAS</label></div>
+                <div class="panel-body">
+                    <select name="mostrar_unidades_organicas" size="23" autofocus="autofocus" id="mostrar_unidades_organicas" title="Unidades Organicas desde el Centro de Costo " class="form-control">
+                        <?php foreach($ver_unidades as $registros):?>
+                        <option value="<?=$registros->codigo ?>" unidad_codigo="<?=$registros->codigo ?>" unidad_descripcion="<?=$registros->descripcion ?>" nombre_autorizado="<?=$registros->nombres  ?>">
+                            <font size="2">
+                                <?=$registros->descripcion ?>
+                            </font>
+                        </option>
+                        <?php endforeach;?>
+                    </select>
+
+
+
+
+                </div>
+                <div class="panel-footer">
+                    <div class="fom-group">
+                        <input name="btn_agregar_unidad" type="button" class="btn-primary form-control" id="btn_agregar_unidad" title="Nueva Unidad Organica" value="Agregar Unidad Organica">
+                        <input name="txt_unidad_organica" type="text" disabled="disabled" id="txt_unidad_organica" class="form-control">
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><label class="bg-info">SERVICIOS / ACTIVIDADES REGISTRADOS :</label></div>
+                <div class="panel-body">
+                    <span id="nombre_unidad_seleccion" class="label form-control"></span>
+                    <div class="form-group">
+                        <select name="mostrar_servicios_de_unidades" size="10" id="mostrar_servicios_de_unidades" title="Servicios de las Unidades Correspondientes..." class="form-control">  </select>
+                        </div>
+                        <div class="form-group">
+                            <input name="btn_agregar_servicios" type="button" disabled="disabled" class="btn-primary form-control" id="btn_agregar_servicios" title="Agregar servicios asociados al departamento" value="Agregar Servicios">
+                             </div>
+                            <div class="form-group">
+                            <input name="btn_modificar" type="button" disabled="disabled" class="btn-primary form-control" id="btn_modificar" title="Modificar servicio registrado" value="Modificar">
+                                </div>
+                        <div class="form-group">
+                                <input name="btn_eliminar" type="button" disabled="disabled" class="btn-primary form-control" id="btn_eliminar" title="Eliminar Registro de Servicios" value="Eliminar">
+                       </div>
+                        <input name="txt_nombre_servicio" type="text" disabled="disabled" id="txt_nombre_servicio" class="form-control">
+
+                    
+
+                </div>
+                <div class="panel-footer"><input name="btn_grabar" type="button" disabled="disabled" class="btn-primary form-control " id="btn_grabar" title="Grabar Servicios" value="Grabar">
+                    <span id="usuario_autorizado" class="label form-control"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

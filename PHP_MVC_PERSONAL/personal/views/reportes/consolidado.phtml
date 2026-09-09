@@ -1,0 +1,95 @@
+<?php
+$listar_personal_consolidado = json_decode( $this->listar_personal_consolidado );
+
+?>
+
+<div class="container-fluid  pull-left">
+    
+    <link rel="stylesheet" href="../layout/default/css/themes.min.css">
+    <div class="page-header">
+    
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="tabla_consolidado">
+                    <thead>
+                        <tr>
+                            <th bgcolor="#DDDBDB">PERSONAL</th>
+                            <th bgcolor="#DDDBDB">DNI</th>
+                            <th bgcolor="#DDDBDB">RUC</th>
+                            <th bgcolor="#DDDBDB">APELLIDOS Y NOMBRES</th>
+                            <th bgcolor="#DDDBDB">INICIO</th>
+                            <th bgcolor="#DDDBDB">FIN</th>
+                            <th bgcolor="#DDDBDB">PROFESION</th>
+                            <th bgcolor="#DDDBDB">SERVICIO</th>                                                        
+                            <th bgcolor="#DDDBDB">COLEGIO</th>                                                                                    
+                            <th bgcolor="#DDDBDB">ESTADO</th>                                                                                                             
+                            <th bgcolor="#DDDBDB">LABOR</th>                           
+                        </tr>
+                        
+                    </thead>
+                    <tbody id="tabla_consolidado">
+                        <?php foreach($listar_personal_consolidado as $llave => $imprimir ): ?>
+                        <tr>
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->condicion ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->dni ?>
+                            </td>
+
+                            
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->ruc ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->apellidos_nombres ?>
+                            </td>
+                            
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->fecha_inicio ?>
+                            </td>
+
+                             <td bgcolor="#FCFBA0">
+                                <?= $imprimir->fecha_fin ?>
+                            </td>
+                            
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->descripcion_total_profesion ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->servicio ?>
+                            </td>
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->colegio ?>
+                            </td>
+                            
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->condicion_estado ?>
+                            </td>
+
+
+                            <td bgcolor="#FCFBA0">
+                                <?= $imprimir->descripcion_tipo_empleado ?>
+                            </td>
+
+
+                            
+
+
+                        </tr>
+                        <?php endforeach;   ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+  

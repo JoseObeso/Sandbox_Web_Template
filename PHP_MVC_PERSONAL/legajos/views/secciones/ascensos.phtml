@@ -1,0 +1,113 @@
+<?php
+
+$listar_personal_legajos = json_decode( $this->listar_personal_legajos );
+
+
+
+?>
+<style type="text/css">
+    .resaltado {
+        background-color: #A1EBB4;
+        border: solid 1px #000000;
+        height: 20px;
+        width: 170px;
+        font-size: 14px;
+        color: #000000;
+        font-weight: bold;
+        vertical-align: 9px
+    }
+    
+    #tab_datos_personales .tab-content {
+        color: #000000;
+        background-color: #E4E4E4;
+        padding: 5px 5px;
+    }
+</style>
+
+<link rel="stylesheet" href="../layout/default/css/themes.min.css">
+
+
+
+
+<div class="page-header">
+    <img src="<?= RUTA_PUBLIC_GRA?>ascensos_personal_legajos.jpg" width="961" height="81" alt=""/>';
+</div>
+
+ 
+
+<div class="row">
+    <div class="col-md-3">
+        <p class="bg-success">
+            Registro de Asensos del Personal Legajos
+        </p>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <hr size="100%">
+    <div class="col-md-2">
+        <center><span class="label label-default"> PERSONAL CON LEGAJOS </span>
+            <hr>
+            <input name="txt_buscar_nombre" type="text" id="txt_buscar_nombre" size="35" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:10px; height: 30px;"><br>
+            <select name="slc_personal" size="35" id="slc_personal" style="background-color:#FCFBA0; border: solid 1px #000000; font-size:12px; color: #000000; font-weight: bold; vertical-align:9px; width: 270px;" form="frm_ver_marcaciones">
+                <?php foreach($listar_personal_legajos as   $ver): ?>
+                <option value="<?=$ver->id ?>" id="<?=$ver->id ?>" plaza="<?=$ver->plaza ?>" nro_contrato="<?=$ver->nro_contrato ?>" nro_proceso="<?=$ver->nro_proceso ?>" tipo_personal="<?=$ver->tipo_personal ?>" sexo="<?=$ver->sexo ?>" paterno="<?=$ver->paterno ?>" materno="<?=$ver->materno ?>" nombre="<?=$ver->nombre ?>" apellidos_nombre="<?=$ver->apellidos_nombres ?>" fecha_nacimiento="<?=$ver->fecha_nacimiento ?>" edad="<?=$ver->edad ?>" estado_civil="<?=$ver->estado_civil ?>" direccion="<?=$ver->direccion ?>" direccion_distrito="<?=$ver->direccion_distrito ?>" direccion_provincia="<?=$ver->direccion_provincia ?>" direccion_departamento="<?=$ver->direccion_departamento ?>" sueldo="<?=$ver->sueldo ?>" cargo="<?=$ver->cargo ?>" <font size="-2" color="#000000"><strong><?= $ver->apellidos_nombres ?></font></option>
+                        <?php endforeach;?>
+            
+          </select>
+    </center>
+    </div>
+ 
+ 
+
+
+ 
+    <div class="col-md-8">
+        <div class="container">
+           
+        </div>
+        <div id="tab_datos_personales" class="container">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a href="#1a" data-toggle="tab">Datos Personales</a>
+                </li>
+                <li><a href="#2a" data-toggle="tab">Estado Civil</a>
+                </li>
+                <li><a href="#3a" data-toggle="tab">Direccion</a>
+                </li>
+                 
+            </ul>
+
+            <div class="tab-content clearfix">
+                <div class="tab-pane active" id="1a">
+                    <h5><span id="apellidos_nombres"></span></h5>
+                    <h5><span id="nacimiento"></span></h5>
+                    <h5><span id="edad"></span></h5>
+                    <h5><span id="sueldo"></span></h5>
+                    <h5><span id="cargo"></span></h5>
+                     
+                    
+            
+                </div>
+                <div class="tab-pane" id="2a">
+                     <h5><span id="estado_civil"></span></h5>
+                    
+                </div>
+                <div class="tab-pane" id="3a">
+                     <h5><span id="direccion"></span></h5>
+                     <h5><span id="direccion_distrito"></span></h5>
+                    <h5><span id="direccion_provincia"></span></h5>
+                    <h5><span id="direccion_departamento"></span></h5>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
