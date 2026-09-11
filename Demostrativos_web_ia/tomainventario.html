@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Inventario</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #1f2937;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        padding: 32px;
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 24px;
+        font-size: 2rem;
+        text-align: center;
+        color: #0f172a;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-weight: 600;
+        color: #334155;
+      }
+
+      input,
+      select,
+      textarea,
+      button {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 1rem;
+        background: #fff;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      }
+
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      button {
+        background: #2563eb;
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      @media (max-width: 640px) {
+        form {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Formulario de Inventario</h1>
+
+      <form>
+        <div class="field">
+          <label for="codigo">Código</label>
+          <input id="codigo" type="text" placeholder="Ej: INV-001" />
+        </div>
+
+        <div class="field">
+          <label for="producto">Producto</label>
+          <input id="producto" type="text" placeholder="Nombre del producto" />
+        </div>
+
+        <div class="field">
+          <label for="categoria">Categoría</label>
+          <select id="categoria">
+            <option value="">Seleccione</option>
+            <option value="electro">Electrónica</option>
+            <option value="hogar">Hogar</option>
+            <option value="oficina">Oficina</option>
+            <option value="ferreteria">Ferretería</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cantidad">Cantidad</label>
+          <input id="cantidad" type="number" min="0" placeholder="0" />
+        </div>
+
+        <div class="field">
+          <label for="estado">Estado</label>
+          <select id="estado">
+            <option value="">Seleccione</option>
+            <option value="nuevo">Nuevo</option>
+            <option value="usado">Usado</option>
+            <option value="dañado">Dañado</option>
+            <option value="en-reparacion">En reparación</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="situacion">Situación</label>
+          <select id="situacion">
+            <option value="">Seleccione</option>
+            <option value="disponible">Disponible</option>
+            <option value="reservado">Reservado</option>
+            <option value="vendido">Vendido</option>
+            <option value="faltante">Faltante</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="observaciones">Observaciones</label>
+          <textarea id="observaciones" placeholder="Ingrese detalles adicionales..."></textarea>
+        </div>
+
+        <div class="field full">
+          <button type="submit">Guardar inventario</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
