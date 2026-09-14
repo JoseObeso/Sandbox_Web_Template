@@ -1,0 +1,248 @@
+﻿@using System.Data
+@using SRSgd.Web.Models.Reporting
+@using SRSgd.Entities.Seguridad
+@model RepoEmitidosModel
+
+@{
+    ViewBag.Title = "Consulta de expediente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //string SesionNombreDependencia = Session["dependenciaUser"].ToString(),
+    //SesionCodDependencia = Session["codDependenciaUser"].ToString(),
+    //VnombreUsuario = Session["userLogin"].ToString().ToUpper();
+
+   // string VnombreUsuario = Session["userLogin"].ToString().ToUpper();
+
+}
+<input type="hidden" value="@Url.Content("~")" id="hdfOculto" />
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+<script>
+
+    var url_doc_recibidos = 'http://' + document.domain + ':8091/Reportes/';
+    $(document).ready(function () {
+        $("#btnConsultar").click(function () {
+            var V_asunto = $('#txtBusqueda').val(),
+                datos_emitidos = {
+                    "Asunto": V_asunto
+                };
+                total_diastranscurridos(V_asunto);
+            $.ajax({
+                type: 'GET',
+                url: '_GridEmitidosView',
+                data: datos_emitidos,
+                contentType: 'application/html',
+                dataType: "html",
+                success: function (content) {
+                    $('#divGridContainer').html(content);
+
+                    var tbodyData = document.getElementById("tbodydata");
+                    tbodyData.innerHTML = "";
+
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        });
+
+        $('#btnLimpiar').click(function () {
+            window.location.href = window.location.href;
+        });
+    });
+
+    //Funcion para visualizar dias transcurridos
+    function total_diastranscurridos(id) {
+        fetchGetJSON("Reportes/Diastranscurridos/?numEmisionExp=" + id, function (rpta) {
+            var tbodydataDias = document.getElementById("tbodydataDias");
+            var contenido = "";
+            for (var i = 0; i < 1; i++) {
+                contenido += "<tr>";
+                contenido += "<td>";
+                contenido += rpta[i].Vdias
+                contenido += "</td>";
+                contenido += "</tr>";
+            }
+            tbodydataDias.innerHTML = contenido;
+        })
+
+    }
+
+    function fetchGetArchivo(url, callback, mensaje = "Se descargo el archivo Excel") {
+        var raiz = document.getElementById("hdfOculto").value;
+        var urlAbsoluta = window.location.protocol + "//" + window.location.host + raiz + url;
+        fetch(urlAbsoluta).then(res => res.text())
+            .then(res => {
+                if (res.length > 1) {
+                    callback(res)
+                }
+                else
+                    callback("")
+            })
+    }
+
+    function fetchGetJSON(url, callback, mensaje = "Se descargo el archivo Excel") {
+        var raiz = document.getElementById("hdfOculto").value;
+        var urlAbsoluta = window.location.protocol + "//" + window.location.host + raiz + url;
+        fetch(urlAbsoluta).then(res => res.json())
+            .then(res => {
+                    callback(res)
+            })
+    }
+
+    //Descarga documentos del SGD en PDF
+    function Descargar(id, nom) {
+        fetchGetArchivo("Reportes/ExportarPDF/?iiddoc=" + id, function (rpta) {
+            var a = document.createElement("a");
+            var link = "data:application/pdf;base64," + rpta;
+         
+            a.href = link;
+            a.download = nom + ".pdf";
+         
+            a.click();
+        })
+    }
+
+    //Visualiza lista de anexos
+    var iid;
+    function Anexo(id) {
+        iid = id;
+        fetchGetJSON("Reportes/listaAnexos/?numEmision=" + id, function (rpta) {
+            var tbodyData = document.getElementById("tbodydata");
+            var contenido = "";
+            if (rpta.length <= 1)
+            {
+                    for (var i = 0; i < rpta.length; i++) {
+                        contenido += "<tr>";
+                        contenido += `<td onclick="Exportar('${rpta[i].NroDocumento}',${rpta[i].Anio})">`;
+                        contenido += rpta[i].NroDocumento
+                        contenido += "</td>";
+                        contenido += "</tr>";
+                    }
+                        tbodyData.innerHTML = contenido;
+            }
+
+        })
+    }
+
+    //Visualiza documento del anexo
+    function Exportar(nro, id) {
+        fetchGetArchivo("Reportes/recuperarPDFAnexos/?iiddoc=" + iid + "&correlativo=" + id, function (base) {
+            if (nro.toUpperCase().includes(".PDF")){
+                var a = document.createElement("a");
+                a.href = "data:application/pdf;base64," + base;
+                a.download = id + ".pdf";
+                a.click()
+            }
+            else
+                if (nro.toUpperCase().includes(".DOC")){
+                        var a = document.createElement("a");
+                        a.href = "data:application/msword;base64," + base;a.download = id + ".doc";a.click()}
+                else
+                    if (nro.toUpperCase().includes(".XLS")){
+                        var a = document.createElement("a");
+                        a.href = "data:application/vnd.ms-excel;base64," + base;a.download = id + ".xls";a.click()}
+                    else
+                        if (nro.toUpperCase().includes(".JPG")) {
+                            var a = document.createElement("a");
+                            a.href = "data:image/jpeg;base64," + base; a.download = id + ".jpg"; a.click()
+                        }
+                        else { alert("Se descarga solo documentos en .PDF .DOC .XLS y .JPG"); }
+        })
+    }
+    
+    mostrar_registros_6_meses();
+    function mostrar_registros_6_meses() {
+        var
+            V_asunto = $('#txtBusqueda').val(),
+            datos_emitidos = {
+                "Asunto": V_asunto
+            };
+        $.ajax({
+            type: 'GET',
+            url: '_GridEmitidosView',
+            data: datos_emitidos,
+            contentType: 'application/html',
+            dataType: "html",
+            success: function (content) {
+                $('#divGridContainer').html(content);
+            },
+            error: function (e) {
+                alert(e.statusText);
+            }
+        });
+
+    }
+</script>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header text-center text-white bg-danger">
+            <strong><font size=5 face="Arial"> Consulta de expediente</font></strong>
+        </div>
+        <div id="cardBlock" class="card-body">
+            <div class="form-horizontal" role="form">
+                <div class="row">
+                    @*<input id="CodDependencia" type="hidden" value=@VnombreUsuario />*@
+                    <div class="form-group col-sm-3" style="height:60px;">
+                        <label class="control-label"><font size=2 face="Arial "> Numero de expediente </font></label>
+                        <input id="txtBusqueda" type="text" class="form-control" placeholder="Ejemplo: OA100020210000469" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <input type="button" id="btnConsultar" class="btn bg-danger" value="        Buscar        " />
+            </div>
+        </div>
+    </div>
+
+    <div class="card-header text-center text-white bg-gray-dark " style="height:40px;">
+        <b><FONT FACE="Arial"><h5 id="tbodydataDias"></h5></FONT></b>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="card col-ms-6 col-lg-9">
+        <div class="card-body pb-0">
+                <div><h6 id="divGridContainer"></h6></div>
+        </div>
+    </div>
+
+    @*Ver anexos*@
+    <div class="card col-ms-6 col-lg-3">
+        <div class="card-body pb-0">
+            <div style="height:600px;overflow:scroll">
+                  <table id="table" class="table table-responsive-sm table-striped text-center">
+                       <thead>
+                                <tr><th><font size=2 face="Arial">Anexo</font></th></tr>
+                       </thead>
+                       <tbody id="tbodydata"></tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+

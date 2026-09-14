@@ -1,0 +1,83 @@
+D:\SGD REPORTING FINAL\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\SGD REPORTING FINAL\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\SGD REPORTING FINAL\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\SGD REPORTING FINAL\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\SGD REPORTING FINAL\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\SGD REPORTING FINAL\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+I:\SRSGD_3\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+I:\SRSGD_3\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+I:\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+I:\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+I:\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+I:\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+I:\SRSGD_8\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+I:\SRSGD_8\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+I:\SRSGD_8\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+I:\SRSGD_8\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+I:\SRSGD_8\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+I:\SRSGD_8\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.Helper\bin\Debug\SRSgd.Helper.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.Helper\bin\Debug\SRSgd.Helper.pdb
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.csprojAssemblyReference.cache
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.Helper\obj\Debug\SRSgd.Helper.pdb

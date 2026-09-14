@@ -1,0 +1,52 @@
+﻿@using System.Data
+@model DataTable
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mainTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel'
+            ]
+        });
+    });
+
+</script>
+
+<table id="mainTable" class="table table-responsive-sm table-striped">
+    <thead>
+        <tr>
+            <th>Documento</th>
+            <th>Expediente</th>
+            <th>Remitente</th>
+            <th>F.emisión</th>
+            <th>Asunto</th>
+            <th>Estado</th>
+            <th>VerDoc.</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            foreach (DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["Documento"]</td>
+                    <td>@row["NroExpediente"]</td>
+                    <td>@row["EmpleadoRemitente"]</td>
+                    <td>@row["FechaEmision"]</td>
+                    <td>@row["Asunto"]</td>
+                    <td>@row["EstadoDocumento"]</td>
+                    <td>
+                        @if (row["ESTADODOCUMENTO"].ToString() != "EN PROYECTO" && row["ESTADODOCUMENTO"].ToString() != "ANULADO")
+                        {
+                            <button class="btn btn-light" onclick="Descargar('@row["NU_EMI"]','@row["Documento"]')">Descargar</button>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,368 @@
+﻿@using SRSgd.Web.Models.Charts
+@model ChartEmitidosModel
+
+@{
+               
+
+                ViewBag.Title = "Produccion de Dependendcias";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+                string SesionNombreDependencia = Session["dependenciaUser"].ToString(),
+                SesionCodDependencia = Session["codDependenciaUser"].ToString(),
+                VnombreUsuario = Session["userLogin"].ToString().ToUpper();
+}
+
+<script type="text/javascript">
+
+    var barChart = null;
+    var lstBGColores = [];
+
+    var url_doc_recibidos = 'http://' + document.domain + ':8091/Reportes/';
+    //var url_doc_recibidos = 'http://' + document.domain + ':2135/Reportes/';
+    var v_tipodoc;
+
+    function ver_coddependencia_documentos() {
+        var lc_codsesion = $("#ccoddependencia").val();
+        var valor = $("#cbxDependencia option:selected").attr('value');
+        if (valor == "") {
+            var v_coddependencia = lc_codsesion;
+        }
+        else {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+        }
+
+        $("#cbxDependencia").attr("disabled", true);
+        $.ajax({
+            type: 'POST',
+            url: url_doc_recibidos + '_DocumentosPorDependencia',
+            data: { 'coddependencia': v_coddependencia },
+            dataType: 'json',
+            success: function (data) {
+                $("#TipoDocumentoDependencia")
+                    .html("")
+                    .append('<option id=""> Seleccione ... </option>');
+
+                data.forEach(function (filas) {
+                    for (var e = 0; e < filas.length; e++) {
+                        $("#TipoDocumentoDependencia")
+                            .attr("disabled", false)
+                            .append('<option id="' + filas[e].Vco_tip_doc
+                                + '"  >' + filas[e].Vcdoc_desdoc + '</option>');
+                    }
+                });
+            },
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    }
+
+    /////////////////////////////25112021
+    function requestServer(tipoMetodo, url, metodoCallBack, texto) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(tipoMetodo, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                metodoCallBack(xhr.responseText);
+            }
+        }
+        if (tipoMetodo == "get") xhr.send();
+        else {
+            if (texto != "") xhr.send(texto);
+        }
+    }
+    var post = function (url, metodoCallBack, texto) {
+        requestServer("post", url, metodoCallBack, texto);
+    }
+
+    function mostrarGrabar(rpta) {
+        var a = document.createElement("a");
+        var link = " data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + rpta;
+        a.href = link;
+        a.download = "Reportegrafico.xlsx";
+        a.click();
+    }
+
+    function Exportar() {
+
+        v_tipodoc = $("#TipoDocumentoDependencia option:selected").attr('id');
+
+        if (v_tipodoc != '') {
+            var canvas = document.getElementById("canvas1");
+            var data = canvas.toDataURL().replace("data:image/png;base64,", "");
+            post("../Charts/_ChartExportar1", mostrarGrabar, data);
+            }
+    }
+    ////////////////////////////
+
+    $(document).ready(function () {
+
+        var lc_codsesion = $("#ccoddependencia").val(),
+            lc_nombredependencia = $("#ver_nombre_dependencia").text();
+        ver_coddependencia_documentos();
+        $("#cbxDependencia").on('change', function () {
+            ver_coddependencia_documentos();
+        });
+
+
+
+        $("#cbxDependencia").hide();
+
+        var random = function random() {
+            return Math.round(Math.random() * 100);
+        };
+
+        var getRandomColor = function () {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        };
+
+
+        $("#btnConsultar").click(function () {
+            var valor = $("#cbxDependencia option:selected").attr('value');
+
+            v_tipodoc = $("#TipoDocumentoDependencia option:selected").attr('id');
+
+            if (v_tipodoc != '') {
+                if (valor == "") {
+                    var v_coddependencia = lc_codsesion;
+                }
+                else {
+                    var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+                }
+                v_tipodoc = $("#TipoDocumentoDependencia option:selected").attr('id'),
+                    v_mes = $("#cbxMeses option:selected").attr('value'),
+                    v_anio = $("#cbxAnio option:selected").attr('value'),
+                    datos_chart = { "CodDependencia": v_coddependencia, "CodTipoDocumento": v_tipodoc, "MesI": v_mes, "Anio": v_anio };
+
+                console.log(datos_chart);
+
+
+                $.ajax({
+                    type: 'GET',
+                    url: '_ChartProduccionDependencias',
+                    data: datos_chart,
+                    contentType: 'application/json;charset=utf-8',
+                    //data: JSON.stringify(model),
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+
+                        CargarGrafico(data);
+                    },
+                    error: function (xhr, status, err) {
+                        alert(err);
+                    }
+                });
+
+            }
+
+
+        });
+
+
+        function CargarGrafico(dataList) {
+
+            $("#divBarrasChart").html('&nbsp;');
+            $("#divPastelChart").html('&nbsp;');
+
+            $("#divBarrasChart").append('<canvas id="canvas1"></canvas>');
+            $("#divPastelChart").append('<canvas id="canvas2"></canvas>');
+
+            var lstTipoDocumento = [];
+            var lstDatos = [];
+
+            /*$.each(dataList, function (i, item) {
+                if (jQuery.inArray(item.DescTipoDocumento, lstTipoDocumento) == -1)
+                    lstTipoDocumento.push(item.DescTipoDocumento);
+            });*/
+
+            var otros = 0;
+            $.each(dataList, function (i, item) {
+                if (i < 20) {
+                    lstTipoDocumento.push(item.NombreDependencia);
+                    lstDatos.push(item.Total);
+                    lstBGColores.push(getRandomColor());
+                } else
+                    otros += item.Total;
+            });
+
+            if (otros > 0) {
+                lstTipoDocumento.push('Otras Dependencias');
+                lstDatos.push(otros);
+                lstBGColores.push(getRandomColor());
+            }
+
+            console.log(lstTipoDocumento, lstDatos, lstBGColores);
+
+            barChart = new Chart($('#canvas1'), {
+                type: 'bar',
+                data: {
+                    labels: lstTipoDocumento,
+                    datasets: [{
+                        label: '# DOCUMENTOS',
+                        backgroundColor: lstBGColores, //'rgba(220, 220, 220, 0.5)',
+                        borderColor: 'rgba(220, 220, 220, 0.8)',
+                        highlightFill: 'rgba(220, 220, 220, 0.75)',
+                        highlightStroke: 'rgba(220, 220, 220, 1)',
+                        data: lstDatos,
+                        borderWidth: 1
+                    }
+                    /*, {
+                        backgroundColor: 'rgba(151, 187, 205, 0.5)',
+                        borderColor: 'rgba(151, 187, 205, 0.8)',
+                        highlightFill: 'rgba(151, 187, 205, 0.75)',
+                        highlightStroke: 'rgba(151, 187, 205, 1)',
+                        data: [random(), random(), random(), random(), random(), random(), random()]
+                    }*/ ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                maxRotation: 90,
+                                minRotation: 80
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            new Chart($("#canvas2"), {
+                type: 'pie',
+                data: {
+                    labels: lstTipoDocumento,//["Africa", "Asia", "Europe", "Latin America", "North America"],
+                    datasets: [{
+                        label: "Documentos(Unidades)",
+                        backgroundColor: lstBGColores,
+                        data: lstDatos//[2478, 5267, 734, 784, 433]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Emisiones realizadas'
+                    }
+                }
+            });
+
+        }
+
+    });
+
+
+
+</script>
+
+<div class="container-fluid">
+    <div class="animated fadeIn">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>CHART EMISIONES</strong>
+            </div>
+            <div class="card-body">
+               
+
+                <div class="row">
+                    <input type="hidden" value=@SesionCodDependencia id="ccoddependencia" />
+
+
+                    <!----"form-horizontal">-->
+                    <div class="form-group col-sm-3">
+                        <label class="col-form-label" for="date-input">Tipo Documento<span class="text-danger" title="Filtro obligatorio">*</span></label>
+                        <div>
+                            <select class="form-control" id="TipoDocumentoDependencia"></select>
+
+                            @*@Html.DropDownListFor(x => x._Filtros.CodTipoDocumento, Model.LstTipoDocumentos.Select(item => new SelectListItem { Value = item.CodigoTipoDoc, Text = item.Descripcion }),
+                "Seleccionar..", htmlAttributes: new { @class = "form-control form-control-md", @id = "cbxTipoDocumento" })*@
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="col-form-label" for="date-input"> Mes emisión</label>
+                        <div>
+                            @Html.DropDownListFor(x => x._Filtros.MesI, Model.LstMesesI, new { @class = "form-control form-control-md", @id = "cbxMeses" })
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label class="col-form-label" for="date-input"> Año </label>
+                        <div>
+                            @Html.DropDownList("cbxAnio", Model.LstAnios, new { @class = "form-control form-control-md" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-3">
+
+                        <label class="col-form-label" for="date-input"><span class="text-danger" title="Filtro obligatorio"></span></label>
+                        <div>
+                            @Html.DropDownListFor(x => x._Filtros.CodDependencia, Model.LstDependencias.Select(item => new SelectListItem { Value = item.Codigo, Text = item.Descripcion }),
+                                                        @SesionNombreDependencia, htmlAttributes: new { @class = "form-control form-control-md", @id = "cbxDependencia" })
+
+                        </div>
+                    </div>
+
+
+                    <label class="col-form-label" for="date-input"> &nbsp;</label>
+                    <div>
+                        <input type="button" id="btnConsultar" class="btn btn-primary" value="Consultar" />
+
+                    </div>
+
+                    <div class="col-md-1">
+                        <button class="btn btn-primary" onclick="Exportar()">Exportar</button>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card">
+                <div class="card-header">
+                    Grafico 1
+                    <div class="card-header-actions">
+                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
+                            @*<small class="text-muted">docs</small>*@
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="divBarrasChart" class="chart-wrapper">
+                        <canvas id="canvas1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Gráfico 2
+                    <div class="card-header-actions">
+                        <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
+                            @*<small class="text-muted">docs</small>*@
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="divPastelChart" class="chart-wrapper">
+                        <canvas id="canvas2"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

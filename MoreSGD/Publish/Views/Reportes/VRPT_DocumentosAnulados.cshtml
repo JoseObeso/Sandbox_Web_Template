@@ -1,0 +1,142 @@
+﻿@using System.Data
+@using SRSgd.Web.Models.Reporting
+@model RepoEmitidosModel
+
+@{
+    ViewBag.Title = "Reporte de Documentos Anulados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#cbxDependencia").attr("disabled", true);
+
+        var rightNow = new Date();
+        var res = rightNow.toISOString().slice(0, 10)        
+
+        $('#dpFechaInicio').val(res);
+        $('#dpFechaFin').val(res);
+
+
+        $("#btnConsultar").click(function () {
+
+            /*
+            var pFiltro = {
+                CodDependencia: $("#cbxDependencia option:selected").val(),
+                IdEstado: 100
+            }
+            var params = JSON.stringify(obj);
+            */
+
+            $.ajax({
+                type: 'GET',
+                url: '_GridAnuladosView',
+                data: {
+                    CodDependencia: $("#cbxDependencia option:selected").val(),
+                    CodDependenciaOrigen: $("#cbxDependenciaOrigen option:selected").val(),
+                    CodTipoDocumento: $("#cbxTipoDocumento option:selected").val(),
+                    FechaInicio: $("#dpFechaInicio").val(),
+                    FechaFin: $("#dpFechaFin").val(),
+                    //CodEstado: $("#cbxEstado").val(),
+                    TextoFiltro: $("#txtBusqueda").val()
+                },
+                contentType: 'application/html',                
+                dataType: "html",
+                success: function (content) {
+                    $('#divGridContainer').html(content);
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+        });
+
+
+    });
+
+</script>
+
+<div class="container-fluid">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>DOCUMENTOS ANULADOS / FILTROS</strong>
+            </div>
+            <div class="card-body">
+
+                <div class="form-horizontal" role="form">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for="date-input">Dependencia <span class="text-danger" title="Filtro obligatorio">*</span></label>
+                            <div class="">
+                                @Html.DropDownListFor(x => x._Filtros.CodDependencia, Model.LstDependencias.Select(item => new SelectListItem { Value = item.Codigo, Text = item.Descripcion }),
+                                                            htmlAttributes: new { @class = "form-control form-control-md", @id = "cbxDependencia" })
+                            </div>
+                        </div>
+                        @*<div class="form-group col-sm-4">
+                            <label class="control-label" for="date-input">Dependencia de Origen</label>
+                            <div class="">
+                                @Html.DropDownListFor(x => x._Filtros.CodDependenciaOrigen, Model.LstDependenciasOrigen.Select(item => new SelectListItem { Value = item.Codigo, Text = item.Descripcion }),
+                                                            "Todos..", htmlAttributes: new { @class = "form-control form-control-md", @id = "cbxDependenciaOrigen" })
+                            </div>
+                        </div>*@
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for="date-input">Tipo Documento</label>
+
+                            @Html.DropDownListFor(x=>x._Filtros.CodTipoDocumento, Model.LstTipoDocumentos.Select(item => new SelectListItem { Value = item.CodigoTipoDoc, Text = item.Descripcion }),
+                                                        "..Seleccionar..", new { @class = "form-control form-control-md", @id = "cbxTipoDocumento" })
+
+                        </div>
+                        @*<div class="form-group col-sm-2">
+                            <label class="control-label">Estado</label>
+                            @Html.DropDownListFor(x=>x._Filtros.CodEstado, Model.LstEstadosTran.Select(item => new SelectListItem { Value = item.CodigoEstado, Text = item.Descripcion }),
+                                                        "..Seleccionar..", new { @class = "form-control form-control-md", @id = "cbxEstado" })
+                        </div>*@
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="date-input">Desde <span class="text-danger" title="Filtro obligatorio">*</span></label>
+                                <div class="">
+                                    <input id="dpFechaInicio" class="form-control" type="date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="date-input">Hasta <span class="text-danger" title="Filtro obligatorio">*</span> </label>
+                                <div class="">
+                                    <input id="dpFechaFin" class="form-control" type="date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Expediente / Documento / Asunto </label>
+                            <input id="txtBusqueda" type="text" class="form-control" placeholder="Ingresar" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="button" id="btnConsultar" class="btn btn-primary" value="Consultar" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+
+            <div id="divGridContainer">
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

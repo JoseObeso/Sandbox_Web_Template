@@ -1,0 +1,900 @@
+﻿@{
+
+    //ViewBag.Title = "Index";
+    ViewData["Title"] = "SGD-INICIO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    var ln_tiempo = 1;
+
+    $(document).ready(function () {
+       
+        documentos_generados(ln_tiempo);
+        total_documentoPorAnno();
+        total_documentoPorTipoDocumento();
+        total_documentoPorEstado();
+        total_documentosEmitidos();
+        total_documentoPorDependencia();
+        total_documentoPorAnioPIDE();
+
+        $("#b01").click(function () {
+            ln_tiempo = 1;
+            documentos_generados(ln_tiempo);
+          });
+
+        $("#b02").click(function () {
+            ln_tiempo = 2;
+            documentos_generados(ln_tiempo);
+        });
+
+        $("#b03").click(function () {
+            ln_tiempo = 3;
+            documentos_generados(ln_tiempo);
+        });
+
+        function documentos_generados(ln_tiempo) {
+
+            switch (ln_tiempo) {
+                case 1:
+                    mostrar_generados_por_dia();
+                    $("#tiempo_grafico").html('<font size = "2"> Últimos 7 días</font>');
+                    break;
+                case 2:
+                    mostrar_generados_por_mes();
+                    $("#tiempo_grafico").html('<font size = "2">Últimos 30 días</font>');
+                    break;
+                case 3:
+                    mostrar_generados_por_anio();
+                    $("#tiempo_grafico").html('<font size="2">Últimos 12 meses</font>');
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        function total_documentoPorAnioPIDE() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_DocumentosTotalAnioPIDE", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                    var xValuesAnio = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                    xValuesAnio.push(data[index].I_anio);
+                    yValuesTotal.push(data[index].I_total);
+                }
+                    crear_grafico_PorAnioPIDE(xValuesAnio, yValuesTotal, "line");
+                },
+
+            error: function (e) {
+            //alert(e.statusText);
+            }
+            });
+        }
+
+
+
+        function total_documentosEmitidos() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosTotalEmitidos", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#totalEmitidos").text("0");
+                     }
+                     else {
+                         $("#totalEmitidos").text(data[0].I_total);
+
+                     }
+                },
+                error: function (e) {
+                    //alert(e.statusText);
+                }
+            });
+
+        }
+
+        function total_documentoPorDependencia() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_PorDependencia", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    var xValuesDep = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesDep.push(data[index].V_dep);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_grafico_PorDependencia(xValuesDep, yValuesTotal, "bar", "Documentos Para Despacho");
+                },
+                error: function (e) {
+                    //alert(e.statusText);
+                }
+            });
+        }
+
+
+        function total_documentoPorEstado() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_PorEstado", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    var xValuesDoc = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesDoc.push(data[index].V_doc);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_grafico_PorEstado(xValuesDoc, yValuesTotal, "bar", "Documentos Para Despacho");
+                },
+                error: function (e) {
+                    //alert(e.statusText);
+                }
+            });
+        }
+
+
+
+        function total_documentoPorTipoDocumento() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_PorTipoDocumento", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    var xValuesDoc = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesDoc.push(data[index].V_doc);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_grafico_PorTipoDocumento(xValuesDoc, yValuesTotal, "bar", "Documentos Para Despacho");
+                },
+                error: function (e) {
+                    //alert(e.statusText);
+                }
+            });
+
+
+        }
+
+
+        function total_documentoPorAnno() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_PorAnio", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                    var xValuesAnio = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                    xValuesAnio.push(data[index].I_anio);
+                    yValuesTotal.push(data[index].I_total);
+                }
+                    crear_grafico_PorAnno(xValuesAnio, yValuesTotal, "line");
+                },
+
+            error: function (e) {
+            //alert(e.statusText);
+            }
+            });
+
+
+        }
+
+        //total años de la pide
+        function crear_grafico_PorAnioPIDE(ValorX, ValorY, TipoGrafico, Titulo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+            
+            var barColorsMes = ["#d9af07", "#37ab56", "#b04141", "#418db0", "#12120b", "#b8bf4d", "#abab48", "#abab48", "#abab48", "#f2f257", "#f2f257", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+            new Chart("GraficoBarrasPorAnioPIDE", {
+                type: 'pie',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total documentos emitidos por Año (PIDE)',
+                        borderColor: '#f5f5f2',
+                        borderWidth: 1,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        backgroundColor: barColorsMes,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'center',
+
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            gridLines: {
+                                drawOnChartArea: false,
+
+                            },
+                            ticks: {
+                                fontColor: "#72bfe8",
+                                maxTicksLimit: 7
+
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        // 1. top5:por dependencia
+        function crear_grafico_PorDependencia(ValorX, ValorY, TipoGrafico, Titulo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            var barColorsMes = ["#81c2e6", "#81c2e6", "#81c2e6", "#81c2e6", "#81c2e6", "#81c2e6", "#81c2e6", "#abab48", "#abab48", "#f2f257", "#f2f257", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+            new Chart("GraficoBarrasPorDependencia", {
+                type: TipoGrafico,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total por dependencia',
+                        borderColor: '#22abf5',
+                        borderWidth: 0.5,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        backgroundColor: barColorsMes,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false,
+                        position: 'top',
+                        align: 'center',
+
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,
+
+                            },
+                            ticks: {
+                                fontColor: "#080808",
+                                maxTicksLimit: 7
+
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+        }
+
+        // 1. por estado
+        function crear_grafico_PorEstado(ValorX, ValorY, TipoGrafico, Titulo) {
+
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            var barColorsMes = ["#6dd15c", "#6dd15c", "#6dd15c", "#6dd15c", "#6dd15c", "#6dd15c", "#6dd15c", "#6dd15c", "#37ab56", "#37ab56", "#f2f257", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+            new Chart("GraficoBarrasPorEstado", {
+                type: TipoGrafico,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total por estado',
+                        borderColor: '#37ab56',
+                        borderWidth: 0.5,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        backgroundColor: barColorsMes,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false,
+                        position: 'top',
+                        align: 'center',
+
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: true, 
+                            gridLines: {
+                                drawOnChartArea: false,
+
+                            },
+                            ticks: {
+                                fontColor: "#080808",
+                                maxTicksLimit: 7
+
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+        }
+
+        // grafico por años
+        function crear_grafico_PorAnno(ValorX, ValorY, Tipo) { 
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoBarrasPorAnno", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total por año',
+                        borderColor: '#ad9723',
+                        backgroundColor: '#f2e28f',
+                        borderWidth: 1,/*1,*/
+                        pointBorderColor: 'ginger',
+                        pointBackgroundColor: 'ginger',
+                        pointRadius: 2,
+                        pointBorderWidth: 2,
+
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false,
+                        position: 'top',
+                        align: 'center',
+
+                    },
+
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: true,
+                            },
+                            ticks: {
+                                fontColor: "#080808",
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            gridLines: {
+                                drawOnChartArea: false,
+                                backgroundColor: '#d55046'
+                            },
+
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#0b1e20"
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 50, //10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3,
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // por tipo documento
+        function crear_grafico_PorTipoDocumento(ValorX, ValorY, TipoGrafico, Titulo) {
+
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            var barColorsMes = ["#db837d", "#db837d", "#db837d", "#db837d", "#db837d", "#db837d", "#db837d", "#db837d", "#64387d", "#e68c8c", "#e68c8c", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+            new Chart("GraficoBarrasPorTipoDocumento", {
+                type: TipoGrafico,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total tipo doc.',
+                        borderColor: '#9c1c20',
+                        borderWidth: 0.5,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        backgroundColor: barColorsMes,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false,
+                        position: 'top',
+                        align: 'center',
+                        //Color: "#deafad",
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                fontColor: "#080808",
+                                maxTicksLimit: 5
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+        }
+
+        function mostrar_generados_por_dia() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_GeneradoDia", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                xValuesMes.push(data[index].I_dia);
+                yValuesTotal.push(data[index].I_total);
+                }
+            GraficoGenerado(xValuesMes, yValuesTotal, "line");
+                },
+            error: function (e) {
+            //alert(e.statusText);
+            }
+        });
+        }
+
+
+         function mostrar_generados_por_mes() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_GeneradoMes", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesMes.push(data[index].I_dia);
+                        yValuesTotal.push(data[index].I_total);
+                }
+            GraficoGenerado2(xValuesMes, yValuesTotal, "line");
+                },
+
+            error: function (e) {
+            //alert(e.statusText);
+            }
+        });
+
+
+        }
+
+
+        function mostrar_generados_por_anio() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_GeneradoAnio", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                    xValuesMes.push(data[index].V_mes);
+                yValuesTotal.push(data[index].I_total);
+                }
+            GraficoGenerado3(xValuesMes, yValuesTotal, "line");
+                },
+
+            error: function (e) {
+            //alert(e.statusText);
+            }
+        });
+        }
+
+        //Grafico de los ultimos 7 dias
+        function GraficoGenerado(ValorX, ValorY, Tipo) {  
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoGeneradoChart", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total por dia',
+                        borderColor: '#f3180b',
+                        backgroundColor: '#f2aeaa',//'#d55046',
+                        borderWidth: 1,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        data: yValues
+
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                fontColor:  "#0b1e20",
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,
+                                backgroundColor: '#d55046'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#0b1e20"
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 4,
+                            hoverRadius: 0,
+                            hoverBorderWidth: 0
+
+                        }
+                    }
+                }
+            });
+        }
+
+        //Grafico ultimos 30 dias
+        function GraficoGenerado2(ValorX, ValorY, Tipo) {  
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoGeneradoChart", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total por dia',
+                        borderColor: '#f3180b',
+                        backgroundColor: '#f2aeaa',//'#d55046',
+                        borderWidth: 1,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        data: yValues
+
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,
+
+                            },
+                            ticks: {
+                                fontColor: '#0b1e20',
+                                fixedStepSize: 1
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,
+                                backgroundColor: '#d55046'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#0b1e20'
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0, 
+                            hitRadius: 4,
+                            hoverRadius: 0,
+                            hoverBorderWidth: 0,
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // grafico de los ultimos 12 meses
+        function GraficoGenerado3(ValorX, ValorY, Tipo) { 
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoGeneradoChart", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'Total por mes',
+                        borderColor: '#f3180b',
+                        backgroundColor: '#f2aeaa',//'#d55046',
+                        borderWidth: 1,
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false,
+
+                    },
+
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,//true
+                            },
+                            ticks: {
+                                fontColor: "#0b1e20",
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,//true
+                                backgroundColor: '#d55046'
+                            },
+
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#0b1e20"
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 50, //10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3,
+                        }
+                    }
+                }
+            });
+        }
+
+    });
+</script>
+
+
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="card-header text-left text-white bg-danger">
+            <strong><font size=5 face="Arial">Reporte:Documentos emitidos del SGD</font></strong>
+        </div>
+        <div class="row">
+            @*Total de documento emitidos*@
+            <div class="col-sm-8 col-lg-2">
+                <div class="card text-black bg-light">
+                    <div class="card-body pb-0 mt-3 mx-3" style="height:160px;">
+                        <div class="btn-group float-xl-right">
+                            <button class="btn btn-secondary" type="button">
+                                <i class="icon-chart"></i>
+                            </button>
+                        </div>
+                        <span> Total documento</span>
+                        <div>  emitidos </div>
+                        <b><FONT FACE="Arial"><h1 id="totalEmitidos"></h1></FONT></b>
+                    </div>
+                </div>
+            </div>
+
+
+            @*total por estado*@
+            <div class="col-sm-6 col-lg-4">
+                <div class="card text-center  bg-light">
+                        <strong><font size=2 face="Arial ">Total documentos emitidos por estado</font></strong>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:140px;">
+                        <canvas class="chart" id="GraficoBarrasPorEstado" height="80"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            @*4to.Grafico total por año*@
+            <div class="col-sm-6 col-lg-4">
+                <div class="card text-center  bg-light">
+                    <strong><font size=2 face="Arial ">Total documentos emitidos por años</font></strong>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:140px;">
+                        <canvas class="chart" id="GraficoBarrasPorAnno" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            @*Total por tipo documento*@
+
+            <div class="col-sm-6 col-lg-2">
+                <div class="card text-center  bg-light">
+                    <strong><font size=2 face="Arial ">Total por tipo de documentos</font></strong>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:140px;">
+                        <canvas class="chart" id="GraficoBarrasPorTipoDocumento" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- /.row-->
+        <div class="row">
+            <div class="card bg-light col-sm-6 col-lg-8">
+                <div class="card-body pb-0">
+                    <div class="row">
+                        <div class="col-sm-5 ">
+                            <h5 class="card-title mb-0 text-danger">Documentos emitidos</h5>
+                            <span id="tiempo_grafico"></span>
+                            <div class="small text-muted"> <label id="lblToday"></label>  </div>
+                        </div>
+                        <!-- /.col-->
+                        <div class="col-sm-7 d-none d-md-block text-right">
+                            <button class="btn  bg-danger btn-xs" id="b01">Día</button>
+                            <button class="btn  bg-danger btn-xs" id="b02">Mes</button>
+                            <button class="btn  bg-danger btn-xs" id="b03">Año</button>
+                        </div>
+                    </div>
+                    <div if="divMainChart" class="chart-wrapper" style="height:300px;margin-top:40px;">
+                        <canvas class="chart" id="GraficoGeneradoChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            @*5to.Grafico total por dependencia top 5*@
+            <div class="col-sm-6 col-lg-4">
+                <div class="card text-center  bg-light">
+                    <strong><font size=2 face="Arial">Top 5: Total documentos emitidos por dependencia</font></strong>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:140px;">
+                        <canvas class="chart" id="GraficoBarrasPorDependencia" height="80"></canvas>
+                    </div>
+                </div>
+
+                @*6to.Grafico total por año segun pide *@
+                <div class="card text-center  bg-light">
+                    <strong><font size=2 face="Arial">Total documentos emitidos por años (PIDE)</font></strong>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:220px;">
+                        <canvas class="chart" id="GraficoBarrasPorAnioPIDE" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+
+                
+
+        </div>
+
+
+    </div>
+
+
+
+</div>

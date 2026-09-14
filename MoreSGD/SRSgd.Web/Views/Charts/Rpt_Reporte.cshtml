@@ -1,0 +1,295 @@
+﻿@using SRSgd.Web.Models.Charts
+@using SRSgd.Web.Models.Reporting
+@model ChartAnualProductivoModel
+
+@{
+    ViewBag.Title = "Reporte SGD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@*//////////////////////////////////////////////////////////////////////*@
+@*MORE SGD 
+Reporte de documentos emitidos
+Fecha: 20.09.2024*@
+@*//////////////////////////////////////////////////////////////////////*@
+
+<input type="hidden" value="@Url.Content("~")" id="hdfOculto" />
+<script type="text/javascript">
+
+    function requestServer(tipoMetodo, url, metodoCallBack, texto) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(tipoMetodo, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                metodoCallBack(xhr.responseText);
+            }
+        }
+        if (tipoMetodo == "get") xhr.send();
+        else {
+            if (texto != "") xhr.send(texto);
+        }
+    }
+    var post = function (url, metodoCallBack, texto) {
+        requestServer("post", url, metodoCallBack, texto);
+    }
+
+    var url_doc_recibidos = 'http://' + document.domain + ':8091/Reportes/';
+
+
+    function fetchGetArchivo(url, callback, mensaje = "Se descargo el archivo Excel") {
+        var raiz = document.getElementById("hdfOculto").value;
+        var urlAbsoluta = window.location.protocol + "//" + window.location.host + raiz + url;
+        fetch(urlAbsoluta).then(res => res.text())
+            .then(res => {
+                if (res.length > 1) {
+                    callback(res)
+                }
+                else
+                    callback("")
+            })
+    }
+
+    function fetchGetJSON(url, callback, mensaje = "Se descargo el archivo Excel") {
+        var raiz = document.getElementById("hdfOculto").value;
+        var urlAbsoluta = window.location.protocol + "//" + window.location.host + raiz + url;
+        fetch(urlAbsoluta).then(res => res.json())
+            .then(res => {
+                callback(res)
+            })
+    }
+
+    //Descarga documentos del SGD en PDF
+    function DescargarDoc(id, nom) {
+        fetchGetArchivo("Reportes/ExportarPDF/?iiddoc=" + id, function (rpta) {
+            var a = document.createElement("a");
+            var link = "data:application/pdf;base64," + rpta;
+
+            a.href = link;
+            a.download = nom + ".pdf";
+
+            a.click();
+        })
+    }
+
+
+    function ver_coddependencia_documentos() {
+        var lc_codsesion = $("#ccoddependencia").val();
+        var valor = $("#cbxDependencia option:selected").attr('value');
+        if (valor == "") {
+            var v_coddependencia = lc_codsesion;
+        }
+        else {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '../Reportes/_DocumentosPorDependencia',
+            data: { 'coddependencia': v_coddependencia },
+            dataType: 'json',
+            success: function (data) {
+                $("#TipoDocumentoDependencia")
+                    .html("")
+                    .append('<option id="">(Todos)</option>');
+                //.append('<option id="">Seleccionar...</option>');
+
+                data.forEach(function (filas) {
+                    for (var e = 0; e < filas.length; e++) {
+                        $("#TipoDocumentoDependencia")
+                            .attr("disabled", false)
+                            .append('<option id="' + filas[e].Vco_tip_doc
+                                + '"  >' + filas[e].Vcdoc_desdoc + '</option>');
+                    }
+                });
+            },
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    }
+ 
+  
+    $(document).ready(function () {
+        ver_coddependencia_documentos();
+        $("#cbxDependencia").on('change', function () {
+            ver_coddependencia_documentos();
+        });
+
+        ver_listar_estados();
+
+        $("#btnConsultar").click(function () {
+
+            ver_listar_documentos();
+
+        });
+
+
+        function ver_listar_documentos() {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+            var v_asunto = $('#txtBusqueda').val();
+            var v_nrodocumento = $('#txtNroDcoumento').val();
+            var v_nroexpediente = $('#txtNroExpediente').val();
+            
+            
+            $.ajax({
+                type: 'GET',
+                url: '_GridEmitidosView',
+                
+                data: {
+                    CodDependencia: v_coddependencia,
+                    Asunto: v_asunto,
+                    NroDocumento: v_nrodocumento,
+                    NroExpediente: v_nroexpediente,
+                    CodTipoDocumento: $("#TipoDocumentoDependencia option:selected").attr('id'),
+                    Mes: $("#cbxMeses option:selected").attr('value'),
+                    Anio: $("#cbxAnio option:selected").val(),
+                    CodEstado: $("#ListaEstado option:selected").attr('id'),
+                },
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    $('#divGridContainer').html(data);
+                },
+                error: function (e) {
+                    $('#divGridContainer').html(e.responseText);
+                }
+            });
+        }
+
+        //24.09.2024
+        function ver_listar_estados() {
+            
+            $.ajax({
+                type: 'POST',
+                url: '../Reportes/_GridEmitidosViewEstado',
+                
+                dataType: 'json',
+                success: function (data) {
+                    $("#ListaEstado")
+                        .html("")
+                        .append('<option id="">(Todos)</option>');
+
+                    data.forEach(function (filas) {
+                        for (var e = 0; e < filas.length; e++) {
+                            $("#ListaEstado")
+                                .attr("disabled", false)
+                                .append('<option id="' + filas[e].co_est
+                                + '"  >' + filas[e].de_est + '</option>');
+
+                        }
+                    });
+                },
+                error: function (xhr, status, err) {
+                    console.log(err);
+                }
+            });
+        }
+
+    });
+
+
+
+</script>
+
+<div class="container-fluid" style="background-color: #FFFFFF;">
+
+    <div class="animated fadeIn" style="background-color: #FFFFFF;">
+        <div class="card">
+            <div class="card-header text-center text-white " style="background-color: #FFFFFF;">
+                <strong><font size=3 face="Arial" color="#7B1B1B">Reporte de documento emitidos SGD</font> </strong>
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal" role="form">
+
+                    <div class="row">
+                        <!----"form-horizontal">-->
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">Dependencia</font></label>
+                            <div class="">
+                                @Html.DropDownListFor(x => x._Filtros.CodDependencia, Model.LstDependencias.Select(item => new SelectListItem { Value = item.Codigo, Text = item.Descripcion }),
+                                                    new { @class = "form-control form-control-md", @id = "cbxDependencia" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">Tipo Documento<span class="text-danger" title="Filtro obligatorio"> *</span></font></label>
+                            <div class="">
+                                <select class="form-control" id="TipoDocumentoDependencia"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-1">
+                            <label class="col-form-label"><font size=2 face="Arial "> Mes </font></label>
+                            <div class="">
+                                @Html.DropDownListFor(x => x._Filtros.MesI, Model.LstMeses, new { @class = "form-control form-control-md", @id = "cbxMeses" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-1">
+                            <label class="col-form-label"><font size=2 face="Arial "> Año </font></label>
+                            <div class="">
+                                @Html.DropDownList("cbxAnio", Model.LstAnios, new { @class = "form-control form-control-md" })
+                            </div>
+                        </div>
+                        @*tipo estado *@
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">Estado</font></label>
+                            <div class="">
+                                <select class="form-control" id="ListaEstado"></select>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Nueva fila donde movemos el control txtBusqueda -->
+                    <div class="row">
+
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">N° Documento </font></label>
+                            <div class="">
+                                <input id="txtNroDcoumento" type="text" class="form-control" placeholder="Nro. de documento" />
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">N° Expediente </font></label>
+                            <div class="">
+                                <input id="txtNroExpediente" type="text" class="form-control" placeholder="Nro. de expediente" />
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-5">
+                            <label class="col-form-label"><font size=2 face="Arial ">Asunto </font></label>
+                            <div class="">
+                                <input id="txtBusqueda" type="text" class="form-control" placeholder="Ingresar asunto" />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                @*<label> &nbsp;</label>*@
+                <div class="form-group col-sm-3">
+                    <input type="button" id="btnConsultar" class="btn bg-danger" value="      Buscar      " />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="card-body pb-0">
+                <div id="divGridContainer"></div>
+            </div>
+
+        </div>  @*fin*@
+    </div>
+
+
+</div>

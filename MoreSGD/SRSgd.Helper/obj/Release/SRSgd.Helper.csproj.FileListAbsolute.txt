@@ -1,0 +1,48 @@
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+I:\SRSGD_8\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+I:\SRSGD_8\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+I:\SRSGD_8\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+I:\SRSGD_8\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+I:\SRSGD_8\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+I:\SRSGD_8\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+I:\WorkSW\SRSGD\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+I:\WorkSW\SRSGD\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+I:\WorkSW\SRSGD\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+I:\WorkSW\SRSGD\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+I:\WorkSW\SRSGD\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+I:\WorkSW\SRSGD\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\bin\Release\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\bin\Release\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Release\SRSgd.Helper.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Release\SRSgd.Helper.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Release\SRSgd.Helper.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Helper\obj\Release\SRSgd.Helper.csprojAssemblyReference.cache

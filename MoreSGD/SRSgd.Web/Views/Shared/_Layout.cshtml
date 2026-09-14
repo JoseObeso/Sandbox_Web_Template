@@ -1,0 +1,210 @@
+﻿@using SRSgd.Entities.Seguridad
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>@ViewData["Title"] </title>
+
+        <!--<environment include="Development">-->
+        <!--
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />-->
+        <!-- Main styles for this application-->
+
+        <link href="~/lib/coreui/css/style.css" rel="stylesheet">
+        <link href="~/lib/coreui/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+        <!-- Icons-->
+        <link href='/@("lib/coreui/node_modules/@coreui/icons/css/coreui-icons.min.css")' rel="stylesheet">
+        <link href="~/lib/coreui/node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+        <link href="~/lib/coreui/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="~/lib/coreui/node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+        <!--</environment>-->
+        <!-- Global site tag (gtag.js) - Google Analytics-->
+        @*<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>*@
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            // Shared ID
+            gtag('config', 'UA-118965717-3');
+            // Bootstrap ID
+            gtag('config', 'UA-118965717-5');
+
+           var nombre_mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+               nombre_dia = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
+
+                gd_fecha_total, gd_anio, gn_mes, gn_dia, gn_numero_dia,  lc_fecha_en_curso_dd_mm_aaaa_real_time, lc_nombres_dia_mes_anio_real_time;
+
+            gd_fecha_total = new Date();
+            gd_anio = gd_fecha_total.getFullYear();
+            gn_mes = gd_fecha_total.getMonth() + 1;
+            gn_dia = gd_fecha_total.getDate();
+            gn_numero_dia = (gd_fecha_total.getDay() == 0) ? 7 : gd_fecha_total.getDay();
+
+
+            function dia_mes_anio_real_time() {
+                    lc_fecha_en_curso_dd_mm_aaaa_real_time = (('' + gn_dia).length < 2 ? '0' : '') + gn_dia + '/' + (('' + gn_mes).length < 2 ? '0' : '') + gn_mes + '/' + gd_anio;
+                return lc_fecha_en_curso_dd_mm_aaaa_real_time;
+            }
+
+
+            function nombre_dia_mes_anio() {
+                
+                lc_nombres_dia_mes_anio_real_time = nombre_dia[gn_numero_dia - 1] + ',  ' + (('' + gn_dia).length < 2 ? '0' : '') + gn_dia + ' de ' + nombre_mes[gn_mes-1] + ' del  ' + gd_anio;
+                return lc_nombres_dia_mes_anio_real_time;
+            }
+
+
+        </script>
+
+        <script src="~/lib/coreui/node_modules/jquery/dist/jquery.min.js"></script>
+        <script type="module" src="~/lib/coreui/node_modules/popper.js/dist/popper.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>-->
+        <script src="~/lib/coreui/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/coreui/node_modules/pace-progress/pace.min.js"></script>
+        <script src="~/lib/coreui/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+        <script src='~/@("lib/coreui/node_modules/@coreui/coreui/dist/js/coreui.min.js")'></script>
+
+        <script src="~/lib/coreui/node_modules/chart.js/dist/Chart.min.js"></script>
+        <script src='~/@("lib/coreui/node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js")'></script>
+        <script src="~/lib/coreui/js/main.js"></script>
+
+
+    </head>
+    <body class="app header-fixed sidebar-fixed aside-menu-fixed pace-done sidebar-lg-show">
+        <header class="app-header navbar">
+            <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <!--<img class="navbar-brand-full" src="~/Content/images/brands/sgdIrtp.jpg" width="80" height="30" alt="IRTP Logo">-->
+                <img class="navbar-brand-full" src="~/Content/images/brands/logoIrtp2.png" width="80" height="30" alt="IRTP Logo">
+                <img class="navbar-brand-minimized" src="~/Content/images/brands/logoIrtp.png" width="30" height="30" alt="irtp">
+            </a>
+            <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="nav navbar-nav d-md-down-none"></ul>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item d-md-down-none">
+                    <a class="nav-link" href="#">
+                        @*<span id="ver_nombre_dependencia">
+                            @Session["dependenciaUser"].ToString()
+                        </span>*@
+                          @*<br/>*@
+                        @*<span id="ver_login">
+                            @Session["userLogin"].ToString()
+                        </span>*@
+
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img class="img-avatar" src="~/Content/images/brands/userProfile.png" alt="desarrolloOie@irtp.gob.pe">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header text-center">
+                            <strong>Cuenta</strong>
+                        </div>
+                        @*<a class="dropdown-item" href="#">
+                                <i class="fa fa-user"></i> @Session["nombreCompletoUser"].ToString()
+                            </a>*@
+                        <a class="dropdown-item" href="@Url.Action("LogOut", "Login")">
+                            <i class="fa fa-lock"></i>Salir
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </header>
+
+        <!--<partial name="_CookieConsentPartial" />-->
+        @*class="navbar navbar-dark bg-dark"*@
+        <div class="app-body">
+            <div class="sidebar">
+                <nav class="sidebar-nav">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Dashboard/Index">
+                                <i class="nav-icon icon-speedometer"></i> Dashboard
+                            </a>
+                        </li>
+
+                        @*<li class="nav-item">
+            <a class="nav-link" href="/Reportes/Rpt_DocumentosEmitidos">
+                <i class="nav-icon icon-chart"></i> Expediente
+            </a>
+        </li>*@
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Charts/Rpt_Reporte">
+                                <i class="nav-icon icon-list"></i> Emisión documento
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Charts/Rpt_ReporteRecibido">
+                                <i class="nav-icon icon-list"></i> Recepción documento
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Charts/Grafico_Emitidos">
+                                <i class="nav-icon icon-chart"></i> Grafico emisión doc.
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Charts/Grafico_ResumenTipoDocumento">
+                                <i class="nav-icon icon-chart"></i> Grafico Tipo doc.
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Charts/Grafico_HistoricoEmision">
+                                <i class="nav-icon icon-chart"></i> Grafico Historico
+                            </a>
+                        </li>
+
+                        <li class="nav-item nav-dropdown">
+                            <ul class="nav-dropdown-items"></ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+
+                    </ul>
+                </nav>
+                <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+            </div>
+
+            <main class="main">
+                @RenderBody()
+            </main>
+
+        </div>
+
+        <footer class="app-footer">
+            <div>
+                <span>&copy; 2024 - OIE</span>
+            </div>
+            <div class="ml-auto">
+                <script>document.write(nombre_dia_mes_anio())</script>
+            </div>
+        </footer>
+        <!--<environment include="Development">
+        </environment>
+        <environment exclude="Development">
+        </environment>-->
+
+
+    </body>
+</html>

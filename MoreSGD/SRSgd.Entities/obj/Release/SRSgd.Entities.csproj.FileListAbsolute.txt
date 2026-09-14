@@ -1,0 +1,96 @@
+D:\IrtpWorkspace\SR_SGD\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\IrtpWorkspace\SR_SGD\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+I:\SRSGD_8\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+I:\SRSGD_8\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+I:\SRSGD_8\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+I:\SRSGD_8\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+I:\SRSGD_8\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+I:\SRSGD_8\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+I:\WorkSW\SRSGD\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+I:\WorkSW\SRSGD\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+I:\WorkSW\SRSGD\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+I:\WorkSW\SRSGD\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+I:\WorkSW\SRSGD\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+I:\WorkSW\SRSGD\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+H:\SGD Reporting 06042023\SRSGD 14042023\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SGDExpediente\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 20042023\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 20042023\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 20042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 20042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 20042023\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 20042023\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 22042023\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 22042023\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 22042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 22042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 22042023\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 22042023\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 25042023\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 26042023\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 26042023\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 26042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 26042023\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 26042023\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 26042023\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 07052023_SGC\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 07052023_SGC\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 07052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 07052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 07052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 07052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 09052023_SGC produccion\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 09052023_SGC produccion\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 09052023_SGC produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 09052023_SGC produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 09052023_SGC produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 09052023_SGC produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Entities\bin\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Entities\bin\Release\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.Entities\obj\Release\SRSgd.Entities.pdb

@@ -1,0 +1,479 @@
+﻿@using SRSgd.Web.Models.Charts
+@using SRSgd.Web.Models.Reporting
+@model ChartAnualProductivoModel
+
+@{
+    ViewBag.Title = "Reporte documentos emitidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<input type="hidden" value="@Url.Content("~")" id="hdfOculto" />
+<script type="text/javascript">
+
+    var barChart = null;
+    var chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+    var colorNames = Object.keys(chartColors);
+    var color = Chart.helpers.color;
+
+    function requestServer(tipoMetodo, url, metodoCallBack, texto) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(tipoMetodo, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                metodoCallBack(xhr.responseText);
+            }
+        }
+        if (tipoMetodo == "get") xhr.send();
+        else {
+            if (texto != "") xhr.send(texto);
+        }
+    }
+    var post = function (url, metodoCallBack, texto) {
+        requestServer("post", url, metodoCallBack, texto);
+    }
+
+    var lstMonths = ['Ene.', 'Feb.', 'Mar.', 'Abr.', 'May.', 'Jun.', 'Jul.',
+        'Ago.', 'Sep.', 'Oct.', 'Nov.', 'Dic.'];
+
+    var url_doc_recibidos = 'http://' + document.domain + ':8091/Reportes/';
+
+
+
+    function fetchGetArchivo(url, callback, mensaje = "Se descargo el archivo Excel") {
+        var raiz = document.getElementById("hdfOculto").value;
+        var urlAbsoluta = window.location.protocol + "//" + window.location.host + raiz + url;
+        fetch(urlAbsoluta).then(res => res.text())
+            .then(res => {
+                if (res.length > 1) {
+                    callback(res)
+                }
+                else
+                    callback("")
+            })
+    }
+
+    function fetchGetJSON(url, callback, mensaje = "Se descargo el archivo Excel") {
+        var raiz = document.getElementById("hdfOculto").value;
+        var urlAbsoluta = window.location.protocol + "//" + window.location.host + raiz + url;
+        fetch(urlAbsoluta).then(res => res.json())
+            .then(res => {
+                callback(res)
+            })
+    }
+
+    //Descarga documentos del SGD en PDF
+    function DescargarDoc(id, nom) {
+        fetchGetArchivo("Reportes/ExportarPDF/?iiddoc=" + id, function (rpta) {
+            var a = document.createElement("a");
+            var link = "data:application/pdf;base64," + rpta;
+
+            a.href = link;
+            a.download = nom + ".pdf";
+
+            a.click();
+        })
+    }
+
+    //Visualiza lista de anexos
+    var iid;
+    function AnexoDoc(id) {
+        iid = id;
+        fetchGetJSON("Reportes/listaAnexos/?numEmision=" + id, function (rpta) {
+            var tbodyData = document.getElementById("tbodydata");
+            var contenido = "";
+            if (rpta.length <= 1) {
+                for (var i = 0; i < rpta.length; i++) {
+                    contenido += "<tr>";
+                    contenido += `<td onclick="Exportar('${rpta[i].NroDocumento}',${rpta[i].Anio})">`;
+                    contenido += rpta[i].NroDocumento
+                    contenido += "</td>";
+                    contenido += "</tr>";
+                }
+                tbodyData.innerHTML = contenido;
+            }
+
+        })
+    }
+
+    //Visualiza documento del anexo
+    function Exportar(nro, id) {
+        fetchGetArchivo("Reportes/recuperarPDFAnexos/?iiddoc=" + iid + "&correlativo=" + id, function (base) {
+            if (nro.toUpperCase().includes(".PDF")) {
+                var a = document.createElement("a");
+                a.href = "data:application/pdf;base64," + base;
+                a.download = id + ".pdf";
+                a.click()
+            }
+            else
+                if (nro.toUpperCase().includes(".DOC")) {
+                    var a = document.createElement("a");
+                    a.href = "data:application/msword;base64," + base; a.download = id + ".doc"; a.click()
+                }
+                else
+                    if (nro.toUpperCase().includes(".XLS")) {
+                        var a = document.createElement("a");
+                        a.href = "data:application/vnd.ms-excel;base64," + base; a.download = id + ".xls"; a.click()
+                    }
+                    else
+                        if (nro.toUpperCase().includes(".JPG")) {
+                            var a = document.createElement("a");
+                            a.href = "data:image/jpeg;base64," + base; a.download = id + ".jpg"; a.click()
+                        }
+                        else { alert("Se descarga solo documentos en .PDF .DOC .XLS y .JPG"); }
+        })
+    }
+
+
+
+
+    function ver_coddependencia_documentos() {
+        var lc_codsesion = $("#ccoddependencia").val();
+        var valor = $("#cbxDependencia option:selected").attr('value');
+        if (valor == "") {
+            var v_coddependencia = lc_codsesion;
+        }
+        else {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '../Reportes/_DocumentosPorDependencia',
+            data: { 'coddependencia': v_coddependencia },
+            dataType: 'json',
+            success: function (data) {
+                $("#TipoDocumentoDependencia")
+                    .html("")
+                    .append('<option id="">Seleccionar...</option>');
+
+                data.forEach(function (filas) {
+                    for (var e = 0; e < filas.length; e++) {
+                        $("#TipoDocumentoDependencia")
+                            .attr("disabled", false)
+                            .append('<option id="' + filas[e].Vco_tip_doc
+                                + '"  >' + filas[e].Vcdoc_desdoc + '</option>');
+                    }
+                });
+            },
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        ver_coddependencia_documentos();
+        $("#cbxDependencia").on('change', function () {
+            ver_coddependencia_documentos();
+        });
+
+        $("#btnConsultar").click(function () {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+            var v_asunto = $('#txtBusqueda').val();
+            $.ajax({
+                type: 'GET',
+                url: '_ChartResumenAnualProductivo',
+                data: {
+                    CodDependencia: v_coddependencia,
+                    Asunto: v_asunto,
+                    CodTipoDocumento: $("#TipoDocumentoDependencia option:selected").attr('id'),
+                    Mes: $("#cbxMeses option:selected").attr('value'),
+                    Anio: $("#cbxAnio option:selected").val(),
+                },
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    CargarGrafico(data);
+                    var tbodyData = document.getElementById("tbodydata");
+                    tbodyData.innerHTML = "";
+
+                },
+                error: function (e) {
+                    //alert(e.statusText);
+                }
+            });
+            ver_listar_documentos();
+
+        });
+
+
+        function ver_listar_documentos() {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+            var v_asunto = $('#txtBusqueda').val();
+
+            $.ajax({
+                type: 'GET',
+                url: '_GridEmitidosView',
+                data: {
+                    CodDependencia: v_coddependencia,
+                    Asunto: v_asunto,
+                    CodTipoDocumento: $("#TipoDocumentoDependencia option:selected").attr('id'),
+                    Mes: $("#cbxMeses option:selected").attr('value'),
+                    Anio: $("#cbxAnio option:selected").val(),
+                },
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    $('#divGridContainer').html(data);
+                },
+                error: function (e) {
+                    $('#divGridContainer').html(e.responseText);
+                    // alert(e.statusText);
+                }
+            });
+        }
+
+
+        /* Total por tipo de documentos segùn año*/
+        function CargarGrafico(dataList) {
+
+            $("#divBarrasChart").html('&nbsp;');
+            $("#divBarrasChart").append('<canvas id="canvas1"></canvas>');
+
+            var lstDocumentos = [];
+            var lstDatos = [];
+            var totalData = [];
+
+            $.each(dataList, function (i, item) {
+                if (jQuery.inArray(item.DescTipoDocumento, lstDocumentos) == -1)
+                    lstDocumentos.push(item.DescTipoDocumento);
+            });
+
+            var colorI = 1;
+            $.each(lstDocumentos, function (index, itemDoc) {
+                lstDatos = [];
+                for (iMes = 1; iMes <= 12; iMes++)
+                    $.each(dataList, function (j, oItem) {
+                        if (oItem.Mes == iMes && oItem.DescTipoDocumento == itemDoc)
+                            lstDatos.push(oItem.Total);
+                    });
+
+                if (lstDatos.length > 0) {
+
+                    var colorBG = colorNames[colorI % colorNames.length];
+                    var dsColor = chartColors[colorBG];
+                    var dataset = {
+                        label: itemDoc,
+                        backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                        borderColor: dsColor,
+                        //highlightFill: 'rgba(220, 220, 220, 0.75)',
+                        //highlightStroke: 'rgba(220, 220, 220, 1)',
+                        fill: false,
+                        data: lstDatos,
+                        borderWidth: 1
+                    };
+                    colorI = colorI + 1;
+                    totalData.push(dataset);
+                }
+            });
+
+
+            barChart = new Chart($('#canvas1'), {
+                type: 'bar',
+                data: {
+                    labels: lstMonths,
+                    datasets: totalData
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,
+                            },
+                            ticks: {
+                                maxRotation: 360,
+                                minRotation: 0
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false,
+                                backgroundColor: '#f5bfc0'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            //ResumenDatos(dataList, lstDocumentos);
+
+        }
+        /*
+        function ResumenDatos(dataList, lstDocumentos) {
+            var total = 0;
+            var sumatotalDoc = 0
+            $('#ulResumenData').empty();
+
+            $.each(lstDocumentos, function (x, strdocumento) {
+                total = 0;
+                $.each(dataList, function (i, oItem) {
+                    if (oItem.DescTipoDocumento == strdocumento)
+                        total = total + oItem.Total;
+                });
+
+                var htmlElemento = '<li  class="list-group-item d-flex justify-content-between align-items-left" >' + strdocumento +
+                    '<span class="badge ">' + total + '</span>' + '</li >';
+                    sumatotalDoc += total
+
+                $('#ulResumenData').append(htmlElemento);
+            });
+
+
+            if (sumatotalDoc == 0) {
+                htmlElemento = "";
+            }
+            else {
+                var htmlElemento = '<li  class="list-group-item d-flex justify-content-between align-items-left">' + "TOTAL DE DOCUMENTOS:" +
+                    '<span class="badge badge-danger">' + sumatotalDoc + '</span>' + '</li >';
+                $('#ulResumenData').append(htmlElemento);
+            }
+        }
+        */
+        /* Fin  grafico */
+
+
+
+
+
+
+    });
+
+
+
+</script>
+
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="card">
+            <div class="card-header text-center text-white bg-danger">
+                <strong><font size=5 face="Arial">Reporte de documento emitidos SGD</font> </strong>
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal" role="form">
+                    <div class="row">
+
+                        @*<input type="hidden" value=@SesionCodDependencia id="ccoddependencia" />*@
+                        <!----"form-horizontal">-->
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">Dependencia</font></label>
+                            <div class="">
+                                @Html.DropDownListFor(x => x._Filtros.CodDependencia, Model.LstDependencias.Select(item => new SelectListItem { Value = item.Codigo, Text = item.Descripcion }),
+                                                    new { @class = "form-control form-control-md", @id = "cbxDependencia" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">Tipo Documento<span class="text-danger" title="Filtro obligatorio"> *</span></font></label>
+                            <div class="">
+                                <select class="form-control" id="TipoDocumentoDependencia"></select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-1">
+                            <label class="col-form-label"><font size=2 face="Arial "> Mes </font></label>
+                            <div class="">
+                                @Html.DropDownListFor(x => x._Filtros.MesI, Model.LstMeses, new { @class = "form-control form-control-md", @id = "cbxMeses" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-1">
+                            <label class="col-form-label"><font size=2 face="Arial "> Año </font></label>
+                            <div class="">
+                                @Html.DropDownList("cbxAnio", Model.LstAnios, new { @class = "form-control form-control-md" })
+                            </div>
+                        </div>
+
+
+                        @*/////17.07.2023*@
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"><font size=2 face="Arial ">Asunto </font></label>
+                            <div class="">
+                                <input id="txtBusqueda" type="text" class="form-control" placeholder="Ingresar asunto" />
+                            </div>
+                        </div>
+                        @*/////*@
+
+
+                        <label> &nbsp;</label>
+                        <div class="form-group col-sm-3">
+                            <input type="button" id="btnConsultar" class="btn bg-danger class=" btn bg-danger" ml-3" value="      Buscar      " />
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <strong><font size=2 face="Arial"> Total de documentos segùn meses</font></strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="divBarrasChart" class="chart-wrapper">
+                            <canvas id="canvas1"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card col-ms-6 col-lg-9">
+                <div class="card-body pb-0">
+                    <div id="divGridContainer"></div>
+                </div>
+            </div>
+
+            @*Ver anexos*@
+            <div class="card col-ms-6 col-lg-3">
+                <div class="card-body pb-0">
+                    <div style="height:400px;overflow:scroll">
+                        <table id="table" class="table table-responsive-sm table-striped text-center">
+                            <thead>
+                                <tr><th><font size=2 face="Arial">Anexo</font></th></tr>
+                            </thead>
+                            <tbody id="tbodydata"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            @*<div class="col-sm-10 col-lg-6">
+        <div class="card text-center  bg-light">
+            <div class="card-header text-center ">
+                <strong><font size=2 face="Arial">Total por tipo de documento</font></strong>
+            </div>
+            <div id="divPastelChart" class="chart-wrapper">
+                <ul id="ulResumenData" class="list-group-item-danger"></ul>
+            </div>
+        </div>
+
+        </div>*@
+
+        </div>  @*fin*@
+    </div>
+
+</div>

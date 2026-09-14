@@ -1,0 +1,63 @@
+﻿
+
+@using System.Data
+@model DataTable
+
+<div style="height:600px;overflow:scroll">
+    <table id="mainTable" class="table table-responsive-sm table-striped">
+        <thead>
+            <tr>
+                <th><font size=2 face="Arial">F.emisión</font></th>
+                <th><font size=2 face="Arial">Dependencia</font></th>
+                <th><font size=2 face="Arial">Documento</font></th>
+                <th><font size=2 face="Arial">Asunto</font></th>
+                @*<th><font size=2 face="Arial">Expediente</font></th>*@
+                <th><font size=2 face="Arial">Remitente</font></th>
+                @*<th><font size=2 face="Arial">Destinatario</font></th>*@
+                <th><font size=2 face="Arial">Estado</font></th>
+                <th><font size=2 face="Arial">Prioridad</font></th>
+                <th><font size=2 face="Arial">Ver</font></th>
+                <th><font size=2 face="Arial">Anexo</font></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                string color = "";
+            }
+            @if (Model != null)
+            {
+                foreach (DataRow row in Model.Rows)
+                {
+                    if (@row["Prioridad"].ToString() == "NORMAL") { color = "black"; }
+                    else if(@row["Prioridad"].ToString() == "URGENTE") { color = "coral"; }
+                    else if (@row["Prioridad"].ToString() == "MUY URGENTE") { color = "red"; }
+            <tr style="color:@color">
+                <td>@row["FechaEmision"]</td>
+                <td>@row["DependenciaOrigen"]</td>
+                <td>@row["Documento"]</td>
+                <td>@row["Asunto"]</td>
+                @*<td>@row["NroExpediente"]</td>*@
+                <td>@row["EmpleadoRemitente"]</td>
+                @*<td>@row["Destinatario"]</td>*@
+                <td>@row["EstadoDocumento"]</td>
+                <td>@row["Prioridad"]</td>
+                <td>
+                    @if (row["ESTADODOCUMENTO"].ToString() != "EN PROYECTO" && row["ESTADODOCUMENTO"].ToString() != "ANULADO")
+                    {
+                        <button class="btn bg-secondary nav-icon icon-doc" onclick="Descargar('@row["NU_EMI"]','@row["Documento"]')"></button>
+                    }
+                </td>
+                <td><button class="btn bg-secondary nav-icon icon-docs" onclick="Anexo('@row["NU_EMI"]')"></button></td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+

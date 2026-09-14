@@ -1,0 +1,57 @@
+﻿@using System.Data
+@model DataTable
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#cbxDependencia").attr("disabled", true);
+
+        $('#mainTable').DataTable({
+
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+</script>
+
+<table id="mainTable" class="table table-responsive-sm table-striped">
+    <thead>
+        <tr>
+            <th>Dependencia</th>
+            <th>F.Emisión</th>
+            <th>Tipo</th>
+            <th>N° Documento</th>
+            <th>Expediente</th>
+            <th>Jefatura</th>
+            <th>Asunto</th>
+            <th>Empleado</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null)
+        {
+            foreach (DataRow row in Model.Rows)
+            {
+        <tr>
+            <td>@row["DependenciaMin"]</td>
+            <td>@row["FechaEmision"]</td>
+            <td>@row["TipoDocumento"]</td>
+            <td>@row["NroDocumentoEmi"]</td>
+            <td>@row["NroExpediente"]</td>
+            <td>@row["Jefatura"]</td>
+            <td>@row["AsuntoMin"]</td>
+            <td>@row["Empleado"]</td>
+            <td>@row["EstadoREC"]</td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+

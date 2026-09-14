@@ -1,0 +1,515 @@
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\Oracle.DataAccess.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\SGD REPORTING FINAL\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\Oracle.DataAccess.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\IrtpWorkspace\SR_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+I:\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+I:\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+I:\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+I:\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+I:\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+I:\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\Oracle.DataAccess.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\NET\SRSGD_3\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Oracle.DataAccess.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\MIS_DOCUMENTOS\IRTP\DEV\01_WORK\NET\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+I:\SGD Reporting\SRSGD\SRSGD_V03\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+I:\SRSGD_8\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+I:\SRSGD_8\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+I:\SRSGD_8\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+I:\SRSGD_8\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+I:\SRSGD_8\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+I:\SRSGD_8\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 01052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 04052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 05052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+H:\SGD Reporting\SGDExpediente 06052023\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 08052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 10052023_SGC produccion mejoras\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 11052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 12052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 14052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 15052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 16052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 17052023_SGC - 2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\SGDExpediente 18052023_SGC - UltVer\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 14062023_SGC - UltVersion produccion\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 17072023_SGC_2\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_EXPEDIENTE_SGD\SGDExpediente 20092023_SGC\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_18092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_19092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_21092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_25092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_27092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_28092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_29092024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_01102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\rpeceros\IRTP_MORESGD\MORE SGD_10102024\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll.config
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.DataProvider.pdb
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\Oracle.DataAccess.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\SRSgd.Entities.pdb
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csprojAssemblyReference.cache
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CoreCompileInputs.cache
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.csproj.CopyComplete
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.dll
+D:\MDOC\DEV\NET\MORE_SGD\SRSgd.DataProvider\obj\Debug\SRSgd.DataProvider.pdb

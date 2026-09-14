@@ -736,6 +736,8 @@ $(document).ready(function() {
                 dataType: "json",
                 data: { actor: request.term },
                 success: function(data) {
+
+
                     response($.map(data, function(item) {
                         if (item.respuesta == 1) {
                             return {
@@ -751,6 +753,9 @@ $(document).ready(function() {
                             }
                         }
                     }));
+
+
+                    
                 }
             });
         },

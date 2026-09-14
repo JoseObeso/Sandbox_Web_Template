@@ -1,0 +1,43 @@
+﻿@using System.Data
+@using SRSgd.Entities.Charts;
+@using SRSgd.Entities.Reportes;
+@model List<Json_EmisionGroup>
+
+
+<div style="height:700px;overflow:scroll">
+    <table id="mainTable" class="table table-responsive-sm table-striped ">
+        <thead>
+            <tr>
+                @*<th><font size=2 face="Arial">Expediente</font></th>*@
+                <th><font size=2 face="Arial">Documento</font></th>
+                <th><font size=2 face="Arial">Fecha</font></th>
+                <th><font size=2 face="Arial">Remitente</font></th>
+                <th><font size=2 face="Arial">Asunto</font></th>
+                <th><font size=2 face="Arial">Estado</font></th>
+                <th><font size=2 face="Arial">Ver</font></th>
+                @*<th><font size=2 face="Arial">Anexo</font></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+
+                foreach (Json_EmisionGroup row in Model)
+                {
+                    <tr>
+
+                        @*<td>@row.NROEXPEDIENTE</td>*@
+                        <td>@row.DOCUMENTO</td>
+                        <td>@row.FECHAEMISION</td>
+                        <td>@row.EMPLEADOREMITENTE</td>
+                        <td>@row.ASUNTO</td>
+                        <td>@row.ESTADO</td>
+                        <td> <button class="btn bg-secondary nav-icon icon-doc" onclick="DescargarDoc('@row.NU_EMI','@row.DOCUMENTO')"></button></td>
+                        @*<td><button class="btn bg-secondary nav-icon icon-docs" onclick="AnexoDoc('@row.NU_EMI')"></button></td>*@
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

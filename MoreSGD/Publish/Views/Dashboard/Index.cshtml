@@ -1,0 +1,1836 @@
+﻿@{
+    /**/
+
+    //ViewBag.Title = "Index";
+    ViewData["Title"] = "SGD-INICIO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<script>
+
+    var ln_tiempo = 1;
+
+
+    $(document).ready(function () {
+
+        Documentos_recibidos();
+        documentos_recibidos_total();
+        documentos_NoLeidoOficina();
+        documentos_NoLeidoOficina_total();
+
+        documentos_atendidos();
+        documentos_atendidos_total();
+
+        documentos_vencidos();
+        documentos_vencidos_total();
+
+        documentos_generados(ln_tiempo);
+
+        documentos_muy_urgentes();
+        documentos_muy_urgentes_total();
+
+        documentos_urgentes();
+        documentos_urgentes_total();
+        documentos_proyecto();
+        documentos_proyecto_total();
+
+
+        documentos_paradespacho();
+        documentos_paradespacho_total();
+
+
+
+        function documentos_paradespacho_total() {
+
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_Documentosparadespacho_total", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#totalcuartografico").text("0");
+                     }
+                     else {
+                         $("#totalcuartografico").text(data[0].I_total);
+
+                     }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+        }
+
+
+
+        function documentos_proyecto_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosProyectoTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#totaltercergrafico").text("0");
+                     }
+                     else {
+                         $("#totaltercergrafico").text(data[0].I_total);
+
+                     }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+
+        }
+
+
+         function documentos_proyecto_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosProyectoTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#totaltercergrafico").text("0");
+                     }
+                     else {
+                         $("#totaltercergrafico").text(data[0].I_total);
+
+                     }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+
+        }
+
+
+
+        function documentos_urgentes_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosUrgenteTotal2", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#totalsegundografico").text("0");
+                     }
+                     else {
+                         $("#totalsegundografico").text(data[0].I_total);
+
+                     }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+
+        }
+
+
+
+
+        function documentos_muy_urgentes_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosUrgenteTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#totalprimergrafico").text("0");
+                     }
+                     else {
+                         $("#totalprimergrafico").text(data[0].I_total);
+
+                     }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+        }
+
+
+
+        function documentos_recibidos_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosRecibidoTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+
+
+
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#total_recibido").text("0");
+                     }
+                     else {
+                         $("#total_recibido").text(data[0].I_total);
+
+                     }
+
+
+
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        }
+
+        function documentos_NoLeidoOficina_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosNoleidoTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+
+
+
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#total_no_leido").text("0");
+                     }
+                     else {
+                         $("#total_no_leido").text(data[0].I_total);
+
+                     }
+
+
+
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        }
+
+
+
+        function documentos_atendidos_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosAtendidoTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#total_atendidos").text("0");
+                     }
+                     else {
+                         $("#total_atendidos").text(data[0].I_total);
+
+                     }
+
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        }
+
+
+        function documentos_vencidos_total() {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosVencidoTotal", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                 success: function (data) {
+                     var ln_i_total = data.length;
+                     if (ln_i_total == 0) {
+                         $("#total_vencidos").text("0");
+                     }
+                     else {
+                         $("#total_vencidos").text(data[0].I_total);
+
+                     }
+
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        }
+
+
+
+
+
+
+
+
+        function documentos_muy_urgentes() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosMuyUrgentes", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    var xValuesMes = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesMes.push(data[index].V_mes);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_graficoBarra(xValuesMes, yValuesTotal, "bar");
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+        }
+
+
+        function documentos_urgentes() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosUrgentes", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+
+                    var xValuesMes = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesMes.push(data[index].V_mes);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_graficoBarra2(xValuesMes, yValuesTotal, "bar", "Documentos Urgentes");
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+        }
+
+        function documentos_proyecto() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosProyecto", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    var xValuesMes = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesMes.push(data[index].V_mes);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_graficoBarra3(xValuesMes, yValuesTotal, "bar", "Documentos Proyecto");
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+        }
+
+        function documentos_paradespacho() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("_DocumentosDespacho", "Dashboard")',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    var xValuesMes = [];
+                    var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesMes.push(data[index].V_mes);
+                        yValuesTotal.push(data[index].I_total);
+                    }
+                    crear_graficoBarra4(xValuesMes, yValuesTotal, "bar", "Documentos Para Despacho");
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+
+        }
+
+
+
+
+
+
+
+
+
+        function crear_graficoBarra(xValuesMes, yValuesTotal, Tipo ) {
+
+            var xValues = xValuesMes;
+            var yValues = yValuesTotal;
+            var barColorsMes = ["#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#ee707d", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+
+            new Chart("PrimerGraficoBarras", {
+                    type: Tipo,
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            //lineTension: 0,
+                            //fill: false,
+                            //borderColor: '#f0f6fa',
+
+                            borderWidth: 1,
+                            //borderDash: [1, 0],
+                            pointBorderColor: 'black',
+                            pointBackgroundColor: 'black',
+                            //pointRadius: 5,
+                            //pointHoverRadius: 10,
+                            //pointHitRadius: 30,
+                            //pointBorderWidth: 2,
+
+
+                            //pointStyle: 'Rounded',
+
+                            backgroundColor: barColorsMes,
+
+
+
+
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false,
+                            text: "Documentos muy urgentes"
+                        },
+                        pointRadius: 5,
+                        scales: {
+                            xAxes: [{
+                                display: false,
+                                gridLines: {
+                                    drawOnChartArea: false
+                                },
+                                ticks: {
+                                    fontColor: "#fff",
+                                    maxTicksLimit: 7
+                                }
+                            }],
+                            yAxes: [{
+                                display: false,
+                                ticks: {
+                                    beginAtZero: true,
+                                    maxTicksLimit: 5,
+                                    fontColor: hexToRgba(getStyle('--info'), 10)
+                                }
+                            }]
+                        },
+                        elements: {
+                            point: {
+                                radius: 0,
+                                hitRadius: 10,
+                                hoverRadius: 4,
+                                hoverBorderWidth: 3
+                            }
+                        }
+                    }
+                });
+
+
+
+
+
+
+
+
+        }
+
+        function crear_graficoBarra2(ValorX, ValorY, TipoGrafico, Titulo) {
+
+
+            var xValues = ValorX;
+            var yValues = ValorY;
+            var barColorsMes = ["#ffd571", "#ffd571", "#ffd571", "#ffd571", "#ffd571", "#ffd571", "#ffdf95", "#ffdf95", "#ffdf95", "#ffdf95", "#ffdf95", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+
+
+            new Chart("SegundoGraficoBarras", {
+                type: TipoGrafico,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+
+                        //lineTension: 0,
+                        //fill: false,
+                        borderColor: '#ffd571',
+                        borderWidth: 1,
+                        //borderDash: [1, 0],
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+                        //pointStyle: 'Rounded',
+
+                        backgroundColor: barColorsMes,
+
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                fontColor: "#fff",
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+
+
+
+
+        }
+
+
+        function crear_graficoBarra3(ValorX, ValorY, TipoGrafico, Titulo) {
+
+
+            var xValues = ValorX;
+            var yValues = ValorY;
+            var barColorsMes = ["#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#edf6f5", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+
+            new Chart("TercerGraficoBarras", {
+                type: TipoGrafico,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        //lineTension: 0,
+                        //fill: false,
+                        borderColor: '#edf6f5',
+                        borderWidth: 1,
+                        //borderDash: [1, 0],
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+                        //pointStyle: 'Rounded',
+
+                        backgroundColor: barColorsMes,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                fontColor: "#fff",
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+
+
+
+
+        }
+
+
+        function crear_graficoBarra4(ValorX, ValorY, TipoGrafico, Titulo) {
+
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            var barColorsMes = ["#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bfe3bf", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc", "#bcbcbc"];
+            new Chart("CuartoGraficoBarras", {
+                type: TipoGrafico,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        //lineTension: 0,
+                        //fill: false,
+                        borderColor: '#bfe3bf',
+
+                        borderWidth: 1,
+                        //borderDash: [1, 0],
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+                        //pointStyle: 'Rounded',
+
+                        backgroundColor: barColorsMes,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false,
+                        text: Titulo
+                    },
+                    pointRadius: 5,
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                fontColor: "#fff",
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                fontColor: hexToRgba(getStyle('--info'), 10)
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+
+
+
+        }
+
+
+
+        $("#b01").click(function () {
+            ln_tiempo = 1;
+            documentos_generados(ln_tiempo);
+          });
+
+        $("#b02").click(function () {
+            ln_tiempo = 2;
+            documentos_generados(ln_tiempo);
+        });
+
+        $("#b03").click(function () {
+            ln_tiempo = 3;
+            documentos_generados(ln_tiempo);
+        });
+
+        function documentos_generados(ln_tiempo) {
+
+            switch (ln_tiempo) {
+                case 1:
+                    mostrar_generados_por_dia();
+                    $("#tiempo_grafico").html('<font size = "2">Últimos 7 días</font>');
+                    mostrar_procentajes_dia_memo();
+
+                    break;
+                case 2:
+                    mostrar_generados_por_mes();
+                    $("#tiempo_grafico").html('<font size = "2">Últimos 30 días</font>');
+                    mostrar_procentajes_mes();
+                    break;
+
+                case 3:
+                    mostrar_generados_por_anio();
+                    $("#tiempo_grafico").html('<font size="2">Últimos 12 meses</font>');
+                    mostrar_procentajes_anio();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+
+        function mostrar_generados_por_dia() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_GeneradoDia", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                xValuesMes.push(data[index].I_dia);
+                yValuesTotal.push(data[index].I_total);
+                }
+            GraficoGenerado(xValuesMes, yValuesTotal, "line");
+                },
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+        }
+
+
+
+        function mostrar_procentajes_dia_memo() {
+
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_PorcentajeDia", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (lstValores) {
+                    asignavalores(lstValores);
+                    console.log(lstValores);
+               },
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+        }
+
+        function mostrar_procentajes_mes() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_PorcentajeMes", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            success: function (lstValores) {
+                    asignavalores(lstValores);
+
+                },
+
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+        }
+
+
+
+        function asignavalores(lstValores) {
+
+            switch (lstValores.length) {
+                case 1:
+                    $("#Tipo_doc1").html('<font size = "2">' + lstValores[0].V_cdoc_desdoc + '</font>')
+                    $('#textPercent1').html(lstValores[0].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[0].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres1').html('<div class="progress-bar bg-success" role="progressbar" style="width:' + lstValores[0].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[0].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+                    $("#Tipo_doc2").html("0 Docs.");
+                    $('#textPercent2').html("0%");
+                    $('#divProgres2').html("");
+
+
+                    $("#Tipo_doc3").html("0 Docs.");
+                    $('#textPercent4').html("0%");
+                    $('#divProgres4').html("");
+
+
+                    $("#Tipo_doc4").html("0 Docs.");
+                    $('#textPercent5').html("0%");
+                    $('#divProgres5').html("");
+
+
+                    break;
+
+                case 2:
+                    $("#Tipo_doc1").html('<font size = "2">' + lstValores[0].V_cdoc_desdoc + '</font>')
+                    $('#textPercent1').html(lstValores[0].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[0].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres1').html('<div class="progress-bar bg-success" role="progressbar" style="width:' + lstValores[0].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[0].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+                    $("#Tipo_doc2").html('<font size = "2">' + lstValores[1].V_cdoc_desdoc + '</font>')
+                    $('#textPercent2').html(lstValores[1].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[1].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres2').html('<div class="progress-bar bg-info" role="progressbar" style="width:' + lstValores[1].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[1].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+                    $("#Tipo_doc3").html("0 Docs.");
+                    $('#textPercent4').html("0%");
+                    $('#divProgres4').html("");
+
+
+                    $("#Tipo_doc4").html("0 Docs.");
+                    $('#textPercent5').html("0%");
+                    $('#divProgres5').html("");
+
+
+
+
+                    break;
+
+                case 3:
+                    $("#Tipo_doc1").html('<font size = "2">' + lstValores[0].V_cdoc_desdoc + '</font>')
+                    $('#textPercent1').html(lstValores[0].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[0].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres1').html('<div class="progress-bar bg-success" role="progressbar" style="width:' + lstValores[0].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[0].I_porcentaje_ultimos_doc)+ '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+                    $("#Tipo_doc2").html('<font size = "2">' + lstValores[1].V_cdoc_desdoc + '</font>')
+                    $('#textPercent2').html(lstValores[1].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[1].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres2').html('<div class="progress-bar bg-info" role="progressbar" style="width:' + lstValores[1].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[1].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+                    $("#Tipo_doc3").html('<font size = "2">' + lstValores[2].V_cdoc_desdoc + '</font>')
+                    $('#textPercent4').html(lstValores[2].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[2].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres4').html('<div class="progress-bar bg-danger" role="progressbar" style="width:' + lstValores[2].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[2].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+
+                    $("#Tipo_doc4").html("0 Docs.");
+                    $('#textPercent5').html("0%");
+                    $('#divProgres5').html("0%");
+
+
+
+
+                    break;
+                case 4:
+
+                    $("#Tipo_doc1").html('<font size = "2">' + lstValores[0].V_cdoc_desdoc + '</font>')
+                    $('#textPercent1').html(lstValores[0].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[0].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres1').html('<div class="progress-bar bg-success" role="progressbar" style="width:' + lstValores[0].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[0].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+                    $("#Tipo_doc2").html('<font size = "2">' + lstValores[1].V_cdoc_desdoc + '</font>')
+                    $('#textPercent2').html(lstValores[1].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[1].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres2').html('<div class="progress-bar bg-info" role="progressbar" style="width:' + lstValores[1].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[1].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+                    $("#Tipo_doc3").html('<font size = "2">' + lstValores[2].V_cdoc_desdoc + '</font>')
+                    $('#textPercent4').html(lstValores[2].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[2].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres4').html('<div class="progress-bar bg-danger" role="progressbar" style="width:' + lstValores[2].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[2].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+                    $("#Tipo_doc4").html('<font size = "2">' + lstValores[3].V_cdoc_desdoc + '</font>')
+                    $('#textPercent5').html(lstValores[3].I_total_ultimos_doc_emitidos + " Docs. (" + lstValores[3].I_porcentaje_ultimos_doc + " %)");
+                    $('#divProgres5').html('<div class="progress-bar bg-warning" role="progressbar" style="width:' + lstValores[3].I_porcentaje_ultimos_doc + '%" aria-valuenow="' + Math.round(lstValores[3].I_porcentaje_ultimos_doc) + '" aria-valuemin="0" aria-valuemax="100"></div>');
+
+
+                    break;
+
+                default:
+
+                    $("#Tipo_doc1").html("0 Docs.");
+                    $('#textPercent1').html("0%");
+                    $('#divProgres1').html("0%");
+
+                    $("#Tipo_doc2").html("0 Docs.");
+                    $('#textPercent2').html("0%");
+                    $('#divProgres2').html("0%");
+
+
+                    $("#Tipo_doc3").html("0 Docs.");
+                    $('#textPercent4').html("0%");
+                    $('#divProgres4').html("0%");
+
+
+                    $("#Tipo_doc4").html("0 Docs.");
+                    $('#textPercent5').html("0%");
+                    $('#divProgres5').html("0%");
+
+
+
+                    break;
+
+            }
+
+        }
+
+
+
+
+
+        function mostrar_procentajes_anio() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_PorcentajeAnio", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (lstValores) {
+                    asignavalores(lstValores);
+
+                },
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+        }
+
+
+
+
+
+
+         function mostrar_generados_por_mes() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_GeneradoMes", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                    for (let index = 0; index < data.length; index++) {
+                        xValuesMes.push(data[index].I_dia);
+                yValuesTotal.push(data[index].I_total);
+                }
+            GraficoGenerado2(xValuesMes, yValuesTotal, "line");
+                },
+
+
+
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+
+
+        }
+
+
+        function       mostrar_generados_por_anio() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_GeneradoAnio", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+                success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                    xValuesMes.push(data[index].V_mes);
+                yValuesTotal.push(data[index].I_total);
+                }
+            GraficoGenerado3(xValuesMes, yValuesTotal, "line");
+                },
+
+
+
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+
+
+        }
+
+
+
+        function GraficoGenerado(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoGeneradoChart", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        //lineTension: 0,
+                        //fill: false,
+                        borderColor: '#44a1df',
+                        backgroundColor: '#f0f6fa',
+                        borderWidth: 1,
+                        //borderDash: [1, 0],
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+
+
+                        //pointStyle: 'Rounded',
+                        data: yValues
+
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+
+
+
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                fontColor: "#0b1e20",
+
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#0b1e20",
+                                fixedStepSize: 2
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 4,
+                            hoverRadius: 0,
+                            hoverBorderWidth: 0
+
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function GraficoGenerado2(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoGeneradoChart", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+
+                        //lineTension: 0,
+                        //fill: false,
+                        borderColor: '#44a1df',
+                        backgroundColor: '#f0f6fa',
+                        borderWidth: 1,
+                        //borderDash: [1, 0],
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+
+
+                        //pointStyle: 'Rounded',
+
+
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: true
+                            },
+                            ticks: {
+                                fontColor: "#0b1e20",
+
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#0b1e20"
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        function GraficoGenerado3(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("GraficoGeneradoChart", {
+                type: Tipo,
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        //lineTension: 0,
+                        //fill: false,
+                        borderColor: '#44a1df',
+                        backgroundColor: '#f0f6fa',
+                        borderWidth: 1,
+                        //borderDash: [1, 0],
+                        pointBorderColor: 'black',
+                        pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+
+
+                        //pointStyle: 'Rounded',
+                        data: yValues
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                drawOnChartArea: true
+                            },
+                            ticks: {
+                                fontColor: "#0b1e20",
+
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#0b1e20"
+                            }
+                        }]
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 10,
+                            hoverRadius: 4,
+                            hoverBorderWidth: 3
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+
+
+    function Documentos_recibidos() {
+          $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_ChartDocRecibidos", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            success: function (data) {
+                var xValuesMes = [];
+                var yValuesTotal = [];
+                for (let index = 0; index < data.length; index++) {
+                xValuesMes.push(data[index].V_mes);
+                yValuesTotal.push(data[index].I_total);
+                }
+            CargarGrafico(xValuesMes, yValuesTotal, "line");
+            },
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+
+
+
+    }
+
+
+
+    function documentos_vencidos() {
+        $.ajax({
+            type: 'GET',
+             url: '@Url.Action("_ChartDocVencidos", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            success: function (data) {
+            var xValuesMes = [];
+            var yValuesTotal = [];
+            for (let index = 0; index < data.length; index++) {
+            xValuesMes.push(data[index].V_mes);
+            yValuesTotal.push(data[index].I_total);
+            }
+            CargarGrafico4(xValuesMes, yValuesTotal, "line");
+            },
+            error: function (e) {
+            alert(e.statusText);
+            }
+        });
+
+    }
+
+
+
+            function documentos_atendidos() {
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_ChartDocAtendidos", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            success: function (data) {
+            var xValuesMes = [];
+            var yValuesTotal = [];
+            for (let index = 0; index < data.length; index++) {
+            xValuesMes.push(data[index].V_mes);
+            yValuesTotal.push(data[index].I_total);
+            }
+            CargarGrafico3(xValuesMes, yValuesTotal, "line");
+            },
+            error: function (e) {
+            alert(e.statusText);
+            }
+            });
+
+            }
+
+            function documentos_NoLeidoOficina() {
+
+            $.ajax({
+            type: 'GET',
+            url: '@Url.Action("_ChartDocNoLeidoOficina", "Dashboard")',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            success: function (data) {
+            var xValuesMes = [];
+            var yValuesTotal = [];
+            for (let index = 0; index < data.length; index++) {
+            xValuesMes.push(data[index].V_mes);
+            yValuesTotal.push(data[index].I_total);
+            }
+            CargarGrafico2(xValuesMes, yValuesTotal, "line");
+            },
+            error: function (e) {
+            alert(e.statusText);
+            }
+            });
+
+            }
+
+
+
+            function CargarGrafico(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("PrimerGrafico", {
+            type: Tipo,
+            data: {
+            labels: xValues,
+                datasets: [{
+                    //lineTension: 0,
+                    //fill: false,
+                    borderColor: '#f0f6fa',
+                    backgroundColor: hexToRgba(getStyle('--info'), 10),
+                    borderWidth: 1,
+                    //borderDash: [1, 0],
+                    pointBorderColor: 'black',
+                    pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+                        //pointStyle: 'Rounded',
+
+            data: yValues
+            }]
+            },
+            options: {
+            maintainAspectRatio: false,
+            legend: {
+            display: false
+            },
+            pointRadius : 5,
+            scales: {
+            xAxes: [{
+            display:false,
+            gridLines: {
+            drawOnChartArea: false
+            },
+            ticks: {
+            fontColor: "#fff",
+            maxTicksLimit: 7
+            }
+            }],
+            yAxes: [{
+            display: false,
+            ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5,
+                fontColor: hexToRgba(getStyle('--info'), 10)
+            }
+            }]
+            },
+            elements: {
+            point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3
+            }
+            }
+            }
+            });
+            }
+
+
+
+
+            function CargarGrafico2(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("SegundoGrafico", {
+            type: Tipo,
+            data: {
+            labels: xValues,
+                datasets: [{
+                    //lineTension: 0,
+                    //fill: false,
+                    borderColor: '#f0f6fa',
+                    backgroundColor: hexToRgba(getStyle('--info'), 10),
+                    borderWidth: 1,
+                    //borderDash: [1, 0],
+                    pointBorderColor: 'black',
+                    pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+
+
+                        //pointStyle: 'Rounded',
+                    data: yValues
+                }]
+            },
+            options: {
+            maintainAspectRatio: false,
+            legend: {
+            display: false
+            },
+            pointRadius: 5,
+            scales: {
+            xAxes: [{
+            display: false,
+            gridLines: {
+            drawOnChartArea: false
+            },
+            ticks: {
+            fontColor: "#fff",
+            maxTicksLimit: 7
+            }
+            }],
+            yAxes: [{
+            display: false,
+            ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5
+
+            }
+            }]
+            },
+            elements: {
+            point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3
+            }
+            }
+            }
+            });
+            }
+
+            function CargarGrafico3(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("TerceroGrafico", {
+            type: Tipo,
+            data: {
+            labels: xValues,
+                datasets: [{
+                    //lineTension: 0,
+                    //fill: false,
+                    borderColor: '#f0f6fa',
+                    backgroundColor: hexToRgba(getStyle('--info'), 10),
+                    borderWidth: 1,
+                    //borderDash: [1, 0],
+                    pointBorderColor: 'black',
+                    pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+
+
+                        //pointStyle: 'Rounded',
+                    data: yValues
+                }]
+            },
+            options: {
+            maintainAspectRatio: false,
+            legend: {
+            display: false
+            },
+            pointRadius: 5,
+            scales: {
+            xAxes: [{
+            display: false,
+            gridLines: {
+            drawOnChartArea: false
+            },
+            ticks: {
+            fontColor: "#fff",
+            maxTicksLimit: 7
+            }
+            }],
+            yAxes: [{
+            display: false,
+            ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5
+
+            }
+            }]
+            },
+            elements: {
+            point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3
+            }
+            }
+            }
+            });
+            }
+
+
+
+            function CargarGrafico4(ValorX, ValorY, Tipo) {
+            var xValues = ValorX;
+            var yValues = ValorY;
+
+            new Chart("cuartografico", {
+            type: Tipo,
+            data: {
+            labels: xValues,
+                datasets: [{
+                    //lineTension: 0,
+                    //fill: false,
+                    borderColor: '#f0f6fa',
+                    backgroundColor: hexToRgba(getStyle('--info'), 10),
+                    borderWidth: 1,
+                    //borderDash: [1, 0],
+                    pointBorderColor: 'black',
+                    pointBackgroundColor: 'black',
+                        //pointRadius: 5,
+                        //pointHoverRadius: 10,
+                        //pointHitRadius: 30,
+                        //pointBorderWidth: 2,
+
+
+                        //pointStyle: 'Rounded',
+                    data: yValues
+                }]
+            },
+            options: {
+            maintainAspectRatio: false,
+            legend: {
+            display: false
+            },
+            pointRadius: 5,
+            scales: {
+            xAxes: [{
+            display: false,
+            gridLines: {
+            drawOnChartArea: false
+            },
+            ticks: {
+            fontColor: "#fff",
+            maxTicksLimit: 7
+            }
+            }],
+            yAxes: [{
+            display: false,
+            ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5
+
+            }
+            }]
+            },
+            elements: {
+            point: {
+            radius: 0,
+            hitRadius: 10,
+            hoverRadius: 4,
+            hoverBorderWidth: 3
+            }
+            }
+            }
+            });
+            }
+
+
+
+    });
+</script>
+
+
+
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">
+        <a href="#">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Dashboard</li>
+    <!-- Breadcrumb Menu-->
+    <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+            <a class="btn" href="#">
+                <i class="icon-speech"></i>
+            </a>
+            <a class="btn" href="./">
+                <i class="icon-graph"></i>  Dashboard
+            </a>
+            <a class="btn" href="#">
+                <i class="icon-settings"></i>  Configuración
+            </a>
+        </div>
+    </li>
+</ol>
+<div class="container-fluid">
+
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body pb-0">
+                        <h5 id="total_recibido"></h5>
+                        <span>Documentos recibidos (Of. y prof.)</span>
+                    </div>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+                        <canvas class="chart" id="PrimerGrafico" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-info">
+                    @*<div class="card text-white bg-info">*@
+                    <div class="card-body pb-0">
+                        <h5 id="total_no_leido"></h5>
+                        <span>Documentos no leídos (Of. y prof.)</span>
+                    </div>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+                        <canvas class="chart" id="SegundoGrafico" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body pb-0">
+                        <h5 id="total_atendidos"></h5>
+                        <span>Documentos atendidos</span>
+                    </div>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+                        <canvas class="chart" id="TerceroGrafico" height="80"></canvas>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-danger">
+                    <div class="card-body pb-0">
+                        <h5 id="total_vencidos"></h5>
+                        <span>Documentos vencidos</span>
+                    </div>
+                    <div class="chart-wrapper mt-3" style="height:100px;">
+                        <canvas class="chart" id="cuartografico" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-->
+        </div>
+        <!-- /.row-->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h4 class="card-title mb-0">Documentos emitidos</h4>
+                        <span id="tiempo_grafico"></span>
+                        <div class="small text-muted"> <label id="lblToday"></label>  </div>
+                    </div>
+                    <!-- /.col-->
+                    <div class="col-sm-7 d-none d-md-block text-right">
+                        @*<button class="btn bg-secondary btn-xs" id="b01">Día</button>*@
+                        <button class="btn btn-primary btn-xs" id="b01">Día</button>
+                        <button class="btn btn-primary btn-xs" id="b02">Mes</button>
+                        <button class="btn btn-primary btn-xs" id="b03">Año</button>
+
+                    </div>
+
+
+                </div>
+
+
+                <div if="divMainChart" class="chart-wrapper" style="height:300px;margin-top:40px;">
+                    <canvas class="chart" id="GraficoGeneradoChart" height="300"></canvas>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row text-center">
+                    <div class="col-sm-12 col-md mb-sm-2 mb-0">
+                        <div class="text-muted"><span id="Tipo_doc1"></span></div>
+                        <strong id="textPercent1"></strong>
+                        <div id="divProgres1" class="progress progress-xs mt-2">
+                            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md mb-sm-2 mb-0">
+
+
+                        <div class="text-muted"><span id="Tipo_doc2"></span></div>
+                        <strong id="textPercent2"></strong>
+                        <div id="divProgres2" class="progress progress-xs mt-2">
+                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                    @*<div class="col-sm-12 col-md mb-sm-2 mb-0">
+                            <div class="text-muted">Oficios</div>
+                            <strong id="textPercent3"></strong>
+                            <div class="progress progress-xs mt-2">
+                                <div id="divProgres3" class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>*@
+
+
+                    <div class="col-sm-12 col-md mb-sm-2 mb-0">
+
+
+
+
+                        <div class="text-muted"><span id="Tipo_doc3"></span></div>
+                        <strong id="textPercent4"></strong>
+                        <div id="divProgres4" class="progress progress-xs mt-2">
+                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="col-sm-12 col-md mb-sm-2 mb-0">
+
+
+                        <div class="text-muted"><span id="Tipo_doc4"></span></div>
+                        <strong id="textPercent5"></strong>
+                        <div id="divProgres5" class="progress progress-xs mt-2">
+                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--------------------->
+
+    <div class="row">
+
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-youtube">
+
+                <div class="card-body pb-0">
+                    <h4 id="totalprimergrafico"></h4>
+                    <span>Documentos muy urgentes</span>
+                </div>
+
+                <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+                    <canvas class="chart" id="PrimerGraficoBarras" height="80"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body pb-0">
+                    <h4 id="totalsegundografico"></h4>
+                    <span>Documentos urgentes</span>
+                </div>
+
+                <div class="chart-wrapper mt-3" style="height:100px;">
+                    <canvas class="chart" id="SegundoGraficoBarras" height="80"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-teal">
+                <div class="card-body pb-0">
+                    <h4 id="totaltercergrafico"></h4>
+                    <span>Documentos en proyecto</span>
+                </div>
+
+                <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+                    <canvas class="chart" id="TercerGraficoBarras" height="80"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card text-white bg-success">
+                <div class="card-body pb-0">
+                    <h4 id="totalcuartografico"></h4>
+                    <span>Documentos para despacho</span>
+                </div>
+
+                <div class="chart-wrapper mt-3 mx-3" style="height:100px;">
+                    <canvas class="chart" id="CuartoGraficoBarras" height="80"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row-->
+
+
+</div>
+
+
+

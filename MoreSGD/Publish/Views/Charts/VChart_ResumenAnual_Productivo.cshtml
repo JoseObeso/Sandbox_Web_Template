@@ -1,0 +1,433 @@
+﻿@using SRSgd.Web.Models.Charts
+@model ChartAnualProductivoModel
+
+@{
+    ViewBag.Title = "Resumen Anual Productividad Documentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string SesionNombreDependencia = Session["dependenciaUser"].ToString(),
+    SesionCodDependencia = Session["codDependenciaUser"].ToString();
+
+}
+
+<script type="text/javascript">
+
+    var barChart = null;
+    var chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+    var colorNames = Object.keys(chartColors);
+    var color = Chart.helpers.color;
+
+    /////////////////////////////25112021
+    function requestServer(tipoMetodo, url, metodoCallBack, texto) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(tipoMetodo, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                metodoCallBack(xhr.responseText);
+            }
+        }
+        if (tipoMetodo == "get") xhr.send();
+        else {
+            if (texto != "") xhr.send(texto);
+        }
+    }
+    var post = function (url, metodoCallBack, texto) {
+        requestServer("post", url, metodoCallBack, texto);
+    }
+
+    function mostrarGrabar(rpta) {
+        var a = document.createElement("a");
+        var link = " data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + rpta;
+        a.href = link;
+        a.download = "Reportegrafico.xlsx";
+        a.click();
+    }
+
+    function ExportarResumenAnual() {
+            var canvas = document.getElementById("canvas1");
+            var data = canvas.toDataURL().replace("data:image/png;base64,", "");
+            post("../Charts/_ChartExportarResumenAnual", mostrarGrabar, data);   
+    }
+    ////////////////////////////
+
+
+
+    var lstMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+        'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+    var url_doc_recibidos = 'http://' + document.domain + ':8091/Reportes/';
+    //var url_doc_recibidos = 'http://' + document.domain + ':2135/Reportes/';
+
+   
+    function ver_coddependencia_documentos() {
+        var lc_codsesion = $("#ccoddependencia").val();
+
+        var valor = $("#cbxDependencia option:selected").attr('value');
+        if (valor == "") {
+            var v_coddependencia = lc_codsesion;
+        }
+        else {
+            var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+        }
+
+
+        $.ajax({
+            type: 'POST',
+            url: url_doc_recibidos + '_DocumentosPorDependencia',
+            data: { 'coddependencia': v_coddependencia },
+            dataType: 'json',
+            success: function (data) {
+                $("#TipoDocumentoDependencia")
+                    .html("")
+                    .append('<option id="">(Todos)</option>');
+
+                data.forEach(function (filas) {
+                    for (var e = 0; e < filas.length; e++) {
+                        $("#TipoDocumentoDependencia")
+                            .attr("disabled", false)
+                            .append('<option id="' + filas[e].Vco_tip_doc
+                                + '"  >' + filas[e].Vcdoc_desdoc + '</option>');
+                    }
+                });
+            },
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    }
+
+
+
+
+    $(document).ready(function () {
+
+        var random = function random() {
+            return Math.round(Math.random() * 100);
+        };
+
+        var lc_codsesion = $("#ccoddependencia").val(),
+            lc_nombredependencia = $("#ver_nombre_dependencia").text();
+        ver_coddependencia_documentos();
+
+
+
+        $("#cbxDependencia").on('change', function () {
+            ver_coddependencia_documentos();
+        });
+
+
+        if (lc_codsesion === "10000") {
+            $("#cbxDependencia").attr("disabled", false);
+        }
+        else {
+
+            $("#cbxDependencia").attr("disabled", true);
+        }
+
+
+        $("#btnConsultar").click(function () {
+
+            var valor = $("#cbxDependencia option:selected").attr('value');
+            if (valor == "") {
+                var v_coddependencia = lc_codsesion;
+            }
+            else {
+                var v_coddependencia = $("#cbxDependencia option:selected").attr('value');
+            }
+
+
+            var datos_leer = {
+                CodDependencia: v_coddependencia,
+                CodTipoDocumento: $("#TipoDocumentoDependencia option:selected").attr('id'),
+                Mes: "",
+                Anio: $("#cbxAnio option:selected").val()
+            }
+
+            console.log(datos_leer);
+
+
+            $.ajax({
+                type: 'GET',
+                url: '_ChartResumenAnualProductivo',
+                data: {
+                    CodDependencia: v_coddependencia,
+                    CodTipoDocumento: $("#TipoDocumentoDependencia option:selected").attr('id'),
+                    Mes: $("#cbxMeses option:selected").val(),
+                    Anio: $("#cbxAnio option:selected").val()
+                },
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+
+                    CargarGrafico(data);
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+        });
+
+
+
+
+        /* Inicio grafico */
+
+
+        function CargarGrafico(dataList) {
+
+            $("#divBarrasChart").html('&nbsp;');
+            //$("#divPastelChart").html('&nbsp;');
+            $("#divBarrasChart").append('<canvas id="canvas1"></canvas>');
+            //$("#divPastelChart").append('<canvas id="canvas2"></canvas>');
+
+            var lstDocumentos = [];
+            var lstDatos = [];
+            var totalData = [];
+
+            $.each(dataList, function (i, item) {
+                if (jQuery.inArray(item.DescTipoDocumento, lstDocumentos) == -1)
+                    lstDocumentos.push(item.DescTipoDocumento);
+            });
+
+
+            var colorI = 1;
+            $.each(lstDocumentos, function (index, itemDoc) {
+                lstDatos = [];
+                for (iMes = 1; iMes <= 12; iMes++)
+                    $.each(dataList, function (j, oItem) {
+                        if (oItem.Mes == iMes && oItem.DescTipoDocumento == itemDoc)
+                            lstDatos.push(oItem.Total);
+                    });
+
+                if (lstDatos.length > 0) {
+
+                    var colorBG = colorNames[colorI % colorNames.length];
+                    var dsColor = chartColors[colorBG];
+                    var dataset = {
+                        label: itemDoc,
+                        backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                        borderColor: dsColor,
+                        //highlightFill: 'rgba(220, 220, 220, 0.75)',
+                        //highlightStroke: 'rgba(220, 220, 220, 1)',
+                        fill: false,
+                        data: lstDatos,
+                        borderWidth: 1
+                    };
+                    colorI = colorI + 1;
+                    totalData.push(dataset);
+                }
+            });
+
+
+            barChart = new Chart($('#canvas1'), {
+                type: 'bar',
+                data: {
+                    labels: lstMonths,
+                    datasets: totalData
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                maxRotation: 90,
+                                minRotation: 80
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            /*
+            var lstBGColores = ["#8e5ea2", "#525b5c", "#3cba9f", "#3e95cd", "#c45850", "#a3d5d3", "#3e9500",
+                                "#f78383", "#549aab", "#3cba00", "#47c89b", "#c458ff", "#ffc100", "#cccc00"];
+
+            */
+
+            ResumenDatos(dataList, lstDocumentos);
+
+        }
+
+        function ResumenDatos(dataList, lstDocumentos) {
+            var total = 0;
+            var sumatotalDoc = 0
+            $('#ulResumenData').empty();
+
+            $.each(lstDocumentos, function (x, strdocumento) {
+                total = 0;
+                $.each(dataList, function (i, oItem) {
+                    if (oItem.DescTipoDocumento == strdocumento)
+                        total = total + oItem.Total;
+                });
+
+                var htmlElemento = '<li  class="list-group-item d-flex justify-content-between align-items-center">' + strdocumento +
+                    '<span class="badge badge-light">' + total + '</span>' + '</li >';
+                sumatotalDoc += total
+
+                $('#ulResumenData').append(htmlElemento);
+            });
+
+
+            if (sumatotalDoc == 0) {
+                htmlElemento = "";
+            }
+            else {
+                var htmlElemento = '<li  class="list-group-item d-flex justify-content-between align-items-center">' + "TOTAL" +
+                    '<span class="badge badge-light">' + sumatotalDoc + '</span>' + '</li >';
+                $('#ulResumenData').append(htmlElemento);
+            }
+        }
+
+        /* Fin  grafico */
+
+
+        function AddDataSet() {
+
+            var colorNames = Object.keys(chartColors);
+            var colorName = colorNames[14 % colorNames.length];
+            var dsColor = chartColors[colorName];
+
+            var newDataset = {
+                label: lstDocumentos[1],
+                backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                borderColor: dsColor,
+                borderWidth: 1,
+                data: [] //lstDatos[1]
+            };
+
+            for (var index = 0; index < barChart.labels.length; ++index) {
+                newDataset.data.push(randomScalingFactor());
+            }
+
+            barChart.datasets.push(newDataset);
+            barChart.update();
+        }
+
+    });
+
+
+
+</script>
+
+<div class="container-fluid">
+    <div class="animated fadeIn">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>CHART RESUMEN ANUAL </strong>
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal" role="form">
+                    <div class="row">
+
+                        <input type="hidden" value=@SesionCodDependencia id="ccoddependencia" />
+                        <!----"form-horizontal">-->
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label">Dependencia <span class="text-danger" title="Filtro obligatorio">*</span></label>
+                            <div class="">
+
+                                @Html.DropDownListFor(x => x._Filtros.CodDependencia, Model.LstDependencias.Select(item => new SelectListItem { Value = item.Codigo, Text = item.Descripcion }),
+                                                            @SesionNombreDependencia, htmlAttributes: new { @class = "form-control form-control-md", @id = "cbxDependencia" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label">Tipo Documento</label>
+                            <div class="">
+                                <select class="form-control" id="TipoDocumentoDependencia"></select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-3">
+                            <label class="col-form-label"> Año </label>
+                            <div class="">
+                                @Html.DropDownList("cbxAnio", Model.LstAnios, new { @class = "form-control form-control-md" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group col-sm-3">*@
+                        <label class="col-form-label col-sm-3" for="date-input"> &nbsp;</label>
+                        @*<label class="col-form-label" for="date-input"> &nbsp;</label>*@
+                        <div>
+                            <input type="button" id="btnConsultar" class="btn btn-primary" value="Consultar" />
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-primary" onclick="ExportarResumenAnual()">Exportar</button>
+                        </div>
+
+                        @*</div>*@
+                    </div>
+
+                    <div class="row">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-9">
+                <div class="card">
+
+                    <div class="card-header">
+                        Grafico Histórico
+                        <div class="card-header-actions">
+                            <a class="card-header-action" href="http://www.chartjs.org" target="_blank">
+                                @*<small class="text-muted">docs</small>*@
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div id="divBarrasChart" class="chart-wrapper">
+                            <canvas id="canvas1"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">
+                        Resumen
+                    </div>
+
+                    <div class="card-body">
+                        <div id="divPastelChart" class="chart-wrapper">
+
+                            <ul id="ulResumenData" class="list-group"></ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
