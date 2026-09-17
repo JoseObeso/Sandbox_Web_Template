@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Select con fondo personalizado</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+/* Cambiar color de fondo y texto del select */
+.custom-select {
+    background-color: #337ab7; /* Azul Bootstrap 3 primary */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+/* Cambiar color de las opciones */
+.custom-select option {
+    background-color: white;
+    color: black;
+}
+
+/* Opción seleccionada en hover */
+.custom-select option:hover {
+    background-color: #f0ad4e; /* Naranja Bootstrap 3 warning */
+    color: white;
+}
+</style>
+</head>
+<body class="container">
+
+<h3>Select con colores personalizados</h3>
+<select class="custom-select">
+    <option value="1">Opción 1</option>
+    <option value="2">Opción 2</option>
+    <option value="3">Opción 3</option>
+</select>
+
+</body>
+</html>

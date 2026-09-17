@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datatable Responsive Mobile</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
+
+  <style>
+    body {
+      background: #f5f7fa;
+      padding: 20px;
+    }
+
+    .panel-table {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 0;
+    }
+
+    .panel-table .panel-heading {
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_length {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 767px) {
+      .panel-table .panel-heading {
+        padding: 15px 10px;
+      }
+
+      .dataTables_wrapper .dataTables_filter,
+      .dataTables_wrapper .dataTables_length,
+      .dataTables_wrapper .dataTables_info,
+      .dataTables_wrapper .dataTables_paginate {
+        text-align: center;
+        float: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <h3 class="panel-title">Listado de clientes</h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="tablaClientes" class="table table-striped table-bordered table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>País</th>
+                    <th>Ciudad</th>
+                    <th>Estado</th>
+                    <th>Saldo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Juan Pérez</td>
+                    <td>juan@correo.com</td>
+                    <td>Chile</td>
+                    <td>Santiago</td>
+                    <td>Activo</td>
+                    <td>$1.250</td>
+                  </tr>
+                  <tr>
+                    <td>María López</td>
+                    <td>maria@correo.com</td>
+                    <td>Argentina</td>
+                    <td>Buenos Aires</td>
+                    <td>Activo</td>
+                    <td>$980</td>
+                  </tr>
+                  <tr>
+                    <td>Pedro Gómez</td>
+                    <td>pedro@correo.com</td>
+                    <td>Perú</td>
+                    <td>Lima</td>
+                    <td>Inactivo</td>
+                    <td>$640</td>
+                  </tr>
+                  <tr>
+                    <td>Ana Torres</td>
+                    <td>ana@correo.com</td>
+                    <td>Colombia</td>
+                    <td>Bogotá</td>
+                    <td>Activo</td>
+                    <td>$1.780</td>
+                  </tr>
+                  <tr>
+                    <td>Lucas Silva</td>
+                    <td>lucas@correo.com</td>
+                    <td>Brasil</td>
+                    <td>São Paulo</td>
+                    <td>Activo</td>
+                    <td>$2.340</td>
+                  </tr>
+                  <tr>
+                    <td>Valeria Ríos</td>
+                    <td>valeria@correo.com</td>
+                    <td>México</td>
+                    <td>Ciudad de México</td>
+                    <td>Activo</td>
+                    <td>$1.420</td>
+                  </tr>
+                  <tr>
+                    <td>Carlos Mendoza</td>
+                    <td>carlos@correo.com</td>
+                    <td>España</td>
+                    <td>Madrid</td>
+                    <td>Inactivo</td>
+                    <td>$870</td>
+                  </tr>
+                  <tr>
+                    <td>Sofía Castro</td>
+                    <td>sofia@correo.com</td>
+                    <td>Uruguay</td>
+                    <td>Montevideo</td>
+                    <td>Activo</td>
+                    <td>$1.090</td>
+                  </tr>
+                  <tr>
+                    <td>Diego Morales</td>
+                    <td>diego@correo.com</td>
+                    <td>Paraguay</td>
+                    <td>Asunción</td>
+                    <td>Activo</td>
+                    <td>$710</td>
+                  </tr>
+                  <tr>
+                    <td>Laura García</td>
+                    <td>laura@correo.com</td>
+                    <td>Bolivia</td>
+                    <td>La Paz</td>
+                    <td>Inactivo</td>
+                    <td>$560</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
+
+  <script>
+    $(function () {
+      $('#tablaClientes').DataTable({
+        responsive: true,
+        language: {
+          url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+        },
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        pageLength: 5,
+        lengthMenu: [5, 10, 25, 50],
+        columnDefs: [
+          { responsivePriority: 1, targets: 0 },
+          { responsivePriority: 2, targets: 1 },
+          { responsivePriority: 3, targets: 2 }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>
