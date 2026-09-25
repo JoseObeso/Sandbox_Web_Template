@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="target">Double click me</div>
+
+
+
+
+
+<script>
+
+// Source - https://stackoverflow.com/a/27561006
+// Posted by JRulle, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-09-24, License - CC BY-SA 3.0
+
+var touchtime = 0;
+$(".target").on("click", function() {
+    if (touchtime == 0) {
+        // set first click
+        touchtime = new Date().getTime();
+    } else {
+        // compare first click to this click and see if they occurred within double click threshold
+        if (((new Date().getTime()) - touchtime) < 800) {
+            // double click occurred
+            alert("double clicked");
+            touchtime = 0;
+        } else {
+            // not a double click so set as a new first click
+            touchtime = new Date().getTime();
+        }
+    }
+});
+
+
+</script>    
+    
+</body>
+</html>

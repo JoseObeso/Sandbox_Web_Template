@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DataTable con selección múltiple</title>
+	
+	<link rel="stylesheet" href="lib/dataTables.dataTables.min.css">
+	<link rel="stylesheet" href="lib/dataTables.select.min.css">
+	<style>
+		body { font-family: Arial, sans-serif; margin: 2rem; }
+		.acciones { margin-bottom: 1rem; }
+		button { cursor: pointer; padding: .5rem .8rem; }
+	</style>
+</head>
+<body>
+	<h1>Usuarios</h1>
+	<div class="acciones">
+		<button id="mostrarSeleccionados" type="button">Mostrar seleccionados</button>
+	</div>
+
+	<table id="usuarios" class="display" style="width:100%">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Nombre</th>
+				<th>Correo</th>
+				<th>Rol</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td></td><td>Ana López</td><td>ana@ejemplo.com</td><td>Administradora</td></tr>
+			<tr><td></td><td>Juan Pérez</td><td>juan@ejemplo.com</td><td>Editor</td></tr>
+			<tr><td></td><td>María García</td><td>maria@ejemplo.com</td><td>Consulta</td></tr>
+			<tr><td></td><td>Carlos Ruiz</td><td>carlos@ejemplo.com</td><td>Editor</td></tr>
+            <tr><td></td><td>Ana López</td><td>ana@ejemplo.com</td><td>Administradora</td></tr>
+			<tr><td></td><td>Juan Pérez</td><td>juan@ejemplo.com</td><td>Editor</td></tr>
+			<tr><td></td><td>María García</td><td>maria@ejemplo.com</td><td>Consulta</td></tr>
+			<tr><td></td><td>Carlos Ruiz</td><td>carlos@ejemplo.com</td><td>Editor</td></tr>
+
+		</tbody>
+	</table>
+
+	<script src="lib/jquery-3.7.1.min.js"></script>
+	<script src="lib/dataTables.min.js"></script>
+	<script src="lib/dataTables.select.min.js"></script>
+	<script>
+		const tabla = new DataTable('#usuarios', {
+			select: { style: 'multi', selector: 'td:first-child' },
+			order: [[1, 'asc']],
+			language: {
+				url: 'lib/i18n/es-ES.json'
+			},
+			columnDefs: [{ orderable: false, className: 'select-checkbox', targets: 0 }]
+		});
+
+		document.querySelector('#mostrarSeleccionados').addEventListener('click', () => {
+			const seleccionados = tabla.rows({ selected: true }).data().toArray();
+			alert(seleccionados.length
+				? 'Seleccionados:\n' + seleccionados.map(fila => fila[1]).join('\n')
+				: 'No hay filas seleccionadas.');
+		});
+	</script>
+</body>
+</html>

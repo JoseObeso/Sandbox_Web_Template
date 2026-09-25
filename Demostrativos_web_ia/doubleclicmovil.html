@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Doble click en móvil con jQuery</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    #caja {
+        width: 200px;
+        height: 200px;
+        background: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+</style>
+</head>
+<body>
+
+<div id="caja">Toca o haz doble click</div>
+
+<script>
+$(function() {
+    let lastTap = 0; // Guarda el tiempo del último toque
+    const delay = 300; // Tiempo máximo entre toques (ms)
+
+    $("#caja").on("click touchstart", function(e) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+
+        if (tapLength < delay && tapLength > 0) {
+            // Doble toque detectado
+            e.preventDefault(); // Evita zoom en iOS
+            alert("¡Doble click/tap detectado!");
+        }
+
+        lastTap = currentTime;
+    });
+});
+</script>
+
+</body>
+</html>
