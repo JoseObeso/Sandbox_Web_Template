@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Filas seleccionadas en una matriz</title>
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+	<style>
+		body { font-family: Arial, sans-serif; margin: 2rem; }
+		button { margin: 1rem 0; padding: .5rem 1rem; }
+		pre { background: #f3f3f3; padding: 1rem; }
+	</style>
+</head>
+<body>
+	<h1>Filas seleccionadas</h1>
+
+	<table id="tabla" class="display" style="width:100%">
+		<thead>
+			<tr><th>ID</th><th>Nombre</th><th>Ciudad</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>1</td><td>Ana</td><td>Madrid</td></tr>
+			<tr><td>2</td><td>Luis</td><td>Sevilla</td></tr>
+			<tr><td>3</td><td>Marta</td><td>Valencia</td></tr>
+			<tr><td>4</td><td>Juan</td><td>Bilbao</td></tr>
+		</tbody>
+	</table>
+
+	<button id="leerSeleccionadas" type="button">Guardar seleccionadas en matriz</button>
+	<pre id="resultado">[]</pre>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+	<script>
+        
+		const tabla = new DataTable('#tabla', {
+			select: { style: 'multi' },
+			columnDefs: [{ targets: 0, className: 'select-checkbox' }]
+		});
+
+		// Matriz: cada fila seleccionada se convierte en un array de valores.
+		document.querySelector('#leerSeleccionadas').addEventListener('click', () => {
+			const matriz = tabla.rows({ selected: true }).data().toArray();
+			document.querySelector('#resultado').textContent = JSON.stringify(matriz, null, 2);
+			console.log(matriz);
+		});
+	</script>
+</body>
+</html>
