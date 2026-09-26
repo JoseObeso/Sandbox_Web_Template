@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Columna de DataTable a matriz</title>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+</head>
+<body>
+	<table id="tabla" class="display">
+		<thead>
+			<tr><th>Id</th><th>Nombre</th><th>Ciudad</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>1</td><td>Ana</td><td>Madrid</td></tr>
+			<tr><td>2</td><td>Luis</td><td>Sevilla</td></tr>
+			<tr><td>3</td><td>Eva</td><td>Valencia</td></tr>
+		</tbody>
+	</table>
+
+	<pre id="resultado"></pre>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(function () {
+			const tabla = $('#tabla').DataTable();
+
+			// Índice 1: columna "Nombre". toArray() convierte los datos en una matriz JS.
+			const matriz = tabla.column(1, { search: 'applied' }).data().toArray();
+
+			document.getElementById('resultado').textContent =
+				JSON.stringify(matriz, null, 2);
+
+			console.log(matriz); // ["Ana", "Luis", "Eva"]
+		});
+	</script>
+</body>
+</html>
