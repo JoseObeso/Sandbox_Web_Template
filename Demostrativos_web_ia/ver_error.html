@@ -1,0 +1,177 @@
+<!DOCTYPE html>\r\n<html>\r\n
+
+<head>\r\n <title>La cadena de entrada no tiene el formato correcto.</title>\r\n
+    <meta name=\"viewport\" content=\"width=device-width\" />\r\n <style>
+        \r\n body {
+            font-family: \"Verdana\";
+            font-weight: normal;
+            font-size: .7em;
+            color: black;
+        }
+
+        \r\n p {
+            font-family: \"Verdana\";
+            font-weight: normal;
+            color: black;
+            margin-top: -5px
+        }
+
+        \r\n b {
+            font-family: \"Verdana\";
+            font-weight: bold;
+            color: black;
+            margin-top: -5px
+        }
+
+        \r\n H1 {
+            font-family: \"Verdana\";
+            font-weight: normal;
+            font-size: 18pt;
+            color: red
+        }
+
+        \r\n H2 {
+            font-family: \"Verdana\";
+            font-weight: normal;
+            font-size: 14pt;
+            color: maroon
+        }
+
+        \r\n pre {
+            font-family: \"Consolas\", \"Lucida Console\", Monospace;
+            font-size: 11pt;
+            margin: 0;
+            padding: 0.5em;
+            line-height: 14pt
+        }
+
+        \r\n .marker {
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+
+        \r\n .version {
+            color: gray;
+        }
+
+        \r\n .error {
+            margin-bottom: 10px;
+        }
+
+        \r\n .expandable {
+            text-decoration: underline;
+            font-weight: bold;
+            color: navy;
+            cursor: pointer;
+        }
+
+        \r\n @media screen and (max-width: 639px) {
+            \r\n pre {
+                width: 440px;
+                overflow: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+
+            \r\n
+        }
+
+        \r\n @media screen and (max-width: 479px) {
+            \r\n pre {
+                width: 280px;
+            }
+
+            \r\n
+        }
+
+        \r\n
+    </style>\r\n
+</head>\r\n\r\n
+
+<body bgcolor=\"white\">\r\n\r\n <span>
+        <H1>Error de servidor en la aplicación '/'.
+            <hr width=100% size=1 color=silver>
+        </H1>\r\n\r\n <h2> <i>La cadena de entrada no tiene el formato correcto.</i> </h2>
+    </span>\r\n\r\n <font face=\"Arial, Helvetica, Geneva, SunSans-Regular, sans-serif \">\r\n\r\n <b> Descripción:
+        </b>Excepción no controlada al ejecutar la solicitud Web actual. Revise el seguimiento de la pila para obtener
+        más información acerca del error y dónde se originó en el código.\r\n\r\n <br><br>\r\n\r\n <b> Detalles de la
+            excepción: </b>System.Exception: La cadena de entrada no tiene el formato correcto.<br><br>\r\n\r\n <b>Error
+            de código fuente:</b> <br><br>\r\n\r\n <table width=100% bgcolor=\"#ffffcc\">\r\n <tr>\r\n <td>\r\n
+                    <code><pre>\r\n\r\nLínea 153:            catch (Exception ex)\r\nLínea 154:            {\r\n<font color=red>Línea 155:                throw new Exception(ex.Message);\r\n</font>Línea 156:            }\r\nLínea 157:        }</pre>                      </code>\r\n\r\n
+                </td>\r\n </tr>\r\n </table>\r\n\r\n <br>\r\n\r\n <b> Archivo de origen: </b>
+        C:\\Users\\jobeso\\Documents\\NET\\SI_OTIC_VS2017_MASTER\\Inventariomovil\\Controllers\\TomainventarioController.cs<b>
+            &nbsp;&nbsp; Línea: </b> 155\r\n <br><br>\r\n\r\n <b>Seguimiento de la pila:</b> <br><br>\r\n\r\n <table
+            width=100% bgcolor=\"#ffffcc\">\r\n <tr>\r\n <td>\r\n
+                    <code><pre>\r\n\r\n[Exception: La cadena de entrada no tiene el formato correcto.]\r\n   Inventariomovil.Controllers.TomainventarioController.RegistrarBienInventariado(String Iidbien, String Fecha, String Estado, String Situacion, String Observacionesinventario, String Id_usuario, String Iddivision, String Iddireccion, String Vdescripcion, String Vmarca, String Vcolor, String Vserie, String Vmodelo, String observacionescomponentes, String De_longitud, String De_altura, String De_ancho) in C:\\Users\\jobeso\\Documents\\NET\\SI_OTIC_VS2017_MASTER\\Inventariomovil\\Controllers\\TomainventarioController.cs:155\r\n   lambda_method(Closure , ControllerBase , Object[] ) +818\r\n   System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters) +14\r\n   System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters) +157\r\n   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) +27\r\n   System.Web.Mvc.Async.&lt;&gt;c.&lt;BeginInvokeSynchronousActionMethod&gt;b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState) +22\r\n   System.Web.Mvc.Async.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult) +29\r\n   System.Web.Mvc.Async.WrappedAsyncResultBase`1.End() +49\r\n   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult) +32\r\n   System.Web.Mvc.Async.AsyncInvocationWithFilters.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__11_0() +50\r\n   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass11_1.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__2() +228\r\n   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass7_0.&lt;BeginInvokeActionMethodWithFilters&gt;b__1(IAsyncResult asyncResult) +10\r\n   System.Web.Mvc.Async.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult) +10\r\n   System.Web.Mvc.Async.WrappedAsyncResultBase`1.End() +49\r\n   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult) +34\r\n   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass3_6.&lt;BeginInvokeAction&gt;b__3() +35\r\n   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass3_1.&lt;BeginInvokeAction&gt;b__5(IAsyncResult asyncResult) +100\r\n   System.Web.Mvc.Async.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult) +10\r\n   System.Web.Mvc.Async.WrappedAsyncResultBase`1.End() +49\r\n   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult) +27\r\n   System.Web.Mvc.&lt;&gt;c.&lt;BeginExecuteCore&gt;b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState) +11\r\n   System.Web.Mvc.Async.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult) +29\r\n   System.Web.Mvc.Async.WrappedAsyncResultBase`1.End() +49\r\n   System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult) +45\r\n   System.Web.Mvc.&lt;&gt;c.&lt;BeginExecute&gt;b__151_2(IAsyncResult asyncResult, Controller controller) +13\r\n   System.Web.Mvc.Async.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult) +22\r\n   System.Web.Mvc.Async.WrappedAsyncResultBase`1.End() +49\r\n   System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult) +26\r\n   System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult) +10\r\n   System.Web.Mvc.&lt;&gt;c.&lt;BeginProcessRequest&gt;b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState) +28\r\n   System.Web.Mvc.Async.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult) +29\r\n   System.Web.Mvc.Async.WrappedAsyncResultBase`1.End() +49\r\n   System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +28\r\n   System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result) +9\r\n   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +9763985\r\n   System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step) +115\r\n   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +163\r\n</pre>                      </code>\r\n\r\n
+                </td>\r\n </tr>\r\n </table>\r\n\r\n <br>\r\n\r\n
+        <hr width=100% size=1 color=silver>\r\n\r\n <b>Información de versión:</b>&nbsp;Versión de Microsoft .NET
+        Framework:4.0.30319; Versión ASP.NET:4.8.9344.0\r\n\r\n
+    </font>\r\n\r\n </body>\r\n
+
+</html>\r\n\r\n[Exception]: La cadena de entrada no tiene el formato correcto.\r\n en
+Inventariomovil.Controllers.TomainventarioController.RegistrarBienInventariado(String Iidbien, String Fecha, String
+Estado, String Situacion, String Observacionesinventario, String Id_usuario, String Iddivision, String Iddireccion,
+String Vdescripcion, String Vmarca, String Vcolor, String Vserie, String Vmodelo, String observacionescomponentes,
+String De_longitud, String De_altura, String De_ancho) en
+C:\\Users\\jobeso\\Documents\\NET\\SI_OTIC_VS2017_MASTER\\Inventariomovil\\Controllers\\TomainventarioController.cs:línea
+155\r\n en lambda_method(Closure , ControllerBase , Object[] )\r\n en
+System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)\r\n en
+System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)\r\n en
+System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor
+actionDescriptor, IDictionary`2 parameters)\r\n en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.
+    <BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)\r\n en
+        System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)\r\n en
+        System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()\r\n en
+        System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)\r\n en
+        System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.
+        <InvokeActionMethodFilterAsynchronouslyRecursive>b__11_0()\r\n en
+            System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_1.
+                <InvokeActionMethodFilterAsynchronouslyRecursive>b__2()\r\n en
+                    System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.
+                        <BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)\r\n en
+                            System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult
+                            asyncResult)\r\n en
+                            System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()\r\n en
+                            System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult
+                            asyncResult)\r\n en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.
+                                <BeginInvokeAction>b__3()\r\n en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>
+                                        c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)\r\n en
+                                            System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult
+                                            asyncResult)\r\n en
+                                            System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()\r\n
+                                            en
+                                            System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult
+                                            asyncResult)\r\n en System.Web.Mvc.Controller.<>c.<BeginExecuteCore>
+                                                    b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)\r\n
+                                                    en
+                                                    System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult
+                                                    asyncResult)\r\n en
+                                                    System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()\r\n
+                                                    en System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult
+                                                    asyncResult)\r\n en System.Web.Mvc.Controller.<>c.<BeginExecute>
+                                                            b__151_2(IAsyncResult asyncResult, Controller
+                                                            controller)\r\n en
+                                                            System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult
+                                                            asyncResult)\r\n en
+                                                            System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()\r\n
+                                                            en System.Web.Mvc.Controller.EndExecute(IAsyncResult
+                                                            asyncResult)\r\n en
+                                                            System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult
+                                                            asyncResult)\r\n en System.Web.Mvc.MvcHandler.<>c.
+                                                                <BeginProcessRequest>b__20_1(IAsyncResult asyncResult,
+                                                                    ProcessRequestState innerState)\r\n en
+                                                                    System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult
+                                                                    asyncResult)\r\n en
+                                                                    System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()\r\n
+                                                                    en
+                                                                    System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult
+                                                                    asyncResult)\r\n en
+                                                                    System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult
+                                                                    result)\r\n en
+                                                                    System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()\r\n
+                                                                    en
+                                                                    System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep
+                                                                    step)\r\n en
+                                                                    System.Web.HttpApplication.ExecuteStep(IExecutionStep
+                                                                    step, Boolean& completedSynchronously)\r\n
