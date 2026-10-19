@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard de consultas</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<style>
+		body { background: #f3f6f9; color: #344054; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+		.navbar-dashboard { background: #17324d; border: 0; border-radius: 0; margin-bottom: 25px; }
+		.navbar-dashboard .navbar-brand, .navbar-dashboard .navbar-text { color: #fff; }
+		.navbar-dashboard .navbar-brand { font-weight: 600; }
+		.page-title { margin: 0 0 5px; font-size: 25px; font-weight: 600; }
+		.page-subtitle { color: #7b8794; margin-bottom: 22px; }
+		.panel { border: 0; border-radius: 5px; box-shadow: 0 2px 8px rgba(20, 40, 60, .07); }
+		.panel-heading { background: #fff !important; border-color: #edf0f2 !important; padding: 16px 20px; font-weight: 600; }
+		.panel-body { padding: 20px; }
+		.filter-panel { margin-bottom: 20px; }
+		.filter-panel .form-group { margin-bottom: 12px; }
+		.filter-panel label { color: #667085; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+		.form-control { border-color: #d8dee6; box-shadow: none; height: 38px; }
+		.btn-primary { background: #2475c5; border-color: #2475c5; }
+		.btn-primary:hover, .btn-primary:focus { background: #1c64aa; border-color: #1c64aa; }
+		.metric { min-height: 110px; }
+		.metric-label { color: #7b8794; font-size: 13px; }
+		.metric-value { color: #17324d; font-size: 28px; font-weight: 600; margin-top: 9px; }
+		.metric-change { color: #218653; font-size: 12px; margin-top: 4px; }
+		.map-frame { border: 0; display: block; height: 440px; width: 100%; }
+		.map-panel .panel-body { padding: 0; overflow: hidden; border-radius: 0 0 5px 5px; }
+		.map-caption { color: #7b8794; font-size: 12px; margin: 0; padding: 10px 15px; }
+		@media (max-width: 767px) {
+			.navbar-dashboard .navbar-text { display: none; }
+			.map-frame { height: 340px; }
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-dashboard">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Panel de consultas</a>
+			</div>
+			<p class="navbar-text navbar-right">Visualización de datos geográficos</p>
+		</div>
+	</nav>
+
+	<main class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 class="page-title">Dashboard</h1>
+				<p class="page-subtitle">Consulta y explora los resultados por ubicación.</p>
+			</div>
+		</div>
+
+		<section class="panel filter-panel" aria-labelledby="filters-title">
+			<div class="panel-heading" id="filters-title">Filtros de consulta</div>
+			<div class="panel-body">
+				<form class="row" action="#" method="get">
+					<div class="col-sm-6 col-md-3 form-group">
+						<label for="region">Región</label>
+						<select class="form-control" id="region" name="region">
+							<option value="">Todas las regiones</option>
+							<option>Madrid</option>
+							<option>Cataluña</option>
+							<option>Andalucía</option>
+							<option>Comunidad Valenciana</option>
+						</select>
+					</div>
+					<div class="col-sm-6 col-md-3 form-group">
+						<label for="tipo">Tipo de consulta</label>
+						<select class="form-control" id="tipo" name="tipo">
+							<option value="">Todos los tipos</option>
+							<option>Atención ciudadana</option>
+							<option>Incidencia</option>
+							<option>Solicitud de información</option>
+							<option>Otro</option>
+						</select>
+					</div>
+					<div class="col-sm-6 col-md-3 form-group">
+						<label for="estado">Estado</label>
+						<select class="form-control" id="estado" name="estado">
+							<option value="">Todos los estados</option>
+							<option>Pendiente</option>
+							<option>En proceso</option>
+							<option>Resuelta</option>
+						</select>
+					</div>
+					<div class="col-sm-6 col-md-3 form-group">
+						<label for="periodo">Periodo</label>
+						<select class="form-control" id="periodo" name="periodo">
+							<option value="">Todo el periodo</option>
+							<option>Últimos 7 días</option>
+							<option>Últimos 30 días</option>
+							<option>Últimos 90 días</option>
+							<option>Este año</option>
+						</select>
+					</div>
+					<div class="col-xs-12 text-right">
+						<button class="btn btn-default" type="reset">Limpiar</button>
+						<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Aplicar filtros</button>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<section class="row" aria-label="Resumen de consultas">
+			<div class="col-sm-6 col-md-3">
+				<div class="panel panel-body metric">
+					<div class="metric-label">Consultas totales</div>
+					<div class="metric-value">1.284</div>
+					<div class="metric-change">&#9650; 8,2% respecto al periodo anterior</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="panel panel-body metric">
+					<div class="metric-label">Pendientes</div>
+					<div class="metric-value">96</div>
+					<div class="metric-change">7,5% del total</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="panel panel-body metric">
+					<div class="metric-label">En proceso</div>
+					<div class="metric-value">312</div>
+					<div class="metric-change">24,3% del total</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-3">
+				<div class="panel panel-body metric">
+					<div class="metric-label">Resueltas</div>
+					<div class="metric-value">876</div>
+					<div class="metric-change">68,2% del total</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="panel map-panel" aria-labelledby="map-title">
+			<div class="panel-heading" id="map-title">Mapa de consultas</div>
+			<div class="panel-body">
+				<iframe class="map-frame" title="Mapa de Google de España" loading="lazy"
+					src="https://www.google.com/maps?q=Espa%C3%B1a&output=embed" allowfullscreen>
+				</iframe>
+				<p class="map-caption">Vista geográfica de referencia · Los datos mostrados son demostrativos.</p>
+			</div>
+		</section>
+	</main>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

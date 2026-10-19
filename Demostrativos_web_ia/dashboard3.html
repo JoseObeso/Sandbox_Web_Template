@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard de registros</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<style>
+		body{background:#f3f6fa;color:#34445a;font-family:"Helvetica Neue",Arial,sans-serif}.topbar{height:62px;background:#fff;border-bottom:1px solid #e4eaf1;padding:0 26px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:18px;font-weight:700;color:#203653}.brand .glyphicon{color:#2878c8;margin-right:9px}.user{color:#718096;font-size:13px}.avatar{display:inline-flex;width:32px;height:32px;border-radius:50%;background:#e6f0fc;color:#2878c8;align-items:center;justify-content:center;margin-left:10px;font-weight:bold}.page{padding:24px 26px}h1{font-size:24px;color:#203653;margin:0 0 6px}.subtitle,.muted{color:#8492a5;font-size:13px}.heading{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px}.card{background:#fff;border:1px solid #e4eaf1;border-radius:5px;box-shadow:0 2px 7px rgba(30,55,80,.04)}.filters{padding:16px 18px;margin-bottom:18px}.section-title{font-size:14px;font-weight:700;color:#203653;margin:0 0 14px}.filter-label{text-transform:uppercase;letter-spacing:.4px;font-size:11px;color:#718096}.form-control{height:38px;border-color:#dce4ed;box-shadow:none}.actions{padding-top:21px}.btn-primary{background:#2878c8;border-color:#2878c8}.layout{display:flex;margin:0 -9px}.map-col,.side-col{padding:0 9px}.map-col{width:66.6667%}.side-col{width:33.3333%}.card-head{padding:15px 17px;border-bottom:1px solid #e8edf2;display:flex;align-items:center;justify-content:space-between}.card-head h2{font-size:14px;font-weight:700;color:#203653;margin:0}.map-box{height:430px;position:relative;background:#e7edf3}#map{width:100%;height:100%}.map-fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-align:center;padding:25px;background:#e7edf3;color:#65778d}.map-fallback strong{display:block;color:#34445a;margin-bottom:5px}.map-legend{position:absolute;bottom:13px;left:13px;background:white;padding:8px 11px;border-radius:4px;font-size:12px;box-shadow:0 1px 5px #9aa8b5}.dot{display:inline-block;width:8px;height:8px;background:#2878c8;border-radius:50%;margin-right:5px}.record-form{padding:16px 17px}.record-form .form-group{margin-bottom:12px}.record-form label{font-size:12px;color:#52647a;font-weight:500}.record-form textarea{height:65px;resize:vertical}.recent{margin-top:17px}.record-list{list-style:none;padding:0;margin:0}.record-list li{padding:11px 15px;border-bottom:1px solid #edf1f5;display:flex;justify-content:space-between;align-items:center}.record-list li:last-child{border:0}.record-name{font-size:12px;font-weight:600}.record-meta{font-size:11px;color:#8492a5;margin-top:3px}.status{font-size:10px;padding:4px 7px;border-radius:10px;white-space:nowrap}.done{background:#e7f6ee;color:#278052}.pending{background:#fff3d9;color:#a46b09}@media(max-width:900px){.layout{display:block}.map-col,.side-col{width:100%}.side-col{margin-top:17px}}@media(max-width:600px){.page{padding:18px 13px}.topbar{padding:0 14px}.heading{display:block}.heading .muted{margin-top:8px}.actions{padding-top:0}.actions .btn{margin-top:6px}.map-box{height:330px}}
+	</style>
+</head>
+<body>
+	<header class="topbar"><div class="brand"><span class="glyphicon glyphicon-map-marker"></span>GeoControl</div><div class="user">Panel de operaciones <span class="avatar">JD</span></div></header>
+	<main class="page">
+		<div class="heading"><div><h1>Dashboard de registros</h1><div class="subtitle">Consulta y administra registros geolocalizados.</div></div><div class="muted"><span class="glyphicon glyphicon-time"></span> Actualizado hoy, 10:42</div></div>
+		<section class="card filters">
+			<h2 class="section-title"><span class="glyphicon glyphicon-filter"></span> Filtros de consulta</h2>
+			<form id="filter-form" class="row">
+				<div class="col-sm-3 form-group"><label class="filter-label" for="filter-type">Tipo de registro</label><select class="form-control" id="filter-type"><option value="">Todos</option><option>Inspección</option><option>Incidencia</option><option>Visita</option></select></div>
+				<div class="col-sm-3 form-group"><label class="filter-label" for="filter-status">Estado</label><select class="form-control" id="filter-status"><option value="">Todos</option><option>Completado</option><option>Pendiente</option></select></div>
+				<div class="col-sm-3 form-group"><label class="filter-label" for="filter-zone">Zona</label><select class="form-control" id="filter-zone"><option value="">Todas</option><option>Centro</option><option>Norte</option><option>Sur</option></select></div>
+				<div class="col-sm-3 form-group"><label class="filter-label" for="filter-date">Fecha desde</label><input class="form-control" id="filter-date" type="date"></div>
+				<div class="col-xs-12 actions text-right"><button class="btn btn-default" id="clear-filters" type="button">Limpiar</button> <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span> Consultar</button></div>
+			</form>
+		</section>
+		<div class="layout">
+			<section class="map-col"><div class="card"><div class="card-head"><h2>Ubicación de registros</h2><span class="muted" id="count">3 registros</span></div><div class="map-box"><div id="map" aria-label="Mapa de Google"></div><div class="map-fallback" id="map-fallback"><div><strong>Mapa de Google</strong>Agrega una clave válida de Google Maps JavaScript API para mostrar el mapa.</div></div><div class="map-legend"><span class="dot"></span>Registros activos</div></div></div></section>
+			<aside class="side-col">
+				<section class="card"><div class="card-head"><h2>Nuevo registro</h2><span class="muted">Formulario</span></div>
+					<form class="record-form" id="record-form">
+						<div class="form-group"><label for="record-name-input">Nombre del registro</label><input class="form-control" id="record-name-input" placeholder="Ej. Inspección de zona" required></div>
+						<div class="form-group"><label for="record-type-input">Tipo</label><select class="form-control" id="record-type-input" required><option value="">Selecciona un tipo</option><option>Inspección</option><option>Incidencia</option><option>Visita</option></select></div>
+						<div class="form-group"><label for="record-zone-input">Zona</label><select class="form-control" id="record-zone-input" required><option value="">Selecciona una zona</option><option>Centro</option><option>Norte</option><option>Sur</option></select></div>
+						<div class="form-group"><label for="record-address">Dirección o coordenadas</label><input class="form-control" id="record-address" placeholder="Dirección, latitud, longitud" required></div>
+						<div class="form-group"><label for="record-notes">Observaciones</label><textarea class="form-control" id="record-notes" placeholder="Detalles adicionales"></textarea></div>
+						<button class="btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-plus"></span> Guardar registro</button>
+					</form>
+				</section>
+				<section class="card recent"><div class="card-head"><h2>Registros recientes</h2><span class="muted">Últimos registros</span></div>
+					<ul class="record-list" id="record-list">
+						<li data-type="Inspección" data-status="Completado" data-zone="Centro"><div><div class="record-name">Inspección Plaza Mayor</div><div class="record-meta">Centro · Hace 12 min</div></div><span class="status done">Completado</span></li>
+						<li data-type="Incidencia" data-status="Pendiente" data-zone="Norte"><div><div class="record-name">Incidencia vial #204</div><div class="record-meta">Norte · Hace 38 min</div></div><span class="status pending">Pendiente</span></li>
+						<li data-type="Visita" data-status="Completado" data-zone="Sur"><div><div class="record-name">Visita técnica · Sector 3</div><div class="record-meta">Sur · Hace 1 h</div></div><span class="status done">Completado</span></li>
+					</ul>
+				</section>
+			</aside>
+		</div>
+	</main>
+	<script>
+		function initMap(){var map=new google.maps.Map(document.getElementById('map'),{center:{lat:40.4168,lng:-3.7038},zoom:12,mapTypeControl:false,streetViewControl:false});[{t:'Inspección Plaza Mayor',p:{lat:40.4168,lng:-3.7038}},{t:'Incidencia vial #204',p:{lat:40.4268,lng:-3.7100}},{t:'Visita técnica · Sector 3',p:{lat:40.4070,lng:-3.6950}}].forEach(function(x){var marker=new google.maps.Marker({map:map,position:x.p,title:x.t});var info=new google.maps.InfoWindow({content:'<strong>'+x.t+'</strong>'});marker.addListener('click',function(){info.open(map,marker)});});}
+		window.gm_authFailure=function(){document.getElementById('map-fallback').style.display='flex'};
+		document.getElementById('filter-form').addEventListener('submit',function(e){e.preventDefault();var type=document.getElementById('filter-type').value,status=document.getElementById('filter-status').value,zone=document.getElementById('filter-zone').value,n=0;document.querySelectorAll('#record-list li').forEach(function(item){var show=(!type||item.dataset.type===type)&&(!status||item.dataset.status===status)&&(!zone||item.dataset.zone===zone);item.style.display=show?'flex':'none';if(show)n++;});document.getElementById('count').textContent=n+(n===1?' registro':' registros');});
+		document.getElementById('clear-filters').addEventListener('click',function(){document.getElementById('filter-form').reset();document.querySelectorAll('#record-list li').forEach(function(item){item.style.display='flex'});document.getElementById('count').textContent='3 registros'});
+		document.getElementById('record-form').addEventListener('submit',function(e){e.preventDefault();var name=document.getElementById('record-name-input').value.trim(),type=document.getElementById('record-type-input').value,zone=document.getElementById('record-zone-input').value,item=document.createElement('li');item.dataset.type=type;item.dataset.status='Pendiente';item.dataset.zone=zone;item.innerHTML='<div><div class="record-name"></div><div class="record-meta"></div></div><span class="status pending">Pendiente</span>';item.querySelector('.record-name').textContent=name;item.querySelector('.record-meta').textContent=zone+' · Ahora';document.getElementById('record-list').insertBefore(item,document.getElementById('record-list').firstChild);this.reset();});
+	</script>
+	<!-- Reemplaza YOUR_API_KEY por la clave de Google Maps JavaScript API. -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap"></script>
+</body>
+</html>

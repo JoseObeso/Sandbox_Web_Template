@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Panel de registros</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<style>
+		body { padding-top: 70px; background: #f3f5f7; color: #34495e; }
+		.navbar-inverse { background: #263746; border-color: #1d2b36; }
+		.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a { color: #fff; }
+		.page-header { margin: 12px 0 20px; border-color: #dce2e6; }
+		.page-header h1 { font-size: 26px; margin: 8px 0 14px; }
+		.panel { border: 0; box-shadow: 0 1px 3px rgba(0,0,0,.10); }
+		.panel-heading { background: #fff !important; border-bottom: 1px solid #e7ecef !important; font-weight: bold; }
+		.map { display: block; width: 100%; height: 390px; border: 0; }
+		.form-group label { font-weight: 600; }
+		.filter-panel { margin-bottom: 18px; }
+		.filter-panel .form-group { margin-bottom: 12px; }
+		.table > thead > tr > th { border-bottom: 2px solid #dce2e6; color: #61717d; }
+		.status { display: inline-block; min-width: 78px; }
+		.record-count { color: #89969e; font-weight: normal; }
+		@media (max-width: 767px) { .map { height: 300px; } .page-header h1 { font-size: 23px; } }
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion" aria-label="Mostrar navegación"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#">Gestión de registros</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navegacion">
+				<ul class="nav navbar-nav navbar-right"><li class="active"><a href="#inicio">Panel</a></li><li><a href="#registros">Registros</a></li><li><a href="#">Usuario <span class="glyphicon glyphicon-user"></span></a></li></ul>
+			</div>
+		</div>
+	</nav>
+
+	<main class="container-fluid" id="inicio">
+		<div class="page-header clearfix">
+			<h1 class="pull-left">Panel de control <small>Mapa y seguimiento</small></h1>
+			<a class="btn btn-primary pull-right" href="#form-registro" style="margin-top:8px"><span class="glyphicon glyphicon-plus"></span> Nuevo registro</a>
+		</div>
+
+		<div class="row">
+			<section class="col-md-8" aria-label="Mapa de ubicaciones">
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicon glyphicon-map-marker"></span> Mapa de Google</div>
+					<iframe class="map" title="Mapa de ubicaciones en Madrid" src="https://maps.google.com/maps?q=Madrid%2C%20Espa%C3%B1a&amp;z=11&amp;output=embed" loading="lazy" allowfullscreen></iframe>
+				</div>
+			</section>
+			<aside class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span> Nuevo registro</div>
+					<div class="panel-body">
+						<form id="form-registro" onsubmit="event.preventDefault(); alert('Registro guardado.'); this.reset();">
+							<div class="form-group"><label for="nombre">Nombre</label><input class="form-control" id="nombre" type="text" placeholder="Nombre del registro" required></div>
+							<div class="form-group"><label for="responsable">Responsable</label><select class="form-control" id="responsable" required><option value="">Seleccionar responsable</option><option>María García</option><option>Juan López</option><option>Equipo de campo</option></select></div>
+							<div class="row">
+								<div class="col-sm-6 form-group"><label for="fecha">Fecha</label><input class="form-control" id="fecha" type="date" required></div>
+								<div class="col-sm-6 form-group"><label for="estado">Estado</label><select class="form-control" id="estado"><option>Pendiente</option><option>En curso</option><option>Completado</option></select></div>
+							</div>
+							<div class="form-group"><label for="ubicacion">Ubicación</label><input class="form-control" id="ubicacion" type="text" placeholder="Dirección o coordenadas"></div>
+							<div class="form-group"><label for="descripcion">Descripción</label><textarea class="form-control" id="descripcion" rows="2" placeholder="Detalles del registro"></textarea></div>
+							<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+							<button class="btn btn-default" type="reset">Limpiar</button>
+						</form>
+					</div>
+				</div>
+			</aside>
+		</div>
+
+		<section class="panel panel-default filter-panel" aria-label="Filtros de consulta">
+			<div class="panel-heading"><span class="glyphicon glyphicon-filter"></span> Filtros de consulta</div>
+			<div class="panel-body">
+				<form class="row" id="filtros" onsubmit="event.preventDefault(); filtrarRegistros();">
+					<div class="col-sm-3 form-group"><label for="buscar">Buscar</label><input class="form-control" id="buscar" type="search" placeholder="Nombre o ubicación"></div>
+					<div class="col-sm-3 form-group"><label for="filtro-estado">Estado</label><select class="form-control" id="filtro-estado"><option value="">Todos</option><option>Pendiente</option><option>En curso</option><option>Completado</option></select></div>
+					<div class="col-sm-3 form-group"><label for="filtro-responsable">Responsable</label><select class="form-control" id="filtro-responsable"><option value="">Todos</option><option>María García</option><option>Juan López</option><option>Equipo de campo</option></select></div>
+					<div class="col-sm-3 form-group"><label for="filtro-fecha">Desde fecha</label><input class="form-control" id="filtro-fecha" type="date"></div>
+					<div class="col-xs-12 text-right"><button class="btn btn-default" type="reset" onclick="setTimeout(filtrarRegistros,0)"><span class="glyphicon glyphicon-remove"></span> Limpiar</button> <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span> Consultar</button></div>
+				</form>
+			</div>
+		</section>
+
+		<section class="panel panel-default" id="registros">
+			<div class="panel-heading clearfix"><span class="glyphicon glyphicon-list-alt"></span> Listado de registros <span class="record-count pull-right">3 registros</span></div>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead><tr><th>Registro</th><th>Ubicación</th><th>Responsable</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
+					<tbody id="tabla-registros">
+						<tr data-responsable="María García" data-fecha="2025-03-12"><td>Inspección de zona norte</td><td>Madrid, España</td><td>María García</td><td>12/03/2025</td><td><span class="label label-warning status">Pendiente</span></td><td><button class="btn btn-xs btn-default" type="button" aria-label="Ver registro"><span class="glyphicon glyphicon-eye-open"></span></button></td></tr>
+						<tr data-responsable="Juan López" data-fecha="2025-03-10"><td>Revisión de infraestructura</td><td>Alcalá de Henares</td><td>Juan López</td><td>10/03/2025</td><td><span class="label label-info status">En curso</span></td><td><button class="btn btn-xs btn-default" type="button" aria-label="Ver registro"><span class="glyphicon glyphicon-eye-open"></span></button></td></tr>
+						<tr data-responsable="Equipo de campo" data-fecha="2025-03-08"><td>Actualización de señalización</td><td>Getafe, Madrid</td><td>Equipo de campo</td><td>08/03/2025</td><td><span class="label label-success status">Completado</span></td><td><button class="btn btn-xs btn-default" type="button" aria-label="Ver registro"><span class="glyphicon glyphicon-eye-open"></span></button></td></tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</main>
+
+	<script>
+		function filtrarRegistros() {
+			var texto = document.getElementById('buscar').value.toLowerCase();
+			var estado = document.getElementById('filtro-estado').value;
+			var responsable = document.getElementById('filtro-responsable').value;
+			var fecha = document.getElementById('filtro-fecha').value;
+			var filas = document.querySelectorAll('#tabla-registros tr');
+			var visibles = 0;
+			for (var i = 0; i < filas.length; i++) {
+				var fila = filas[i];
+				var mostrar = fila.textContent.toLowerCase().indexOf(texto) !== -1 &&
+					(!estado || fila.textContent.indexOf(estado) !== -1) &&
+					(!responsable || fila.getAttribute('data-responsable') === responsable) &&
+					(!fecha || fila.getAttribute('data-fecha') >= fecha);
+				fila.style.display = mostrar ? '' : 'none';
+				if (mostrar) visibles++;
+			}
+			document.querySelector('.record-count').textContent = visibles + (visibles === 1 ? ' registro' : ' registros');
+		}
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

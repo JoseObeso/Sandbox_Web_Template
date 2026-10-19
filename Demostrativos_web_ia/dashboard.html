@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard de consultas</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<style>
+		body { background: #f4f6f9; color: #344054; }
+		.navbar-inverse { background: #243447; border-color: #243447; border-radius: 0; margin-bottom: 0; }
+		.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a { color: #fff; }
+		.page-header { border: 0; margin: 28px 0 20px; }
+		.page-header h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; }
+		.page-header p, .muted { color: #7b8794; }
+		.panel, .stat-card { border: 0; border-radius: 5px; box-shadow: 0 2px 8px rgba(26,39,58,.07); }
+		.panel-heading { background: #fff !important; border-color: #edf0f3 !important; padding: 15px 18px; font-weight: 600; }
+		.panel-body { padding: 18px; }
+		.stat-card { background: #fff; padding: 18px; min-height: 112px; margin-bottom: 20px; }
+		.stat-label { color: #7b8794; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+		.stat-value { font-size: 27px; font-weight: 600; margin-top: 8px; }
+		.stat-icon { float: right; width: 40px; height: 40px; line-height: 40px; text-align: center; border-radius: 50%; background: #eaf2ff; color: #337ab7; }
+		.filter-panel { margin-bottom: 20px; }
+		.filter-panel label { color: #667085; font-size: 12px; }
+		.form-control { border-color: #dce2e8; box-shadow: none; }
+		.table { margin-bottom: 0; }
+		.table>thead>tr>th { color: #667085; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #e9edf2; }
+		.table>tbody>tr>td { vertical-align: middle; }
+		.label { font-weight: 500; padding: .4em .65em; }
+		.label-pendiente { background: #fff3d6; color: #986b00; }
+		.label-proceso { background: #e8efff; color: #3b62b5; }
+		.label-resuelta { background: #e6f6ed; color: #218653; }
+		.empty-state { display: none; padding: 25px; text-align: center; color: #7b8794; }
+		.results-count { color: #7b8794; font-size: 12px; margin-top: 12px; }
+		@media (max-width: 767px) { .table-responsive { border: 0; } }
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+					<span class="sr-only">Abrir navegación</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-th-large"></span> Consultas</a>
+			</div>
+			<div class="collapse navbar-collapse" id="main-nav">
+				<ul class="nav navbar-nav"><li class="active"><a href="#dashboard">Dashboard</a></li><li><a href="#consultas">Consultas</a></li></ul>
+				<ul class="nav navbar-nav navbar-right"><li><a href="#"><span class="glyphicon glyphicon-user"></span> Administrador</a></li></ul>
+			</div>
+		</div>
+	</nav>
+
+	<main class="container" id="dashboard">
+		<div class="page-header"><h1>Dashboard de consultas</h1><p>Resumen y seguimiento de las consultas recibidas.</p></div>
+		<section class="row" aria-label="Indicadores de consultas">
+			<div class="col-sm-6 col-md-3"><div class="stat-card"><span class="stat-icon glyphicon glyphicon-inbox"></span><div class="stat-label">Consultas filtradas</div><div class="stat-value" id="total-stat">0</div></div></div>
+			<div class="col-sm-6 col-md-3"><div class="stat-card"><span class="stat-icon glyphicon glyphicon-time"></span><div class="stat-label">Pendientes</div><div class="stat-value" id="pending-stat">0</div></div></div>
+			<div class="col-sm-6 col-md-3"><div class="stat-card"><span class="stat-icon glyphicon glyphicon-refresh"></span><div class="stat-label">En proceso</div><div class="stat-value" id="process-stat">0</div></div></div>
+			<div class="col-sm-6 col-md-3"><div class="stat-card"><span class="stat-icon glyphicon glyphicon-ok"></span><div class="stat-label">Resueltas</div><div class="stat-value" id="resolved-stat">0</div></div></div>
+		</section>
+
+		<section class="panel filter-panel" aria-labelledby="filters-title">
+			<div class="panel-heading" id="filters-title"><span class="glyphicon glyphicon-filter"></span> Filtros de consultas</div>
+			<div class="panel-body">
+				<form id="filters-form" class="row">
+					<div class="form-group col-sm-6 col-md-3"><label for="search-filter">Buscar</label><input class="form-control" type="search" id="search-filter" placeholder="ID, cliente o asunto"></div>
+					<div class="form-group col-sm-6 col-md-3"><label for="type-filter">Tipo de consulta</label><select class="form-control" id="type-filter"><option value="">Todos los tipos</option><option>Soporte</option><option>Ventas</option><option>Facturación</option><option>Información</option></select></div>
+					<div class="form-group col-sm-6 col-md-2"><label for="status-filter">Estado</label><select class="form-control" id="status-filter"><option value="">Todos los estados</option><option>Pendiente</option><option>En proceso</option><option>Resuelta</option></select></div>
+					<div class="form-group col-sm-6 col-md-2"><label for="date-from">Desde</label><input class="form-control" type="date" id="date-from"></div>
+					<div class="form-group col-sm-6 col-md-2"><label for="date-to">Hasta</label><input class="form-control" type="date" id="date-to"></div>
+					<div class="col-xs-12"><button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span> Aplicar filtros</button> <button class="btn btn-default" type="reset"><span class="glyphicon glyphicon-erase"></span> Limpiar</button></div>
+				</form>
+			</div>
+		</section>
+
+		<section class="panel" id="consultas" aria-labelledby="table-title">
+			<div class="panel-heading" id="table-title"><span class="glyphicon glyphicon-list"></span> Listado de consultas</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-hover" id="queries-table">
+						<thead><tr><th>ID</th><th>Cliente</th><th>Asunto</th><th>Tipo</th><th>Fecha</th><th>Estado</th></tr></thead>
+						<tbody>
+							<tr data-type="Soporte" data-status="Pendiente" data-date="2025-03-18"><td>#C-1048</td><td>Laura Gómez</td><td>Error al iniciar sesión</td><td>Soporte</td><td>18/03/2025</td><td><span class="label label-pendiente">Pendiente</span></td></tr>
+							<tr data-type="Ventas" data-status="En proceso" data-date="2025-03-17"><td>#C-1047</td><td>Marcos Ruiz</td><td>Solicitud de presupuesto</td><td>Ventas</td><td>17/03/2025</td><td><span class="label label-proceso">En proceso</span></td></tr>
+							<tr data-type="Facturación" data-status="Resuelta" data-date="2025-03-16"><td>#C-1046</td><td>Lucía Pérez</td><td>Corrección de factura</td><td>Facturación</td><td>16/03/2025</td><td><span class="label label-resuelta">Resuelta</span></td></tr>
+							<tr data-type="Información" data-status="Pendiente" data-date="2025-03-15"><td>#C-1045</td><td>Diego Martín</td><td>Información sobre servicios</td><td>Información</td><td>15/03/2025</td><td><span class="label label-pendiente">Pendiente</span></td></tr>
+							<tr data-type="Soporte" data-status="Resuelta" data-date="2025-03-14"><td>#C-1044</td><td>Sofía Torres</td><td>Problema con la aplicación</td><td>Soporte</td><td>14/03/2025</td><td><span class="label label-resuelta">Resuelta</span></td></tr>
+							<tr data-type="Ventas" data-status="En proceso" data-date="2025-03-12"><td>#C-1043</td><td>Javier Castro</td><td>Consulta de planes</td><td>Ventas</td><td>12/03/2025</td><td><span class="label label-proceso">En proceso</span></td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="empty-state" id="empty-state">No se encontraron consultas con los filtros seleccionados.</div>
+				<div class="results-count" id="results-count" aria-live="polite"></div>
+			</div>
+		</section>
+	</main>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script>
+		(function () {
+			var form = document.getElementById('filters-form');
+			var rows = Array.prototype.slice.call(document.querySelectorAll('#queries-table tbody tr'));
+			var search = document.getElementById('search-filter');
+			var type = document.getElementById('type-filter');
+			var status = document.getElementById('status-filter');
+			var from = document.getElementById('date-from');
+			var to = document.getElementById('date-to');
+
+			function updateDashboard() {
+				var term = search.value.trim().toLowerCase();
+				var visible = rows.filter(function (row) {
+					var matches = (!term || row.textContent.toLowerCase().indexOf(term) !== -1) &&
+						(!type.value || row.dataset.type === type.value) &&
+						(!status.value || row.dataset.status === status.value) &&
+						(!from.value || row.dataset.date >= from.value) &&
+						(!to.value || row.dataset.date <= to.value);
+					row.style.display = matches ? '' : 'none';
+					return matches;
+				});
+				var counts = { 'Pendiente': 0, 'En proceso': 0, 'Resuelta': 0 };
+				visible.forEach(function (row) { counts[row.dataset.status] += 1; });
+				document.getElementById('total-stat').textContent = visible.length;
+				document.getElementById('pending-stat').textContent = counts['Pendiente'];
+				document.getElementById('process-stat').textContent = counts['En proceso'];
+				document.getElementById('resolved-stat').textContent = counts['Resuelta'];
+				document.getElementById('empty-state').style.display = visible.length ? 'none' : 'block';
+				document.getElementById('results-count').textContent = 'Mostrando ' + visible.length + ' de ' + rows.length + ' consultas';
+			}
+
+			form.addEventListener('submit', function (event) { event.preventDefault(); updateDashboard(); });
+			form.addEventListener('reset', function () { window.setTimeout(updateDashboard, 0); });
+			updateDashboard();
+		}());
+	</script>
+</body>
+</html>
