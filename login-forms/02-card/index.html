@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minimal Card Login — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Minimal card login: floating labels drawn with :placeholder-shown, and a Show button that reveals the password. */
+.cd{--cd-ink:#16181d;--cd-muted:#667085;--cd-line:#8c93a0;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#f4f5f7;color:var(--cd-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.cd h1,.cd p{margin:0}
+.cd-card{width:100%;max-width:400px;background:#fff;border-radius:16px;padding:44px 40px;
+  box-shadow:0 1px 2px rgba(16,24,40,.05),0 24px 48px -12px rgba(16,24,40,.12)}
+.cd-mark{width:44px;height:44px;border-radius:12px;background:var(--cd-ink);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:1.15rem;margin-bottom:22px}
+.cd h1{font-size:1.45rem;letter-spacing:-.02em;margin-bottom:4px}
+.cd-sub{color:var(--cd-muted);font-size:.93rem;margin-bottom:30px!important}
+.cd-field{position:relative;margin-bottom:18px}
+.cd-field input{display:block;width:100%;padding:22px 14px 8px;border:1px solid var(--cd-line);border-radius:10px;font:inherit;font-size:.95rem;
+  color:inherit;background:transparent;transition:border-color .15s,box-shadow .15s}
+.cd-field label{position:absolute;left:15px;top:15px;color:var(--cd-muted);font-size:.95rem;pointer-events:none;transition:all .15s ease}
+.cd-field input:focus{outline:none;border-color:var(--cd-ink);box-shadow:0 0 0 3px rgba(22,24,29,.14)}
+.cd-field input:focus+label,.cd-field input:not(:placeholder-shown)+label{top:7px;font-size:.7rem;font-weight:600;color:var(--cd-ink);letter-spacing:.02em;text-transform:uppercase}
+.cd-field input::placeholder{color:transparent}
+.cd-field .cd-pw{padding-right:72px}
+.cd-peek{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;border-radius:6px;background:none;color:var(--cd-muted);
+  font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;cursor:pointer;padding:4px 6px}
+.cd-peek:hover,.cd-peek[aria-pressed="true"]{color:var(--cd-ink)}
+.cd-peek[aria-pressed="true"]{background:#eef0f3}
+.cd-go{width:100%;padding:13px;border:0;border-radius:10px;background:var(--cd-ink);color:#fff;font:inherit;font-weight:700;font-size:.95rem;
+  cursor:pointer;transition:opacity .15s;margin-top:6px}
+.cd-go:hover{opacity:.88}
+.cd-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;margin-top:20px;font-size:.85rem}
+.cd-meta a{color:var(--cd-ink);font-weight:600;text-decoration:none;border-radius:3px}
+.cd-meta a:hover{text-decoration:underline}
+.cd-meta span{color:var(--cd-muted)}
+.cd a:focus-visible,.cd-peek:focus-visible,.cd-go:focus-visible{outline:2px solid var(--cd-ink);outline-offset:2px}
+.cd .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:reduce){.cd-field input,.cd-field label,.cd-go{transition:none}}
+
+/* Narrow-screen and control accessibility refinement. */
+.cd-peek{min-height:32px;min-width:52px}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="cd">
+  <form class="cd-card" action="#" method="post" onsubmit="event.preventDefault()">
+    <div class="cd-mark" aria-hidden="true">N</div>
+    <h1>Sign in</h1>
+    <p class="cd-sub">Use your work email to continue.</p>
+    <div class="cd-field">
+      <input type="email" id="cd-email" name="email" placeholder="Email" autocomplete="username" required>
+      <label for="cd-email">Email</label>
+    </div>
+    <div class="cd-field">
+      <input class="cd-pw" type="password" id="cd-password" name="password" placeholder="Password" autocomplete="current-password" required>
+      <label for="cd-password">Password</label>
+      <button type="button" class="cd-peek" data-peek aria-controls="cd-password" aria-pressed="false">Show<span class="sr-only"> password</span></button>
+    </div>
+    <button class="cd-go" type="submit">Continue</button>
+    <div class="cd-meta">
+      <a href="#">Forgot password?</a>
+      <span>No account? <a href="#">Sign up</a></span>
+    </div>
+  </form>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Show / hide password. The button keeps one name ("Show password") and reports its state with aria-pressed.
+document.querySelectorAll('[data-peek]').forEach(function (btn) {
+  var input = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', function () {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', String(show));
+  });
+});
+</script>
+</body>
+</html>

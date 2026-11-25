@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Number Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-brand: #4f46e5;
+  --color-brand-dark: #4338ca;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-line: #e5e7eb;
+  --color-edge: #868c99;
+  --color-page: #f5f6fa;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-page px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ink">
+<main class="w-full max-w-[410px] rounded-2xl border border-line bg-white px-[34px] py-[38px] shadow-[0_10px_34px_rgba(17,24,39,.06)]">
+  <div class="mb-[22px] grid size-[42px] place-items-center rounded-xl bg-brand font-extrabold text-white" aria-hidden="true">N</div>
+  <h1 class="mb-[7px] text-[1.4rem] font-bold tracking-[-.02em]">Sign in with your phone</h1>
+  <p class="mb-[26px] text-[.93rem] leading-[1.6] text-muted">We'll text you a one-time code. No password needed.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="mb-1.5 block text-[.85rem] font-semibold" for="tel">Mobile number</label>
+    <div class="flex overflow-hidden rounded-[10px] border border-edge bg-white transition-[border-color,box-shadow] duration-150 focus-within:border-brand focus-within:shadow-[0_0_0_3px_rgba(79,70,229,.15)] motion-reduce:transition-none">
+      <select class="max-w-[118px] cursor-pointer appearance-auto border-0 border-r border-line bg-page py-3 pr-2 pl-3 text-[.93rem] focus:outline-none" name="country_code" aria-label="Country calling code" autocomplete="tel-country-code">
+        <option value="+44">🇬🇧 +44</option><option value="+1">🇺🇸 +1</option><option value="+49">🇩🇪 +49</option>
+        <option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option>
+      </select>
+      <input class="min-w-0 flex-1 border-0 bg-transparent px-3.5 py-3 text-[.95rem] placeholder:text-muted focus:outline-none"
+             id="tel" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7700 900123" required>
+    </div>
+    <p class="mt-4 mb-5 text-[.8rem] leading-[1.6] text-muted">Message and data rates may apply. By continuing you agree to our
+      <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#">Terms</a> and <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#">Privacy Policy</a>.</p>
+    <button class="w-full cursor-pointer rounded-[10px] bg-brand p-[13px] text-[.97rem] font-bold text-white transition-[background-color,border-color,color] duration-150 hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="submit">Send code</button>
+  </form>
+  <div class="my-[26px] flex items-center gap-3.5 text-[.8rem] tracking-[.08em] text-muted uppercase before:h-px before:flex-1 before:bg-line after:h-px after:flex-1 after:bg-line"><span>or</span></div>
+  <button class="w-full cursor-pointer rounded-[10px] border border-line bg-white p-3 text-[.93rem] font-semibold text-ink transition-[background-color,border-color,color] duration-150 hover:bg-page focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="button">Sign in with email instead</button>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

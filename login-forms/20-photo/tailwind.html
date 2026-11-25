@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-Bleed Background Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+/* The before: layer is the backdrop (CSS gradients here: swap in before:bg-[url(photo.jpg)] before:bg-cover before:bg-center),
+   the after: layer is the scrim; keep it when you use a photo. */
+@theme {
+  --color-pale: #c9d2e4;
+  --color-hint: #9fabc4;
+  --color-night: #121a2b;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="relative isolate grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-[#1b2540] px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-white scheme-dark before:absolute before:inset-0 before:-z-2 before:bg-[radial-gradient(58%_44%_at_18%_22%,rgba(251,191,36,.75),transparent_62%),radial-gradient(52%_48%_at_82%_30%,rgba(236,72,153,.62),transparent_60%),radial-gradient(70%_60%_at_50%_92%,rgba(56,189,248,.55),transparent_64%),linear-gradient(155deg,#2a1b52,#0f2036_62%,#07131f)] after:absolute after:inset-0 after:-z-1 after:bg-[linear-gradient(180deg,rgba(6,12,22,.32),rgba(6,12,22,.62))]">
+<div class="w-full max-w-[400px] text-center">
+  <p class="mb-[26px] text-[1.15rem] font-extrabold tracking-[-.02em] [text-shadow:0_1px_12px_rgba(0,0,0,.5)]">Northwind</p>
+  <main class="rounded-[20px] border border-white/16 bg-[rgba(12,18,32,.62)] px-[30px] py-[34px] text-left shadow-[0_22px_60px_rgba(3,8,18,.42)] backdrop-blur-[18px]">
+    <h1 class="mb-1.5 text-[1.4rem] font-bold tracking-[-.02em]">Welcome back</h1>
+    <p class="mb-6 text-[.9rem] text-pale">Sign in to pick up where you left off.</p>
+    <form onsubmit="event.preventDefault()">
+      <label class="mb-1.5 block text-[.83rem] font-semibold text-[#e3e9f5]" for="bmail">Email address</label>
+      <input class="mb-4 w-full rounded-[11px] border border-white/45 bg-white/10 px-3.5 py-3 text-[.95rem] text-white transition-[border-color,background-color,box-shadow] duration-150 placeholder:text-hint focus:border-white focus:bg-white/16 focus:shadow-[0_0_0_3px_rgba(255,255,255,.22)] focus:outline-none motion-reduce:transition-none"
+             id="bmail" name="username" type="email" autocomplete="username" placeholder="you@company.com" required>
+      <label class="mb-1.5 block text-[.83rem] font-semibold text-[#e3e9f5]" for="bpw">Password</label>
+      <input class="mb-4 w-full rounded-[11px] border border-white/45 bg-white/10 px-3.5 py-3 text-[.95rem] text-white transition-[border-color,background-color,box-shadow] duration-150 placeholder:text-hint focus:border-white focus:bg-white/16 focus:shadow-[0_0_0_3px_rgba(255,255,255,.22)] focus:outline-none motion-reduce:transition-none"
+             id="bpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+      <div class="mb-[22px] flex items-center justify-between gap-3 text-[.85rem] text-pale">
+        <label class="flex cursor-pointer items-center gap-[7px] font-medium"><input class="accent-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" type="checkbox" name="remember"> Remember me</label>
+        <a class="font-semibold text-white underline underline-offset-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="#" aria-label="Forgot password?">Forgot?</a>
+      </div>
+      <button class="w-full cursor-pointer rounded-[11px] bg-white p-[13px] text-[.96rem] font-bold text-night transition-transform duration-[120ms] hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0" type="submit">Sign in</button>
+    </form>
+    <p class="mt-[22px] text-center text-[.88rem] text-pale">New to Northwind? <a class="font-semibold text-white underline underline-offset-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="#">Create an account</a></p>
+  </main>
+  <p class="mt-[22px] text-[.79rem] leading-[1.6] text-white/78 [text-shadow:0_1px_8px_rgba(0,0,0,.5)]">The background is CSS gradients, so the file stays self-contained.
+    Swap in a background image and keep the dark scrim above it.</p>
+</div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

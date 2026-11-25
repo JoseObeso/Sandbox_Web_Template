@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two-Factor Authentication (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-brand: #4f46e5;
+  --color-brand-dark: #4338ca;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-line: #e5e7eb;
+  --color-edge: #868c99;
+  --color-page: #f5f6fa;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-page px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ink">
+<main class="w-full max-w-[400px] rounded-2xl border border-line bg-white px-[34px] py-[38px] shadow-[0_10px_34px_rgba(17,24,39,.06)]">
+  <div class="mb-5 grid size-[52px] place-items-center rounded-[14px] bg-[#eef2ff]" aria-hidden="true">
+    <svg class="size-[26px] fill-none stroke-brand stroke-2" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+  </div>
+  <h1 class="mb-[7px] text-[1.4rem] font-bold tracking-[-.02em]">Two-factor authentication</h1>
+  <p class="mb-[26px] text-[.93rem] leading-[1.6] text-muted" id="totp-hint">Open your authenticator app and enter the 6-digit code for <strong>Northwind</strong>.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="mb-1.5 block text-[.85rem] font-semibold" for="totp">Authentication code</label>
+    <input class="w-full rounded-[10px] border border-edge bg-white p-3.5 text-center text-[1.3rem] font-bold tracking-[.5em] transition-[border-color,box-shadow] duration-150 placeholder:font-normal placeholder:tracking-[.3em] placeholder:text-muted focus:border-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.15)] focus:outline-none motion-reduce:transition-none"
+           id="totp" name="code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+           autocomplete="one-time-code" placeholder="000000" aria-describedby="totp-hint" required>
+    <label class="mt-[18px] mb-6 flex cursor-pointer items-start gap-2.5 text-[.87rem] leading-normal font-semibold text-muted"><input class="mt-0.5 size-4 shrink-0 accent-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" type="checkbox" name="trust_device">
+      <span>Trust this device for 30 days. Don't tick this on a shared computer.</span></label>
+    <button class="w-full cursor-pointer rounded-[10px] bg-brand p-[13px] text-[.97rem] font-bold text-white transition-[background-color,border-color,color] duration-150 hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="submit">Verify and sign in</button>
+  </form>
+  <p class="mt-[22px] border-t border-line pt-5 text-[.88rem] leading-[1.7] text-muted">Lost your device? <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#">Use a recovery code</a><br>
+    Still stuck? <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#">Contact support</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

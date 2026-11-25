@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One-Time Code Screen — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* One-time code screen: six single-digit boxes in a fieldset, one message line that doubles as the error, and a resend countdown. */
+.ot{--ot-brand:#4f46e5;--ot-brand-dark:#4338ca;--ot-ink:#111827;--ot-muted:#6b7280;--ot-line:#8b93a1;--ot-bad:#b91c1c;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;background:#f5f6fa;color:var(--ot-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.ot h1,.ot p{margin:0}
+.ot-box{width:100%;max-width:420px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:38px 34px;box-shadow:0 10px 34px rgba(17,24,39,.06);text-align:center}
+.ot-mark{width:42px;height:42px;border-radius:12px;background:var(--ot-brand);display:grid;place-items:center;color:#fff;font-weight:800;margin:0 auto 22px}
+.ot h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:7px}
+.ot-sub{color:var(--ot-muted);font-size:.93rem;line-height:1.6;margin-bottom:22px!important}
+.ot-set{border:0;margin:0;padding:0;min-width:0}
+.ot-set legend{padding:0;margin:0 auto 10px;font-size:.85rem;font-weight:600}
+.ot-codes{display:flex;gap:9px;justify-content:center;margin-bottom:8px}
+.ot-codes input{flex:1 1 0;min-width:0;max-width:52px;height:60px;text-align:center;font:inherit;font-size:1.5rem;font-weight:700;color:inherit;
+  border:1px solid var(--ot-line);border-radius:11px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.ot-codes input:focus{outline:none;border-color:var(--ot-brand);box-shadow:0 0 0 3px rgba(79,70,229,.25)}
+.ot-codes input:not(:placeholder-shown){border-color:var(--ot-brand);background:#f5f4ff}
+.ot-codes input[aria-invalid="true"]{border-color:var(--ot-bad)}
+.ot-msg{font-size:.83rem;color:var(--ot-muted);min-height:1.3em;margin-bottom:22px!important}
+.ot-msg[data-state="error"]{color:var(--ot-bad);font-weight:600}
+.ot-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--ot-brand);color:#fff;font:inherit;font-size:.97rem;font-weight:700;cursor:pointer;transition:background-color .15s}
+.ot-btn:hover{background:var(--ot-brand-dark)}
+.ot-resend{margin-top:20px!important;font-size:.88rem;color:var(--ot-muted)}
+.ot-resend button{background:none;border:0;border-radius:3px;color:var(--ot-brand);font:inherit;font-weight:600;cursor:pointer;padding:0}
+.ot-resend button:disabled{color:var(--ot-muted);cursor:default;font-weight:500}
+.ot-foot{margin-top:24px!important;font-size:.89rem}
+.ot a{color:var(--ot-brand);text-decoration:none;font-weight:600;border-radius:3px}
+.ot a:hover{text-decoration:underline}
+.ot a:focus-visible,.ot-btn:focus-visible,.ot-resend button:focus-visible{outline:2px solid var(--ot-brand);outline-offset:2px}
+@media (max-width:400px){.ot-codes{gap:6px}.ot-codes input{height:52px;font-size:1.2rem}}
+@media (prefers-reduced-motion:reduce){.ot-codes input,.ot-btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="ot">
+  <main class="ot-box" data-otp>
+    <div class="ot-mark" aria-hidden="true">N</div>
+    <h1>Check your email</h1>
+    <p class="ot-sub">We sent a 6-digit code to <strong>dana@northwind.co</strong>. It expires in 10 minutes.</p>
+    <form action="#" method="post" novalidate>
+      <fieldset class="ot-set">
+        <legend>Verification code</legend>
+        <div class="ot-codes">
+        <input type="text" inputmode="numeric" placeholder=" " autocomplete="one-time-code" aria-label="Digit 1 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 2 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 3 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 4 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 5 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 6 of 6" aria-describedby="ot-msg" data-otp-digit>
+        </div>
+      </fieldset>
+      <p class="ot-msg" id="ot-msg" aria-live="polite" data-otp-msg>Paste the whole code and it will fill every box.</p>
+      <button class="ot-btn" type="submit">Verify</button>
+    </form>
+    <p class="ot-resend">Didn&rsquo;t get it? <button type="button" data-resend disabled>Resend in 30s</button></p>
+    <p class="ot-foot"><a href="#">Use a different email</a></p>
+  </main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// One-time code: typing moves to the next box, Backspace on an empty box goes back, and pasting or
+// autofilling the whole code spreads it across every box. Front end only: post the code in the submit handler.
+document.querySelectorAll('[data-otp]').forEach(function (card) {
+  var form = card.querySelector('form');
+  var boxes = Array.prototype.slice.call(form.querySelectorAll('[data-otp-digit]'));
+  var msg = card.querySelector('[data-otp-msg]');
+  var resend = card.querySelector('[data-resend]');
+  var helper = msg.textContent;
+
+  function say(text, isError) {
+    msg.textContent = text || helper;
+    if (isError) msg.setAttribute('data-state', 'error'); else msg.removeAttribute('data-state');
+    boxes.forEach(function (b) { if (isError && !b.value) b.setAttribute('aria-invalid', 'true'); else b.removeAttribute('aria-invalid'); });
+  }
+  function fill(from, digits) {
+    for (var k = 0; k < digits.length && from + k < boxes.length; k++) boxes[from + k].value = digits[k];
+    boxes[Math.min(from + digits.length, boxes.length - 1)].focus();
+  }
+
+  boxes.forEach(function (box, i) {
+    box.addEventListener('input', function () {
+      var digits = box.value.replace(/\D/g, '');
+      box.value = digits.charAt(0);
+      if (digits.length > 1) fill(i, digits);
+      else if (digits && boxes[i + 1]) boxes[i + 1].focus();
+      if (msg.hasAttribute('data-state')) say('', false);
+    });
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'Backspace' && !box.value && boxes[i - 1]) { e.preventDefault(); boxes[i - 1].value = ''; boxes[i - 1].focus(); }
+      else if (e.key === 'ArrowLeft' && boxes[i - 1]) { e.preventDefault(); boxes[i - 1].focus(); }
+      else if (e.key === 'ArrowRight' && boxes[i + 1]) { e.preventDefault(); boxes[i + 1].focus(); }
+    });
+    box.addEventListener('paste', function (e) {
+      var digits = ((e.clipboardData || window.clipboardData).getData('text') || '').replace(/\D/g, '');
+      if (!digits) return;
+      e.preventDefault();
+      fill(digits.length >= boxes.length ? 0 : i, digits);
+      say('', false);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var empty = boxes.filter(function (b) { return !b.value; })[0];
+    if (empty) { say('Enter all ' + boxes.length + ' digits of the code.', true); empty.focus(); return; }
+    say('', false);
+    // var code = boxes.map(function (b) { return b.value; }).join(''); → send it to your server here.
+  });
+
+  var timer;
+  function countdown(seconds) {
+    clearInterval(timer);
+    resend.disabled = true;
+    resend.textContent = 'Resend in ' + seconds + 's';
+    timer = setInterval(function () {
+      if (--seconds > 0) { resend.textContent = 'Resend in ' + seconds + 's'; return; }
+      clearInterval(timer);
+      resend.disabled = false;
+      resend.textContent = 'Resend code';
+    }, 1000);
+  }
+  resend.addEventListener('click', function () {
+    boxes.forEach(function (b) { b.value = ''; });
+    say('A new code is on its way. The previous one no longer works.', false);
+    boxes[0].focus();
+    countdown(30);
+  });
+  countdown(30);
+});
+</script>
+</body>
+</html>

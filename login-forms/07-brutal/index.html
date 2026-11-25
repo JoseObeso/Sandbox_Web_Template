@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neobrutalist Login — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Neobrutalist login: 3px black borders, hard offset shadows, and controls that press into the page. */
+.nb{--nb-ink:#111;--nb-yellow:#ffde59;--nb-violet:#a78bfa;--nb-green:#4ade80;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:var(--nb-yellow);
+  background-image:radial-gradient(#00000012 1.5px,transparent 1.5px);background-size:22px 22px;color:var(--nb-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.nb h1,.nb p{margin:0}
+.nb-box{width:100%;max-width:400px;background:#fff;border:3px solid var(--nb-ink);border-radius:14px;box-shadow:8px 8px 0 var(--nb-ink);padding:38px 34px}
+.nb-tag{display:inline-block;background:var(--nb-violet);border:3px solid var(--nb-ink);border-radius:8px;font-weight:800;font-size:.75rem;letter-spacing:.05em;
+  padding:5px 10px;box-shadow:3px 3px 0 var(--nb-ink);margin-bottom:18px;text-transform:uppercase}
+.nb h1{font-size:1.8rem;font-weight:900;letter-spacing:-.03em;margin-bottom:6px}
+.nb-sub{font-size:.92rem;font-weight:600;color:#444;margin-bottom:26px!important}
+.nb-label{display:block;font-size:.85rem;font-weight:800;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em}
+.nb-input{display:block;width:100%;padding:12px 14px;margin-bottom:18px;border:3px solid var(--nb-ink);border-radius:10px;background:#fff;color:inherit;
+  font:inherit;font-size:.95rem;font-weight:600;transition:box-shadow .12s,transform .12s}
+.nb-input::placeholder{color:#666}
+.nb-input:focus{outline:none;box-shadow:4px 4px 0 var(--nb-ink);transform:translate(-2px,-2px)}
+.nb-btn{width:100%;padding:14px;border:3px solid var(--nb-ink);border-radius:10px;background:var(--nb-green);color:var(--nb-ink);font:inherit;font-size:1rem;
+  font-weight:900;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;box-shadow:5px 5px 0 var(--nb-ink);transition:box-shadow .12s,transform .12s}
+.nb-btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--nb-ink)}
+.nb-btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--nb-ink)}
+.nb-links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;font-size:.85rem;font-weight:800}
+.nb-links a{color:var(--nb-ink);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px;text-decoration-color:var(--nb-violet)}
+.nb-links a:hover{text-decoration-color:var(--nb-green)}
+.nb a:focus-visible,.nb-btn:focus-visible{outline:3px solid var(--nb-ink);outline-offset:3px;border-radius:4px}
+.nb-btn:focus-visible{border-radius:10px}
+@media (prefers-reduced-motion:reduce){.nb-input,.nb-btn{transition:none}.nb-input:focus,.nb-btn:hover,.nb-btn:active{transform:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="nb">
+  <form class="nb-box" action="#" method="post" onsubmit="event.preventDefault()">
+    <span class="nb-tag">Members only</span>
+    <h1>Log in.</h1>
+    <p class="nb-sub">No fluff. Just your inbox and your work.</p>
+    <label class="nb-label" for="nb-email">Email</label>
+    <input class="nb-input" type="email" id="nb-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+    <label class="nb-label" for="nb-password">Password</label>
+    <input class="nb-input" type="password" id="nb-password" name="password" placeholder="Top secret" autocomplete="current-password" required>
+    <button class="nb-btn" type="submit">Let me in <span aria-hidden="true">→</span></button>
+    <div class="nb-links">
+      <a href="#">Lost password</a>
+      <a href="#">Join instead</a>
+    </div>
+  </form>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

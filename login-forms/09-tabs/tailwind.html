@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login &amp; Register Tabs (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-tb-ink: #134e4a;
+  --color-tb-teal: #0f766e;
+  --color-tb-teal-dark: #115e59;
+  --color-tb-muted: #5f7470;
+  --color-tb-line: #8e9694;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="flex min-h-screen items-center justify-center bg-linear-160 from-[#134e4a] via-[#0f766e] via-55% to-[#115e59] p-6 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-tb-ink">
+  <div class="w-full max-w-[400px] rounded-[18px] bg-white px-[34px] pt-9 pb-10 shadow-[0_26px_60px_-18px_rgba(0,0,0,.45)]">
+    <div class="mb-7 flex rounded-xl border border-[#ccfbf1] bg-[#f0fdfa] p-[5px]" role="tablist" aria-label="Log in or create an account">
+      <button class="flex-1 cursor-pointer rounded-[9px] p-2.5 text-[.9rem] font-bold text-tb-teal transition-[background-color,color,box-shadow] duration-150 aria-selected:bg-tb-teal aria-selected:text-white aria-selected:shadow-[0_4px_12px_-4px_rgba(15,118,110,.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tb-teal motion-reduce:transition-none" type="button" role="tab" id="tb-tab-login" aria-selected="true" aria-controls="tb-panel-login">Log in</button>
+      <button class="flex-1 cursor-pointer rounded-[9px] p-2.5 text-[.9rem] font-bold text-tb-teal transition-[background-color,color,box-shadow] duration-150 aria-selected:bg-tb-teal aria-selected:text-white aria-selected:shadow-[0_4px_12px_-4px_rgba(15,118,110,.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tb-teal motion-reduce:transition-none" type="button" role="tab" id="tb-tab-signup" aria-selected="false" aria-controls="tb-panel-signup" tabindex="-1">Create account</button>
+    </div>
+    <section role="tabpanel" id="tb-panel-login" aria-labelledby="tb-tab-login">
+      <h1 class="mb-1 text-[1.4rem] font-bold tracking-[-.02em]">Welcome back</h1>
+      <p class="mb-6 text-[.9rem] text-tb-muted">Log in to manage your projects.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="mb-1.5 block text-[.83rem] font-bold" for="tb-li-email">Email</label>
+        <input class="mb-4 block w-full rounded-[10px] border border-tb-line bg-white px-3.5 py-3 text-[.94rem] transition-[border-color,box-shadow] duration-150 placeholder:text-tb-muted focus:border-tb-teal focus:shadow-[0_0_0_3px_rgba(15,118,110,.22)] focus:outline-none motion-reduce:transition-none" type="email" id="tb-li-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+        <label class="mb-1.5 block text-[.83rem] font-bold" for="tb-li-password">Password</label>
+        <input class="mb-4 block w-full rounded-[10px] border border-tb-line bg-white px-3.5 py-3 text-[.94rem] transition-[border-color,box-shadow] duration-150 placeholder:text-tb-muted focus:border-tb-teal focus:shadow-[0_0_0_3px_rgba(15,118,110,.22)] focus:outline-none motion-reduce:transition-none" type="password" id="tb-li-password" name="password" autocomplete="current-password" required>
+        <button class="mt-1 w-full cursor-pointer rounded-[10px] bg-tb-teal p-[13px] text-[.95rem] font-extrabold text-white transition-colors duration-150 hover:bg-tb-teal-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tb-teal motion-reduce:transition-none" type="submit">Log in</button>
+      </form>
+      <p class="mt-[18px] text-center text-[.82rem] text-tb-muted"><a class="rounded-[3px] font-bold text-tb-teal hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tb-teal" href="#">Forgot your password?</a></p>
+    </section>
+    <section role="tabpanel" id="tb-panel-signup" aria-labelledby="tb-tab-signup" hidden>
+      <h1 class="mb-1 text-[1.4rem] font-bold tracking-[-.02em]">Create your account</h1>
+      <p class="mb-6 text-[.9rem] text-tb-muted">Free for 14 days. No credit card needed.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="mb-1.5 block text-[.83rem] font-bold" for="tb-su-name">Full name</label>
+        <input class="mb-4 block w-full rounded-[10px] border border-tb-line bg-white px-3.5 py-3 text-[.94rem] transition-[border-color,box-shadow] duration-150 placeholder:text-tb-muted focus:border-tb-teal focus:shadow-[0_0_0_3px_rgba(15,118,110,.22)] focus:outline-none motion-reduce:transition-none" type="text" id="tb-su-name" name="name" placeholder="Ada Lovelace" autocomplete="name" required>
+        <label class="mb-1.5 block text-[.83rem] font-bold" for="tb-su-email">Email</label>
+        <input class="mb-4 block w-full rounded-[10px] border border-tb-line bg-white px-3.5 py-3 text-[.94rem] transition-[border-color,box-shadow] duration-150 placeholder:text-tb-muted focus:border-tb-teal focus:shadow-[0_0_0_3px_rgba(15,118,110,.22)] focus:outline-none motion-reduce:transition-none" type="email" id="tb-su-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <label class="mb-1.5 block text-[.83rem] font-bold" for="tb-su-password">Password</label>
+        <input class="mb-1.5 block w-full rounded-[10px] border border-tb-line bg-white px-3.5 py-3 text-[.94rem] transition-[border-color,box-shadow] duration-150 placeholder:text-tb-muted focus:border-tb-teal focus:shadow-[0_0_0_3px_rgba(15,118,110,.22)] focus:outline-none motion-reduce:transition-none" type="password" id="tb-su-password" name="new-password" autocomplete="new-password" minlength="8" aria-describedby="tb-su-help" required>
+        <p class="mb-4 text-[.8rem] text-tb-muted" id="tb-su-help">At least 8 characters.</p>
+        <button class="mt-1 w-full cursor-pointer rounded-[10px] bg-tb-teal p-[13px] text-[.95rem] font-extrabold text-white transition-colors duration-150 hover:bg-tb-teal-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tb-teal motion-reduce:transition-none" type="submit">Create account</button>
+      </form>
+      <p class="mt-[18px] text-center text-[.82rem] text-tb-muted">By signing up you agree to the <a class="rounded-[3px] font-bold text-tb-teal hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tb-teal" href="#">Terms</a>.</p>
+    </section>
+  </div>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Accessible tabs: click or use Left / Right / Home / End. Only the selected tab is in the Tab order.
+document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(tabs[(next + tabs.length) % tabs.length], true);
+    });
+  });
+});
+</script>
+</body>
+</html>

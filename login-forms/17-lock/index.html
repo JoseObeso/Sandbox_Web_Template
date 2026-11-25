@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Lock Screen — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Session lock screen for a known account: avatar, name, a password field and an arrow button.
+   A hidden username field carries the account so password managers fill the right password. */
+.lf{--lf-accent:#6366f1;--lf-accent-dark:#4f46e5;--lf-soft:#a5b4fc;--lf-dim:#98a1bb;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;color:#e8eaf2;
+  background:radial-gradient(1100px 640px at 22% 12%,#2c3550 0%,#171c2b 46%,#0e111a 100%);line-height:normal;color-scheme:dark;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf a{color:var(--lf-soft);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-soft);outline-offset:2px}
+.lf-box{width:100%;max-width:360px;text-align:center}
+.lf-av{width:88px;height:88px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
+  font-size:2rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#6366f1,#a855f7);
+  box-shadow:0 0 0 5px rgba(255,255,255,.08)}
+.lf h1{font-size:1.35rem;letter-spacing:-.01em;margin-bottom:5px}
+.lf-mail{color:var(--lf-dim);font-size:.9rem;margin-bottom:8px}
+.lf-locked{display:inline-flex;align-items:center;gap:7px;font-size:.79rem;color:#c7cddd;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  padding:5px 11px;border-radius:999px;margin-bottom:26px}
+.lf-locked svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+.lf-label{display:block;text-align:left;font-size:.82rem;font-weight:600;color:#c7cddd;margin-bottom:7px}
+.lf-row{display:flex;gap:9px}
+.lf-row input{flex:1;min-width:0;padding:13px 15px;border-radius:12px;font-size:.95rem;color:#fff;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.42);transition:border-color .15s,background .15s,box-shadow .15s}
+.lf-row input::placeholder{color:#8b93ab}
+.lf-row input:focus{outline:none;border-color:var(--lf-soft);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(165,180,252,.25)}
+.lf-row button{width:50px;flex-shrink:0;border:0;border-radius:12px;background:var(--lf-accent);color:#fff;
+  cursor:pointer;display:grid;place-items:center;transition:background .15s}
+.lf-row button:hover{background:var(--lf-accent-dark)}
+.lf-row button svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.2}
+.lf-links{margin-top:24px;font-size:.87rem;color:var(--lf-dim);line-height:2}
+@media (prefers-reduced-motion:reduce){.lf-row input,.lf-row button{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <div class="lf-av" aria-hidden="true">DK</div>
+  <h1>Dana Kowalski</h1>
+  <p class="lf-mail">dana@northwind.co</p>
+  <p class="lf-locked"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Locked after 15 minutes idle</p>
+  <form onsubmit="event.preventDefault()">
+    <input type="email" name="username" autocomplete="username" value="dana@northwind.co" hidden>
+    <label class="lf-label" for="unlock">Password</label>
+    <div class="lf-row">
+      <input id="unlock" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+      <button type="submit" aria-label="Unlock">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </form>
+  <p class="lf-links"><a href="#">Use a passkey</a><br><a href="#">Sign in as someone else</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

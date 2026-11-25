@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassmorphism Login — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Glass login: a translucent card with backdrop-filter blur over three slowly drifting colour blobs. */
+.gl{--gl-bg:#0b0f1e;--gl-text:#eef0f6;--gl-muted:#aab0c4;--gl-line:rgba(255,255,255,.42);
+  position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:var(--gl-bg);color:var(--gl-text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.gl h1,.gl p{margin:0}
+.gl-blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none}
+.gl-b1{width:420px;height:420px;background:#6d28d9;top:-120px;left:-80px;animation:gl-drift 14s ease-in-out infinite alternate}
+.gl-b2{width:380px;height:380px;background:#0ea5e9;bottom:-100px;right:-60px;animation:gl-drift 17s ease-in-out infinite alternate-reverse}
+.gl-b3{width:260px;height:260px;background:#db2777;bottom:20%;left:12%;animation:gl-drift 21s ease-in-out infinite alternate}
+@keyframes gl-drift{to{transform:translate(60px,40px) scale(1.15)}}
+.gl-card{position:relative;z-index:1;width:100%;max-width:380px;padding:44px 38px;border-radius:22px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.gl h1{font-size:1.55rem;letter-spacing:-.02em;text-align:center;margin-bottom:6px}
+.gl-sub{text-align:center;color:var(--gl-muted);font-size:.9rem;margin-bottom:30px!important}
+.gl-label{display:block;font-size:.8rem;font-weight:600;color:#c8cddd;margin-bottom:7px}
+.gl-input{display:block;width:100%;padding:12px 14px;margin-bottom:18px;border-radius:11px;border:1px solid var(--gl-line);background:rgba(255,255,255,.06);
+  color:#fff;font:inherit;font-size:.95rem;transition:border-color .15s,background-color .15s,box-shadow .15s}
+.gl-input::placeholder{color:#9ba1b5}
+.gl-input:focus{outline:none;border-color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);box-shadow:0 0 0 3px rgba(255,255,255,.18)}
+.gl-btn{width:100%;padding:13px;border:0;border-radius:11px;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;color:#0b0f1e;
+  background:linear-gradient(90deg,#e0e7ff,#fff);transition:transform .12s,box-shadow .15s;margin-top:6px}
+.gl-btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(255,255,255,.18)}
+.gl-alt{margin-top:22px!important;text-align:center;font-size:.85rem;color:var(--gl-muted)}
+.gl-alt a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5)}
+.gl-alt a:hover{border-bottom-color:#fff}
+.gl a:focus-visible,.gl-btn:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
+.gl-btn:focus-visible{border-radius:11px}
+@media (prefers-reduced-motion:reduce){.gl-blob{animation:none}.gl-input,.gl-btn{transition:none}.gl-btn:hover{transform:none}}
+
+/* Narrow-screen and control accessibility refinement. */
+.gl{--gl-muted:#e2e5ef}.gl-card{background:rgba(7,13,30,.72)}.gl-input::placeholder{color:#c8cddd}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="gl">
+  <div class="gl-blob gl-b1" aria-hidden="true"></div><div class="gl-blob gl-b2" aria-hidden="true"></div><div class="gl-blob gl-b3" aria-hidden="true"></div>
+  <form class="gl-card" action="#" method="post" onsubmit="event.preventDefault()">
+    <h1>Sign in</h1>
+    <p class="gl-sub">Welcome back — we kept your seat warm.</p>
+    <label class="gl-label" for="gl-email">Email</label>
+    <input class="gl-input" type="email" id="gl-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+    <label class="gl-label" for="gl-password">Password</label>
+    <input class="gl-input" type="password" id="gl-password" name="password" placeholder="Your password" autocomplete="current-password" required>
+    <button class="gl-btn" type="submit">Enter dashboard</button>
+    <p class="gl-alt">First time here? <a href="#">Create an account</a></p>
+  </form>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

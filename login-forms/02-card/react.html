@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Minimal Card Login (React) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script type="importmap">{"imports":{"react":"https://esm.sh/react@19.1.0","react/jsx-runtime":"https://esm.sh/react@19.1.0/jsx-runtime","react-dom/client":"https://esm.sh/react-dom@19.1.0/client?deps=react@19.1.0"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>Babel.registerPreset('react-automatic', { presets: [[Babel.availablePresets.react, { runtime: 'automatic' }]] });</script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-cd-ink: #16181d;
+  --color-cd-muted: #667085;
+  --color-cd-line: #8c93a0;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module" data-presets="react-automatic">
+// snippet:jsx
+// Minimal card login with floating labels and a show/hide password toggle.
+// Usage: <CardLogin logo="N" onSubmit={({ email, password }) => signIn(email, password)} />
+import { useState, useId } from 'react';
+
+const fieldCls = 'peer block w-full rounded-[10px] border border-cd-line bg-transparent pt-[22px] pb-2 pl-3.5 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-transparent focus:border-cd-ink focus:shadow-[0_0_0_3px_rgba(22,24,29,.14)] focus:outline-none motion-reduce:transition-none';
+const floatCls = 'pointer-events-none absolute top-[15px] left-[15px] text-[.95rem] text-cd-muted transition-all duration-150 peer-focus:top-[7px] peer-focus:text-[.7rem] peer-focus:font-semibold peer-focus:tracking-[.02em] peer-focus:text-cd-ink peer-focus:uppercase peer-[:not(:placeholder-shown)]:top-[7px] peer-[:not(:placeholder-shown)]:text-[.7rem] peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:tracking-[.02em] peer-[:not(:placeholder-shown)]:text-cd-ink peer-[:not(:placeholder-shown)]:uppercase motion-reduce:transition-none';
+const linkCls = 'rounded-[3px] font-semibold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cd-ink';
+
+// A floating-label field: the label sits inside the input and rises on focus or once there is a value.
+function FloatingField({ label, value, onChange, className = 'pr-3.5', children, ...inputProps }) {
+  const id = useId();
+  return (
+    <div className="relative mb-[18px]">
+      <input {...inputProps} id={id} placeholder={label} className={`${fieldCls} ${className}`}
+        value={value} onChange={(e) => onChange(e.target.value)} />
+      <label className={floatCls} htmlFor={id}>{label}</label>
+      {children?.(id)}
+    </div>
+  );
+}
+
+export default function CardLogin({ logo = 'N', forgotHref = '#', signupHref = '#', onSubmit = () => {} }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit({ email, password });
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-[#f4f5f7] p-6 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-cd-ink">
+      <form className="w-full max-w-[400px] rounded-2xl bg-white px-10 py-11 shadow-[0_1px_2px_rgba(16,24,40,.05),0_24px_48px_-12px_rgba(16,24,40,.12)]" action="#" method="post" onSubmit={handleSubmit}>
+        <div className="mb-[22px] flex size-11 items-center justify-center rounded-xl bg-cd-ink text-[1.15rem] font-extrabold text-white" aria-hidden="true">{logo}</div>
+        <h1 className="mb-1 text-[1.45rem] font-bold tracking-[-.02em]">Sign in</h1>
+        <p className="mb-[30px] text-[.93rem] text-cd-muted">Use your work email to continue.</p>
+        <FloatingField label="Email" type="email" name="email" autoComplete="username" required value={email} onChange={setEmail} />
+        <FloatingField label="Password" type={showPassword ? 'text' : 'password'} name="password" autoComplete="current-password" required
+          className="pr-[72px]" value={password} onChange={setPassword}>
+          {(inputId) => (
+            // One stable name ("Show password"); the state is reported with aria-pressed.
+            <button type="button" className="absolute min-h-8 min-w-[52px] top-1/2 right-2.5 -translate-y-1/2 cursor-pointer rounded-md px-1.5 py-1 text-[.78rem] font-semibold tracking-[.02em] text-cd-muted uppercase hover:text-cd-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cd-ink aria-pressed:bg-[#eef0f3] aria-pressed:text-cd-ink"
+              aria-controls={inputId} aria-pressed={showPassword} onClick={() => setShowPassword((s) => !s)}>
+              Show<span className="sr-only"> password</span>
+            </button>
+          )}
+        </FloatingField>
+        <button className="mt-1.5 w-full cursor-pointer rounded-[10px] bg-cd-ink p-[13px] text-[.95rem] font-bold text-white transition-opacity duration-150 hover:opacity-[.88] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cd-ink motion-reduce:transition-none" type="submit">Continue</button>
+        <div className="mt-5 flex flex-wrap justify-between gap-x-4 gap-y-2 text-[.85rem]">
+          <a className={linkCls} href={forgotHref}>Forgot password?</a>
+          <span className="text-cd-muted">No account? <a className={`${linkCls} text-cd-ink`} href={signupHref}>Sign up</a></span>
+        </div>
+      </form>
+    </div>
+  );
+}
+// /snippet:jsx
+import { createRoot } from 'react-dom/client';
+createRoot(document.getElementById('root')).render(<CardLogin />);
+</script>
+</body></html>

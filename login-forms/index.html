@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Forms Pack — 22 Free HTML Login Form Templates by uiCookies</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#0e1116;color:#e6e9ef;min-height:100vh}
+header{padding:44px 24px 10px;text-align:center}
+h1{font-size:1.7rem;letter-spacing:-.02em}
+header p{color:#8b93a7;margin-top:8px;font-size:.95rem}
+header a{color:#7dd3fc;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;padding:34px;max-width:1240px;margin:0 auto}
+.card{background:#161b23;border:1px solid #232a36;border-radius:14px;overflow:hidden;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:#3b465a}
+.thumb{position:relative;height:230px;overflow:hidden;background:#0a0d12}
+.thumb iframe{width:1280px;height:920px;transform:scale(0.25);transform-origin:0 0;border:0;pointer-events:none}
+.card h2{font-size:.98rem;padding:14px 16px 4px}
+.card p{font-size:.83rem;color:#8b93a7;padding:0 16px 14px}
+.card a.open{display:block;text-align:center;margin:0 16px 16px;padding:9px;border:1px solid #2e3949;border-radius:9px;color:#e6e9ef;font-size:.85rem;font-weight:600;text-decoration:none;transition:background .15s}
+.card a.open:hover{background:#1d2530}
+footer{text-align:center;padding:10px 24px 46px;color:#8b93a7;font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>Login Forms — 22 Free HTML Templates</h1>
+  <p>Designed by <a href="https://uicookies.com/">uiCookies</a> · <a href="https://uicookies.com/free-login-forms/">Details &amp; download</a></p>
+</header>
+<div class="grid" id="grid"></div>
+<footer>Each design is a single self-contained HTML file — no dependencies, no build step.</footer>
+<script>
+const designs = [
+  ['01-split','Split Screen','Gradient brand panel with product messaging'],
+  ['02-card','Minimal Card','Floating labels and show/hide password'],
+  ['03-glass','Glassmorphism','Frosted card over animated gradient blobs'],
+  ['04-social','Social First','Google, GitHub and Apple sign-in with email fallback'],
+  ['05-border','Gradient Border','Animated conic border on a warm palette'],
+  ['06-magic','Magic Link','Passwordless flow with success state'],
+  ['07-brutal','Neobrutalist','Thick borders, offset shadows, zero subtlety'],
+  ['08-saas','SaaS Split','Stats and testimonial panel with SSO button'],
+  ['09-tabs','Login + Register','Accessible tab switcher, two forms in one card'],
+  ['10-terminal','Terminal','Developer-themed monospace login'],,
+  ['11-otp','One-Time Code','Six-box code entry with auto-advance and a resend timer'],
+  ['12-2fa','Two-Factor','Authenticator code with trust-this-device and a recovery route'],
+  ['13-passkey','Passkey Sign-In','Biometric-first button with the password kept as a fallback'],
+  ['14-two-step','Identifier First','Email on the first panel, password on the second'],
+  ['15-sso','Enterprise SSO','Workspace subdomain field with named identity providers'],
+  ['16-phone','Phone Number','Country selector fused to the number field'],
+  ['17-lock','Session Lock','Timed-out session where only the password is missing'],
+  ['18-reset','Password Reset','Reset request plus the confirmation state that follows'],
+  ['19-validation','Error States','Form-level alert, field errors and a Caps Lock warning'],
+  ['20-photo','Full-Bleed Background','Overlay card with the scrim that keeps copy legible'],
+  ['21-modal','Modal Over the App','Sign-in dialog over a blurred product view'],
+  ['22-dark','Theme-Aware','Follows the system theme, with an override toggle']
+];
+document.getElementById('grid').innerHTML = designs.map(([slug,name,desc]) =>
+  `<div class="card"><div class="thumb"><iframe src="${slug}/" title="${name} preview" tabindex="-1"></iframe></div><h2>${name}</h2><p>${desc}</p><a class="open" href="${slug}/">Open live demo →</a></div>`
+).join('');
+</script>
+</body>
+</html>

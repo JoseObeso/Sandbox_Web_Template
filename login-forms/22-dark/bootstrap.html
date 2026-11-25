@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme-Aware Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<script data-snippet>
+// Bootstrap colour modes: data-bs-theme on <html>. With no saved choice it follows the OS, and it runs in <head>
+// so the page never flashes the wrong theme. The toggle overrides it for the rest of the visit.
+(() => {
+  const root = document.documentElement, mq = matchMedia('(prefers-color-scheme: dark)');
+  let choice = null;
+  const theme = () => choice || (mq.matches ? 'dark' : 'light');
+  const apply = () => {
+    root.setAttribute('data-bs-theme', theme());
+    const tog = document.getElementById('lf-theme');
+    if (tog) tog.setAttribute('aria-pressed', String(theme() === 'dark'));
+  };
+  apply();
+  mq.addEventListener('change', apply);
+  document.addEventListener('DOMContentLoaded', () => {
+    const tog = document.getElementById('lf-theme');
+    if (!tog) return;
+    tog.addEventListener('click', () => { choice = theme() === 'dark' ? 'light' : 'dark'; apply(); });
+    apply();
+  });
+})();
+</script>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Bootstrap .card, .form-control, .form-check and .btn. The --lf-* tokens switch with [data-bs-theme]
+   and feed Bootstrap's own variables, so its components follow the theme too. */
+.lf{--lf-bg:#f4f5f9;--lf-card:#fff;--lf-edge:#e4e6ef;--lf-field-edge:#868c99;--lf-txt:#111827;--lf-dim:#6b7280;--lf-inp:#fff;
+  --lf-acc:#4f46e5;--lf-acc-rgb:79,70,229;--lf-link-rgb:79,70,229;--lf-link:#4f46e5;--lf-ring:rgba(79,70,229,.18);--lf-sun:none;--lf-moon:block}
+[data-bs-theme=dark] .lf{--lf-bg:#0e1117;--lf-card:#161a23;--lf-edge:#262c39;--lf-field-edge:#6b7488;--lf-txt:#e8eaf1;--lf-dim:#98a0b3;--lf-inp:#1c212c;
+  --lf-acc:#5b5fe6;--lf-link-rgb:165,180,252;--lf-link:#a5b4fc;--lf-ring:rgba(165,180,252,.25);--lf-sun:block;--lf-moon:none}
+.lf{--bs-body-color:var(--lf-txt);--bs-body-bg:var(--lf-inp);--bs-secondary-color:var(--lf-dim);--bs-border-color:var(--lf-field-edge);
+  --bs-link-color-rgb:var(--lf-link-rgb);--bs-link-hover-color-rgb:var(--lf-link-rgb);
+  min-height:100vh;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-txt);line-height:normal;transition:background-color .2s,color .2s}
+.lf a{font-weight:600;text-decoration:none}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-link);outline-offset:2px}
+.lf .card{--bs-card-bg:var(--lf-card);--bs-card-border-color:var(--lf-edge);--bs-card-border-radius:16px;--bs-card-spacer-y:34px;--bs-card-spacer-x:32px;
+  max-width:400px;transition:background-color .2s,border-color .2s}
+.lf .btn-theme{--bs-btn-padding-x:0;--bs-btn-padding-y:0;--bs-btn-border-radius:10px;--bs-btn-border-color:var(--lf-edge);--bs-btn-color:var(--lf-dim);
+  --bs-btn-hover-bg:var(--lf-bg);--bs-btn-hover-border-color:var(--lf-edge);--bs-btn-hover-color:var(--lf-txt);
+  --bs-btn-active-bg:var(--lf-bg);--bs-btn-active-border-color:var(--lf-edge);--bs-btn-active-color:var(--lf-txt);--bs-btn-focus-box-shadow:none;
+  top:16px;right:16px;width:36px;height:36px;display:grid;place-items:center;transition:background-color .15s,color .15s}
+.lf .btn-theme svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+.lf .btn-theme .lf-sun{display:var(--lf-sun)}
+.lf .btn-theme .lf-moon{display:var(--lf-moon)}
+.lf-mark{width:40px;height:40px;border-radius:11px;background:var(--lf-acc);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:20px}
+.lf h1{font-size:1.36rem;font-weight:700;line-height:normal;letter-spacing:-.02em;margin-bottom:6px}
+.lf-sub{font-size:.91rem;margin-bottom:24px}
+.lf .form-label{font-size:.84rem;font-weight:600;margin-bottom:6px}
+.lf .form-control{padding:12px 14px;border-radius:10px;font-size:.95rem;line-height:normal;margin-bottom:17px;transition:background-color .2s,border-color .15s,box-shadow .15s}
+.lf .form-control:focus{background-color:var(--lf-inp);color:var(--lf-txt);border-color:var(--lf-acc);box-shadow:0 0 0 3px var(--lf-ring);outline:none}
+.lf .form-control::placeholder{color:var(--lf-dim)}
+.lf-row{gap:12px;margin-bottom:22px;font-size:.86rem}
+.lf .form-check{display:flex;align-items:center;gap:7px;padding:0;margin:0;min-height:0}
+.lf .form-check-input{float:none;margin:0;cursor:pointer}
+.lf .form-check-input:checked{background-color:var(--lf-acc);border-color:var(--lf-acc)}
+.lf .form-check-input:focus{border-color:var(--lf-acc);box-shadow:none}
+.lf .form-check-label{font-weight:500;color:var(--lf-dim);cursor:pointer}
+.lf .btn-brand{--bs-btn-line-height:normal;--bs-btn-border-width:0;--bs-btn-padding-y:13px;--bs-btn-font-size:.96rem;--bs-btn-font-weight:700;--bs-btn-border-radius:10px;
+  --bs-btn-bg:var(--lf-acc);--bs-btn-border-color:var(--lf-acc);--bs-btn-color:#fff;
+  --bs-btn-hover-bg:var(--lf-acc);--bs-btn-hover-border-color:var(--lf-acc);--bs-btn-hover-color:#fff;
+  --bs-btn-active-bg:var(--lf-acc);--bs-btn-active-border-color:var(--lf-acc);--bs-btn-active-color:#fff;--bs-btn-focus-box-shadow:none}
+.lf .btn-brand:hover{filter:brightness(1.08)}
+.lf-foot{margin-top:22px;font-size:.88rem}
+@media (prefers-reduced-motion:reduce){.lf,.lf .card,.lf .btn,.lf .form-control{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf d-grid">
+<main class="card w-100">
+  <div class="card-body">
+    <button class="btn btn-theme position-absolute" id="lf-theme" type="button" aria-label="Dark theme" aria-pressed="false">
+      <svg class="lf-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>
+      <svg class="lf-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+    </button>
+    <div class="lf-mark" aria-hidden="true">N</div>
+    <h1>Sign in</h1>
+    <p class="lf-sub text-body-secondary">This screen follows your system theme until you change it.</p>
+    <form onsubmit="event.preventDefault()">
+      <label class="form-label" for="dmail">Email address</label>
+      <input class="form-control" id="dmail" name="username" type="email" autocomplete="username" placeholder="you@company.com" required>
+      <label class="form-label" for="dpw">Password</label>
+      <input class="form-control" id="dpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+      <div class="lf-row d-flex justify-content-between align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="remember" name="remember">
+          <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button class="btn btn-brand w-100" type="submit">Sign in</button>
+    </form>
+    <p class="lf-foot text-body-secondary text-center mb-0">No account? <a href="#">Create one</a></p>
+  </div>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

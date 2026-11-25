@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minimal Card Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .card with .form-floating fields; the floated label is restyled to a small uppercase caption. */
+.cd{--cd-ink:#16181d;--cd-muted:#667085;
+  --bs-body-color:#16181d;--bs-secondary-color:#667085;--bs-border-color:#8c93a0;
+  --bs-body-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;padding:24px;background:#f4f5f7;color:var(--bs-body-color);font-family:var(--bs-body-font-family);line-height:normal}
+.cd .card{--bs-card-border-width:0;--bs-card-border-radius:16px;--bs-card-spacer-y:44px;--bs-card-spacer-x:40px;max-width:400px;
+  box-shadow:0 1px 2px rgba(16,24,40,.05),0 24px 48px -12px rgba(16,24,40,.12)}
+.cd-mark{width:44px;height:44px;border-radius:12px;background:var(--cd-ink);font-weight:800;font-size:1.15rem;margin-bottom:22px}
+.cd h1{font-size:1.45rem;letter-spacing:-.02em;font-weight:700}
+.cd-sub{font-size:.93rem;margin-bottom:30px}
+.cd .form-floating>.form-control{height:auto;min-height:0;padding:22px 14px 8px;border-radius:10px;font-size:.95rem;line-height:1.2}
+.cd .form-floating>.form-control:focus{border-color:var(--cd-ink);box-shadow:0 0 0 3px rgba(22,24,29,.14)}
+.cd .form-floating>label{height:auto;padding:15px 15px;color:var(--cd-muted);font-size:.95rem;line-height:1.2;border:0}
+.cd .form-floating>.form-control:focus~label,.cd .form-floating>.form-control:not(:placeholder-shown)~label{
+  transform:none;padding-top:7px;font-size:.7rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--cd-ink)}
+.cd .form-floating>.form-control:focus~label::after,.cd .form-floating>.form-control:not(:placeholder-shown)~label::after{display:none}
+.cd .form-floating>.cd-pw{padding-right:72px}
+.cd-peek{top:50%;right:10px;transform:translateY(-50%);z-index:3;--bs-btn-padding-x:6px;--bs-btn-padding-y:4px;--bs-btn-font-size:.78rem;
+  --bs-btn-font-weight:600;--bs-btn-border-radius:6px;--bs-btn-border-width:0;--bs-btn-color:var(--cd-muted);--bs-btn-hover-color:var(--cd-ink);
+  --bs-btn-active-color:var(--cd-ink);--bs-btn-active-bg:#eef0f3;--bs-btn-focus-box-shadow:none;letter-spacing:.02em;text-transform:uppercase;line-height:1.2}
+.cd-peek[aria-pressed="true"]{background:#eef0f3;color:var(--cd-ink)}
+.cd .btn-cd{--bs-btn-bg:var(--cd-ink);--bs-btn-border-color:var(--cd-ink);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--cd-ink);
+  --bs-btn-hover-border-color:var(--cd-ink);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--cd-ink);--bs-btn-active-border-color:var(--cd-ink);
+  --bs-btn-active-color:#fff;--bs-btn-padding-y:13px;--bs-btn-font-size:.95rem;--bs-btn-font-weight:700;--bs-btn-border-radius:10px;
+  --bs-btn-line-height:1.2;--bs-btn-focus-box-shadow:none}
+.cd .btn-cd:hover{opacity:.88}
+.cd-meta{font-size:.85rem}
+.cd-meta a{color:var(--cd-ink);font-weight:600;text-decoration:none;border-radius:3px}
+.cd-meta a:hover{text-decoration:underline}
+.cd a:focus-visible,.cd .btn:focus-visible{outline:2px solid var(--cd-ink);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.cd .form-control,.cd .btn{transition:none}}
+
+/* Narrow-screen and control accessibility refinement. */
+.cd-peek{min-height:32px;min-width:52px}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="cd d-flex align-items-center justify-content-center">
+  <form class="card w-100" action="#" method="post" onsubmit="event.preventDefault()">
+    <div class="card-body">
+      <div class="cd-mark d-flex align-items-center justify-content-center text-white" aria-hidden="true">N</div>
+      <h1 class="mb-1">Sign in</h1>
+      <p class="cd-sub text-body-secondary">Use your work email to continue.</p>
+      <div class="form-floating mb-3">
+        <input class="form-control" type="email" id="cd-email" name="email" placeholder="Email" autocomplete="username" required>
+        <label for="cd-email">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input class="form-control cd-pw" type="password" id="cd-password" name="password" placeholder="Password" autocomplete="current-password" required>
+        <label for="cd-password">Password</label>
+        <button type="button" class="btn cd-peek position-absolute" data-peek aria-controls="cd-password" aria-pressed="false">Show<span class="visually-hidden"> password</span></button>
+      </div>
+      <button class="btn btn-cd w-100 mt-1" type="submit">Continue</button>
+      <div class="cd-meta d-flex flex-wrap justify-content-between column-gap-3 row-gap-2 mt-3 pt-1">
+        <a href="#">Forgot password?</a>
+        <span class="text-body-secondary">No account? <a href="#">Sign up</a></span>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Show / hide password. The button keeps one name ("Show password") and reports its state with aria-pressed.
+document.querySelectorAll('[data-peek]').forEach(function (btn) {
+  var input = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', function () {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', String(show));
+  });
+});
+</script>
+</body>
+</html>

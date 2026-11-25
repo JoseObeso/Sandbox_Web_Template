@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One-Time Code Screen (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-ot-brand: #4f46e5;
+  --color-ot-brand-dark: #4338ca;
+  --color-ot-ink: #111827;
+  --color-ot-muted: #6b7280;
+  --color-ot-line: #8b93a1;
+  --color-ot-bad: #b91c1c;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-[#f5f6fa] px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ot-ink">
+  <main class="w-full max-w-[420px] rounded-2xl border border-[#e5e7eb] bg-white px-[34px] py-[38px] text-center shadow-[0_10px_34px_rgba(17,24,39,.06)]" data-otp>
+    <div class="mx-auto mb-[22px] grid size-[42px] place-items-center rounded-xl bg-ot-brand font-extrabold text-white" aria-hidden="true">N</div>
+    <h1 class="mb-[7px] text-[1.4rem] font-bold tracking-[-.02em]">Check your email</h1>
+    <p class="mb-[22px] text-[.93rem] leading-[1.6] text-ot-muted">We sent a 6-digit code to <strong class="text-ot-ink">dana@northwind.co</strong>. It expires in 10 minutes.</p>
+    <form action="#" method="post" novalidate>
+      <fieldset class="min-w-0">
+        <legend class="mx-auto mb-2.5 text-[.85rem] font-semibold">Verification code</legend>
+        <div class="mb-2 flex justify-center gap-[9px] max-[400px]:gap-1.5">
+        <input class="h-[60px] min-w-0 max-w-[52px] flex-1 rounded-[11px] border border-ot-line bg-white text-center text-2xl font-bold transition-[border-color,box-shadow] duration-150 focus:border-ot-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none aria-invalid:border-ot-bad max-[400px]:h-[52px] max-[400px]:text-[1.2rem] motion-reduce:transition-none [&:not(:placeholder-shown)]:border-ot-brand [&:not(:placeholder-shown)]:bg-[#f5f4ff]" type="text" inputmode="numeric" placeholder=" " autocomplete="one-time-code" aria-label="Digit 1 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="h-[60px] min-w-0 max-w-[52px] flex-1 rounded-[11px] border border-ot-line bg-white text-center text-2xl font-bold transition-[border-color,box-shadow] duration-150 focus:border-ot-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none aria-invalid:border-ot-bad max-[400px]:h-[52px] max-[400px]:text-[1.2rem] motion-reduce:transition-none [&:not(:placeholder-shown)]:border-ot-brand [&:not(:placeholder-shown)]:bg-[#f5f4ff]" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 2 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="h-[60px] min-w-0 max-w-[52px] flex-1 rounded-[11px] border border-ot-line bg-white text-center text-2xl font-bold transition-[border-color,box-shadow] duration-150 focus:border-ot-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none aria-invalid:border-ot-bad max-[400px]:h-[52px] max-[400px]:text-[1.2rem] motion-reduce:transition-none [&:not(:placeholder-shown)]:border-ot-brand [&:not(:placeholder-shown)]:bg-[#f5f4ff]" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 3 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="h-[60px] min-w-0 max-w-[52px] flex-1 rounded-[11px] border border-ot-line bg-white text-center text-2xl font-bold transition-[border-color,box-shadow] duration-150 focus:border-ot-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none aria-invalid:border-ot-bad max-[400px]:h-[52px] max-[400px]:text-[1.2rem] motion-reduce:transition-none [&:not(:placeholder-shown)]:border-ot-brand [&:not(:placeholder-shown)]:bg-[#f5f4ff]" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 4 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="h-[60px] min-w-0 max-w-[52px] flex-1 rounded-[11px] border border-ot-line bg-white text-center text-2xl font-bold transition-[border-color,box-shadow] duration-150 focus:border-ot-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none aria-invalid:border-ot-bad max-[400px]:h-[52px] max-[400px]:text-[1.2rem] motion-reduce:transition-none [&:not(:placeholder-shown)]:border-ot-brand [&:not(:placeholder-shown)]:bg-[#f5f4ff]" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 5 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="h-[60px] min-w-0 max-w-[52px] flex-1 rounded-[11px] border border-ot-line bg-white text-center text-2xl font-bold transition-[border-color,box-shadow] duration-150 focus:border-ot-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none aria-invalid:border-ot-bad max-[400px]:h-[52px] max-[400px]:text-[1.2rem] motion-reduce:transition-none [&:not(:placeholder-shown)]:border-ot-brand [&:not(:placeholder-shown)]:bg-[#f5f4ff]" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 6 of 6" aria-describedby="ot-msg" data-otp-digit>
+        </div>
+      </fieldset>
+      <p class="mb-[22px] min-h-[1.3em] text-[.83rem] text-ot-muted data-[state=error]:font-semibold data-[state=error]:text-ot-bad" id="ot-msg" aria-live="polite" data-otp-msg>Paste the whole code and it will fill every box.</p>
+      <button class="w-full cursor-pointer rounded-[10px] bg-ot-brand p-[13px] text-[.97rem] font-bold text-white transition-colors duration-150 hover:bg-ot-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ot-brand motion-reduce:transition-none" type="submit">Verify</button>
+    </form>
+    <p class="mt-5 text-[.88rem] text-ot-muted">Didn&rsquo;t get it? <button class="cursor-pointer rounded-[3px] font-semibold text-ot-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ot-brand disabled:cursor-default disabled:font-medium disabled:text-ot-muted" type="button" data-resend disabled>Resend in 30s</button></p>
+    <p class="mt-6 text-[.89rem]"><a class="rounded-[3px] font-semibold text-ot-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ot-brand" href="#">Use a different email</a></p>
+  </main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// One-time code: typing moves to the next box, Backspace on an empty box goes back, and pasting or
+// autofilling the whole code spreads it across every box. Front end only: post the code in the submit handler.
+document.querySelectorAll('[data-otp]').forEach(function (card) {
+  var form = card.querySelector('form');
+  var boxes = Array.prototype.slice.call(form.querySelectorAll('[data-otp-digit]'));
+  var msg = card.querySelector('[data-otp-msg]');
+  var resend = card.querySelector('[data-resend]');
+  var helper = msg.textContent;
+
+  function say(text, isError) {
+    msg.textContent = text || helper;
+    if (isError) msg.setAttribute('data-state', 'error'); else msg.removeAttribute('data-state');
+    boxes.forEach(function (b) { if (isError && !b.value) b.setAttribute('aria-invalid', 'true'); else b.removeAttribute('aria-invalid'); });
+  }
+  function fill(from, digits) {
+    for (var k = 0; k < digits.length && from + k < boxes.length; k++) boxes[from + k].value = digits[k];
+    boxes[Math.min(from + digits.length, boxes.length - 1)].focus();
+  }
+
+  boxes.forEach(function (box, i) {
+    box.addEventListener('input', function () {
+      var digits = box.value.replace(/\D/g, '');
+      box.value = digits.charAt(0);
+      if (digits.length > 1) fill(i, digits);
+      else if (digits && boxes[i + 1]) boxes[i + 1].focus();
+      if (msg.hasAttribute('data-state')) say('', false);
+    });
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'Backspace' && !box.value && boxes[i - 1]) { e.preventDefault(); boxes[i - 1].value = ''; boxes[i - 1].focus(); }
+      else if (e.key === 'ArrowLeft' && boxes[i - 1]) { e.preventDefault(); boxes[i - 1].focus(); }
+      else if (e.key === 'ArrowRight' && boxes[i + 1]) { e.preventDefault(); boxes[i + 1].focus(); }
+    });
+    box.addEventListener('paste', function (e) {
+      var digits = ((e.clipboardData || window.clipboardData).getData('text') || '').replace(/\D/g, '');
+      if (!digits) return;
+      e.preventDefault();
+      fill(digits.length >= boxes.length ? 0 : i, digits);
+      say('', false);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var empty = boxes.filter(function (b) { return !b.value; })[0];
+    if (empty) { say('Enter all ' + boxes.length + ' digits of the code.', true); empty.focus(); return; }
+    say('', false);
+    // var code = boxes.map(function (b) { return b.value; }).join(''); → send it to your server here.
+  });
+
+  var timer;
+  function countdown(seconds) {
+    clearInterval(timer);
+    resend.disabled = true;
+    resend.textContent = 'Resend in ' + seconds + 's';
+    timer = setInterval(function () {
+      if (--seconds > 0) { resend.textContent = 'Resend in ' + seconds + 's'; return; }
+      clearInterval(timer);
+      resend.disabled = false;
+      resend.textContent = 'Resend code';
+    }, 1000);
+  }
+  resend.addEventListener('click', function () {
+    boxes.forEach(function (b) { b.value = ''; });
+    say('A new code is on its way. The previous one no longer works.', false);
+    boxes[0].focus();
+    countdown(30);
+  });
+  countdown(30);
+});
+</script>
+</body>
+</html>

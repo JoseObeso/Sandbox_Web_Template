@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Formulario de solicitud</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body { min-height: 100vh; background: #f5f6fa; color: #202942; }
+		.navbar-brand { font-weight: 750; letter-spacing: -.03em; }
+		.brand-icon { display: inline-grid; width: 2rem; height: 2rem; place-items: center; margin-right: .55rem; border-radius: .65rem; color: #fff; background: #6258e8; }
+		.intro { padding: 3.5rem 0 2rem; }
+		.intro h1 { font-weight: 750; letter-spacing: -.04em; }
+		.eyebrow { color: #6258e8; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+		.form-card { border: 0; border-radius: 1.2rem; box-shadow: 0 1rem 3rem rgba(35, 44, 75, .08); }
+		.form-card .card-body { padding: clamp(1.25rem, 4vw, 2.5rem); }
+		.section-heading { font-size: 1.05rem; font-weight: 700; }
+		.form-label { font-weight: 600; }
+		.form-control, .form-select { min-height: 3rem; border-color: #dce1ec; border-radius: .65rem; }
+		.form-control:focus, .form-select:focus { border-color: #6258e8; box-shadow: 0 0 0 .2rem rgba(98, 88, 232, .15); }
+		textarea.form-control { min-height: 8rem; }
+		.btn-primary { --bs-btn-bg: #6258e8; --bs-btn-border-color: #6258e8; --bs-btn-hover-bg: #5046d2; --bs-btn-hover-border-color: #5046d2; border-radius: .65rem; font-weight: 650; }
+	</style>
+</head>
+<body>
+	<nav class="navbar bg-white border-bottom">
+		<div class="container">
+			<a class="navbar-brand d-flex align-items-center" href="#inicio"><span class="brand-icon" aria-hidden="true">F</span>Forma</a>
+			<span class="small text-secondary">Formulario de solicitud</span>
+		</div>
+	</nav>
+
+	<main class="container pb-5" id="inicio">
+		<header class="intro text-center">
+			<p class="eyebrow mb-2">Estamos para ayudarte</p>
+			<h1 class="display-5 mb-3">Cuéntanos sobre tu proyecto</h1>
+			<p class="lead text-secondary mx-auto mb-0" style="max-width: 650px">Completa el formulario y nuestro equipo se pondrá en contacto contigo.</p>
+		</header>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-9 col-xl-8">
+				<section class="card form-card" aria-labelledby="form-title">
+					<div class="card-body">
+						<h2 class="visually-hidden" id="form-title">Solicitud de información</h2>
+						<form id="applicationForm" class="needs-validation" novalidate>
+							<h3 class="section-heading mb-3">Información personal</h3>
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label" for="nombre">Nombre</label>
+									<input class="form-control" id="nombre" name="nombre" type="text" autocomplete="given-name" placeholder="Tu nombre" required>
+									<div class="invalid-feedback">Escribe tu nombre.</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label" for="apellido">Apellido</label>
+									<input class="form-control" id="apellido" name="apellido" type="text" autocomplete="family-name" placeholder="Tu apellido" required>
+									<div class="invalid-feedback">Escribe tu apellido.</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label" for="email">Correo electrónico</label>
+									<input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" required>
+									<div class="invalid-feedback">Introduce un correo válido.</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label" for="telefono">Teléfono <span class="text-secondary fw-normal">(opcional)</span></label>
+									<input class="form-control" id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+34 600 000 000">
+								</div>
+							</div>
+
+							<hr class="my-4">
+							<h3 class="section-heading mb-3">Detalles de tu solicitud</h3>
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label" for="servicio">¿Qué necesitas?</label>
+									<select class="form-select" id="servicio" name="servicio" required>
+										<option value="" selected disabled>Selecciona una opción</option>
+										<option value="web">Diseño web</option>
+										<option value="app">Desarrollo de aplicación</option>
+										<option value="consultoria">Consultoría</option>
+										<option value="otro">Otro</option>
+									</select>
+									<div class="invalid-feedback">Selecciona una opción.</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label" for="presupuesto">Presupuesto estimado</label>
+									<select class="form-select" id="presupuesto" name="presupuesto" required>
+										<option value="" selected disabled>Selecciona un rango</option>
+										<option>Menos de 1.000 €</option>
+										<option>1.000 € – 5.000 €</option>
+										<option>5.000 € – 10.000 €</option>
+										<option>Más de 10.000 €</option>
+										<option>Aún no lo sé</option>
+									</select>
+									<div class="invalid-feedback">Selecciona un rango.</div>
+								</div>
+								<div class="col-12">
+									<label class="form-label" for="mensaje">Cuéntanos un poco más</label>
+									<textarea class="form-control" id="mensaje" name="mensaje" placeholder="Objetivos, plazos o cualquier detalle importante..." required></textarea>
+									<div class="invalid-feedback">Añade una breve descripción.</div>
+								</div>
+							</div>
+
+							<div class="form-check mt-4 mb-4">
+								<input class="form-check-input" type="checkbox" id="privacidad" required>
+								<label class="form-check-label" for="privacidad">Acepto que se utilicen mis datos para responder a esta solicitud.</label>
+								<div class="invalid-feedback">Debes aceptar para continuar.</div>
+							</div>
+							<div class="d-grid d-sm-flex justify-content-sm-end">
+								<button class="btn btn-primary btn-lg px-4" type="submit">Enviar solicitud</button>
+							</div>
+							<div class="alert alert-success mt-4 mb-0 d-none" id="successMessage" role="status" aria-live="polite">¡Gracias! Tu formulario se ha validado correctamente.</div>
+						</form>
+					</div>
+				</section>
+				<p class="text-center text-secondary small mt-3">Tus datos se tratarán de forma confidencial.</p>
+			</div>
+		</div>
+	</main>
+
+	<footer class="container text-center text-secondary small py-4">© <span id="year"></span> Forma</footer>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		(() => {
+			const form = document.getElementById('applicationForm');
+			const successMessage = document.getElementById('successMessage');
+			document.getElementById('year').textContent = new Date().getFullYear();
+			form.addEventListener('submit', (event) => {
+				event.preventDefault();
+				event.stopPropagation();
+				form.classList.add('was-validated');
+				if (form.checkValidity()) {
+					successMessage.classList.remove('d-none');
+					successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				} else {
+					successMessage.classList.add('d-none');
+				}
+			});
+		})();
+	</script>
+</body>
+</html>

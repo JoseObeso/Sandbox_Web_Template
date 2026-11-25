@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Number Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Bootstrap .card, .input-group with .form-select and .form-control, and .btn, recoloured through Bootstrap's CSS variables.
+   The whole .input-group takes the focus ring, so the calling code and number read as one field. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;
+  --bs-body-color:var(--lf-ink);--bs-secondary-color:var(--lf-muted);--bs-border-color:var(--lf-edge);
+  --bs-link-color-rgb:79,70,229;--bs-link-hover-color-rgb:67,56,202;
+  min-height:100vh;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:#f5f6fa;color:var(--lf-ink);line-height:normal}
+.lf a{font-weight:600;text-decoration:none}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf .card{--bs-card-border-color:var(--lf-line);--bs-card-border-radius:16px;--bs-card-spacer-y:38px;--bs-card-spacer-x:34px;
+  max-width:410px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.lf-mark{width:42px;height:42px;border-radius:12px;background:var(--lf-brand);display:grid;place-items:center;
+  color:#fff;font-weight:800;margin-bottom:22px}
+.lf h1{font-size:1.4rem;font-weight:700;line-height:normal;letter-spacing:-.02em;margin-bottom:7px}
+.lf-sub{font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf .form-label{font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf .input-group{border-radius:10px;transition:box-shadow .15s}
+.lf .input-group:focus-within{box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf .input-group:focus-within>*{border-color:var(--lf-brand)}
+.lf .input-group .form-select{flex:0 0 auto;width:auto;max-width:118px;padding:12px 30px 12px 12px;background-position:right 10px center;
+  background-color:#f5f6fa;font-size:.93rem;line-height:normal;border-right:1px solid var(--lf-line);border-radius:10px 0 0 10px;cursor:pointer}
+.lf .input-group .form-control{padding:12px 14px;font-size:.95rem;line-height:normal;border-left:0;border-radius:0 10px 10px 0;margin-left:0!important}
+.lf .input-group .form-control::placeholder{color:var(--lf-muted)}
+.lf .input-group .form-select:focus,.lf .input-group .form-control:focus{box-shadow:none;outline:none}
+.lf .input-group:focus-within .form-select{border-right-color:var(--lf-line)}
+.lf-legal{font-size:.8rem;line-height:1.6;margin:16px 0 20px}
+.lf .btn{--bs-btn-line-height:normal;--bs-btn-focus-box-shadow:none;transition:background-color .15s}
+.lf .btn-brand{--bs-btn-border-width:0;--bs-btn-padding-y:13px;--bs-btn-font-size:.97rem;--bs-btn-font-weight:700;--bs-btn-border-radius:10px;
+  --bs-btn-bg:var(--lf-brand);--bs-btn-border-color:var(--lf-brand);--bs-btn-color:#fff;
+  --bs-btn-hover-bg:var(--lf-brand-dark);--bs-btn-hover-border-color:var(--lf-brand-dark);--bs-btn-hover-color:#fff;
+  --bs-btn-active-bg:var(--lf-brand-dark);--bs-btn-active-border-color:var(--lf-brand-dark);--bs-btn-active-color:#fff}
+.lf .btn-alt{--bs-btn-padding-y:12px;--bs-btn-font-size:.93rem;--bs-btn-font-weight:600;--bs-btn-border-radius:10px;
+  --bs-btn-bg:#fff;--bs-btn-border-color:var(--lf-line);--bs-btn-color:var(--lf-ink);
+  --bs-btn-hover-bg:#f5f6fa;--bs-btn-hover-border-color:var(--lf-line);--bs-btn-hover-color:var(--lf-ink);
+  --bs-btn-active-bg:#f5f6fa;--bs-btn-active-border-color:var(--lf-line);--bs-btn-active-color:var(--lf-ink)}
+.lf-or{gap:14px;margin:26px 0;font-size:.8rem;letter-spacing:.08em}
+.lf-or::before,.lf-or::after{content:"";flex:1;height:1px;background:var(--lf-line)}
+@media (prefers-reduced-motion:reduce){.lf .input-group,.lf .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf d-grid">
+<main class="card w-100">
+  <div class="card-body">
+    <div class="lf-mark" aria-hidden="true">N</div>
+    <h1>Sign in with your phone</h1>
+    <p class="lf-sub text-body-secondary">We'll text you a one-time code. No password needed.</p>
+    <form onsubmit="event.preventDefault()">
+      <label class="form-label" for="tel">Mobile number</label>
+      <div class="input-group flex-nowrap">
+        <select class="form-select" name="country_code" aria-label="Country calling code" autocomplete="tel-country-code">
+          <option value="+44">🇬🇧 +44</option><option value="+1">🇺🇸 +1</option><option value="+49">🇩🇪 +49</option>
+          <option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option>
+        </select>
+        <input class="form-control" id="tel" name="phone" type="tel" inputmode="tel" autocomplete="tel-national"
+               placeholder="7700 900123" required>
+      </div>
+      <p class="lf-legal text-body-secondary">Message and data rates may apply. By continuing you agree to our
+        <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+      <button class="btn btn-brand w-100" type="submit">Send code</button>
+    </form>
+    <div class="lf-or d-flex align-items-center text-body-secondary text-uppercase"><span>or</span></div>
+    <button class="btn btn-alt w-100" type="button">Sign in with email instead</button>
+  </div>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

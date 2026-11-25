@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-Bleed Background Login — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Full-bleed background login: a translucent, blurred card over a backdrop with a dark scrim for legibility.
+   .lf::before is the backdrop (CSS gradients here: swap in background-image:url(photo.jpg) center/cover),
+   .lf::after is the scrim; keep it when you use a photo. */
+.lf{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  position:relative;isolation:isolate;color:#fff;background:#1b2540;line-height:normal;color-scheme:dark;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(58% 44% at 18% 22%,rgba(251,191,36,.75),transparent 62%),
+    radial-gradient(52% 48% at 82% 30%,rgba(236,72,153,.62),transparent 60%),
+    radial-gradient(70% 60% at 50% 92%,rgba(56,189,248,.55),transparent 64%),
+    linear-gradient(155deg,#2a1b52,#0f2036 62%,#07131f)}
+.lf::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(6,12,22,.32),rgba(6,12,22,.62))}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf :focus-visible{outline:2px solid #fff;outline-offset:2px}
+.lf-wrap{width:100%;max-width:400px;text-align:center}
+.lf-brand{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;margin-bottom:26px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.lf-box{background:rgba(12,18,32,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:34px 30px;text-align:left;
+  box-shadow:0 22px 60px rgba(3,8,18,.42)}
+.lf h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:6px}
+.lf-sub{color:#c9d2e4;font-size:.9rem;margin-bottom:24px}
+.lf-label{display:block;font-size:.83rem;font-weight:600;margin-bottom:6px;color:#e3e9f5}
+.lf-field{width:100%;padding:12px 14px;border-radius:11px;font-size:.95rem;margin-bottom:16px;color:#fff;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.45);transition:border-color .15s,background .15s,box-shadow .15s}
+.lf-field::placeholder{color:#9fabc4}
+.lf-field:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.16);box-shadow:0 0 0 3px rgba(255,255,255,.22)}
+.lf-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;font-size:.85rem;color:#c9d2e4}
+.lf-check{display:flex;align-items:center;gap:7px;font-weight:500;cursor:pointer}
+.lf-check input{margin:0;accent-color:#fff}
+.lf a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:11px;background:#fff;color:#121a2b;
+  font-size:.96rem;font-weight:700;cursor:pointer;transition:transform .12s}
+.lf-btn:hover{transform:translateY(-1px)}
+.lf-foot{margin-top:22px;font-size:.88rem;color:#c9d2e4;text-align:center}
+.lf-caption{margin-top:22px;font-size:.79rem;color:rgba(255,255,255,.78);text-shadow:0 1px 8px rgba(0,0,0,.5);line-height:1.6}
+@media (prefers-reduced-motion:reduce){.lf-field,.lf-btn{transition:none}.lf-btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<div class="lf-wrap">
+  <p class="lf-brand">Northwind</p>
+  <main class="lf-box">
+    <h1>Welcome back</h1>
+    <p class="lf-sub">Sign in to pick up where you left off.</p>
+    <form onsubmit="event.preventDefault()">
+      <label class="lf-label" for="bmail">Email address</label>
+      <input class="lf-field" id="bmail" name="username" type="email" autocomplete="username" placeholder="you@company.com" required>
+      <label class="lf-label" for="bpw">Password</label>
+      <input class="lf-field" id="bpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+      <div class="lf-row">
+        <label class="lf-check"><input type="checkbox" name="remember"> Remember me</label>
+        <a href="#" aria-label="Forgot password?">Forgot?</a>
+      </div>
+      <button class="lf-btn" type="submit">Sign in</button>
+    </form>
+    <p class="lf-foot">New to Northwind? <a href="#">Create an account</a></p>
+  </main>
+  <p class="lf-caption">The background is CSS gradients, so the file stays self-contained.
+    Swap in a background image and keep the dark scrim above it.</p>
+</div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

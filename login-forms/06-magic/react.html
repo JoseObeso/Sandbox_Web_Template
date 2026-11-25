@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Magic Link Login (React) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script type="importmap">{"imports":{"react":"https://esm.sh/react@19.1.0","react/jsx-runtime":"https://esm.sh/react@19.1.0/jsx-runtime","react-dom/client":"https://esm.sh/react-dom@19.1.0/client?deps=react@19.1.0"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>Babel.registerPreset('react-automatic', { presets: [[Babel.availablePresets.react, { runtime: 'automatic' }]] });</script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-mg-ink: #0f172a;
+  --color-mg-muted: #64748b;
+  --color-mg-sky: #0ea5e9;
+  --color-mg-accent: #0369a1;
+  --color-mg-accent-dark: #075985;
+  --color-mg-line: #8a94a6;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module" data-presets="react-automatic">
+// snippet:jsx
+// Passwordless magic-link login: ask for an email, then show "check your inbox" and move focus to it.
+// Usage: <MagicLinkLogin onSend={async (email) => { await fetch('/auth/magic', { method: 'POST', body: email }); }} />
+import { useState, useId, useRef, useEffect } from 'react';
+
+const linkCls = 'cursor-pointer rounded-[3px] font-semibold text-mg-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mg-accent';
+const headingCls = 'mb-2 text-[1.45rem] font-bold tracking-[-.02em] focus:outline-none';
+
+function Badge({ className, children }) {
+  return <div className={`mx-auto mb-[18px] flex size-14 items-center justify-center rounded-2xl ${className}`}>{children}</div>;
+}
+
+export default function MagicLinkLogin({ expiresIn = '15 minutes', classicHref = '#', onSend = () => {} }) {
+  const emailId = useId();
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
+  const moved = useRef(false); // only move focus after a user action, never on first render
+  const sentHeading = useRef(null);
+  const emailInput = useRef(null);
+
+  useEffect(() => {
+    if (!moved.current) return;
+    (sent ? sentHeading : emailInput).current?.focus();
+  }, [sent]);
+
+  function handleSubmit(e) {
+    e.preventDefault(); // the browser's own email check has already passed here
+    onSend(email);
+    moved.current = true;
+    setSent(true);
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(1200px_600px_at_50%_-10%,#e0f2fe,#f8fafc)] p-6 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-mg-ink">
+      <div className="w-full max-w-[400px] rounded-[18px] border border-[#e2e8f0] bg-white px-[38px] py-11 text-center shadow-[0_18px_40px_-16px_rgba(15,23,42,.15)]">
+        {!sent ? (
+          <div>
+            <Badge className="bg-mg-sky shadow-[0_10px_22px_-8px_rgba(14,165,233,.6)]"><svg className="size-7 fill-white" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.5 5.6 9 3l1.5 2.6L13 7l-2.5 1.4L9 11 7.5 8.4 5 7l2.5-1.4zM18 9l1 1.8L21 12l-2 1.2L18 15l-1-1.8L15 12l2-1.2L18 9zM10.5 12.9 3 20.4 4.6 22l7.5-7.5-1.6-1.6z"/></svg></Badge>
+            <h1 className={headingCls}>Sign in without a password</h1>
+            <p className="mb-[22px] text-[.92rem] leading-[1.55] text-mg-muted">Enter your email and we’ll send you a one-time magic link. No password to remember, nothing to reset.</p>
+            <form action="#" method="post" onSubmit={handleSubmit}>
+              <label className="mb-2 block text-[.85rem] font-semibold" htmlFor={emailId}>Email address</label>
+              <input ref={emailInput} className="block w-full rounded-xl border border-mg-line bg-white px-[15px] py-[13px] text-center text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-mg-muted focus:border-[#0284c7] focus:shadow-[0_0_0_3px_rgba(14,165,233,.25)] focus:outline-none motion-reduce:transition-none"
+                type="email" id={emailId} name="email" placeholder="you@example.com" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} />
+              <button className="mt-3.5 w-full cursor-pointer rounded-xl bg-mg-accent p-[13px] text-[.95rem] font-bold text-white transition-colors duration-150 hover:bg-mg-accent-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mg-accent motion-reduce:transition-none" type="submit">Email me a magic link</button>
+            </form>
+            <p className="mt-5 text-[.8rem] text-mg-muted">Prefer a password? <a className={linkCls} href={classicHref}>Use classic login</a></p>
+          </div>
+        ) : (
+          <div>
+            <Badge className="bg-[#10b981] shadow-[0_10px_22px_-8px_rgba(16,185,129,.55)]"><svg className="size-7 fill-white" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></Badge>
+            <h1 ref={sentHeading} className={headingCls} tabIndex={-1}>Check your inbox</h1>
+            <p className="text-[.92rem] leading-[1.6] text-mg-muted">We sent a sign-in link to <strong className="wrap-anywhere text-mg-ink">{email}</strong>. It expires in {expiresIn}.</p>
+            <p className="mt-[18px] text-[.85rem] text-mg-muted">Nothing arrived? <button className={linkCls} type="button" onClick={() => setSent(false)}>Try again</button></p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+// /snippet:jsx
+import { createRoot } from 'react-dom/client';
+createRoot(document.getElementById('root')).render(<MagicLinkLogin />);
+</script>
+</body></html>

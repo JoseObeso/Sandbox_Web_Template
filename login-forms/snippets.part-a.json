@@ -1,0 +1,193 @@
+{
+  "pack": "login-forms",
+  "component": "login form",
+  "sets": [
+    {
+      "dir": "01-split",
+      "slug": "split-screen-login-form",
+      "name": "Split-Screen Login Form",
+      "title": "Split-Screen Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A full-page sign-in screen in two halves. On the left, an indigo-to-violet gradient panel carries the product name, a headline, a short pitch and a customer quote. On the right, a plain form asks for an email address and password, with a Remember me checkbox, a Forgot password link, an indigo Sign in button and a link to create an account. Below 880 pixels the brand panel is hidden and the form takes the whole screen, so phones get a short, focused page. Use it for SaaS and workspace products where the login page is also the first thing a returning customer sees and a little marketing space is welcome. Every field has a visible label above it, the email field uses autocomplete=\"username\" and the password field autocomplete=\"current-password\", so browsers and password managers fill them correctly. The form is front end only: the demo cancels submission, and you point the action at your own sign-in endpoint. The Bootstrap version uses .form-control, .form-check and a recoloured .btn; the Tailwind version uses a min-[880px]:flex breakpoint for the panel.",
+      "features": [
+        "Gradient brand panel with headline and quote, hidden below 880px",
+        "Visible labels, autocomplete=\"username\" and \"current-password\"",
+        "Remember me checkbox and Forgot password link on one row",
+        "Input borders darkened to 3:1 against white",
+        "Plain CSS, Bootstrap 5 and Tailwind CSS 4 versions of the same design"
+      ],
+      "accessibility": "Each input has a visible label tied to it with for and id, and the checkbox sits inside its label. Inputs show a coloured border and ring on focus; links, the checkbox and the button show a 2px indigo outline on keyboard focus. Transitions are removed under prefers-reduced-motion.",
+      "customise": "Change --sp-brand, --sp-brand2 and --sp-line on .sp in plain CSS or Bootstrap. In Tailwind edit the --color-sp-* theme colours; the gradient is bg-linear-135 from-sp-brand to-sp-brand2.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "02-card",
+      "slug": "floating-label-login-card",
+      "name": "Floating Label Login Card",
+      "title": "Floating Label Login Card in CSS, Bootstrap & Tailwind",
+      "summary": "A small white card centred on a light grey page: a dark monogram tile, a Sign in heading, an email field and a password field with floating labels, a black Continue button, and links to reset the password or sign up. The labels start inside the fields and move up into a small uppercase caption when the field is focused or filled. In plain CSS and Tailwind that is done with :placeholder-shown and a sibling selector, so it needs no JavaScript; the Bootstrap version uses the stock .form-floating component with the floated label restyled to match. The password field has a Show button that reveals what you typed. It is a real button with the name Show password and aria-pressed, so screen readers hear a toggle and its state; a pale background marks it when it is on. A few lines of script handle the toggle. Use this card when the sign-in page should be quiet and compact, for internal tools, dashboards or any product that does not need a marketing panel. The email and password fields carry autocomplete=\"username\" and \"current-password\" so password managers work.",
+      "features": [
+        "Floating labels with no JavaScript, built on :placeholder-shown",
+        "Show password toggle with aria-pressed and a constant accessible name",
+        "Bootstrap version uses the native .form-floating component",
+        "Label and border colours adjusted to meet WCAG AA contrast",
+        "Password managers supported through autocomplete attributes"
+      ],
+      "accessibility": "Every input keeps a real label element, which stays visible as a caption once the field has content. The Show password button is a type=\"button\" toggle with aria-pressed and aria-controls. Fields show a dark border and ring on focus, and links and buttons show a 2px outline on keyboard focus. Label and focus transitions switch off under prefers-reduced-motion.",
+      "customise": "Change --cd-ink, --cd-muted and --cd-line on .cd for colour. In Bootstrap the same variables sit on .cd beside --bs-border-color; in Tailwind edit the --color-cd-* theme colours and the peer-focus: label utilities.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "03-glass",
+      "slug": "glassmorphism-login-form",
+      "name": "Glassmorphism Login Form",
+      "title": "Glassmorphism Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A dark sign-in screen with a frosted glass card floating over three large blurred colour blobs in violet, sky blue and pink. The blobs drift slowly on 14 to 21 second loops, and the card blurs whatever is behind it with backdrop-filter, so the colours move softly through the glass. The card holds a centred heading, a short welcome line, email and password fields with visible labels, a pale gradient Enter dashboard button and a link to create an account. Use it for apps with a dark interface, creative tools or a product launch where the login screen should feel atmospheric. The field borders were lightened from the original so they reach 3:1 against the dark card, and placeholder text was brightened to meet 4.5:1. The drift animation and the button lift on hover stop completely when the visitor prefers reduced motion. The Bootstrap version turns .card translucent through its --bs-card-* variables and restyles .form-control for a dark surface; the Tailwind version defines the drift keyframes in @theme and applies them with motion-safe:.",
+      "features": [
+        "Frosted card using backdrop-filter blur over animated colour blobs",
+        "Blob drift and hover lift disabled under prefers-reduced-motion",
+        "Dark-surface fields with 3:1 borders and 4.5:1 placeholder text",
+        "Visible labels and autocomplete attributes on both fields",
+        "Bootstrap .card made translucent through CSS variables"
+      ],
+      "accessibility": "Both fields have visible labels, the decorative blobs are aria-hidden, and text on the card meets WCAG AA contrast. Inputs brighten their border and gain a ring on focus; the button and link show a 2px white outline on keyboard focus. All animation and transitions stop under prefers-reduced-motion.",
+      "customise": "Change the blob colours on .gl-b1 to .gl-b3 and --gl-line for the field borders. In Tailwind edit the bg-[#...] colours on the three blob divs and the --animate-gl-drift timing in @theme.",
+      "browser_support": "backdrop-filter: Chrome 76, Safari 9 (prefixed, included), Firefox 103. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "04-social",
+      "slug": "social-login-form",
+      "name": "Social Login Form",
+      "title": "Social Login Form with Google, GitHub & Apple Buttons",
+      "summary": "A sign-in card that puts third-party accounts first. Three full-width outline buttons read Continue with Google, Continue with GitHub and Continue with Apple, each with the provider's logo drawn as inline SVG. Below an OR divider, a single email field and a dark Continue with email button offer the fallback, and a line of small print links to the terms and privacy policy. Use it when most of your users already have one of these accounts and a password field would only slow them down; the email route can lead to a magic link or a password step. The provider buttons are type=\"button\" placeholders, so wire each one to your OAuth start URL. Logos are aria-hidden, so each button is announced by its text alone. The original hid the email label; it is now visible above the field, and the divider and small print were darkened to meet 4.5:1. The Bootstrap version builds the provider buttons from .btn with custom --bs-btn-* colours and uses .form-control for the email field.",
+      "features": [
+        "Google, GitHub and Apple buttons with inline SVG logos",
+        "Single email field as a fallback below an OR divider",
+        "Visible email label with autocomplete=\"username\"",
+        "Divider and terms text darkened to meet WCAG AA",
+        "No icon font or image requests"
+      ],
+      "accessibility": "Provider buttons are named by their visible text and their logos are hidden from assistive technology. The email field has a visible label. Every button and link shows a 2px dark outline on keyboard focus and the input gets a dark border and ring. Transitions switch off under prefers-reduced-motion.",
+      "customise": "Change --so-ink, --so-muted and --so-line on .so. In Bootstrap the provider style lives in .btn-provider as --bs-btn-* variables; in Tailwind edit the --color-so-* theme colours and the border-[#dcdfe8] on the provider buttons.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "05-border",
+      "slug": "animated-gradient-border-login",
+      "name": "Animated Gradient Border Login",
+      "title": "Animated Gradient Border Login in CSS, Bootstrap & Tailwind",
+      "summary": "A warm cream sign-in card wrapped in a 2 pixel border that cycles through orange, pink and violet. The border is a padded wrapper whose gradient background is three times its size and slides back and forth over seven seconds, so the colours travel around the card without any extra elements or masks. Inside sit a pink Members area badge, a heading, a short line of copy, email and password fields, an orange-to-pink Log in button, and links to reset the password or create an account. Use it for membership sites, communities and creator products that want a little colour and movement on an otherwise simple form. The animation stops under prefers-reduced-motion, leaving a static gradient border. To keep white button text readable, the gradient now starts at a deeper orange (#c2410c) instead of #f97316; the badge text, muted copy and field borders were darkened to meet WCAG AA. The Bootstrap version uses .card, .badge, .form-control and a gradient .btn; the Tailwind version defines the slide keyframes in @theme.",
+      "features": [
+        "Gradient border that animates with background-position only",
+        "Static border under prefers-reduced-motion",
+        "Button gradient deepened so white text meets 4.5:1",
+        "Members badge, visible labels and autocomplete attributes",
+        "Bootstrap .card and .badge restyled through CSS variables"
+      ],
+      "accessibility": "Both fields have visible labels and autocomplete attributes, and all text meets WCAG AA contrast. Inputs show a pink border and ring on focus, while the button and links show a 2px pink outline on keyboard focus. The border animation, transitions and hover lift stop under prefers-reduced-motion.",
+      "customise": "Edit the colours in the .gb-frame gradient and the 7s duration for speed; --gb-pink and --gb-line set the accent and field borders. In Tailwind change the arbitrary linear-gradient on the frame and the --animate-gb-slide value in @theme.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "06-magic",
+      "slug": "magic-link-login-form",
+      "name": "Magic Link Login Form",
+      "title": "Magic Link Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A passwordless sign-in card in two steps. The first step shows a wand icon, a heading, a line explaining that a one-time link will be emailed, a centred email field and an Email me a magic link button, plus a link back to classic login. When the address passes the browser's own email check, a small script hides that step and shows the second: a green envelope icon, a Check your inbox heading, the address the link went to, and a Try again button that returns to the form. Focus moves to the new heading so screen reader users hear the change, and Try again puts focus back in the email field. Nothing is sent: the script marks where to post the address to your auth endpoint. Use it for newsletters, communities and low-friction apps where users forget passwords. Compared with the original, the email label is now visible, Try again is a real button instead of a link without a destination, and the sky-blue button and links were deepened to #0369a1 so white and blue text meet 4.5:1. The Bootstrap version uses .card, .form-control, .btn and .btn-link.",
+      "features": [
+        "Two steps swapped with the hidden attribute and about twenty lines of script",
+        "Focus moves to the Check your inbox heading and back to the field",
+        "Uses the browser's built-in email validation",
+        "Try again is a real button, not an empty link",
+        "Accent deepened to #0369a1 to meet WCAG AA"
+      ],
+      "accessibility": "The email field has a visible label and autocomplete=\"username\". After sending, focus moves to the new heading; Try again returns focus to the email field. Buttons and links show a 2px blue outline on keyboard focus and transitions switch off under prefers-reduced-motion.",
+      "customise": "Change --mg-accent, --mg-accent-dark and --mg-sky on .mg; --mg-sky is only the icon tile. In Tailwind edit the --color-mg-* theme colours.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "07-brutal",
+      "slug": "neobrutalist-login-form",
+      "name": "Neobrutalist Login Form",
+      "title": "Neobrutalist Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A loud, flat sign-in card on a yellow dotted background: 3 pixel black borders, hard offset shadows with no blur, a violet Members only tag, a heavy Log in. heading and uppercase field labels. When an input is focused it lifts up and to the left and gains its own black shadow; the green Let me in button sinks towards its shadow on hover and presses flat when clicked. The links underneath use thick violet underlines that turn green on hover. Use it for indie products, portfolios, zines and developer tools that want personality rather than polish. All of the motion is done with transform and box-shadow transitions of 120 milliseconds, and it is switched off under prefers-reduced-motion so fields and buttons stay still. The arrow in the button is hidden from screen readers so it is announced simply as Let me in. The Bootstrap version gives .card, .badge, .form-control and .btn the same borders and shadows through Bootstrap variables; the Tailwind version uses border-3 and shadow-[...] utilities with a theme colour for the ink.",
+      "features": [
+        "3px black borders and hard offset shadows throughout",
+        "Fields lift on focus; the button presses into its shadow",
+        "All motion removed under prefers-reduced-motion",
+        "Thick coloured underlines on the footer links",
+        "High-contrast palette that passes WCAG AA as designed"
+      ],
+      "accessibility": "Labels are visible and uppercase through CSS, so the underlying text stays normal case for screen readers. Focused fields are marked by their shadow and shift; links and the button show a 3px black outline on keyboard focus. The decorative arrow is aria-hidden, and transforms and transitions are off under prefers-reduced-motion.",
+      "customise": "Change --nb-yellow, --nb-violet and --nb-green on .nb, and the 8px or 5px shadow offsets. In Tailwind edit the --color-nb-* theme colours and the shadow-[...] utilities.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "08-saas",
+      "slug": "saas-login-page-with-sso",
+      "name": "SaaS Login Page with SSO",
+      "title": "SaaS Login Page with SSO in CSS, Bootstrap & Tailwind",
+      "summary": "A two-column sign-in page for business software. The left column holds the logo, a heading, a work email field, a password field with an eye icon that shows or hides the password, a Keep me signed in checkbox, a Forgot password link, a dark Sign in button and a secondary Sign in with SSO button, followed by a free trial link. From 960 pixels wide a dark navy panel appears on the right with three headline stats, a customer quote and the person's name and role. Use it for B2B products where teams sign in with single sign-on and the login page doubles as social proof. The eye button is a real toggle named Show password with aria-pressed, and its icon switches to a crossed-out eye while the password is visible. The icon colour was darkened so it reaches 3:1 against white, and field borders were darkened to match. The Bootstrap version uses .form-control, .form-check and two .btn styles; the Tailwind version swaps the eye icons with group-aria-pressed: utilities.",
+      "features": [
+        "Show password icon button with aria-pressed and swapping icon",
+        "Sign in with SSO as a secondary action",
+        "Stats and testimonial panel shown from 960px",
+        "Keep me signed in checkbox and Forgot password link",
+        "Icon and border colours adjusted to 3:1"
+      ],
+      "accessibility": "Every field has a visible label and the checkbox sits inside its label. The password toggle has a fixed accessible name, Show password, and reports its state with aria-pressed. Inputs show a slate border and ring on focus; buttons, links and the checkbox show a 2px outline on keyboard focus. Transitions switch off under prefers-reduced-motion.",
+      "customise": "Change --ss-ink, --ss-slate, --ss-muted and --ss-line on .ss. In Tailwind edit the --color-ss-* theme colours, and the min-[960px]:flex breakpoint on the aside.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "09-tabs",
+      "slug": "login-and-signup-tabs",
+      "name": "Login and Sign-Up Tabs",
+      "title": "Login and Sign-Up Tabs in CSS, Bootstrap & Tailwind",
+      "summary": "One white card on a deep teal gradient that holds both forms. A pill-shaped tab bar at the top switches between Log in and Create account. The login panel asks for email and password and links to password recovery; the sign-up panel asks for full name, email and a new password, shows an At least 8 characters hint under the password field, and links to the terms. The tabs follow the ARIA tabs pattern: a tablist with two tab buttons, each controlling a tabpanel, with aria-selected on the active tab. A short script handles clicks and the Left, Right, Home and End keys, and only the selected tab is in the Tab order, so keyboard users move straight from the tabs into the form. Use it for products where new and returning users arrive at the same page. The sign-up password uses autocomplete=\"new-password\" and minlength=\"8\", and its hint is linked with aria-describedby so it is read with the field. The Bootstrap version builds the tab bar from .nav-pills and uses .form-text for the hint; the Tailwind version styles the active tab with aria-selected: utilities.",
+      "features": [
+        "ARIA tablist with arrow key, Home and End support",
+        "Separate login and sign-up forms in one card",
+        "Password rule shown as visible hint linked with aria-describedby",
+        "autocomplete values for name, username, email and new-password",
+        "Bootstrap version built on .nav-pills"
+      ],
+      "accessibility": "Tabs expose role, selected state and the panel they control, and each panel is labelled by its tab. Arrow keys move between tabs and switch panels. Every field has a visible label, and the new password hint is announced with the field. Tabs, buttons and links show a 2px teal outline on keyboard focus; transitions switch off under prefers-reduced-motion.",
+      "customise": "Change --tb-teal, --tb-teal-dark and --tb-line on .tb. In Bootstrap the tab colours are --bs-nav-pills-* variables on .nav-pills; in Tailwind edit the --color-tb-* theme colours.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "10-terminal",
+      "slug": "terminal-style-login-form",
+      "name": "Terminal-Style Login Form",
+      "title": "Terminal-Style Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A sign-in window styled like a command-line session. A title bar with red, amber and green dots reads auth@prod: ~/login; below it, green monospace lines show the last login address and a note that the session needs authentication, then a > identify yourself prompt with a blinking block cursor. The form asks for a username and password under $-prefixed labels and submits with an outlined [ authenticate ] button that fills green on hover. A faint scanline pattern runs across the page. Use it for developer tools, internal consoles, CTF sites or anything aimed at people who live in a terminal. The decorative characters (the prompt arrow, the dollar signs, the comment slashes and the cursor) are wrapped in aria-hidden spans, so screen readers read plain labels such as username. The dim grey text and placeholders were brightened to meet 4.5:1 on the dark background, field borders were raised to 3:1, and the cursor stops blinking under prefers-reduced-motion. The Bootstrap version uses .card with a .card-header title bar, .form-control and an outline .btn.",
+      "features": [
+        "Window chrome, monospace prompts and a blinking block cursor",
+        "Decorative prompt characters hidden from screen readers",
+        "Username field with autocomplete, autocapitalize and spellcheck off",
+        "Dim text brightened to WCAG AA on the dark background",
+        "Cursor blink disabled under prefers-reduced-motion"
+      ],
+      "accessibility": "Labels are visible and read as plain words because the $ and > glyphs are aria-hidden, as is the window title bar. Inputs show a green border and ring on focus, and the button and link show a 2px green outline on keyboard focus. The blink animation and transitions stop under prefers-reduced-motion.",
+      "customise": "Change --tm-green, --tm-bright, --tm-dim and --tm-line on .tm, or swap the font stack for your own monospace font. In Tailwind edit the --color-tm-* theme colours.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "11-otp",
+      "slug": "one-time-code-input",
+      "name": "One-Time Code Input",
+      "title": "One-Time Code Input in CSS, Bootstrap & Tailwind",
+      "summary": "A verification screen for a 6-digit code sent by email or SMS. Six single-digit boxes sit in a fieldset labelled Verification code, followed by one message line, a Verify button, a Resend link with a 30 second countdown and a link to use a different email. A small script makes the boxes behave like one field: typing moves to the next box, Backspace on an empty box goes back, the arrow keys move between boxes, and pasting the code into any box spreads it across all six. The first box has autocomplete=\"one-time-code\" and no length limit, so a code offered by the phone keyboard or browser is spread across the boxes too. Pressing Verify with empty boxes turns the message line into an error, marks the empty boxes aria-invalid and moves focus to the first gap; the message line is a polite live region linked to every box with aria-describedby. Resend clears the boxes and restarts the countdown. The boxes shrink to fit narrow phones. Nothing is verified: the script marks where to send the code to your server.",
+      "features": [
+        "Auto-advance, Backspace to previous box and arrow key navigation",
+        "Paste or one-time-code autofill spreads the code over all boxes",
+        "Error message linked with aria-describedby and aria-invalid",
+        "Resend button with a 30 second countdown that restarts",
+        "Boxes shrink to fit 320px screens without overflow"
+      ],
+      "accessibility": "The boxes are grouped in a fieldset with a visible legend, each box is named Digit 1 of 6 and so on, and they use inputmode=\"numeric\". The message line is a polite live region described by every box, so errors are announced and read with the field. Boxes show an indigo border and ring on focus; buttons and links show a 2px outline. Transitions switch off under prefers-reduced-motion.",
+      "customise": "Change --ot-brand, --ot-line and --ot-bad on .ot, and the number of boxes in the markup; the script counts them. In Tailwind edit the --color-ot-* theme colours and the h-[60px] max-w-[52px] box size.",
+      "browser_support": "All evergreen browsers. autocomplete=\"one-time-code\" suggestions appear in Safari on iOS and macOS and in Chrome on Android. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    }
+  ]
+}

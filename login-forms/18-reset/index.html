@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Reset Request — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Password reset request and its confirmation. On submit the script swaps the form for the "Check your inbox"
+   panel and moves focus to its heading, so screen readers announce the new state. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;--lf-bg:#f5f6fa;--lf-ok:#15803d;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-ink);line-height:normal;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf [hidden]{display:none!important}
+.lf a{color:var(--lf-brand);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-box{width:100%;max-width:410px;background:#fff;border:1px solid var(--lf-line);border-radius:16px;
+  padding:38px 34px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.lf-back{display:inline-flex;align-items:center;gap:6px;font-size:.87rem;margin-bottom:22px}
+.lf-back svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2}
+.lf h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:7px}
+.lf h1:focus{outline:none}
+.lf-sub{color:var(--lf-muted);font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf-field{width:100%;padding:12px 14px;border:1px solid var(--lf-edge);border-radius:10px;font-size:.95rem;
+  background:#fff;color:inherit;margin-bottom:20px;transition:border-color .15s,box-shadow .15s}
+.lf-field::placeholder{color:var(--lf-muted)}
+.lf-field:focus{outline:none;border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-brand);color:#fff;
+  font-size:.97rem;font-weight:700;cursor:pointer;transition:background .15s}
+.lf-btn:hover{background:var(--lf-brand-dark)}
+.lf-sent{text-align:center}
+.lf-sent .lf-sub{margin-bottom:0}
+.lf-tick{width:56px;height:56px;border-radius:50%;background:#dcfce7;display:grid;place-items:center;margin:0 auto 20px}
+.lf-tick svg{width:28px;height:28px;stroke:var(--lf-ok);fill:none;stroke-width:2.4}
+.lf-note{background:var(--lf-bg);border:1px solid var(--lf-line);border-radius:11px;padding:14px 16px;
+  font-size:.86rem;color:var(--lf-muted);line-height:1.65;margin-top:20px;text-align:left}
+@media (prefers-reduced-motion:reduce){.lf-field,.lf-btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <a class="lf-back" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to sign in</a>
+  <form id="lf-reset">
+    <h1>Reset your password</h1>
+    <p class="lf-sub">Enter the email on your account and we'll send a link to set a new password.</p>
+    <label class="lf-label" for="rmail">Email address</label>
+    <input class="lf-field" id="rmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+    <button class="lf-btn" type="submit">Send reset link</button>
+  </form>
+  <div class="lf-sent" id="lf-sent" hidden>
+    <div class="lf-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+    <h1 tabindex="-1">Check your inbox</h1>
+    <p class="lf-sub">If an account exists for that address, a reset link is on its way. The link works
+      once and expires in 60 minutes.</p>
+    <p class="lf-note">Nothing arrived? Check spam, then try again in a few minutes. We deliberately
+      don't say whether an address is registered — that would let anyone test which emails have
+      accounts here.</p>
+  </div>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Demo only: swap the form for the confirmation. In production, show the confirmation after your
+// server accepts the request, and send the same answer whether or not the address has an account.
+(() => {
+  const form = document.getElementById('lf-reset'), sent = document.getElementById('lf-sent');
+  if (!form || !sent) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    form.hidden = true; sent.hidden = false;
+    sent.querySelector('h1').focus();
+  });
+})();
+</script>
+</body>
+</html>

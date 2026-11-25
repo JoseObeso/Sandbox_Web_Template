@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient Border Login — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Gradient border login: a 2px padded frame whose oversized gradient background slides around the card. */
+.gb{--gb-ink:#241f1c;--gb-muted:#766b64;--gb-pink:#db2777;--gb-line:#9a8f87;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#fdf6f0;color:var(--gb-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.gb h1,.gb p{margin:0}
+.gb-frame{width:100%;max-width:390px;border-radius:20px;padding:2px;background:linear-gradient(120deg,#f97316,#db2777,#8b5cf6,#f97316);
+  background-size:300% 300%;animation:gb-slide 7s linear infinite}
+@keyframes gb-slide{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.gb-inner{background:#fffdfb;border-radius:18px;padding:42px 36px}
+.gb-badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#be185d;background:#fdeef5;
+  border-radius:999px;padding:5px 12px;margin-bottom:16px}
+.gb h1{font-size:1.55rem;letter-spacing:-.02em;margin-bottom:6px}
+.gb-sub{color:var(--gb-muted);font-size:.92rem;margin-bottom:28px!important}
+.gb-label{display:block;font-size:.83rem;font-weight:700;margin-bottom:6px}
+.gb-input{display:block;width:100%;padding:12px 14px;margin-bottom:18px;border:1.5px solid var(--gb-line);border-radius:12px;background:#fff;
+  font:inherit;font-size:.95rem;color:inherit;transition:border-color .15s,box-shadow .15s}
+.gb-input::placeholder{color:var(--gb-muted)}
+.gb-input:focus{outline:none;border-color:var(--gb-pink);box-shadow:0 0 0 3px rgba(219,39,119,.2)}
+.gb-btn{width:100%;padding:13px;border:0;border-radius:12px;font:inherit;font-size:.95rem;font-weight:800;color:#fff;cursor:pointer;
+  background:linear-gradient(90deg,#c2410c,#db2777);transition:filter .15s,transform .12s}
+.gb-btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.gb-links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px;font-size:.85rem}
+.gb-links a{color:var(--gb-pink);font-weight:700;text-decoration:none;border-radius:3px}
+.gb-links a:hover{text-decoration:underline}
+.gb a:focus-visible,.gb-btn:focus-visible{outline:2px solid var(--gb-pink);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.gb-frame{animation:none}.gb-input,.gb-btn{transition:none}.gb-btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="gb">
+  <div class="gb-frame">
+    <form class="gb-inner" action="#" method="post" onsubmit="event.preventDefault()">
+      <span class="gb-badge">Members area</span>
+      <h1>Good to see you again</h1>
+      <p class="gb-sub">Log in to pick up right where you left off.</p>
+      <label class="gb-label" for="gb-email">Email</label>
+      <input class="gb-input" type="email" id="gb-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+      <label class="gb-label" for="gb-password">Password</label>
+      <input class="gb-input" type="password" id="gb-password" name="password" autocomplete="current-password" required>
+      <button class="gb-btn" type="submit">Log in</button>
+      <div class="gb-links">
+        <a href="#">Forgot password?</a>
+        <a href="#">Create account</a>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

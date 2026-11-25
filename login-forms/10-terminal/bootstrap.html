@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .card with a .card-header window bar, monospace .form-control fields and an outline .btn in phosphor green. */
+.tm{--tm-green:#4ade80;--tm-bright:#bbf7d0;--tm-soft:#86efac;--tm-dim:#3f9b57;--tm-faint:#7a8d7a;
+  --bs-font-monospace:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;--bs-border-color:#4f7552;
+  min-height:100vh;padding:24px;background:#0a0e0a;background-image:linear-gradient(rgba(74,222,128,.04) 1px,transparent 1px);background-size:100% 3px;
+  color:var(--tm-green);font-family:var(--bs-font-monospace);line-height:normal}
+.tm .card{--bs-card-bg:#0d130d;--bs-card-border-color:#1d2b1d;--bs-card-border-radius:12px;--bs-card-cap-bg:#111a11;--bs-card-cap-padding-y:11px;
+  --bs-card-cap-padding-x:14px;--bs-card-spacer-y:26px;--bs-card-spacer-x:26px;--bs-card-color:var(--tm-green);max-width:460px;overflow:hidden;
+  box-shadow:0 0 60px rgba(74,222,128,.12)}
+.tm .card-body{padding-bottom:32px}
+.tm-dot{width:11px;height:11px}
+.tm-r{background:#f87171}.tm-y{background:#fbbf24}.tm-g{background:#34d399}
+.tm-title{margin-left:8px;font-size:.75rem;color:var(--tm-faint);letter-spacing:.04em}
+.tm-line{font-size:.82rem;color:var(--tm-dim);margin-bottom:6px}
+.tm-line b{color:var(--tm-soft);font-weight:400}
+.tm h1{font-size:1rem;color:var(--tm-bright);font-weight:700;margin:14px 0 22px;line-height:normal}
+.tm-cursor{margin-left:2px;animation:tm-blink 1s steps(1) infinite}
+@keyframes tm-blink{50%{opacity:0}}
+.tm .form-label{font-size:.78rem;color:var(--tm-dim);margin-bottom:6px}
+.tm .form-label span{color:var(--tm-soft)}
+.tm .form-control{padding:11px 13px;margin-bottom:18px;background:#0a0f0a;border-radius:8px;color:var(--tm-bright);font-family:inherit;font-size:.9rem;line-height:1.2;
+  caret-color:var(--tm-green)}
+.tm .form-control::placeholder{color:#6c806d}
+.tm .form-control:focus{background:#0a0f0a;color:var(--tm-bright);border-color:var(--tm-green);box-shadow:0 0 0 3px rgba(74,222,128,.2)}
+.tm .btn-tm{--bs-btn-color:var(--tm-green);--bs-btn-border-color:var(--tm-green);--bs-btn-hover-color:#0a0e0a;--bs-btn-hover-bg:var(--tm-green);
+  --bs-btn-hover-border-color:var(--tm-green);--bs-btn-active-color:#0a0e0a;--bs-btn-active-bg:var(--tm-green);--bs-btn-active-border-color:var(--tm-green);
+  --bs-btn-padding-y:12px;--bs-btn-font-family:inherit;--bs-btn-font-size:.9rem;--bs-btn-font-weight:700;--bs-btn-border-radius:8px;--bs-btn-line-height:1.2;
+  --bs-btn-focus-box-shadow:none;letter-spacing:.05em}
+.tm-hint{margin-top:18px;font-size:.75rem;color:var(--tm-faint)}
+.tm-hint a{color:var(--tm-soft);text-decoration:none;border-bottom:1px dashed var(--tm-dim)}
+.tm a:focus-visible,.tm .btn-tm:focus-visible{outline:2px solid var(--tm-green);outline-offset:3px;border-radius:3px}
+.tm .btn-tm:focus-visible{border-radius:8px}
+@media (prefers-reduced-motion:reduce){.tm-cursor{animation:none}.tm .form-control,.tm .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="tm d-flex align-items-center justify-content-center">
+  <div class="card w-100">
+    <div class="card-header d-flex align-items-center gap-2" aria-hidden="true"><span class="tm-dot tm-r rounded-circle"></span><span class="tm-dot tm-y rounded-circle"></span><span class="tm-dot tm-g rounded-circle"></span><span class="tm-title">auth@prod: ~/login</span></div>
+    <div class="card-body">
+      <p class="tm-line">Last login: from <b>203.0.113.7</b></p>
+      <p class="tm-line">Session requires authentication.</p>
+      <h1><span aria-hidden="true">&gt; </span>identify yourself<span class="tm-cursor" aria-hidden="true">▌</span></h1>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="form-label d-block" for="tm-user"><span aria-hidden="true">$ </span>username</label>
+        <input class="form-control" type="text" id="tm-user" name="username" placeholder="ada" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        <label class="form-label d-block" for="tm-password"><span aria-hidden="true">$ </span>password</label>
+        <input class="form-control" type="password" id="tm-password" name="password" autocomplete="current-password" required>
+        <button class="btn btn-tm w-100" type="submit">[ authenticate ]</button>
+      </form>
+      <p class="tm-hint mb-0"><span aria-hidden="true">// </span>lost credentials? <a href="#">run recovery</a></p>
+    </div>
+  </div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

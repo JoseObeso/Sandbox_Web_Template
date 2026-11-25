@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal Login Over the App — uiCookies</title>
+<style data-demo>
+/* Demo only: a stand-in application behind the dialog. */
+body{margin:0;min-height:100vh;background:#eef0f6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.app{position:fixed;inset:0;pointer-events:none;user-select:none;overflow:hidden}
+.app .top{height:56px;background:#fff;border-bottom:1px solid #e2e5ee;display:flex;align-items:center;gap:14px;padding:0 22px}
+.app .dot{width:26px;height:26px;border-radius:8px;background:#4f46e5}
+.app .pill{height:9px;border-radius:5px;background:#dfe3ee}
+.app .side{position:absolute;top:56px;left:0;bottom:0;width:210px;background:#fff;border-right:1px solid #e2e5ee;
+  padding:20px 16px;display:flex;flex-direction:column;gap:15px;box-sizing:border-box}
+.app .body{position:absolute;top:56px;left:210px;right:0;bottom:0;padding:26px;display:grid;
+  grid-template-columns:repeat(3,1fr);gap:18px;align-content:start;background:#f4f6fb}
+.app .card{background:#fff;border:1px solid #e6e9f1;border-radius:14px;height:132px;padding:18px;
+  display:flex;flex-direction:column;gap:11px;box-sizing:border-box}
+.app .bar{height:44px;border-radius:8px;background:linear-gradient(90deg,#e9ecf6,#f4f6fb);margin-top:auto}
+@media(max-width:760px){.app .side{display:none}.app .body{left:0;grid-template-columns:1fr 1fr}}
+</style>
+<style data-snippet>
+/* Session-expired sign-in in a native <dialog>. showModal() makes the page behind inert, traps focus and
+   paints ::backdrop, which dims and blurs your app. closedby="none" and the cancel handler keep Escape
+   from dismissing it: the only ways out are signing in or switching account. */
+.lf-dialog{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-edge:#868c99;
+  box-sizing:border-box;width:calc(100% - 40px);max-width:394px;border:0;border-radius:18px;padding:34px 32px;
+  background:#fff;color:var(--lf-ink);line-height:normal;box-shadow:0 26px 70px rgba(12,18,38,.34);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf-dialog::backdrop{background:rgba(17,22,38,.34);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.lf-dialog *,.lf-dialog *::before,.lf-dialog *::after{box-sizing:border-box}
+.lf-dialog :where(h1,p,form){margin:0}
+.lf-dialog :where(input,button){font:inherit}
+.lf-dialog :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-tag{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:#92400e;
+  background:#fffbeb;border:1px solid #fde68a;padding:5px 11px;border-radius:999px;margin-bottom:16px}
+.lf-dialog h1{font-size:1.32rem;letter-spacing:-.02em;margin-bottom:6px}
+.lf-sub{color:var(--lf-muted);font-size:.91rem;margin-bottom:24px;line-height:1.55}
+.lf-label{display:block;font-size:.84rem;font-weight:600;margin-bottom:6px}
+.lf-field{width:100%;padding:12px 14px;border:1px solid var(--lf-edge);border-radius:10px;font-size:.95rem;margin-bottom:18px;
+  background:#fff;color:inherit;transition:border-color .15s,box-shadow .15s}
+.lf-field::placeholder{color:var(--lf-muted)}
+.lf-field:focus{outline:none;border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-brand);color:#fff;
+  font-size:.96rem;font-weight:700;cursor:pointer;transition:background .15s}
+.lf-btn:hover{background:var(--lf-brand-dark)}
+.lf-ghost{width:100%;padding:11px;margin-top:10px;border:0;background:none;color:var(--lf-muted);
+  font-size:.89rem;font-weight:600;cursor:pointer;border-radius:10px;transition:background .15s}
+.lf-ghost:hover{background:#f4f5fa}
+@media (prefers-reduced-motion:reduce){.lf-field,.lf-btn,.lf-ghost{transition:none}}
+</style>
+</head>
+<body>
+<div class="app" aria-hidden="true">
+  <div class="top"><span class="dot"></span><span class="pill" style="width:110px"></span>
+    <span class="pill" style="width:64px"></span><span class="pill" style="width:78px"></span></div>
+  <div class="side"><span class="pill" style="width:100%"></span><span class="pill" style="width:76%"></span>
+    <span class="pill" style="width:88%"></span><span class="pill" style="width:60%"></span>
+    <span class="pill" style="width:82%"></span></div>
+  <div class="body">
+    <div class="card"><span class="pill" style="width:56%"></span><span class="pill" style="width:34%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:66%"></span><span class="pill" style="width:40%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:48%"></span><span class="pill" style="width:30%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:60%"></span><span class="pill" style="width:38%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:52%"></span><span class="pill" style="width:44%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:70%"></span><span class="pill" style="width:28%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:58%"></span><span class="pill" style="width:36%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:64%"></span><span class="pill" style="width:26%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:46%"></span><span class="pill" style="width:42%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:62%"></span><span class="pill" style="width:32%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:50%"></span><span class="pill" style="width:38%"></span><span class="bar"></span></div>
+    <div class="card"><span class="pill" style="width:68%"></span><span class="pill" style="width:30%"></span><span class="bar"></span></div>
+  </div>
+</div>
+<!-- snippet:html -->
+<dialog class="lf-dialog" id="lf-signin" aria-labelledby="lf-dtitle" aria-describedby="lf-dsub" closedby="none">
+  <p class="lf-tag">Session expired</p>
+  <h1 id="lf-dtitle">Sign in to continue</h1>
+  <p class="lf-sub" id="lf-dsub">Your work is saved. Sign in again to get back to the Q3 rollout board.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="lf-label" for="mmail">Email address</label>
+    <input class="lf-field" id="mmail" name="username" type="email" value="dana@northwind.co" autocomplete="username" readonly>
+    <label class="lf-label" for="mpw">Password</label>
+    <input class="lf-field" id="mpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required autofocus>
+    <button class="lf-btn" type="submit">Unlock</button>
+    <button class="lf-ghost" type="button">Sign in as someone else</button>
+  </form>
+</dialog>
+<!-- /snippet:html -->
+<script data-snippet>
+(() => {
+  const dlg = document.getElementById('lf-signin');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  dlg.addEventListener('cancel', e => e.preventDefault()); // Escape must not reveal the expired session
+  if (!dlg.open) dlg.showModal(); // call this when your app detects the expired session
+})();
+</script>
+</body>
+</html>

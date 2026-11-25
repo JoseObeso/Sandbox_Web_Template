@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Lock Screen (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Bootstrap dark colour mode (data-bs-theme="dark") with .form-control and .btn restyled through CSS variables.
+   A hidden username field carries the account so password managers fill the right password. */
+.lf{--lf-accent:#6366f1;--lf-accent-dark:#4f46e5;--lf-soft:#a5b4fc;--lf-dim:#98a1bb;
+  --bs-body-color:#e8eaf2;--bs-link-color-rgb:165,180,252;--bs-link-hover-color-rgb:165,180,252;
+  min-height:100vh;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;color:#e8eaf2;line-height:normal;
+  background:radial-gradient(1100px 640px at 22% 12%,#2c3550 0%,#171c2b 46%,#0e111a 100%)}
+.lf a{font-weight:600;text-decoration:none}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-soft);outline-offset:2px}
+.lf-box{max-width:360px}
+.lf-av{width:88px;height:88px;margin:0 auto 18px;display:grid;place-items:center;font-size:2rem;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#6366f1,#a855f7);box-shadow:0 0 0 5px rgba(255,255,255,.08)}
+.lf h1{font-size:1.35rem;font-weight:700;line-height:normal;letter-spacing:-.01em;margin-bottom:5px}
+.lf-mail{color:var(--lf-dim);font-size:.9rem;margin-bottom:8px}
+.lf-locked{gap:7px;font-size:.79rem;color:#c7cddd;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:5px 11px;margin-bottom:26px}
+.lf-locked svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+.lf .form-label{font-size:.82rem;font-weight:600;color:#c7cddd;margin-bottom:7px}
+.lf .form-control{padding:13px 15px;border-radius:12px;font-size:.95rem;line-height:normal;color:#fff;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.42);transition:border-color .15s,background-color .15s,box-shadow .15s}
+.lf .form-control::placeholder{color:#8b93ab}
+.lf .form-control:focus{outline:none;color:#fff;border-color:var(--lf-soft);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(165,180,252,.25)}
+.lf .btn-unlock{--bs-btn-padding-x:0;--bs-btn-border-radius:12px;--bs-btn-border-width:0;--bs-btn-bg:var(--lf-accent);--bs-btn-color:#fff;
+  --bs-btn-hover-bg:var(--lf-accent-dark);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--lf-accent-dark);--bs-btn-active-color:#fff;
+  --bs-btn-focus-box-shadow:none;width:50px;flex-shrink:0;display:grid;place-items:center;transition:background-color .15s}
+.lf .btn-unlock svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.2}
+.lf-links{margin-top:24px;font-size:.87rem;color:var(--lf-dim);line-height:2}
+@media (prefers-reduced-motion:reduce){.lf .form-control,.lf .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf d-grid" data-bs-theme="dark">
+<main class="lf-box w-100 text-center">
+  <div class="lf-av rounded-circle" aria-hidden="true">DK</div>
+  <h1>Dana Kowalski</h1>
+  <p class="lf-mail">dana@northwind.co</p>
+  <p class="lf-locked d-inline-flex align-items-center rounded-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Locked after 15 minutes idle</p>
+  <form class="text-start" onsubmit="event.preventDefault()">
+    <input type="email" name="username" autocomplete="username" value="dana@northwind.co" hidden>
+    <label class="form-label" for="unlock">Password</label>
+    <div class="d-flex gap-2">
+      <input class="form-control" id="unlock" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+      <button class="btn btn-unlock" type="submit" aria-label="Unlock">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </form>
+  <p class="lf-links mb-0"><a href="#">Use a passkey</a><br><a href="#">Sign in as someone else</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

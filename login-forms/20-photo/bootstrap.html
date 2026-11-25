@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-Bleed Background Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Bootstrap dark colour mode with a translucent .card, .form-control, .form-check and .btn restyled through CSS variables.
+   .lf::before is the backdrop (CSS gradients here: swap in background-image:url(photo.jpg) center/cover),
+   .lf::after is the scrim; keep it when you use a photo. */
+.lf{--bs-body-color:#fff;--bs-link-color-rgb:255,255,255;--bs-link-hover-color-rgb:255,255,255;
+  min-height:100vh;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  position:relative;isolation:isolate;color:#fff;background:#1b2540;line-height:normal}
+.lf::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(58% 44% at 18% 22%,rgba(251,191,36,.75),transparent 62%),
+    radial-gradient(52% 48% at 82% 30%,rgba(236,72,153,.62),transparent 60%),
+    radial-gradient(70% 60% at 50% 92%,rgba(56,189,248,.55),transparent 64%),
+    linear-gradient(155deg,#2a1b52,#0f2036 62%,#07131f)}
+.lf::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(6,12,22,.32),rgba(6,12,22,.62))}
+.lf :focus-visible{outline:2px solid #fff;outline-offset:2px}
+.lf a{font-weight:600;text-underline-offset:3px}
+.lf-wrap{max-width:400px}
+.lf-brand{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;margin-bottom:26px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.lf .card{--bs-card-bg:rgba(12,18,32,.62);--bs-card-color:#fff;--bs-card-border-color:rgba(255,255,255,.16);--bs-card-border-radius:20px;
+  --bs-card-spacer-y:34px;--bs-card-spacer-x:30px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 22px 60px rgba(3,8,18,.42)}
+.lf h1{font-size:1.4rem;font-weight:700;line-height:normal;letter-spacing:-.02em;margin-bottom:6px}
+.lf-sub{color:#c9d2e4;font-size:.9rem;margin-bottom:24px}
+.lf .form-label{font-size:.83rem;font-weight:600;margin-bottom:6px;color:#e3e9f5}
+.lf .form-control{padding:12px 14px;border-radius:11px;font-size:.95rem;line-height:normal;margin-bottom:16px;color:#fff;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.45);transition:border-color .15s,background-color .15s,box-shadow .15s}
+.lf .form-control::placeholder{color:#9fabc4}
+.lf .form-control:focus{outline:none;color:#fff;border-color:#fff;background:rgba(255,255,255,.16);box-shadow:0 0 0 3px rgba(255,255,255,.22)}
+.lf-row{gap:12px;margin-bottom:22px;font-size:.85rem;color:#c9d2e4}
+.lf .form-check{display:flex;align-items:center;gap:7px;padding:0;margin:0;min-height:0}
+.lf .form-check-input{float:none;margin:0;cursor:pointer;background-color:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6)}
+.lf .form-check-input:checked{background-color:#fff;border-color:#fff;
+  --bs-form-check-bg-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23121a2b' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e")}
+.lf .form-check-input:focus{box-shadow:none}
+.lf .form-check-label{font-weight:500;cursor:pointer}
+.lf .btn-light{--bs-btn-line-height:normal;--bs-btn-border-width:0;--bs-btn-padding-y:13px;--bs-btn-font-size:.96rem;--bs-btn-font-weight:700;--bs-btn-border-radius:11px;
+  --bs-btn-bg:#fff;--bs-btn-border-color:#fff;--bs-btn-color:#121a2b;--bs-btn-hover-bg:#fff;--bs-btn-hover-border-color:#fff;--bs-btn-hover-color:#121a2b;
+  --bs-btn-active-bg:#fff;--bs-btn-active-border-color:#fff;--bs-btn-active-color:#121a2b;--bs-btn-focus-box-shadow:none;transition:transform .12s}
+.lf .btn-light:hover{transform:translateY(-1px)}
+.lf-foot{margin-top:22px;font-size:.88rem;color:#c9d2e4}
+.lf-caption{margin-top:22px;font-size:.79rem;color:rgba(255,255,255,.78);text-shadow:0 1px 8px rgba(0,0,0,.5);line-height:1.6}
+@media (prefers-reduced-motion:reduce){.lf .form-control,.lf .btn{transition:none}.lf .btn-light:hover{transform:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf d-grid" data-bs-theme="dark">
+<div class="lf-wrap w-100 text-center">
+  <p class="lf-brand">Northwind</p>
+  <main class="card text-start">
+    <div class="card-body">
+      <h1>Welcome back</h1>
+      <p class="lf-sub">Sign in to pick up where you left off.</p>
+      <form onsubmit="event.preventDefault()">
+        <label class="form-label" for="bmail">Email address</label>
+        <input class="form-control" id="bmail" name="username" type="email" autocomplete="username" placeholder="you@company.com" required>
+        <label class="form-label" for="bpw">Password</label>
+        <input class="form-control" id="bpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+        <div class="lf-row d-flex justify-content-between align-items-center">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="remember" name="remember">
+            <label class="form-check-label" for="remember">Remember me</label>
+          </div>
+          <a href="#" aria-label="Forgot password?">Forgot?</a>
+        </div>
+        <button class="btn btn-light w-100" type="submit">Sign in</button>
+      </form>
+      <p class="lf-foot text-center mb-0">New to Northwind? <a href="#">Create an account</a></p>
+    </div>
+  </main>
+  <p class="lf-caption mb-0">The background is CSS gradients, so the file stays self-contained.
+    Swap in a background image and keep the dark scrim above it.</p>
+</div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

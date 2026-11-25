@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Split Login Form (React) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script type="importmap">{"imports":{"react":"https://esm.sh/react@19.1.0","react/jsx-runtime":"https://esm.sh/react@19.1.0/jsx-runtime","react-dom/client":"https://esm.sh/react-dom@19.1.0/client?deps=react@19.1.0"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>Babel.registerPreset('react-automatic', { presets: [[Babel.availablePresets.react, { runtime: 'automatic' }]] });</script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-sp-brand: #4f46e5;
+  --color-sp-brand-dark: #4338ca;
+  --color-sp-brand2: #7c3aed;
+  --color-sp-ink: #111827;
+  --color-sp-muted: #6b7280;
+  --color-sp-line: #8b93a1;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module" data-presets="react-automatic">
+// snippet:jsx
+// Split-screen login: brand panel on the left (from 880px), form on the right.
+// Usage: <SplitLogin brand="Northwind" onSubmit={({ email, password, remember }) => signIn(email, password)} />
+import { useState, useId } from 'react';
+
+const inputCls = 'mb-[18px] block w-full rounded-[10px] border border-sp-line bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-sp-muted focus:border-sp-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.25)] focus:outline-none motion-reduce:transition-none';
+const linkCls = 'rounded-[3px] font-semibold text-sp-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sp-brand';
+
+export default function SplitLogin({
+  brand = 'Northwind',
+  headline = 'Start your day with everything in one place.',
+  pitch = 'Projects, docs, and conversations — organized so your team can focus on the work that matters.',
+  quote = '“The cleanest tool we have ever rolled out.” — Dana K., Ops Lead',
+  forgotHref = '#',
+  signupHref = '#',
+  onSubmit = () => {},
+}) {
+  const id = useId();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit({ email, password, remember });
+  }
+
+  return (
+    <div className="flex min-h-screen bg-white font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-sp-ink">
+      <aside className="hidden flex-1 flex-col justify-between bg-linear-135 from-sp-brand to-sp-brand2 p-14 text-white min-[880px]:flex">
+        <div className="text-xl font-extrabold tracking-[-.02em]">{brand}</div>
+        <div>
+          <h2 className="max-w-[22ch] text-[2.1rem] leading-[1.2] font-bold tracking-[-.03em]">{headline}</h2>
+          <p className="mt-3.5 max-w-[40ch] leading-[1.6] opacity-90">{pitch}</p>
+        </div>
+        <p className="max-w-[40ch] text-[.9rem] opacity-90">{quote}</p>
+      </aside>
+      <main className="flex flex-1 items-center justify-center p-8">
+        <form className="w-full max-w-[380px]" action="#" method="post" onSubmit={handleSubmit}>
+          <h1 className="mb-1.5 text-[1.6rem] font-bold tracking-[-.02em]">Welcome back</h1>
+          <p className="mb-7 text-[.95rem] text-sp-muted">Sign in to continue to your workspace.</p>
+          <label className="mb-1.5 block text-[.85rem] font-semibold" htmlFor={`${id}-email`}>Email address</label>
+          <input className={inputCls} type="email" id={`${id}-email`} name="email" autoComplete="username" placeholder="you@company.com" required
+            value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label className="mb-1.5 block text-[.85rem] font-semibold" htmlFor={`${id}-password`}>Password</label>
+          <input className={inputCls} type="password" id={`${id}-password`} name="password" autoComplete="current-password" required
+            value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="mb-[22px] flex flex-wrap items-center justify-between gap-3 text-[.85rem]">
+            <label className="flex cursor-pointer items-center gap-[7px] font-medium text-sp-muted">
+              <input className="size-4 accent-sp-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sp-brand" type="checkbox" name="remember"
+                checked={remember} onChange={(e) => setRemember(e.target.checked)} /> Remember me
+            </label>
+            <a className={linkCls} href={forgotHref}>Forgot password?</a>
+          </div>
+          <button className="w-full cursor-pointer rounded-[10px] bg-sp-brand p-[13px] text-[.98rem] font-bold text-white transition-colors duration-150 hover:bg-sp-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sp-brand motion-reduce:transition-none" type="submit">Sign in</button>
+          <p className="mt-[26px] text-center text-[.9rem] text-sp-muted">New here? <a className={linkCls} href={signupHref}>Create an account</a></p>
+        </form>
+      </main>
+    </div>
+  );
+}
+// /snippet:jsx
+import { createRoot } from 'react-dom/client';
+createRoot(document.getElementById('root')).render(<SplitLogin />);
+</script>
+</body></html>

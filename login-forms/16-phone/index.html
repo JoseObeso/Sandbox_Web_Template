@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Number Login — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Phone login: a calling-code select and a national number joined into one field, then "Send code".
+   autocomplete="tel-country-code" and "tel-national" let the browser fill both halves. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;--lf-bg:#f5f6fa;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-ink);line-height:normal;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,select,button){font:inherit}
+.lf a{color:var(--lf-brand);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-box{width:100%;max-width:410px;background:#fff;border:1px solid var(--lf-line);border-radius:16px;
+  padding:38px 34px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.lf-mark{width:42px;height:42px;border-radius:12px;background:var(--lf-brand);display:grid;place-items:center;
+  color:#fff;font-weight:800;margin-bottom:22px}
+.lf h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:7px}
+.lf-sub{color:var(--lf-muted);font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf-tel{display:flex;border:1px solid var(--lf-edge);border-radius:10px;overflow:hidden;background:#fff;
+  transition:border-color .15s,box-shadow .15s}
+.lf-tel:focus-within{border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf-tel select{border:0;background:var(--lf-bg);padding:12px 8px 12px 12px;font-size:.93rem;cursor:pointer;color:inherit;
+  border-right:1px solid var(--lf-line);max-width:118px}
+.lf-tel select:focus{outline:none}
+.lf-tel input{flex:1;min-width:0;border:0;padding:12px 14px;font-size:.95rem;color:inherit;background:none}
+.lf-tel input::placeholder{color:var(--lf-muted)}
+.lf-tel input:focus{outline:none}
+.lf-legal{font-size:.8rem;color:var(--lf-muted);line-height:1.6;margin:16px 0 20px}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-brand);color:#fff;
+  font-size:.97rem;font-weight:700;cursor:pointer;transition:background .15s}
+.lf-btn:hover{background:var(--lf-brand-dark)}
+.lf-or{display:flex;align-items:center;gap:14px;margin:26px 0;color:var(--lf-muted);font-size:.8rem;
+  letter-spacing:.08em;text-transform:uppercase}
+.lf-or::before,.lf-or::after{content:"";flex:1;height:1px;background:var(--lf-line)}
+.lf-alt{width:100%;padding:12px;border:1px solid var(--lf-line);border-radius:10px;background:#fff;
+  font-size:.93rem;font-weight:600;color:var(--lf-ink);cursor:pointer;transition:background .15s}
+.lf-alt:hover{background:var(--lf-bg)}
+@media (prefers-reduced-motion:reduce){.lf-tel,.lf-btn,.lf-alt{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <div class="lf-mark" aria-hidden="true">N</div>
+  <h1>Sign in with your phone</h1>
+  <p class="lf-sub">We'll text you a one-time code. No password needed.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="lf-label" for="tel">Mobile number</label>
+    <div class="lf-tel">
+      <select name="country_code" aria-label="Country calling code" autocomplete="tel-country-code">
+        <option value="+44">🇬🇧 +44</option><option value="+1">🇺🇸 +1</option><option value="+49">🇩🇪 +49</option>
+        <option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option>
+      </select>
+      <input id="tel" name="phone" type="tel" inputmode="tel" autocomplete="tel-national"
+             placeholder="7700 900123" required>
+    </div>
+    <p class="lf-legal">Message and data rates may apply. By continuing you agree to our
+      <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+    <button class="lf-btn" type="submit">Send code</button>
+  </form>
+  <div class="lf-or"><span>or</span></div>
+  <button class="lf-alt" type="button">Sign in with email instead</button>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

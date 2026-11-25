@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neobrutalist Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .card, .badge, .form-control and .btn given 3px black borders and hard offset shadows. */
+.nb{--nb-ink:#111;--nb-violet:#a78bfa;--nb-green:#4ade80;
+  --bs-body-color:#111;--bs-border-color:#111;--bs-border-width:3px;
+  --bs-body-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;padding:24px;background:#ffde59;background-image:radial-gradient(#00000012 1.5px,transparent 1.5px);background-size:22px 22px;
+  color:var(--bs-body-color);font-family:var(--bs-body-font-family);line-height:normal}
+.nb .card{--bs-card-border-width:3px;--bs-card-border-color:var(--nb-ink);--bs-card-border-radius:14px;--bs-card-spacer-y:38px;--bs-card-spacer-x:34px;
+  max-width:400px;box-shadow:8px 8px 0 var(--nb-ink)}
+.nb .badge{--bs-badge-font-size:.75rem;--bs-badge-font-weight:800;--bs-badge-padding-x:10px;--bs-badge-padding-y:5px;--bs-badge-color:var(--nb-ink);
+  --bs-badge-border-radius:8px;background:var(--nb-violet);border:3px solid var(--nb-ink);letter-spacing:.05em;box-shadow:3px 3px 0 var(--nb-ink);margin-bottom:18px}
+.nb h1{font-size:1.8rem;font-weight:900;letter-spacing:-.03em;margin-bottom:6px}
+.nb-sub{font-size:.92rem;font-weight:600;color:#444;margin-bottom:26px}
+.nb .form-label{font-size:.85rem;font-weight:800;margin-bottom:6px;letter-spacing:.03em}
+.nb .form-control{padding:12px 14px;border-radius:10px;font-size:.95rem;font-weight:600;line-height:1.2;transition:box-shadow .12s,transform .12s}
+.nb .form-control::placeholder{color:#666}
+.nb .form-control:focus{border-color:var(--nb-ink);box-shadow:4px 4px 0 var(--nb-ink);transform:translate(-2px,-2px)}
+.nb-field{margin-bottom:18px}
+.nb .btn-nb{--bs-btn-bg:var(--nb-green);--bs-btn-border-color:var(--nb-ink);--bs-btn-color:var(--nb-ink);--bs-btn-hover-bg:var(--nb-green);
+  --bs-btn-hover-border-color:var(--nb-ink);--bs-btn-hover-color:var(--nb-ink);--bs-btn-active-bg:var(--nb-green);--bs-btn-active-border-color:var(--nb-ink);
+  --bs-btn-active-color:var(--nb-ink);--bs-btn-border-width:3px;--bs-btn-padding-y:14px;--bs-btn-font-size:1rem;--bs-btn-font-weight:900;
+  --bs-btn-border-radius:10px;--bs-btn-line-height:1.2;--bs-btn-focus-box-shadow:5px 5px 0 var(--nb-ink);letter-spacing:.04em;box-shadow:5px 5px 0 var(--nb-ink);
+  transition:box-shadow .12s,transform .12s}
+.nb .btn-nb:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--nb-ink)}
+.nb .btn-nb:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--nb-ink)}
+.nb-links{margin-top:22px;font-size:.85rem;font-weight:800}
+.nb-links a{color:var(--nb-ink);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px;text-decoration-color:var(--nb-violet)}
+.nb-links a:hover{text-decoration-color:var(--nb-green)}
+.nb a:focus-visible,.nb .btn-nb:focus-visible{outline:3px solid var(--nb-ink);outline-offset:3px;border-radius:4px}
+.nb .btn-nb:focus-visible{border-radius:10px}
+@media (prefers-reduced-motion:reduce){.nb .form-control,.nb .btn-nb{transition:none}.nb .form-control:focus,.nb .btn-nb:hover,.nb .btn-nb:active{transform:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="nb d-flex align-items-center justify-content-center">
+  <form class="card w-100" action="#" method="post" onsubmit="event.preventDefault()">
+    <div class="card-body">
+      <span class="badge text-uppercase">Members only</span>
+      <h1>Log in.</h1>
+      <p class="nb-sub">No fluff. Just your inbox and your work.</p>
+      <div class="nb-field">
+        <label class="form-label text-uppercase" for="nb-email">Email</label>
+        <input class="form-control" type="email" id="nb-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+      </div>
+      <div class="nb-field">
+        <label class="form-label text-uppercase" for="nb-password">Password</label>
+        <input class="form-control" type="password" id="nb-password" name="password" placeholder="Top secret" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-nb w-100 text-uppercase" type="submit">Let me in <span aria-hidden="true">→</span></button>
+      <div class="nb-links d-flex flex-wrap justify-content-between gap-3">
+        <a href="#">Lost password</a>
+        <a href="#">Join instead</a>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

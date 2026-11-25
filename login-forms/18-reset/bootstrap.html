@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Reset Request (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Bootstrap .card, .form-control and .btn, recoloured through Bootstrap's CSS variables.
+   The script swaps the form for the confirmation with the hidden attribute and focuses its heading. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;--lf-ok:#15803d;
+  --bs-body-color:var(--lf-ink);--bs-secondary-color:var(--lf-muted);--bs-border-color:var(--lf-edge);
+  --bs-link-color-rgb:79,70,229;--bs-link-hover-color-rgb:67,56,202;
+  min-height:100vh;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:#f5f6fa;color:var(--lf-ink);line-height:normal}
+.lf a{font-weight:600;text-decoration:none}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf .card{--bs-card-border-color:var(--lf-line);--bs-card-border-radius:16px;--bs-card-spacer-y:38px;--bs-card-spacer-x:34px;
+  max-width:410px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.lf-back{gap:6px;font-size:.87rem;margin-bottom:22px}
+.lf-back svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2}
+.lf h1{font-size:1.4rem;font-weight:700;line-height:normal;letter-spacing:-.02em;margin-bottom:7px}
+.lf h1:focus{outline:none}
+.lf-sub{font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf .form-label{font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf .form-control{padding:12px 14px;border-radius:10px;font-size:.95rem;line-height:normal;margin-bottom:20px;transition:border-color .15s,box-shadow .15s}
+.lf .form-control:focus{border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15);outline:none}
+.lf .form-control::placeholder{color:var(--lf-muted)}
+.lf .btn-brand{--bs-btn-line-height:normal;--bs-btn-border-width:0;--bs-btn-padding-y:13px;--bs-btn-font-size:.97rem;--bs-btn-font-weight:700;--bs-btn-border-radius:10px;
+  --bs-btn-bg:var(--lf-brand);--bs-btn-border-color:var(--lf-brand);--bs-btn-color:#fff;
+  --bs-btn-hover-bg:var(--lf-brand-dark);--bs-btn-hover-border-color:var(--lf-brand-dark);--bs-btn-hover-color:#fff;
+  --bs-btn-active-bg:var(--lf-brand-dark);--bs-btn-active-border-color:var(--lf-brand-dark);--bs-btn-active-color:#fff;
+  --bs-btn-focus-box-shadow:none;transition:background-color .15s}
+.lf-tick{width:56px;height:56px;background:#dcfce7;display:grid;place-items:center;margin:0 auto 20px}
+.lf-tick svg{width:28px;height:28px;stroke:var(--lf-ok);fill:none;stroke-width:2.4}
+.lf-note{background:#f5f6fa;border:1px solid var(--lf-line);border-radius:11px;padding:14px 16px;font-size:.86rem;line-height:1.65;margin-top:20px}
+@media (prefers-reduced-motion:reduce){.lf .form-control,.lf .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf d-grid">
+<main class="card w-100">
+  <div class="card-body">
+    <a class="lf-back d-inline-flex align-items-center" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to sign in</a>
+    <form id="lf-reset">
+      <h1>Reset your password</h1>
+      <p class="lf-sub text-body-secondary">Enter the email on your account and we'll send a link to set a new password.</p>
+      <label class="form-label" for="rmail">Email address</label>
+      <input class="form-control" id="rmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+      <button class="btn btn-brand w-100" type="submit">Send reset link</button>
+    </form>
+    <div class="text-center" id="lf-sent" hidden>
+      <div class="lf-tick rounded-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+      <h1 tabindex="-1">Check your inbox</h1>
+      <p class="lf-sub text-body-secondary mb-0">If an account exists for that address, a reset link is on its way. The link works
+        once and expires in 60 minutes.</p>
+      <p class="lf-note text-body-secondary text-start mb-0">Nothing arrived? Check spam, then try again in a few minutes. We deliberately
+        don't say whether an address is registered — that would let anyone test which emails have
+        accounts here.</p>
+    </div>
+  </div>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Demo only: swap the form for the confirmation. In production, show the confirmation after your
+// server accepts the request, and send the same answer whether or not the address has an account.
+(() => {
+  const form = document.getElementById('lf-reset'), sent = document.getElementById('lf-sent');
+  if (!form || !sent) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    form.hidden = true; sent.hidden = false;
+    sent.querySelector('h1').focus();
+  });
+})();
+</script>
+</body>
+</html>

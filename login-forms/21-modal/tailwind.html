@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal Login Over the App (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style data-demo>
+/* Demo only: a stand-in application behind the dialog. */
+body{margin:0;min-height:100vh;background:#eef0f6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.app{position:fixed;inset:0;pointer-events:none;user-select:none;overflow:hidden}
+.app .top{height:56px;background:#fff;border-bottom:1px solid #e2e5ee;display:flex;align-items:center;gap:14px;padding:0 22px}
+.app .dot{width:26px;height:26px;border-radius:8px;background:#4f46e5}
+.app .pill{height:9px;border-radius:5px;background:#dfe3ee}
+.app .side{position:absolute;top:56px;left:0;bottom:0;width:210px;background:#fff;border-right:1px solid #e2e5ee;
+  padding:20px 16px;display:flex;flex-direction:column;gap:15px;box-sizing:border-box}
+.app .body{position:absolute;top:56px;left:210px;right:0;bottom:0;padding:26px;display:grid;
+  grid-template-columns:repeat(3,1fr);gap:18px;align-content:start;background:#f4f6fb}
+.app .app-card{background:#fff;border:1px solid #e6e9f1;border-radius:14px;height:132px;padding:18px;
+  display:flex;flex-direction:column;gap:11px;box-sizing:border-box}
+.app .bar{height:44px;border-radius:8px;background:linear-gradient(90deg,#e9ecf6,#f4f6fb);margin-top:auto}
+@media(max-width:760px){.app .side{display:none}.app .body{left:0;grid-template-columns:1fr 1fr}}
+</style>
+<style type="text/tailwindcss" data-snippet>
+/* A native <dialog> opened with showModal(): the page behind is inert, focus is trapped, and the backdrop:
+   utilities dim and blur your app. closedby="none" and the cancel handler keep Escape from dismissing it. */
+@theme {
+  --color-brand: #4f46e5;
+  --color-brand-dark: #4338ca;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-edge: #868c99;
+}
+</style>
+</head>
+<body>
+<div class="app" aria-hidden="true">
+  <div class="top"><span class="dot"></span><span class="pill" style="width:110px"></span>
+    <span class="pill" style="width:64px"></span><span class="pill" style="width:78px"></span></div>
+  <div class="side"><span class="pill" style="width:100%"></span><span class="pill" style="width:76%"></span>
+    <span class="pill" style="width:88%"></span><span class="pill" style="width:60%"></span>
+    <span class="pill" style="width:82%"></span></div>
+  <div class="body">
+    <div class="app-card"><span class="pill" style="width:56%"></span><span class="pill" style="width:34%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:66%"></span><span class="pill" style="width:40%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:48%"></span><span class="pill" style="width:30%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:60%"></span><span class="pill" style="width:38%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:52%"></span><span class="pill" style="width:44%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:70%"></span><span class="pill" style="width:28%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:58%"></span><span class="pill" style="width:36%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:64%"></span><span class="pill" style="width:26%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:46%"></span><span class="pill" style="width:42%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:62%"></span><span class="pill" style="width:32%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:50%"></span><span class="pill" style="width:38%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:68%"></span><span class="pill" style="width:30%"></span><span class="bar"></span></div>
+  </div>
+</div>
+<!-- snippet:html -->
+<dialog class="m-auto w-[calc(100%-40px)] max-w-[394px] rounded-[18px] bg-white px-8 py-[34px] font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ink shadow-[0_26px_70px_rgba(12,18,38,.34)] backdrop:bg-[rgba(17,22,38,.34)] backdrop:backdrop-blur-[7px]" id="lf-signin" aria-labelledby="lf-dtitle" aria-describedby="lf-dsub" closedby="none">
+  <p class="mb-4 inline-flex items-center gap-[7px] rounded-full border border-[#fde68a] bg-[#fffbeb] px-[11px] py-[5px] text-[.78rem] font-bold text-[#92400e]">Session expired</p>
+  <h1 class="mb-1.5 text-[1.32rem] font-bold tracking-[-.02em]" id="lf-dtitle">Sign in to continue</h1>
+  <p class="mb-6 text-[.91rem] leading-[1.55] text-muted" id="lf-dsub">Your work is saved. Sign in again to get back to the Q3 rollout board.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="mb-1.5 block text-[.84rem] font-semibold" for="mmail">Email address</label>
+    <input class="mb-[18px] w-full rounded-[10px] border border-edge bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 focus:border-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.15)] focus:outline-none motion-reduce:transition-none"
+           id="mmail" name="username" type="email" value="dana@northwind.co" autocomplete="username" readonly>
+    <label class="mb-1.5 block text-[.84rem] font-semibold" for="mpw">Password</label>
+    <input class="mb-[18px] w-full rounded-[10px] border border-edge bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-muted focus:border-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.15)] focus:outline-none motion-reduce:transition-none"
+           id="mpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required autofocus>
+    <button class="w-full cursor-pointer rounded-[10px] bg-brand p-[13px] text-[.96rem] font-bold text-white transition-[background-color,border-color,color] duration-150 hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="submit">Unlock</button>
+    <button class="mt-2.5 w-full cursor-pointer rounded-[10px] p-[11px] text-[.89rem] font-semibold text-muted transition-[background-color,border-color,color] duration-150 hover:bg-[#f4f5fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="button">Sign in as someone else</button>
+  </form>
+</dialog>
+<!-- /snippet:html -->
+<script data-snippet>
+(() => {
+  const dlg = document.getElementById('lf-signin');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  dlg.addEventListener('cancel', e => e.preventDefault()); // Escape must not reveal the expired session
+  if (!dlg.open) dlg.showModal(); // call this when your app detects the expired session
+})();
+</script>
+</body>
+</html>

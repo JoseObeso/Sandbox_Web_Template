@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identifier-First Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Bootstrap .card, .form-control and .btn, recoloured through Bootstrap's CSS variables.
+   The script swaps the two panels with the hidden attribute (Bootstrap's reboot hides [hidden]). */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;
+  --bs-body-color:var(--lf-ink);--bs-secondary-color:var(--lf-muted);--bs-border-color:var(--lf-edge);
+  --bs-link-color-rgb:79,70,229;--bs-link-hover-color-rgb:67,56,202;
+  min-height:100vh;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:#f5f6fa;color:var(--lf-ink);line-height:normal}
+.lf a{font-weight:600;text-decoration:none}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf .card{--bs-card-border-color:var(--lf-line);--bs-card-border-radius:16px;--bs-card-spacer-y:38px;--bs-card-spacer-x:34px;
+  max-width:400px;box-shadow:0 10px 34px rgba(17,24,39,.06);overflow:hidden}
+.lf-mark{width:42px;height:42px;border-radius:12px;background:var(--lf-brand);display:grid;place-items:center;
+  color:#fff;font-weight:800;margin-bottom:22px}
+.lf h1{font-size:1.4rem;font-weight:700;line-height:normal;letter-spacing:-.02em;margin-bottom:7px}
+.lf-sub{font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf-sub-tight{margin-bottom:16px}
+.lf .form-label{font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf .form-control{padding:12px 14px;border-radius:10px;font-size:.95rem;line-height:normal;margin-bottom:20px;transition:border-color .15s,box-shadow .15s}
+.lf .form-control:focus{border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15);outline:none}
+.lf .form-control::placeholder{color:var(--lf-muted)}
+.lf .btn-brand{--bs-btn-line-height:normal;--bs-btn-border-width:0;--bs-btn-padding-y:13px;--bs-btn-font-size:.97rem;--bs-btn-font-weight:700;--bs-btn-border-radius:10px;
+  --bs-btn-bg:var(--lf-brand);--bs-btn-border-color:var(--lf-brand);--bs-btn-color:#fff;
+  --bs-btn-hover-bg:var(--lf-brand-dark);--bs-btn-hover-border-color:var(--lf-brand-dark);--bs-btn-hover-color:#fff;
+  --bs-btn-active-bg:var(--lf-brand-dark);--bs-btn-active-border-color:var(--lf-brand-dark);--bs-btn-active-color:#fff;
+  --bs-btn-focus-box-shadow:none;transition:background-color .15s}
+.lf-foot{margin-top:24px;font-size:.89rem}
+.lf-who{gap:10px;border:1px solid var(--lf-line);padding:6px 6px 6px 12px;margin-bottom:26px;font-size:.89rem;width:max-content;max-width:100%}
+.lf-av{width:24px;height:24px;background:#ddd6fe;color:#5b21b6;display:grid;place-items:center;font-size:.74rem;font-weight:800}
+.lf .btn-change{--bs-btn-line-height:normal;--bs-btn-padding-y:4px;--bs-btn-padding-x:8px;--bs-btn-font-size:.86rem;--bs-btn-font-weight:600;--bs-btn-border-width:0;
+  --bs-btn-color:var(--lf-brand);--bs-btn-hover-color:var(--lf-brand);--bs-btn-hover-bg:#eef2ff;
+  --bs-btn-active-color:var(--lf-brand);--bs-btn-active-bg:#eef2ff;--bs-btn-focus-box-shadow:none}
+.lf-links{margin-top:18px;font-size:.88rem}
+@media (prefers-reduced-motion:reduce){.lf .form-control,.lf .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf d-grid">
+<main class="card w-100">
+  <div class="card-body">
+    <div class="lf-mark" aria-hidden="true">N</div>
+    <section id="lf-step1">
+      <h1>Sign in</h1>
+      <p class="lf-sub text-body-secondary">Use your work email to continue to Northwind.</p>
+      <form id="lf-f1">
+        <label class="form-label" for="lf-ident">Email address</label>
+        <input class="form-control" id="lf-ident" name="username" type="email" autocomplete="username"
+               placeholder="you@company.com" required>
+        <button class="btn btn-brand w-100" type="submit">Next</button>
+      </form>
+      <p class="lf-foot text-body-secondary text-center mb-0">No account? <a href="#">Create one</a></p>
+    </section>
+    <section id="lf-step2" hidden>
+      <h1>Welcome back</h1>
+      <p class="lf-sub lf-sub-tight text-body-secondary">Enter your password to finish signing in.</p>
+      <p class="lf-who d-flex align-items-center rounded-pill"><span class="lf-av rounded-circle flex-shrink-0" aria-hidden="true" data-avatar>D</span>
+        <span id="lf-shown" class="text-truncate">dana@northwind.co</span>
+        <button class="btn btn-change rounded-pill flex-shrink-0" type="button" id="lf-change" aria-label="Change email address">Change</button></p>
+      <form onsubmit="event.preventDefault()">
+        <input type="email" name="username" id="lf-user" autocomplete="username" value="dana@northwind.co" hidden>
+        <label class="form-label" for="lf-pw">Password</label>
+        <input class="form-control" id="lf-pw" name="password" type="password" autocomplete="current-password"
+               placeholder="••••••••" required>
+        <button class="btn btn-brand w-100" type="submit">Sign in</button>
+      </form>
+      <p class="lf-links mb-0"><a href="#">Forgot your password?</a></p>
+    </section>
+  </div>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Carry the email forward so the second panel shows who is signing in, and move focus so a keyboard
+// or screen-reader user is not left on the panel that just disappeared.
+(() => {
+  const s1 = document.getElementById('lf-step1'), s2 = document.getElementById('lf-step2');
+  const ident = document.getElementById('lf-ident'), pw = document.getElementById('lf-pw');
+  if (!s1 || !s2 || !ident || !pw) return;
+  document.getElementById('lf-f1').addEventListener('submit', e => {
+    e.preventDefault();
+    const email = ident.value.trim() || 'dana@northwind.co';
+    document.getElementById('lf-shown').textContent = email;
+    document.getElementById('lf-user').value = email;
+    document.querySelector('#lf-step2 [data-avatar]').textContent = email.charAt(0).toUpperCase();
+    s1.hidden = true; s2.hidden = false;
+    pw.focus();
+  });
+  document.getElementById('lf-change').addEventListener('click', () => {
+    s2.hidden = true; s1.hidden = false;
+    ident.focus();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Reset Request (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-brand: #4f46e5;
+  --color-brand-dark: #4338ca;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-line: #e5e7eb;
+  --color-edge: #868c99;
+  --color-page: #f5f6fa;
+  --color-ok: #15803d;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-page px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ink">
+<main class="w-full max-w-[410px] rounded-2xl border border-line bg-white px-[34px] py-[38px] shadow-[0_10px_34px_rgba(17,24,39,.06)]">
+  <a class="mb-[22px] inline-flex items-center gap-1.5 text-[.87rem] font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#"><svg class="size-[15px] fill-none stroke-current stroke-[2.2]" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to sign in</a>
+  <form id="lf-reset">
+    <h1 class="mb-[7px] text-[1.4rem] font-bold tracking-[-.02em]">Reset your password</h1>
+    <p class="mb-[26px] text-[.93rem] leading-[1.6] text-muted">Enter the email on your account and we'll send a link to set a new password.</p>
+    <label class="mb-1.5 block text-[.85rem] font-semibold" for="rmail">Email address</label>
+    <input class="mb-5 w-full rounded-[10px] border border-edge bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-muted focus:border-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.15)] focus:outline-none motion-reduce:transition-none"
+           id="rmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+    <button class="w-full cursor-pointer rounded-[10px] bg-brand p-[13px] text-[.97rem] font-bold text-white transition-[background-color,border-color,color] duration-150 hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="submit">Send reset link</button>
+  </form>
+  <div class="text-center" id="lf-sent" hidden>
+    <div class="mx-auto mb-5 grid size-14 place-items-center rounded-full bg-[#dcfce7]" aria-hidden="true"><svg class="size-7 fill-none stroke-ok stroke-[2.4]" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+    <h1 class="mb-[7px] text-[1.4rem] font-bold tracking-[-.02em] focus:outline-none" tabindex="-1">Check your inbox</h1>
+    <p class="text-[.93rem] leading-[1.6] text-muted">If an account exists for that address, a reset link is on its way. The link works
+      once and expires in 60 minutes.</p>
+    <p class="mt-5 rounded-[11px] border border-line bg-page px-4 py-3.5 text-left text-[.86rem] leading-[1.65] text-muted">Nothing arrived? Check spam, then try again in a few minutes. We deliberately
+      don't say whether an address is registered — that would let anyone test which emails have
+      accounts here.</p>
+  </div>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Demo only: swap the form for the confirmation. In production, show the confirmation after your
+// server accepts the request, and send the same answer whether or not the address has an account.
+(() => {
+  const form = document.getElementById('lf-reset'), sent = document.getElementById('lf-sent');
+  if (!form || !sent) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    form.hidden = true; sent.hidden = false;
+    sent.querySelector('h1').focus();
+  });
+})();
+</script>
+</body>
+</html>

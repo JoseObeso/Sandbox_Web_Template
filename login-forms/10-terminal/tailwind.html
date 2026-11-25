@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-tm-green: #4ade80;
+  --color-tm-bright: #bbf7d0;
+  --color-tm-soft: #86efac;
+  --color-tm-dim: #3f9b57;
+  --color-tm-faint: #7a8d7a;
+  --color-tm-line: #4f7552;
+  --animate-tm-blink: tm-blink 1s steps(1) infinite;
+  @keyframes tm-blink { 50% { opacity: 0; } }
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="flex min-h-screen items-center justify-center bg-[#0a0e0a] bg-[linear-gradient(rgba(74,222,128,.04)_1px,transparent_1px)] bg-size-[100%_3px] p-6 font-mono leading-[normal] text-tm-green">
+  <div class="w-full max-w-[460px] overflow-hidden rounded-xl border border-[#1d2b1d] bg-[#0d130d] shadow-[0_0_60px_rgba(74,222,128,.12)]">
+    <div class="flex items-center gap-[7px] border-b border-[#1d2b1d] bg-[#111a11] px-3.5 py-[11px]" aria-hidden="true"><span class="size-[11px] rounded-full bg-[#f87171]"></span><span class="size-[11px] rounded-full bg-[#fbbf24]"></span><span class="size-[11px] rounded-full bg-[#34d399]"></span><span class="ml-2 text-xs tracking-[.04em] text-tm-faint">auth@prod: ~/login</span></div>
+    <div class="px-[26px] pt-[26px] pb-8">
+      <p class="mb-1.5 text-[.82rem] text-tm-dim">Last login: from <b class="font-normal text-tm-soft">203.0.113.7</b></p>
+      <p class="mb-1.5 text-[.82rem] text-tm-dim">Session requires authentication.</p>
+      <h1 class="mt-3.5 mb-[22px] text-base font-bold text-tm-bright"><span aria-hidden="true">&gt; </span>identify yourself<span class="ml-0.5 motion-safe:animate-tm-blink" aria-hidden="true">▌</span></h1>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="mb-1.5 block text-[.78rem] text-tm-dim" for="tm-user"><span class="text-tm-soft" aria-hidden="true">$ </span>username</label>
+        <input class="mb-[18px] block w-full rounded-lg border border-tm-line bg-[#0a0f0a] px-[13px] py-[11px] text-[.9rem] text-tm-bright caret-tm-green transition-[border-color,box-shadow] duration-150 placeholder:text-[#6c806d] focus:border-tm-green focus:shadow-[0_0_0_3px_rgba(74,222,128,.2)] focus:outline-none motion-reduce:transition-none" type="text" id="tm-user" name="username" placeholder="ada" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+        <label class="mb-1.5 block text-[.78rem] text-tm-dim" for="tm-password"><span class="text-tm-soft" aria-hidden="true">$ </span>password</label>
+        <input class="mb-[18px] block w-full rounded-lg border border-tm-line bg-[#0a0f0a] px-[13px] py-[11px] text-[.9rem] text-tm-bright caret-tm-green transition-[border-color,box-shadow] duration-150 placeholder:text-[#6c806d] focus:border-tm-green focus:shadow-[0_0_0_3px_rgba(74,222,128,.2)] focus:outline-none motion-reduce:transition-none" type="password" id="tm-password" name="password" autocomplete="current-password" required>
+        <button class="w-full cursor-pointer rounded-lg border border-tm-green bg-transparent p-3 text-[.9rem] font-bold tracking-[.05em] transition-colors duration-150 hover:bg-tm-green hover:text-[#0a0e0a] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-tm-green motion-reduce:transition-none" type="submit">[ authenticate ]</button>
+      </form>
+      <p class="mt-[18px] text-xs text-tm-faint"><span aria-hidden="true">// </span>lost credentials? <a class="rounded-[3px] border-b border-dashed border-tm-dim text-tm-soft focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-tm-green" href="#">run recovery</a></p>
+    </div>
+  </div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

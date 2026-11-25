@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login &amp; Register Tabs — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Log in / Create account in one card: an ARIA tablist switches two tab panels, each with its own form. */
+.tb{--tb-ink:#134e4a;--tb-teal:#0f766e;--tb-teal-dark:#115e59;--tb-muted:#5f7470;--tb-line:#8e9694;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(160deg,#134e4a,#0f766e 55%,#115e59);
+  color:var(--tb-ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.tb h1,.tb p{margin:0}
+.tb [hidden]{display:none!important}
+.tb-card{width:100%;max-width:400px;background:#fff;border-radius:18px;padding:36px 34px 40px;box-shadow:0 26px 60px -18px rgba(0,0,0,.45)}
+.tb-tabs{display:flex;background:#f0fdfa;border:1px solid #ccfbf1;border-radius:12px;padding:5px;margin-bottom:28px}
+.tb-tabs button{flex:1;padding:10px;border:0;border-radius:9px;background:transparent;font:inherit;font-size:.9rem;font-weight:700;color:var(--tb-teal);cursor:pointer;
+  transition:background-color .15s,color .15s,box-shadow .15s}
+.tb-tabs button[aria-selected="true"]{background:var(--tb-teal);color:#fff;box-shadow:0 4px 12px -4px rgba(15,118,110,.5)}
+.tb h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:4px}
+.tb-sub{color:var(--tb-muted);font-size:.9rem;margin-bottom:24px!important}
+.tb-label{display:block;font-size:.83rem;font-weight:700;margin-bottom:6px}
+.tb-input{display:block;width:100%;padding:12px 14px;margin-bottom:16px;border:1px solid var(--tb-line);border-radius:10px;font:inherit;font-size:.94rem;color:inherit;
+  background:#fff;transition:border-color .15s,box-shadow .15s}
+.tb-input::placeholder{color:var(--tb-muted)}
+.tb-input:focus{outline:none;border-color:var(--tb-teal);box-shadow:0 0 0 3px rgba(15,118,110,.22)}
+.tb-input[aria-describedby]{margin-bottom:6px}
+.tb-help{font-size:.8rem;color:var(--tb-muted);margin-bottom:16px!important}
+.tb-go{width:100%;padding:13px;border:0;border-radius:10px;background:var(--tb-teal);color:#fff;font:inherit;font-weight:800;font-size:.95rem;cursor:pointer;
+  transition:background-color .15s;margin-top:4px}
+.tb-go:hover{background:var(--tb-teal-dark)}
+.tb-small{margin-top:18px!important;font-size:.82rem;color:var(--tb-muted);text-align:center}
+.tb-small a{color:var(--tb-teal);font-weight:700;text-decoration:none;border-radius:3px}
+.tb-small a:hover{text-decoration:underline}
+.tb a:focus-visible,.tb-go:focus-visible,.tb-tabs button:focus-visible{outline:2px solid var(--tb-teal);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.tb-tabs button,.tb-input,.tb-go{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="tb">
+  <div class="tb-card">
+    <div class="tb-tabs" role="tablist" aria-label="Log in or create an account">
+      <button type="button" role="tab" id="tb-tab-login" aria-selected="true" aria-controls="tb-panel-login">Log in</button>
+      <button type="button" role="tab" id="tb-tab-signup" aria-selected="false" aria-controls="tb-panel-signup" tabindex="-1">Create account</button>
+    </div>
+    <section role="tabpanel" id="tb-panel-login" aria-labelledby="tb-tab-login">
+      <h1>Welcome back</h1>
+      <p class="tb-sub">Log in to manage your projects.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="tb-label" for="tb-li-email">Email</label>
+        <input class="tb-input" type="email" id="tb-li-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+        <label class="tb-label" for="tb-li-password">Password</label>
+        <input class="tb-input" type="password" id="tb-li-password" name="password" autocomplete="current-password" required>
+        <button class="tb-go" type="submit">Log in</button>
+      </form>
+      <p class="tb-small"><a href="#">Forgot your password?</a></p>
+    </section>
+    <section role="tabpanel" id="tb-panel-signup" aria-labelledby="tb-tab-signup" hidden>
+      <h1>Create your account</h1>
+      <p class="tb-sub">Free for 14 days. No credit card needed.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="tb-label" for="tb-su-name">Full name</label>
+        <input class="tb-input" type="text" id="tb-su-name" name="name" placeholder="Ada Lovelace" autocomplete="name" required>
+        <label class="tb-label" for="tb-su-email">Email</label>
+        <input class="tb-input" type="email" id="tb-su-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <label class="tb-label" for="tb-su-password">Password</label>
+        <input class="tb-input" type="password" id="tb-su-password" name="new-password" autocomplete="new-password" minlength="8" aria-describedby="tb-su-help" required>
+        <p class="tb-help" id="tb-su-help">At least 8 characters.</p>
+        <button class="tb-go" type="submit">Create account</button>
+      </form>
+      <p class="tb-small">By signing up you agree to the <a href="#">Terms</a>.</p>
+    </section>
+  </div>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Accessible tabs: click or use Left / Right / Home / End. Only the selected tab is in the Tab order.
+document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(tabs[(next + tabs.length) % tabs.length], true);
+    });
+  });
+});
+</script>
+</body>
+</html>

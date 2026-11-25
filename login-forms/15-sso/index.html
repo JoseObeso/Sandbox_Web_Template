@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise SSO Login — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Enterprise SSO: a workspace subdomain field with a fixed suffix, then named identity providers.
+   The suffix is tied to the input with aria-describedby so screen readers hear the full address. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;--lf-bg:#f5f6fa;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-ink);line-height:normal;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf a{color:var(--lf-brand);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-box{width:100%;max-width:430px;background:#fff;border:1px solid var(--lf-line);border-radius:16px;
+  padding:38px 34px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.lf-mark{width:42px;height:42px;border-radius:12px;background:var(--lf-brand);display:grid;place-items:center;
+  color:#fff;font-weight:800;margin-bottom:22px}
+.lf h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:7px}
+.lf-sub{color:var(--lf-muted);font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf-combo{display:flex;align-items:center;border:1px solid var(--lf-edge);border-radius:10px;
+  overflow:hidden;transition:border-color .15s,box-shadow .15s;background:#fff}
+.lf-combo:focus-within{border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf-combo input{flex:1;min-width:0;border:0;padding:12px 4px 12px 14px;font-size:.95rem;background:none;color:inherit}
+.lf-combo input::placeholder{color:var(--lf-muted)}
+.lf-combo input:focus{outline:none}
+.lf-suffix{padding:12px 14px 12px 2px;color:#636a77;font-size:.95rem;white-space:nowrap;
+  background:var(--lf-bg);align-self:stretch;display:flex;align-items:center;border-left:1px solid var(--lf-line)}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-brand);color:#fff;margin-top:20px;
+  font-size:.97rem;font-weight:700;cursor:pointer;transition:background .15s}
+.lf-btn:hover{background:var(--lf-brand-dark)}
+.lf-or{display:flex;align-items:center;gap:14px;margin:24px 0 4px;color:var(--lf-muted);font-size:.8rem;
+  letter-spacing:.08em;text-transform:uppercase}
+.lf-or::before,.lf-or::after{content:"";flex:1;height:1px;background:var(--lf-line)}
+.lf-provs{display:grid;gap:9px;margin:24px 0 0}
+.lf-prov{display:flex;align-items:center;gap:11px;padding:12px 14px;border:1px solid var(--lf-line);
+  border-radius:11px;background:#fff;font-size:.92rem;font-weight:600;color:var(--lf-ink);cursor:pointer;
+  text-align:left;transition:background .15s,border-color .15s}
+.lf-prov:hover{background:var(--lf-bg);border-color:#cbd0dd}
+.lf-ic{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-size:.68rem;
+  font-weight:800;color:#fff;flex-shrink:0}
+.lf-foot{margin-top:24px;text-align:center;font-size:.89rem;color:var(--lf-muted)}
+@media (max-width:400px){.lf-suffix{font-size:.85rem;padding-left:6px;padding-right:10px}}
+@media (prefers-reduced-motion:reduce){.lf-combo,.lf-btn,.lf-prov{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <div class="lf-mark" aria-hidden="true">N</div>
+  <h1>Sign in to your workspace</h1>
+  <p class="lf-sub">Enter your team's Northwind address to be sent to your company's login.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="lf-label" for="team">Workspace address</label>
+    <div class="lf-combo">
+      <input id="team" name="workspace" type="text" placeholder="your-team" autocomplete="on" required
+             spellcheck="false" autocapitalize="off" aria-describedby="team-suffix">
+      <span class="lf-suffix" id="team-suffix">.northwind.app</span>
+    </div>
+    <button class="lf-btn" type="submit">Continue with SSO</button>
+  </form>
+  <div class="lf-or" id="prov-label"><span>or use</span></div>
+  <div class="lf-provs" role="group" aria-labelledby="prov-label">
+    <button class="lf-prov" type="button"><span class="lf-ic" style="background:#00297a" aria-hidden="true">O</span> Okta</button>
+    <button class="lf-prov" type="button"><span class="lf-ic" style="background:#0078d4" aria-hidden="true">M</span> Microsoft Entra ID</button>
+    <button class="lf-prov" type="button"><span class="lf-ic" style="background:#1a73e8" aria-hidden="true">G</span> Google Workspace</button>
+  </div>
+  <p class="lf-foot">Not on a team plan? <a href="#">Sign in with a password</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

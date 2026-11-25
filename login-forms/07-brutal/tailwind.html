@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neobrutalist Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-nb-ink: #111;
+  --color-nb-yellow: #ffde59;
+  --color-nb-violet: #a78bfa;
+  --color-nb-green: #4ade80;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="flex min-h-screen items-center justify-center bg-nb-yellow bg-[radial-gradient(#00000012_1.5px,transparent_1.5px)] bg-size-[22px_22px] p-6 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-nb-ink">
+  <form class="w-full max-w-[400px] rounded-[14px] border-3 border-nb-ink bg-white px-[34px] py-[38px] shadow-[8px_8px_0_var(--color-nb-ink)]" action="#" method="post" onsubmit="event.preventDefault()">
+    <span class="mb-[18px] inline-block rounded-lg border-3 border-nb-ink bg-nb-violet px-2.5 py-[5px] text-xs font-extrabold tracking-[.05em] uppercase shadow-[3px_3px_0_var(--color-nb-ink)]">Members only</span>
+    <h1 class="mb-1.5 text-[1.8rem] font-black tracking-[-.03em]">Log in.</h1>
+    <p class="mb-[26px] text-[.92rem] font-semibold text-[#444]">No fluff. Just your inbox and your work.</p>
+    <label class="mb-1.5 block text-[.85rem] font-extrabold tracking-[.03em] uppercase" for="nb-email">Email</label>
+    <input class="mb-[18px] block w-full rounded-[10px] border-3 border-nb-ink bg-white px-3.5 py-3 text-[.95rem] font-semibold transition-[box-shadow,transform] duration-[120ms] placeholder:text-[#666] focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_var(--color-nb-ink)] focus:outline-none motion-reduce:transition-none motion-reduce:focus:translate-none" type="email" id="nb-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+    <label class="mb-1.5 block text-[.85rem] font-extrabold tracking-[.03em] uppercase" for="nb-password">Password</label>
+    <input class="mb-[18px] block w-full rounded-[10px] border-3 border-nb-ink bg-white px-3.5 py-3 text-[.95rem] font-semibold transition-[box-shadow,transform] duration-[120ms] placeholder:text-[#666] focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_var(--color-nb-ink)] focus:outline-none motion-reduce:transition-none motion-reduce:focus:translate-none" type="password" id="nb-password" name="password" placeholder="Top secret" autocomplete="current-password" required>
+    <button class="w-full cursor-pointer rounded-[10px] border-3 border-nb-ink bg-nb-green p-3.5 text-base font-black tracking-[.04em] uppercase shadow-[5px_5px_0_var(--color-nb-ink)] transition-[box-shadow,transform] duration-[120ms] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--color-nb-ink)] focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-nb-ink active:translate-x-[5px] active:translate-y-[5px] active:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-none motion-reduce:active:translate-none" type="submit">Let me in <span aria-hidden="true">→</span></button>
+    <div class="mt-[22px] flex flex-wrap justify-between gap-3 text-[.85rem] font-extrabold">
+      <a class="rounded underline decoration-nb-violet decoration-3 underline-offset-3 hover:decoration-nb-green focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-nb-ink" href="#">Lost password</a>
+      <a class="rounded underline decoration-nb-violet decoration-3 underline-offset-3 hover:decoration-nb-green focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-nb-ink" href="#">Join instead</a>
+    </div>
+  </form>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

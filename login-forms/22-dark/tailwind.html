@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme-Aware Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+/* dark: follows prefers-color-scheme, and data-theme="light|dark" on <html> (set by the toggle) overrides it. */
+@custom-variant dark {
+  &:where([data-theme=dark], [data-theme=dark] *) { @slot; }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme=light]), :root:not([data-theme=light]) *) { @slot; }
+  }
+}
+@theme {
+  --color-brand: #4f46e5;
+  --color-brand-night: #5b5fe6;
+  --color-link-night: #a5b4fc;
+  --color-ink: #111827;
+  --color-ink-night: #e8eaf1;
+  --color-dim: #6b7280;
+  --color-dim-night: #98a0b3;
+  --color-edge: #e4e6ef;
+  --color-edge-night: #262c39;
+  --color-field: #868c99;
+  --color-field-night: #6b7488;
+  --color-page: #f4f5f9;
+  --color-page-night: #0e1117;
+  --color-card-night: #161a23;
+  --color-inp-night: #1c212c;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-page px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ink scheme-light transition-[background-color,border-color,color] duration-200 motion-reduce:transition-none dark:bg-page-night dark:text-ink-night dark:scheme-dark">
+<main class="relative w-full max-w-[400px] rounded-2xl border border-edge bg-white px-8 py-[34px] transition-[background-color,border-color,color] duration-200 motion-reduce:transition-none dark:border-edge-night dark:bg-card-night">
+  <button class="group absolute top-4 right-4 grid size-9 cursor-pointer place-items-center rounded-[10px] border border-edge text-dim transition-[background-color,border-color,color] duration-150 hover:bg-page hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none dark:border-edge-night dark:text-dim-night dark:hover:bg-page-night dark:hover:text-ink-night dark:focus-visible:outline-link-night" id="lf-theme" type="button" aria-label="Dark theme" aria-pressed="false">
+    <svg class="size-[17px] fill-none stroke-current stroke-2 dark:hidden" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>
+    <svg class="hidden size-[17px] fill-none stroke-current stroke-2 dark:block" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+  </button>
+  <div class="mb-5 grid size-10 place-items-center rounded-[11px] bg-brand font-extrabold text-white dark:bg-brand-night" aria-hidden="true">N</div>
+  <h1 class="mb-1.5 text-[1.36rem] font-bold tracking-[-.02em]">Sign in</h1>
+  <p class="mb-6 text-[.91rem] text-dim dark:text-dim-night">This screen follows your system theme until you change it.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="mb-1.5 block text-[.84rem] font-semibold" for="dmail">Email address</label>
+    <input class="mb-[17px] w-full rounded-[10px] border border-field bg-white px-3.5 py-3 text-[.95rem] transition-[background-color,border-color,box-shadow] duration-150 placeholder:text-dim focus:border-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.18)] focus:outline-none motion-reduce:transition-none dark:border-field-night dark:bg-inp-night dark:placeholder:text-dim-night dark:focus:border-brand-night dark:focus:shadow-[0_0_0_3px_rgba(165,180,252,.25)]"
+           id="dmail" name="username" type="email" autocomplete="username" placeholder="you@company.com" required>
+    <label class="mb-1.5 block text-[.84rem] font-semibold" for="dpw">Password</label>
+    <input class="mb-[17px] w-full rounded-[10px] border border-field bg-white px-3.5 py-3 text-[.95rem] transition-[background-color,border-color,box-shadow] duration-150 placeholder:text-dim focus:border-brand focus:shadow-[0_0_0_3px_rgba(79,70,229,.18)] focus:outline-none motion-reduce:transition-none dark:border-field-night dark:bg-inp-night dark:placeholder:text-dim-night dark:focus:border-brand-night dark:focus:shadow-[0_0_0_3px_rgba(165,180,252,.25)]"
+           id="dpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+    <div class="mb-[22px] flex items-center justify-between gap-3 text-[.86rem] text-dim dark:text-dim-night">
+      <label class="flex cursor-pointer items-center gap-[7px] font-medium"><input class="accent-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand dark:accent-brand-night dark:focus-visible:outline-link-night" type="checkbox" name="remember"> Remember me</label>
+      <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand dark:text-link-night dark:focus-visible:outline-link-night" href="#">Forgot password?</a>
+    </div>
+    <button class="w-full cursor-pointer rounded-[10px] bg-brand p-[13px] text-[.96rem] font-bold text-white hover:brightness-108 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand dark:bg-brand-night dark:focus-visible:outline-link-night" type="submit">Sign in</button>
+  </form>
+  <p class="mt-[22px] text-center text-[.88rem] text-dim dark:text-dim-night">No account? <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand dark:text-link-night dark:focus-visible:outline-link-night" href="#">Create one</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// No data-theme attribute means the media query decides; the toggle only stamps <html> once someone
+// opts out. aria-pressed tells assistive technology whether the dark theme is on.
+(() => {
+  const root = document.documentElement, tog = document.getElementById('lf-theme');
+  if (!tog) return;
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches;
+  const sync = () => tog.setAttribute('aria-pressed', String(dark()));
+  tog.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; sync(); });
+  mq.addEventListener('change', sync);
+  sync();
+})();
+</script>
+</body>
+</html>

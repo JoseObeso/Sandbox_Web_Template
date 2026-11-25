@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Lock Screen (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-accent: #6366f1;
+  --color-accent-dark: #4f46e5;
+  --color-soft: #a5b4fc;
+  --color-dim: #98a1bb;
+  --color-pale: #c7cddd;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-[radial-gradient(1100px_640px_at_22%_12%,#2c3550_0%,#171c2b_46%,#0e111a_100%)] px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-[#e8eaf2] scheme-dark">
+<main class="w-full max-w-[360px] text-center">
+  <div class="mx-auto mb-[18px] grid size-[88px] place-items-center rounded-full bg-linear-135 from-[#6366f1] to-[#a855f7] text-[2rem] font-extrabold text-white shadow-[0_0_0_5px_rgba(255,255,255,.08)]" aria-hidden="true">DK</div>
+  <h1 class="mb-[5px] text-[1.35rem] font-bold tracking-[-.01em]">Dana Kowalski</h1>
+  <p class="mb-2 text-[.9rem] text-dim">dana@northwind.co</p>
+  <p class="mb-[26px] inline-flex items-center gap-[7px] rounded-full border border-white/10 bg-white/7 px-[11px] py-[5px] text-[.79rem] text-pale"><svg class="size-[13px] fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Locked after 15 minutes idle</p>
+  <form onsubmit="event.preventDefault()">
+    <input type="email" name="username" autocomplete="username" value="dana@northwind.co" hidden>
+    <label class="mb-[7px] block text-left text-[.82rem] font-semibold text-pale" for="unlock">Password</label>
+    <div class="flex gap-[9px]">
+      <input class="min-w-0 flex-1 rounded-xl border border-white/42 bg-white/8 px-[15px] py-[13px] text-[.95rem] text-white transition-[border-color,background-color,box-shadow] duration-150 placeholder:text-[#8b93ab] focus:border-soft focus:bg-white/13 focus:shadow-[0_0_0_3px_rgba(165,180,252,.25)] focus:outline-none motion-reduce:transition-none"
+             id="unlock" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+      <button class="grid w-[50px] shrink-0 cursor-pointer place-items-center rounded-xl bg-accent text-white transition-[background-color,border-color,color] duration-150 hover:bg-accent-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-soft motion-reduce:transition-none" type="submit" aria-label="Unlock">
+        <svg class="size-[19px] fill-none stroke-current stroke-[2.2]" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </form>
+  <p class="mt-6 text-[.87rem] leading-[2] text-dim"><a class="font-semibold text-soft hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-soft" href="#">Use a passkey</a><br><a class="font-semibold text-soft hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-soft" href="#">Sign in as someone else</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

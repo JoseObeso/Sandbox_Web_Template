@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient Border Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-gb-ink: #241f1c;
+  --color-gb-muted: #766b64;
+  --color-gb-pink: #db2777;
+  --color-gb-line: #9a8f87;
+  --animate-gb-slide: gb-slide 7s linear infinite;
+  @keyframes gb-slide { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="flex min-h-screen items-center justify-center bg-[#fdf6f0] p-6 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-gb-ink">
+  <div class="w-full max-w-[390px] rounded-[20px] bg-[linear-gradient(120deg,#f97316,#db2777,#8b5cf6,#f97316)] bg-size-[300%_300%] p-0.5 motion-safe:animate-gb-slide">
+    <form class="rounded-[18px] bg-[#fffdfb] px-9 py-[42px]" action="#" method="post" onsubmit="event.preventDefault()">
+      <span class="mb-4 inline-block rounded-full bg-[#fdeef5] px-3 py-[5px] text-[.72rem] font-bold tracking-[.08em] text-[#be185d] uppercase">Members area</span>
+      <h1 class="mb-1.5 text-[1.55rem] font-bold tracking-[-.02em]">Good to see you again</h1>
+      <p class="mb-7 text-[.92rem] text-gb-muted">Log in to pick up right where you left off.</p>
+      <label class="mb-1.5 block text-[.83rem] font-bold" for="gb-email">Email</label>
+      <input class="mb-[18px] block w-full rounded-xl border-[1.5px] border-gb-line bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-gb-muted focus:border-gb-pink focus:shadow-[0_0_0_3px_rgba(219,39,119,.2)] focus:outline-none motion-reduce:transition-none" type="email" id="gb-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+      <label class="mb-1.5 block text-[.83rem] font-bold" for="gb-password">Password</label>
+      <input class="mb-[18px] block w-full rounded-xl border-[1.5px] border-gb-line bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 focus:border-gb-pink focus:shadow-[0_0_0_3px_rgba(219,39,119,.2)] focus:outline-none motion-reduce:transition-none" type="password" id="gb-password" name="password" autocomplete="current-password" required>
+      <button class="w-full cursor-pointer rounded-xl bg-linear-90 from-[#c2410c] to-[#db2777] p-[13px] text-[.95rem] font-extrabold text-white transition-[filter,transform] duration-150 hover:-translate-y-px hover:brightness-106 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gb-pink motion-reduce:transition-none motion-reduce:hover:translate-y-0" type="submit">Log in</button>
+      <div class="mt-5 flex flex-wrap justify-between gap-3 text-[.85rem]">
+        <a class="rounded-[3px] font-bold text-gb-pink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gb-pink" href="#">Forgot password?</a>
+        <a class="rounded-[3px] font-bold text-gb-pink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gb-pink" href="#">Create account</a>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

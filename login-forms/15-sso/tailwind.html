@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise SSO Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-brand: #4f46e5;
+  --color-brand-dark: #4338ca;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-line: #e5e7eb;
+  --color-edge: #868c99;
+  --color-page: #f5f6fa;
+  --color-suffix: #636a77;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="grid min-h-screen grid-cols-[minmax(0,1fr)] place-items-center bg-page px-5 py-7 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ink">
+<main class="w-full max-w-[430px] rounded-2xl border border-line bg-white px-[34px] py-[38px] shadow-[0_10px_34px_rgba(17,24,39,.06)]">
+  <div class="mb-[22px] grid size-[42px] place-items-center rounded-xl bg-brand font-extrabold text-white" aria-hidden="true">N</div>
+  <h1 class="mb-[7px] text-[1.4rem] font-bold tracking-[-.02em]">Sign in to your workspace</h1>
+  <p class="mb-[26px] text-[.93rem] leading-[1.6] text-muted">Enter your team's Northwind address to be sent to your company's login.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="mb-1.5 block text-[.85rem] font-semibold" for="team">Workspace address</label>
+    <div class="flex items-center overflow-hidden rounded-[10px] border border-edge bg-white transition-[border-color,box-shadow] duration-150 focus-within:border-brand focus-within:shadow-[0_0_0_3px_rgba(79,70,229,.15)] motion-reduce:transition-none">
+      <input class="min-w-0 flex-1 border-0 bg-transparent py-3 pr-1 pl-3.5 text-[.95rem] placeholder:text-muted focus:outline-none"
+             id="team" name="workspace" type="text" placeholder="your-team" autocomplete="on" required
+             spellcheck="false" autocapitalize="off" aria-describedby="team-suffix">
+      <span class="flex items-center self-stretch border-l border-line bg-page py-3 pr-2.5 pl-1.5 text-[.85rem] whitespace-nowrap text-suffix min-[401px]:pr-3.5 min-[401px]:pl-0.5 min-[401px]:text-[.95rem]" id="team-suffix">.northwind.app</span>
+    </div>
+    <button class="mt-5 w-full cursor-pointer rounded-[10px] bg-brand p-[13px] text-[.97rem] font-bold text-white transition-[background-color,border-color,color] duration-150 hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="submit">Continue with SSO</button>
+  </form>
+  <div class="mt-6 mb-1 flex items-center gap-3.5 text-[.8rem] tracking-[.08em] text-muted uppercase before:h-px before:flex-1 before:bg-line after:h-px after:flex-1 after:bg-line" id="prov-label"><span>or use</span></div>
+  <div class="mt-6 grid gap-[9px]" role="group" aria-labelledby="prov-label">
+    <button class="flex cursor-pointer items-center gap-[11px] rounded-[11px] border border-line bg-white px-3.5 py-3 text-left text-[.92rem] font-semibold text-ink transition-[background-color,border-color,color] duration-150 hover:border-[#cbd0dd] hover:bg-page focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="button"><span class="grid size-6 shrink-0 place-items-center rounded-md bg-[#00297a] text-[.68rem] font-extrabold text-white" aria-hidden="true">O</span> Okta</button>
+    <button class="flex cursor-pointer items-center gap-[11px] rounded-[11px] border border-line bg-white px-3.5 py-3 text-left text-[.92rem] font-semibold text-ink transition-[background-color,border-color,color] duration-150 hover:border-[#cbd0dd] hover:bg-page focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="button"><span class="grid size-6 shrink-0 place-items-center rounded-md bg-[#0078d4] text-[.68rem] font-extrabold text-white" aria-hidden="true">M</span> Microsoft Entra ID</button>
+    <button class="flex cursor-pointer items-center gap-[11px] rounded-[11px] border border-line bg-white px-3.5 py-3 text-left text-[.92rem] font-semibold text-ink transition-[background-color,border-color,color] duration-150 hover:border-[#cbd0dd] hover:bg-page focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none" type="button"><span class="grid size-6 shrink-0 place-items-center rounded-md bg-[#1a73e8] text-[.68rem] font-extrabold text-white" aria-hidden="true">G</span> Google Workspace</button>
+  </div>
+  <p class="mt-6 text-center text-[.89rem] text-muted">Not on a team plan? <a class="font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand" href="#">Sign in with a password</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

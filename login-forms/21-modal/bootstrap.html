@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal Login Over the App (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-demo>
+/* Demo only: a stand-in application behind the dialog. */
+body{margin:0;min-height:100vh;background:#eef0f6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.app{position:fixed;inset:0;pointer-events:none;user-select:none;overflow:hidden}
+.app .top{height:56px;background:#fff;border-bottom:1px solid #e2e5ee;display:flex;align-items:center;gap:14px;padding:0 22px}
+.app .dot{width:26px;height:26px;border-radius:8px;background:#4f46e5}
+.app .pill{height:9px;border-radius:5px;background:#dfe3ee}
+.app .side{position:absolute;top:56px;left:0;bottom:0;width:210px;background:#fff;border-right:1px solid #e2e5ee;
+  padding:20px 16px;display:flex;flex-direction:column;gap:15px;box-sizing:border-box}
+.app .body{position:absolute;top:56px;left:210px;right:0;bottom:0;padding:26px;display:grid;
+  grid-template-columns:repeat(3,1fr);gap:18px;align-content:start;background:#f4f6fb}
+.app .app-card{background:#fff;border:1px solid #e6e9f1;border-radius:14px;height:132px;padding:18px;
+  display:flex;flex-direction:column;gap:11px;box-sizing:border-box}
+.app .bar{height:44px;border-radius:8px;background:linear-gradient(90deg,#e9ecf6,#f4f6fb);margin-top:auto}
+@media(max-width:760px){.app .side{display:none}.app .body{left:0;grid-template-columns:1fr 1fr}}
+</style>
+<style data-snippet>
+/* Bootstrap .modal (bundle JS) with a static backdrop and the keyboard close switched off, so signing in or
+   switching account are the only ways out. The .modal element itself dims and blurs your app. */
+.lf-modal{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-edge:#868c99;
+  --bs-body-color:var(--lf-ink);--bs-secondary-color:var(--lf-muted);--bs-border-color:var(--lf-edge);
+  --bs-modal-width:394px;--bs-modal-margin:20px;--bs-modal-border-width:0;--bs-modal-border-radius:18px;--bs-modal-padding:34px 32px;
+  --bs-modal-box-shadow:0 26px 70px rgba(12,18,38,.34);
+  background:rgba(17,22,38,.34);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);line-height:normal}
+.lf-modal .modal-content{box-shadow:var(--bs-modal-box-shadow)}
+.lf-modal :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-tag{gap:7px;font-size:.78rem;font-weight:700;color:#92400e;background:#fffbeb;border:1px solid #fde68a;padding:5px 11px;margin-bottom:16px}
+.lf-modal h1{font-size:1.32rem;font-weight:700;line-height:normal;letter-spacing:-.02em;margin-bottom:6px}
+.lf-sub{font-size:.91rem;margin-bottom:24px;line-height:1.55}
+.lf-modal .form-label{font-size:.84rem;font-weight:600;margin-bottom:6px}
+.lf-modal .form-control{padding:12px 14px;border-radius:10px;font-size:.95rem;line-height:normal;margin-bottom:18px;transition:border-color .15s,box-shadow .15s}
+.lf-modal .form-control[readonly]{background-color:#fff}
+.lf-modal .form-control:focus{border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15);outline:none}
+.lf-modal .form-control::placeholder{color:var(--lf-muted)}
+.lf-modal .btn{--bs-btn-line-height:normal;--bs-btn-focus-box-shadow:none;--bs-btn-border-radius:10px;--bs-btn-border-width:0;transition:background-color .15s}
+.lf-modal .btn-brand{--bs-btn-padding-y:13px;--bs-btn-font-size:.96rem;--bs-btn-font-weight:700;
+  --bs-btn-bg:var(--lf-brand);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--lf-brand-dark);--bs-btn-hover-color:#fff;
+  --bs-btn-active-bg:var(--lf-brand-dark);--bs-btn-active-color:#fff}
+.lf-modal .btn-ghost{--bs-btn-padding-y:11px;--bs-btn-font-size:.89rem;--bs-btn-font-weight:600;
+  --bs-btn-color:var(--lf-muted);--bs-btn-hover-bg:#f4f5fa;--bs-btn-hover-color:var(--lf-muted);--bs-btn-active-bg:#f4f5fa;--bs-btn-active-color:var(--lf-muted);margin-top:10px}
+@media (prefers-reduced-motion:reduce){.lf-modal .form-control,.lf-modal .btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="app" aria-hidden="true">
+  <div class="top"><span class="dot"></span><span class="pill" style="width:110px"></span>
+    <span class="pill" style="width:64px"></span><span class="pill" style="width:78px"></span></div>
+  <div class="side"><span class="pill" style="width:100%"></span><span class="pill" style="width:76%"></span>
+    <span class="pill" style="width:88%"></span><span class="pill" style="width:60%"></span>
+    <span class="pill" style="width:82%"></span></div>
+  <div class="body">
+    <div class="app-card"><span class="pill" style="width:56%"></span><span class="pill" style="width:34%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:66%"></span><span class="pill" style="width:40%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:48%"></span><span class="pill" style="width:30%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:60%"></span><span class="pill" style="width:38%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:52%"></span><span class="pill" style="width:44%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:70%"></span><span class="pill" style="width:28%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:58%"></span><span class="pill" style="width:36%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:64%"></span><span class="pill" style="width:26%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:46%"></span><span class="pill" style="width:42%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:62%"></span><span class="pill" style="width:32%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:50%"></span><span class="pill" style="width:38%"></span><span class="bar"></span></div>
+    <div class="app-card"><span class="pill" style="width:68%"></span><span class="pill" style="width:30%"></span><span class="bar"></span></div>
+  </div>
+</div>
+<!-- snippet:html -->
+<div class="modal lf-modal" id="lf-signin" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" aria-labelledby="lf-dtitle" aria-describedby="lf-dsub">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="lf-tag d-inline-flex align-items-center rounded-pill">Session expired</p>
+        <h1 id="lf-dtitle">Sign in to continue</h1>
+        <p class="lf-sub text-body-secondary" id="lf-dsub">Your work is saved. Sign in again to get back to the Q3 rollout board.</p>
+        <form onsubmit="event.preventDefault()">
+          <label class="form-label" for="mmail">Email address</label>
+          <input class="form-control" id="mmail" name="username" type="email" value="dana@northwind.co" autocomplete="username" readonly>
+          <label class="form-label" for="mpw">Password</label>
+          <input class="form-control" id="mpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+          <button class="btn btn-brand w-100" type="submit">Unlock</button>
+          <button class="btn btn-ghost w-100" type="button">Sign in as someone else</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /snippet:html -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script data-snippet>
+(() => {
+  const el = document.getElementById('lf-signin');
+  if (!el || !window.bootstrap) return;
+  // Bootstrap focuses the modal itself; move focus on to the password field once it is shown.
+  el.addEventListener('shown.bs.modal', () => document.getElementById('mpw').focus());
+  bootstrap.Modal.getOrCreateInstance(el).show(); // call this when your app detects the expired session
+})();
+</script>
+</body>
+</html>

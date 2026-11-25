@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theme-Aware Login — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Theme-aware login. The colours are custom properties on :root: prefers-color-scheme picks light or dark,
+   and data-theme="light|dark" on <html> (set by the toggle) overrides it. Without JavaScript it still follows the OS. */
+:root{--lf-bg:#f4f5f9;--lf-card:#fff;--lf-edge:#e4e6ef;--lf-field-edge:#868c99;--lf-txt:#111827;--lf-dim:#6b7280;--lf-inp:#fff;
+  --lf-acc:#4f46e5;--lf-acc-text:#fff;--lf-link:#4f46e5;--lf-ring:rgba(79,70,229,.18);--lf-sun:none;--lf-moon:block;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --lf-bg:#0e1117;--lf-card:#161a23;--lf-edge:#262c39;--lf-field-edge:#6b7488;--lf-txt:#e8eaf1;--lf-dim:#98a0b3;--lf-inp:#1c212c;
+  --lf-acc:#5b5fe6;--lf-link:#a5b4fc;--lf-ring:rgba(165,180,252,.25);--lf-sun:block;--lf-moon:none;color-scheme:dark}}
+:root[data-theme=dark]{--lf-bg:#0e1117;--lf-card:#161a23;--lf-edge:#262c39;--lf-field-edge:#6b7488;--lf-txt:#e8eaf1;--lf-dim:#98a0b3;--lf-inp:#1c212c;
+  --lf-acc:#5b5fe6;--lf-link:#a5b4fc;--lf-ring:rgba(165,180,252,.25);--lf-sun:block;--lf-moon:none;color-scheme:dark}
+.lf{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-txt);line-height:normal;transition:background .2s,color .2s;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf a{color:var(--lf-link);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-link);outline-offset:2px}
+.lf-box{width:100%;max-width:400px;background:var(--lf-card);border:1px solid var(--lf-edge);border-radius:16px;
+  padding:34px 32px;position:relative;transition:background .2s,border-color .2s}
+.lf-tog{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:10px;cursor:pointer;
+  background:none;border:1px solid var(--lf-edge);color:var(--lf-dim);display:grid;place-items:center;transition:background .15s,color .15s}
+.lf-tog:hover{background:var(--lf-bg);color:var(--lf-txt)}
+.lf-tog svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+.lf-tog .lf-sun{display:var(--lf-sun)}
+.lf-tog .lf-moon{display:var(--lf-moon)}
+.lf-mark{width:40px;height:40px;border-radius:11px;background:var(--lf-acc);color:var(--lf-acc-text);
+  display:grid;place-items:center;font-weight:800;margin-bottom:20px}
+.lf h1{font-size:1.36rem;letter-spacing:-.02em;margin-bottom:6px}
+.lf-sub{color:var(--lf-dim);font-size:.91rem;margin-bottom:24px}
+.lf-label{display:block;font-size:.84rem;font-weight:600;margin-bottom:6px}
+.lf-field{width:100%;padding:12px 14px;border:1px solid var(--lf-field-edge);border-radius:10px;font-size:.95rem;
+  margin-bottom:17px;background:var(--lf-inp);color:var(--lf-txt);transition:background .2s,border-color .15s,box-shadow .15s}
+.lf-field::placeholder{color:var(--lf-dim)}
+.lf-field:focus{outline:none;border-color:var(--lf-acc);box-shadow:0 0 0 3px var(--lf-ring)}
+.lf-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;font-size:.86rem;color:var(--lf-dim)}
+.lf-check{display:flex;align-items:center;gap:7px;font-weight:500;cursor:pointer}
+.lf-check input{margin:0;accent-color:var(--lf-acc)}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-acc);color:var(--lf-acc-text);
+  font-size:.96rem;font-weight:700;cursor:pointer}
+.lf-btn:hover{filter:brightness(1.08)}
+.lf-foot{margin-top:22px;text-align:center;font-size:.88rem;color:var(--lf-dim)}
+@media (prefers-reduced-motion:reduce){.lf,.lf-box,.lf-tog,.lf-field{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <button class="lf-tog" id="lf-theme" type="button" aria-label="Dark theme" aria-pressed="false">
+    <svg class="lf-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>
+    <svg class="lf-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+  </button>
+  <div class="lf-mark" aria-hidden="true">N</div>
+  <h1>Sign in</h1>
+  <p class="lf-sub">This screen follows your system theme until you change it.</p>
+  <form onsubmit="event.preventDefault()">
+    <label class="lf-label" for="dmail">Email address</label>
+    <input class="lf-field" id="dmail" name="username" type="email" autocomplete="username" placeholder="you@company.com" required>
+    <label class="lf-label" for="dpw">Password</label>
+    <input class="lf-field" id="dpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+    <div class="lf-row">
+      <label class="lf-check"><input type="checkbox" name="remember"> Remember me</label>
+      <a href="#">Forgot password?</a>
+    </div>
+    <button class="lf-btn" type="submit">Sign in</button>
+  </form>
+  <p class="lf-foot">No account? <a href="#">Create one</a></p>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// No data-theme attribute means the media query decides; the toggle only stamps <html> once someone
+// opts out. aria-pressed tells assistive technology whether the dark theme is on.
+(() => {
+  const root = document.documentElement, tog = document.getElementById('lf-theme');
+  if (!tog) return;
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches;
+  const sync = () => tog.setAttribute('aria-pressed', String(dark()));
+  tog.addEventListener('click', () => { root.dataset.theme = dark() ? 'light' : 'dark'; sync(); });
+  mq.addEventListener('change', sync);
+  sync();
+})();
+</script>
+</body>
+</html>

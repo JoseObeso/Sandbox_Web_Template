@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One-Time Code Screen (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .card with six .form-control digit boxes in a fieldset, a .btn and a .btn-link resend countdown. */
+.ot{--ot-brand:#4f46e5;--ot-brand-dark:#4338ca;--ot-bad:#b91c1c;
+  --bs-body-color:#111827;--bs-secondary-color:#6b7280;--bs-border-color:#8b93a1;
+  --bs-body-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;background:#f5f6fa;color:var(--bs-body-color);font-family:var(--bs-body-font-family);line-height:normal}
+.ot .card{--bs-card-border-color:#e5e7eb;--bs-card-border-radius:16px;--bs-card-spacer-y:38px;--bs-card-spacer-x:34px;max-width:420px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.ot-mark{width:42px;height:42px;border-radius:12px;background:var(--ot-brand);font-weight:800;margin:0 auto 22px}
+.ot h1{font-size:1.4rem;letter-spacing:-.02em;font-weight:700;margin-bottom:7px}
+.ot-sub{font-size:.93rem;line-height:1.6;margin-bottom:22px}
+.ot legend{float:none;width:auto;font-size:.85rem;font-weight:600;margin:0 auto 10px}
+.ot-codes{gap:9px;margin-bottom:8px}
+.ot-codes .form-control{flex:1 1 0;min-width:0;max-width:52px;height:60px;padding:0;text-align:center;font-size:1.5rem;font-weight:700;border-radius:11px}
+.ot-codes .form-control:focus{border-color:var(--ot-brand);box-shadow:0 0 0 3px rgba(79,70,229,.25)}
+.ot-codes .form-control:not(:placeholder-shown){border-color:var(--ot-brand);background:#f5f4ff}
+.ot-codes .form-control[aria-invalid="true"]{border-color:var(--ot-bad)}
+.ot-msg{font-size:.83rem;min-height:1.3em;margin-bottom:22px}
+.ot-msg[data-state="error"]{color:var(--ot-bad)!important;font-weight:600}
+.ot .btn-ot{--bs-btn-bg:var(--ot-brand);--bs-btn-border-color:var(--ot-brand);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--ot-brand-dark);--bs-btn-hover-border-color:var(--ot-brand-dark);
+  --bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--ot-brand-dark);--bs-btn-active-border-color:var(--ot-brand-dark);--bs-btn-active-color:#fff;
+  --bs-btn-padding-y:13px;--bs-btn-font-size:.97rem;--bs-btn-font-weight:700;--bs-btn-border-radius:10px;--bs-btn-line-height:1.2;--bs-btn-focus-box-shadow:none}
+.ot-resend{margin-top:20px;font-size:.88rem}
+.ot .btn-link{--bs-btn-padding-x:0;--bs-btn-padding-y:0;--bs-btn-font-size:inherit;--bs-btn-font-weight:600;--bs-btn-border-width:0;--bs-btn-border-radius:3px;
+  --bs-btn-color:var(--ot-brand);--bs-btn-hover-color:var(--ot-brand);--bs-btn-active-color:var(--ot-brand);--bs-btn-disabled-color:var(--bs-secondary-color);
+  --bs-btn-disabled-opacity:1;--bs-btn-focus-box-shadow:none;vertical-align:baseline;line-height:inherit;text-decoration:none}
+.ot .btn-link:disabled{font-weight:500}
+.ot-foot{margin-top:24px;font-size:.89rem}
+.ot a{color:var(--ot-brand);text-decoration:none;font-weight:600;border-radius:3px}
+.ot a:hover{text-decoration:underline}
+.ot a:focus-visible,.ot .btn:focus-visible{outline:2px solid var(--ot-brand);outline-offset:2px}
+@media (max-width:400px){.ot-codes{gap:6px}.ot-codes .form-control{height:52px;font-size:1.2rem}}
+@media (prefers-reduced-motion:reduce){.ot .form-control,.ot .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="ot">
+  <main class="card w-100 text-center mx-auto" data-otp>
+    <div class="card-body">
+      <div class="ot-mark d-grid align-items-center justify-content-center text-white" aria-hidden="true">N</div>
+      <h1>Check your email</h1>
+      <p class="ot-sub text-body-secondary">We sent a 6-digit code to <strong class="text-body">dana@northwind.co</strong>. It expires in 10 minutes.</p>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Verification code</legend>
+          <div class="ot-codes d-flex justify-content-center">
+        <input class="form-control" type="text" inputmode="numeric" placeholder=" " autocomplete="one-time-code" aria-label="Digit 1 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="form-control" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 2 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="form-control" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 3 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="form-control" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 4 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="form-control" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 5 of 6" aria-describedby="ot-msg" data-otp-digit>
+        <input class="form-control" type="text" inputmode="numeric" placeholder=" " autocomplete="off" aria-label="Digit 6 of 6" aria-describedby="ot-msg" data-otp-digit>
+          </div>
+        </fieldset>
+        <p class="ot-msg text-body-secondary" id="ot-msg" aria-live="polite" data-otp-msg>Paste the whole code and it will fill every box.</p>
+        <button class="btn btn-ot w-100" type="submit">Verify</button>
+      </form>
+      <p class="ot-resend text-body-secondary mb-0">Didn&rsquo;t get it? <button class="btn btn-link" type="button" data-resend disabled>Resend in 30s</button></p>
+      <p class="ot-foot mb-0"><a href="#">Use a different email</a></p>
+    </div>
+  </main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// One-time code: typing moves to the next box, Backspace on an empty box goes back, and pasting or
+// autofilling the whole code spreads it across every box. Front end only: post the code in the submit handler.
+document.querySelectorAll('[data-otp]').forEach(function (card) {
+  var form = card.querySelector('form');
+  var boxes = Array.prototype.slice.call(form.querySelectorAll('[data-otp-digit]'));
+  var msg = card.querySelector('[data-otp-msg]');
+  var resend = card.querySelector('[data-resend]');
+  var helper = msg.textContent;
+
+  function say(text, isError) {
+    msg.textContent = text || helper;
+    if (isError) msg.setAttribute('data-state', 'error'); else msg.removeAttribute('data-state');
+    boxes.forEach(function (b) { if (isError && !b.value) b.setAttribute('aria-invalid', 'true'); else b.removeAttribute('aria-invalid'); });
+  }
+  function fill(from, digits) {
+    for (var k = 0; k < digits.length && from + k < boxes.length; k++) boxes[from + k].value = digits[k];
+    boxes[Math.min(from + digits.length, boxes.length - 1)].focus();
+  }
+
+  boxes.forEach(function (box, i) {
+    box.addEventListener('input', function () {
+      var digits = box.value.replace(/\D/g, '');
+      box.value = digits.charAt(0);
+      if (digits.length > 1) fill(i, digits);
+      else if (digits && boxes[i + 1]) boxes[i + 1].focus();
+      if (msg.hasAttribute('data-state')) say('', false);
+    });
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'Backspace' && !box.value && boxes[i - 1]) { e.preventDefault(); boxes[i - 1].value = ''; boxes[i - 1].focus(); }
+      else if (e.key === 'ArrowLeft' && boxes[i - 1]) { e.preventDefault(); boxes[i - 1].focus(); }
+      else if (e.key === 'ArrowRight' && boxes[i + 1]) { e.preventDefault(); boxes[i + 1].focus(); }
+    });
+    box.addEventListener('paste', function (e) {
+      var digits = ((e.clipboardData || window.clipboardData).getData('text') || '').replace(/\D/g, '');
+      if (!digits) return;
+      e.preventDefault();
+      fill(digits.length >= boxes.length ? 0 : i, digits);
+      say('', false);
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var empty = boxes.filter(function (b) { return !b.value; })[0];
+    if (empty) { say('Enter all ' + boxes.length + ' digits of the code.', true); empty.focus(); return; }
+    say('', false);
+    // var code = boxes.map(function (b) { return b.value; }).join(''); → send it to your server here.
+  });
+
+  var timer;
+  function countdown(seconds) {
+    clearInterval(timer);
+    resend.disabled = true;
+    resend.textContent = 'Resend in ' + seconds + 's';
+    timer = setInterval(function () {
+      if (--seconds > 0) { resend.textContent = 'Resend in ' + seconds + 's'; return; }
+      clearInterval(timer);
+      resend.disabled = false;
+      resend.textContent = 'Resend code';
+    }, 1000);
+  }
+  resend.addEventListener('click', function () {
+    boxes.forEach(function (b) { b.value = ''; });
+    say('A new code is on its way. The previous one no longer works.', false);
+    boxes[0].focus();
+    countdown(30);
+  });
+  countdown(30);
+});
+</script>
+</body>
+</html>

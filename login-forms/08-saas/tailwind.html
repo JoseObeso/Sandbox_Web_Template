@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-ss-ink: #0f172a;
+  --color-ss-muted: #64748b;
+  --color-ss-line: #8a94a6;
+  --color-ss-slate: #334155;
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="flex min-h-screen bg-white font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ss-ink">
+  <main class="mx-auto flex max-w-[560px] flex-1 flex-col justify-center p-12">
+    <div class="mb-11 flex items-center gap-2.5 text-[1.05rem] font-extrabold"><i class="inline-block size-[30px] rounded-lg bg-linear-135 from-ss-slate to-ss-ink" aria-hidden="true"></i>Meridian</div>
+    <h1 class="mb-1.5 text-[1.7rem] font-bold tracking-[-.02em]">Log in to your account</h1>
+    <p class="mb-[30px] text-[.95rem] text-ss-muted">Welcome back. Your dashboards missed you.</p>
+    <form action="#" method="post" onsubmit="event.preventDefault()">
+      <label class="mb-1.5 block text-[.85rem] font-semibold" for="ss-email">Work email</label>
+      <div class="relative mb-[18px]"><input class="block w-full rounded-[10px] border border-ss-line bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-ss-muted focus:border-ss-slate focus:shadow-[0_0_0_3px_rgba(51,65,85,.2)] focus:outline-none motion-reduce:transition-none" type="email" id="ss-email" name="email" placeholder="you@company.com" autocomplete="username" required></div>
+      <label class="mb-1.5 block text-[.85rem] font-semibold" for="ss-password">Password</label>
+      <div class="relative mb-[18px]">
+        <input class="block w-full rounded-[10px] border border-ss-line bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-ss-muted focus:border-ss-slate focus:shadow-[0_0_0_3px_rgba(51,65,85,.2)] focus:outline-none motion-reduce:transition-none pr-12" type="password" id="ss-password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+        <button type="button" class="group absolute top-1/2 right-2 flex -translate-y-1/2 cursor-pointer rounded-md p-1.5 text-ss-muted hover:text-ss-slate aria-pressed:text-ss-slate focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink" data-peek aria-controls="ss-password" aria-pressed="false" aria-label="Show password"><svg class="size-[19px] fill-current group-aria-pressed:hidden" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg><svg class="hidden size-[19px] fill-current group-aria-pressed:block" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.3 2 2 3.3l3.1 3.1C3.1 8.1 2 10.6 2 12c0 0 3 7 10 7 2 0 3.7-.6 5.1-1.4l3.6 3.6 1.3-1.3L3.3 2zM12 16.5A4.5 4.5 0 0 1 7.5 12c0-.8.2-1.5.6-2.2l1.5 1.5a2.5 2.5 0 0 0 3.1 3.1l1.5 1.5c-.7.4-1.4.6-2.2.6zm0-11.5c-1.3 0-2.5.2-3.5.6l1.7 1.7c.6-.2 1.2-.3 1.8-.3a4.5 4.5 0 0 1 4.5 4.5c0 .6-.1 1.2-.3 1.8l2.9 2.9C21.1 14.3 22 12 22 12s-3-7-10-7z"/></svg></button>
+      </div>
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-2.5 text-[.87rem]">
+        <label class="flex cursor-pointer items-center gap-[7px] font-medium text-[#475569]"><input class="size-4 accent-ss-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink" type="checkbox" name="remember"> Keep me signed in</label>
+        <a class="rounded-[3px] font-semibold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink" href="#">Forgot password?</a>
+      </div>
+      <button class="w-full cursor-pointer rounded-[10px] bg-ss-ink p-[13px] text-[.95rem] font-bold text-white transition-colors duration-150 hover:bg-[#1e293b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink motion-reduce:transition-none" type="submit">Sign in</button>
+      <button class="mt-3 w-full cursor-pointer rounded-[10px] border border-ss-line bg-white p-3 text-[.92rem] font-semibold transition-colors duration-150 hover:bg-[#f8fafc] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink motion-reduce:transition-none" type="button">Sign in with SSO</button>
+    </form>
+    <p class="mt-[26px] text-[.9rem] text-ss-muted">Don&rsquo;t have an account? <a class="rounded-[3px] font-bold text-ss-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink" href="#">Start a free trial</a></p>
+  </main>
+  <aside class="hidden flex-1 flex-col justify-center gap-[34px] bg-ss-ink p-16 text-[#e2e8f0] min-[960px]:flex">
+    <div class="flex gap-9">
+      <div><b class="block text-[1.9rem] tracking-[-.02em] text-white">28k+</b><span class="text-[.85rem] text-[#94a3b8]">teams on board</span></div>
+      <div><b class="block text-[1.9rem] tracking-[-.02em] text-white">99.99%</b><span class="text-[.85rem] text-[#94a3b8]">uptime last year</span></div>
+      <div><b class="block text-[1.9rem] tracking-[-.02em] text-white">4.8/5</b><span class="text-[.85rem] text-[#94a3b8]">average rating</span></div>
+    </div>
+    <blockquote class="max-w-[44ch] text-[1.15rem] leading-[1.6] text-[#f1f5f9]">&ldquo;We moved three tools into Meridian in a week. Reporting that used to take Fridays now takes minutes.&rdquo;</blockquote>
+    <div class="flex items-center gap-3 text-[.9rem] text-[#94a3b8]"><i class="size-10 rounded-full bg-linear-135 from-[#38bdf8] to-[#818cf8]" aria-hidden="true"></i><span><b class="block text-[#e2e8f0]">Priya Natarajan</b>Head of Analytics, Corvid</span></div>
+  </aside>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Show / hide password. The button keeps one name ("Show password") and reports its state with aria-pressed.
+document.querySelectorAll('[data-peek]').forEach(function (btn) {
+  var input = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', function () {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', String(show));
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split Login Form — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Split-screen login: a gradient brand panel (hidden under 880px) beside a plain email and password form. */
+.sp{--sp-brand:#4f46e5;--sp-brand-dark:#4338ca;--sp-brand2:#7c3aed;--sp-ink:#111827;--sp-muted:#6b7280;--sp-line:#8b93a1;
+  min-height:100vh;display:flex;background:#fff;color:var(--sp-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.sp h1,.sp h2,.sp p{margin:0}
+.sp-panel{flex:1;display:none;flex-direction:column;justify-content:space-between;padding:56px;color:#fff;
+  background:linear-gradient(135deg,var(--sp-brand),var(--sp-brand2))}
+.sp-logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.sp-panel h2{font-size:2.1rem;line-height:1.2;letter-spacing:-.03em;max-width:22ch}
+.sp-panel p{margin-top:14px;opacity:.9;max-width:40ch;line-height:1.6}
+.sp-panel .sp-quote{font-size:.9rem;opacity:.9}
+.sp-main{flex:1;display:flex;align-items:center;justify-content:center;padding:32px}
+.sp-form{width:100%;max-width:380px}
+.sp-form h1{font-size:1.6rem;letter-spacing:-.02em;margin-bottom:6px}
+.sp-form>p{color:var(--sp-muted);font-size:.95rem;margin-bottom:28px}
+.sp-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.sp-input{display:block;width:100%;padding:12px 14px;margin-bottom:18px;border:1px solid var(--sp-line);border-radius:10px;
+  font:inherit;font-size:.95rem;color:inherit;background:#fff;transition:border-color .15s,box-shadow .15s}
+.sp-input::placeholder{color:#6b7280}
+.sp-input:focus{outline:none;border-color:var(--sp-brand);box-shadow:0 0 0 3px rgba(79,70,229,.25)}
+.sp-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;font-size:.85rem}
+.sp-check{display:flex;align-items:center;gap:7px;font-weight:500;color:var(--sp-muted);cursor:pointer}
+.sp-check input{width:16px;height:16px;margin:0;accent-color:var(--sp-brand)}
+.sp a{color:var(--sp-brand);text-decoration:none;font-weight:600;border-radius:3px}
+.sp a:hover{text-decoration:underline}
+.sp a:focus-visible,.sp-check input:focus-visible,.sp-btn:focus-visible{outline:2px solid var(--sp-brand);outline-offset:2px}
+.sp-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--sp-brand);color:#fff;font:inherit;
+  font-size:.98rem;font-weight:700;cursor:pointer;transition:background-color .15s}
+.sp-btn:hover{background:var(--sp-brand-dark)}
+.sp-signup{margin-top:26px!important;text-align:center;font-size:.9rem;color:var(--sp-muted)}
+@media (min-width:880px){.sp-panel{display:flex}}
+@media (prefers-reduced-motion:reduce){.sp-input,.sp-btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="sp">
+  <aside class="sp-panel">
+    <div class="sp-logo">Northwind</div>
+    <div>
+      <h2>Start your day with everything in one place.</h2>
+      <p>Projects, docs, and conversations — organized so your team can focus on the work that matters.</p>
+    </div>
+    <p class="sp-quote">“The cleanest tool we have ever rolled out.” — Dana K., Ops Lead</p>
+  </aside>
+  <main class="sp-main">
+    <form class="sp-form" action="#" method="post" onsubmit="event.preventDefault()">
+      <h1>Welcome back</h1>
+      <p>Sign in to continue to your workspace.</p>
+      <label class="sp-label" for="sp-email">Email address</label>
+      <input class="sp-input" type="email" id="sp-email" name="email" autocomplete="username" placeholder="you@company.com" required>
+      <label class="sp-label" for="sp-password">Password</label>
+      <input class="sp-input" type="password" id="sp-password" name="password" autocomplete="current-password" required>
+      <div class="sp-row">
+        <label class="sp-check"><input type="checkbox" name="remember"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button class="sp-btn" type="submit">Sign in</button>
+      <p class="sp-signup">New here? <a href="#">Create an account</a></p>
+    </form>
+  </main>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SaaS Login (React) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script type="importmap">{"imports":{"react":"https://esm.sh/react@19.1.0","react/jsx-runtime":"https://esm.sh/react@19.1.0/jsx-runtime","react-dom/client":"https://esm.sh/react-dom@19.1.0/client?deps=react@19.1.0"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.26.4/babel.min.js"></script>
+<script>Babel.registerPreset('react-automatic', { presets: [[Babel.availablePresets.react, { runtime: 'automatic' }]] });</script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-ss-ink: #0f172a;
+  --color-ss-muted: #64748b;
+  --color-ss-line: #8a94a6;
+  --color-ss-slate: #334155;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module" data-presets="react-automatic">
+// snippet:jsx
+// SaaS login page: form column with a password reveal toggle, and a stats + testimonial panel from 960px.
+// Usage: <SaasLogin brand="Meridian" stats={[{ value: '28k+', label: 'teams on board' }]} onSubmit={(data) => signIn(data)} onSso={() => startSso()} />
+import { useState, useId } from 'react';
+
+const STATS = [
+  { value: '28k+', label: 'teams on board' },
+  { value: '99.99%', label: 'uptime last year' },
+  { value: '4.8/5', label: 'average rating' },
+];
+const TESTIMONIAL = {
+  quote: 'We moved three tools into Meridian in a week. Reporting that used to take Fridays now takes minutes.',
+  name: 'Priya Natarajan',
+  role: 'Head of Analytics, Corvid',
+};
+const inputCls = 'block w-full rounded-[10px] border border-ss-line bg-white px-3.5 py-3 text-[.95rem] transition-[border-color,box-shadow] duration-150 placeholder:text-ss-muted focus:border-ss-slate focus:shadow-[0_0_0_3px_rgba(51,65,85,.2)] focus:outline-none motion-reduce:transition-none';
+const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ss-ink';
+
+const EyeIcon = ({ className }) => (
+  <svg className={`size-[19px] fill-current ${className}`} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg>
+);
+const EyeOffIcon = ({ className }) => (
+  <svg className={`size-[19px] fill-current ${className}`} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.3 2 2 3.3l3.1 3.1C3.1 8.1 2 10.6 2 12c0 0 3 7 10 7 2 0 3.7-.6 5.1-1.4l3.6 3.6 1.3-1.3L3.3 2zM12 16.5A4.5 4.5 0 0 1 7.5 12c0-.8.2-1.5.6-2.2l1.5 1.5a2.5 2.5 0 0 0 3.1 3.1l1.5 1.5c-.7.4-1.4.6-2.2.6zm0-11.5c-1.3 0-2.5.2-3.5.6l1.7 1.7c.6-.2 1.2-.3 1.8-.3a4.5 4.5 0 0 1 4.5 4.5c0 .6-.1 1.2-.3 1.8l2.9 2.9C21.1 14.3 22 12 22 12s-3-7-10-7z"/></svg>
+);
+
+export default function SaasLogin({
+  brand = 'Meridian',
+  stats = STATS,
+  testimonial = TESTIMONIAL,
+  forgotHref = '#',
+  trialHref = '#',
+  onSubmit = () => {},
+  onSso = () => {},
+}) {
+  const id = useId();
+  const [form, setForm] = useState({ email: '', password: '', remember: false });
+  const [showPassword, setShowPassword] = useState(false);
+  const update = (e) => {
+    const { name, type, checked, value } = e.target;
+    setForm((f) => ({ ...f, [name]: type === 'checkbox' ? checked : value }));
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(form);
+  }
+
+  return (
+    <div className="flex min-h-screen bg-white font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-ss-ink">
+      <main className="mx-auto flex max-w-[560px] flex-1 flex-col justify-center p-12">
+        <div className="mb-11 flex items-center gap-2.5 text-[1.05rem] font-extrabold"><i className="inline-block size-[30px] rounded-lg bg-linear-135 from-ss-slate to-ss-ink" aria-hidden="true" />{brand}</div>
+        <h1 className="mb-1.5 text-[1.7rem] font-bold tracking-[-.02em]">Log in to your account</h1>
+        <p className="mb-[30px] text-[.95rem] text-ss-muted">Welcome back. Your dashboards missed you.</p>
+        <form action="#" method="post" onSubmit={handleSubmit}>
+          <label className="mb-1.5 block text-[.85rem] font-semibold" htmlFor={`${id}-email`}>Work email</label>
+          <div className="relative mb-[18px]">
+            <input className={inputCls} type="email" id={`${id}-email`} name="email" placeholder="you@company.com" autoComplete="username" required value={form.email} onChange={update} />
+          </div>
+          <label className="mb-1.5 block text-[.85rem] font-semibold" htmlFor={`${id}-password`}>Password</label>
+          <div className="relative mb-[18px]">
+            <input className={`${inputCls} pr-12`} type={showPassword ? 'text' : 'password'} id={`${id}-password`} name="password" placeholder="Enter your password" autoComplete="current-password" required value={form.password} onChange={update} />
+            {/* One stable name ("Show password"); the state is reported with aria-pressed. */}
+            <button type="button" className={`absolute top-1/2 right-2 flex -translate-y-1/2 cursor-pointer rounded-md p-1.5 text-ss-muted hover:text-ss-slate aria-pressed:text-ss-slate ${focusRing}`}
+              aria-controls={`${id}-password`} aria-pressed={showPassword} aria-label="Show password" onClick={() => setShowPassword((s) => !s)}>
+              {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+            </button>
+          </div>
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-2.5 text-[.87rem]">
+            <label className="flex cursor-pointer items-center gap-[7px] font-medium text-[#475569]">
+              <input className={`size-4 accent-ss-ink ${focusRing}`} type="checkbox" name="remember" checked={form.remember} onChange={update} /> Keep me signed in
+            </label>
+            <a className={`rounded-[3px] font-semibold hover:underline ${focusRing}`} href={forgotHref}>Forgot password?</a>
+          </div>
+          <button className={`w-full cursor-pointer rounded-[10px] bg-ss-ink p-[13px] text-[.95rem] font-bold text-white transition-colors duration-150 hover:bg-[#1e293b] motion-reduce:transition-none ${focusRing}`} type="submit">Sign in</button>
+          <button className={`mt-3 w-full cursor-pointer rounded-[10px] border border-ss-line bg-white p-3 text-[.92rem] font-semibold transition-colors duration-150 hover:bg-[#f8fafc] motion-reduce:transition-none ${focusRing}`} type="button" onClick={onSso}>Sign in with SSO</button>
+        </form>
+        <p className="mt-[26px] text-[.9rem] text-ss-muted">Don’t have an account? <a className={`rounded-[3px] font-bold text-ss-ink hover:underline ${focusRing}`} href={trialHref}>Start a free trial</a></p>
+      </main>
+      <aside className="hidden flex-1 flex-col justify-center gap-[34px] bg-ss-ink p-16 text-[#e2e8f0] min-[960px]:flex">
+        <div className="flex gap-9">
+          {stats.map((s) => (
+            <div key={s.label}><b className="block text-[1.9rem] tracking-[-.02em] text-white">{s.value}</b><span className="text-[.85rem] text-[#94a3b8]">{s.label}</span></div>
+          ))}
+        </div>
+        <blockquote className="max-w-[44ch] text-[1.15rem] leading-[1.6] text-[#f1f5f9]">“{testimonial.quote}”</blockquote>
+        <div className="flex items-center gap-3 text-[.9rem] text-[#94a3b8]"><i className="size-10 rounded-full bg-linear-135 from-[#38bdf8] to-[#818cf8]" aria-hidden="true" /><span><b className="block text-[#e2e8f0]">{testimonial.name}</b>{testimonial.role}</span></div>
+      </aside>
+    </div>
+  );
+}
+// /snippet:jsx
+import { createRoot } from 'react-dom/client';
+createRoot(document.getElementById('root')).render(<SaasLogin />);
+</script>
+</body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Link Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .card with a centred .form-control and .btn; the sent step is a sibling shown with the hidden attribute. */
+.mg{--mg-sky:#0ea5e9;--mg-accent:#0369a1;--mg-accent-dark:#075985;
+  --bs-body-color:#0f172a;--bs-secondary-color:#64748b;--bs-border-color:#8a94a6;--bs-link-color-rgb:3,105,161;--bs-link-hover-color-rgb:3,105,161;
+  --bs-body-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;padding:24px;background:radial-gradient(1200px 600px at 50% -10%,#e0f2fe,#f8fafc);color:var(--bs-body-color);
+  font-family:var(--bs-body-font-family);line-height:normal}
+.mg [hidden]{display:none!important}
+.mg .card{--bs-card-border-color:#e2e8f0;--bs-card-border-radius:18px;--bs-card-spacer-y:44px;--bs-card-spacer-x:38px;max-width:400px;
+  box-shadow:0 18px 40px -16px rgba(15,23,42,.15)}
+.mg-icon{width:56px;height:56px;margin-bottom:18px;border-radius:16px;background:var(--mg-sky);box-shadow:0 10px 22px -8px rgba(14,165,233,.6)}
+.mg-icon svg{width:28px;height:28px;fill:#fff}
+.mg-icon.is-ok{background:#10b981;box-shadow:0 10px 22px -8px rgba(16,185,129,.55)}
+.mg h1{font-size:1.45rem;letter-spacing:-.02em;font-weight:700;margin-bottom:8px}
+.mg h1:focus{outline:none}
+.mg-sub{font-size:.92rem;line-height:1.55;margin-bottom:22px}
+.mg .form-label{font-size:.85rem;font-weight:600;margin-bottom:8px}
+.mg .form-control{padding:13px 15px;border-radius:12px;font-size:.95rem;line-height:1.2}
+.mg .form-control::placeholder{color:var(--bs-secondary-color)}
+.mg .form-control:focus{border-color:#0284c7;box-shadow:0 0 0 3px rgba(14,165,233,.25)}
+.mg .btn-mg{--bs-btn-bg:var(--mg-accent);--bs-btn-border-color:var(--mg-accent);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--mg-accent-dark);
+  --bs-btn-hover-border-color:var(--mg-accent-dark);--bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--mg-accent-dark);--bs-btn-active-border-color:var(--mg-accent-dark);
+  --bs-btn-active-color:#fff;--bs-btn-padding-y:13px;--bs-btn-font-size:.95rem;--bs-btn-font-weight:700;--bs-btn-border-radius:12px;--bs-btn-line-height:1.2;
+  --bs-btn-focus-box-shadow:none;margin-top:14px}
+.mg-hint{margin-top:20px;font-size:.8rem}
+.mg-done p{font-size:.92rem;line-height:1.6}
+.mg-done strong{color:var(--bs-body-color);overflow-wrap:anywhere}
+.mg-resend{margin-top:18px;font-size:.85rem!important}
+.mg a,.mg .btn-link{font-weight:600;text-decoration:none;border-radius:3px}
+.mg .btn-link{--bs-btn-padding-x:0;--bs-btn-padding-y:0;--bs-btn-font-size:inherit;--bs-btn-border-width:0;--bs-btn-color:var(--mg-accent);
+  --bs-btn-hover-color:var(--mg-accent);--bs-btn-active-color:var(--mg-accent);--bs-btn-focus-box-shadow:none;vertical-align:baseline;line-height:inherit}
+.mg a:hover,.mg .btn-link:hover{text-decoration:underline}
+.mg a:focus-visible,.mg .btn:focus-visible{outline:2px solid var(--mg-accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.mg .form-control,.mg .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="mg d-flex align-items-center justify-content-center">
+  <div class="card w-100 text-center" data-magic>
+    <div class="card-body">
+      <div data-step="ask">
+        <div class="mg-icon d-flex align-items-center justify-content-center mx-auto"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.5 5.6 9 3l1.5 2.6L13 7l-2.5 1.4L9 11 7.5 8.4 5 7l2.5-1.4zM18 9l1 1.8L21 12l-2 1.2L18 15l-1-1.8L15 12l2-1.2L18 9zM10.5 12.9 3 20.4 4.6 22l7.5-7.5-1.6-1.6z"/></svg></div>
+        <h1>Sign in without a password</h1>
+        <p class="mg-sub text-body-secondary">Enter your email and we&rsquo;ll send you a one-time magic link. No password to remember, nothing to reset.</p>
+        <form action="#" method="post">
+          <label class="form-label" for="mg-email">Email address</label>
+          <input class="form-control text-center" type="email" id="mg-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+          <button class="btn btn-mg w-100" type="submit">Email me a magic link</button>
+        </form>
+        <p class="mg-hint text-body-secondary mb-0">Prefer a password? <a href="#">Use classic login</a></p>
+      </div>
+      <div class="mg-done" data-step="sent" hidden>
+        <div class="mg-icon is-ok d-flex align-items-center justify-content-center mx-auto"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <h1 tabindex="-1">Check your inbox</h1>
+        <p class="text-body-secondary mb-0">We sent a sign-in link to <strong data-sent-to></strong>. It expires in 15 minutes.</p>
+        <p class="mg-resend text-body-secondary mb-0">Nothing arrived? <button class="btn btn-link" type="button" data-again>Try again</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Magic link, front end only: after the browser's own email check passes, swap to the "check your inbox" step.
+// Nothing is sent. Post the address to your auth endpoint inside the submit handler.
+document.querySelectorAll('[data-magic]').forEach(function (card) {
+  var ask = card.querySelector('[data-step="ask"]');
+  var sent = card.querySelector('[data-step="sent"]');
+  var form = ask.querySelector('form');
+  var email = form.querySelector('input[type="email"]');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sent.querySelector('[data-sent-to]').textContent = email.value;
+    ask.hidden = true;
+    sent.hidden = false;
+    sent.querySelector('h1').focus();
+  });
+  sent.querySelector('[data-again]').addEventListener('click', function () {
+    sent.hidden = true;
+    ask.hidden = false;
+    email.focus();
+  });
+});
+</script>
+</body>
+</html>

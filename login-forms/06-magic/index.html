@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Link Login — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* Passwordless login: one email field, then a "check your inbox" step swapped in with the hidden attribute. */
+.mg{--mg-ink:#0f172a;--mg-muted:#64748b;--mg-sky:#0ea5e9;--mg-accent:#0369a1;--mg-accent-dark:#075985;--mg-line:#8a94a6;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(1200px 600px at 50% -10%,#e0f2fe,#f8fafc);
+  color:var(--mg-ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.mg h1,.mg p{margin:0}
+.mg [hidden]{display:none!important}
+.mg-card{width:100%;max-width:400px;background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:44px 38px;box-shadow:0 18px 40px -16px rgba(15,23,42,.15);text-align:center}
+.mg-icon{width:56px;height:56px;margin:0 auto 18px;border-radius:16px;background:var(--mg-sky);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 22px -8px rgba(14,165,233,.6)}
+.mg-icon svg{width:28px;height:28px;fill:#fff}
+.mg-icon.is-ok{background:#10b981;box-shadow:0 10px 22px -8px rgba(16,185,129,.55)}
+.mg h1{font-size:1.45rem;letter-spacing:-.02em;margin-bottom:8px}
+.mg h1:focus{outline:none}
+.mg-sub{color:var(--mg-muted);font-size:.92rem;line-height:1.55;margin-bottom:22px!important}
+.mg-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px}
+.mg-input{display:block;width:100%;padding:13px 15px;border:1px solid var(--mg-line);border-radius:12px;font:inherit;font-size:.95rem;color:inherit;text-align:center;
+  background:#fff;transition:border-color .15s,box-shadow .15s}
+.mg-input::placeholder{color:var(--mg-muted)}
+.mg-input:focus{outline:none;border-color:#0284c7;box-shadow:0 0 0 3px rgba(14,165,233,.25)}
+.mg-btn{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:var(--mg-accent);color:#fff;font:inherit;font-weight:700;font-size:.95rem;
+  cursor:pointer;transition:background-color .15s}
+.mg-btn:hover{background:var(--mg-accent-dark)}
+.mg-hint{margin-top:20px!important;font-size:.8rem;color:var(--mg-muted)}
+.mg-done p{color:var(--mg-muted);font-size:.92rem;line-height:1.6}
+.mg-done strong{color:var(--mg-ink);overflow-wrap:anywhere}
+.mg .mg-resend{margin-top:18px;font-size:.85rem}
+.mg a,.mg-link{color:var(--mg-accent);font-weight:600;text-decoration:none;border-radius:3px}
+.mg-link{padding:0;border:0;background:none;font:inherit;cursor:pointer}
+.mg a:hover,.mg-link:hover{text-decoration:underline}
+.mg a:focus-visible,.mg-link:focus-visible,.mg-btn:focus-visible{outline:2px solid var(--mg-accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.mg-input,.mg-btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="mg">
+  <div class="mg-card" data-magic>
+    <div data-step="ask">
+      <div class="mg-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.5 5.6 9 3l1.5 2.6L13 7l-2.5 1.4L9 11 7.5 8.4 5 7l2.5-1.4zM18 9l1 1.8L21 12l-2 1.2L18 15l-1-1.8L15 12l2-1.2L18 9zM10.5 12.9 3 20.4 4.6 22l7.5-7.5-1.6-1.6z"/></svg></div>
+      <h1>Sign in without a password</h1>
+      <p class="mg-sub">Enter your email and we&rsquo;ll send you a one-time magic link. No password to remember, nothing to reset.</p>
+      <form action="#" method="post">
+        <label class="mg-label" for="mg-email">Email address</label>
+        <input class="mg-input" type="email" id="mg-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+        <button class="mg-btn" type="submit">Email me a magic link</button>
+      </form>
+      <p class="mg-hint">Prefer a password? <a href="#">Use classic login</a></p>
+    </div>
+    <div class="mg-done" data-step="sent" hidden>
+      <div class="mg-icon is-ok"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <h1 tabindex="-1">Check your inbox</h1>
+      <p>We sent a sign-in link to <strong data-sent-to></strong>. It expires in 15 minutes.</p>
+      <p class="mg-resend">Nothing arrived? <button class="mg-link" type="button" data-again>Try again</button></p>
+    </div>
+  </div>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Magic link, front end only: after the browser's own email check passes, swap to the "check your inbox" step.
+// Nothing is sent. Post the address to your auth endpoint inside the submit handler.
+document.querySelectorAll('[data-magic]').forEach(function (card) {
+  var ask = card.querySelector('[data-step="ask"]');
+  var sent = card.querySelector('[data-step="sent"]');
+  var form = ask.querySelector('form');
+  var email = form.querySelector('input[type="email"]');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sent.querySelector('[data-sent-to]').textContent = email.value;
+    ask.hidden = true;
+    sent.hidden = false;
+    sent.querySelector('h1').focus();
+  });
+  sent.querySelector('[data-again]').addEventListener('click', function () {
+    sent.hidden = true;
+    ask.hidden = false;
+    email.focus();
+  });
+});
+</script>
+</body>
+</html>

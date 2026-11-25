@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identifier-First Login — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Identifier-first login: email on the first panel, password on the second. The script carries the email
+   forward into a visible chip and a hidden username field (so password managers save the pair) and moves focus. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;--lf-bg:#f5f6fa;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-ink);line-height:normal;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf [hidden]{display:none!important}
+.lf a{color:var(--lf-brand);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-box{width:100%;max-width:400px;background:#fff;border:1px solid var(--lf-line);border-radius:16px;
+  padding:38px 34px;box-shadow:0 10px 34px rgba(17,24,39,.06);overflow:hidden}
+.lf-mark{width:42px;height:42px;border-radius:12px;background:var(--lf-brand);display:grid;place-items:center;
+  color:#fff;font-weight:800;margin-bottom:22px}
+.lf h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:7px}
+.lf-sub{color:var(--lf-muted);font-size:.93rem;line-height:1.6;margin-bottom:26px}
+.lf-sub-tight{margin-bottom:16px}
+.lf-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf-field{width:100%;padding:12px 14px;border:1px solid var(--lf-edge);border-radius:10px;font-size:.95rem;
+  background:#fff;color:inherit;margin-bottom:20px;transition:border-color .15s,box-shadow .15s}
+.lf-field::placeholder{color:var(--lf-muted)}
+.lf-field:focus{outline:none;border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-brand);color:#fff;
+  font-size:.97rem;font-weight:700;cursor:pointer;transition:background .15s}
+.lf-btn:hover{background:var(--lf-brand-dark)}
+.lf-foot{margin-top:24px;text-align:center;font-size:.89rem;color:var(--lf-muted)}
+.lf-who{display:flex;align-items:center;gap:10px;border:1px solid var(--lf-line);border-radius:999px;
+  padding:6px 6px 6px 12px;margin-bottom:26px;font-size:.89rem;width:max-content;max-width:100%}
+.lf-av{width:24px;height:24px;border-radius:50%;background:#ddd6fe;color:#5b21b6;display:grid;
+  place-items:center;font-size:.74rem;font-weight:800;flex-shrink:0}
+.lf-who span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lf-who button{background:none;border:0;color:var(--lf-brand);font-weight:600;cursor:pointer;
+  font-size:.86rem;padding:4px 8px;border-radius:999px;flex-shrink:0}
+.lf-who button:hover{background:#eef2ff}
+.lf-links{margin-top:18px;font-size:.88rem}
+@media (prefers-reduced-motion:reduce){.lf-field,.lf-btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <div class="lf-mark" aria-hidden="true">N</div>
+  <section id="lf-step1">
+    <h1>Sign in</h1>
+    <p class="lf-sub">Use your work email to continue to Northwind.</p>
+    <form id="lf-f1">
+      <label class="lf-label" for="lf-ident">Email address</label>
+      <input class="lf-field" id="lf-ident" name="username" type="email" autocomplete="username"
+             placeholder="you@company.com" required>
+      <button class="lf-btn" type="submit">Next</button>
+    </form>
+    <p class="lf-foot">No account? <a href="#">Create one</a></p>
+  </section>
+  <section id="lf-step2" hidden>
+    <h1>Welcome back</h1>
+    <p class="lf-sub lf-sub-tight">Enter your password to finish signing in.</p>
+    <p class="lf-who"><span class="lf-av" aria-hidden="true" data-avatar>D</span>
+      <span id="lf-shown">dana@northwind.co</span>
+      <button type="button" id="lf-change" aria-label="Change email address">Change</button></p>
+    <form onsubmit="event.preventDefault()">
+      <input type="email" name="username" id="lf-user" autocomplete="username" value="dana@northwind.co" hidden>
+      <label class="lf-label" for="lf-pw">Password</label>
+      <input class="lf-field" id="lf-pw" name="password" type="password" autocomplete="current-password"
+             placeholder="••••••••" required>
+      <button class="lf-btn" type="submit">Sign in</button>
+    </form>
+    <p class="lf-links"><a href="#">Forgot your password?</a></p>
+  </section>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Carry the email forward so the second panel shows who is signing in, and move focus so a keyboard
+// or screen-reader user is not left on the panel that just disappeared.
+(() => {
+  const s1 = document.getElementById('lf-step1'), s2 = document.getElementById('lf-step2');
+  const ident = document.getElementById('lf-ident'), pw = document.getElementById('lf-pw');
+  if (!s1 || !s2 || !ident || !pw) return;
+  document.getElementById('lf-f1').addEventListener('submit', e => {
+    e.preventDefault();
+    const email = ident.value.trim() || 'dana@northwind.co';
+    document.getElementById('lf-shown').textContent = email;
+    document.getElementById('lf-user').value = email;
+    document.querySelector('#lf-step2 [data-avatar]').textContent = email.charAt(0).toUpperCase();
+    s1.hidden = true; s2.hidden = false;
+    pw.focus();
+  });
+  document.getElementById('lf-change').addEventListener('click', () => {
+    s2.hidden = true; s1.hidden = false;
+    ident.focus();
+  });
+})();
+</script>
+</body>
+</html>

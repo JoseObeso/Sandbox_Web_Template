@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS Login — uiCookies</title>
+<style data-demo>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+</style>
+<style data-snippet>
+/* SaaS login: form column with a show-password button and an SSO route, beside a dark proof panel (stats and a quote) from 960px. */
+.ss{--ss-ink:#0f172a;--ss-muted:#64748b;--ss-line:#8a94a6;--ss-slate:#334155;
+  min-height:100vh;display:flex;background:#fff;color:var(--ss-ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.ss h1,.ss p,.ss blockquote{margin:0}
+.ss-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px;max-width:560px;margin:0 auto}
+.ss-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;margin-bottom:44px}
+.ss-logo i{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--ss-slate),var(--ss-ink));display:inline-block}
+.ss h1{font-size:1.7rem;letter-spacing:-.02em;margin-bottom:6px}
+.ss-sub{color:var(--ss-muted);font-size:.95rem;margin-bottom:30px!important}
+.ss-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.ss-field{position:relative;margin-bottom:18px}
+.ss-input{display:block;width:100%;padding:12px 14px;border:1px solid var(--ss-line);border-radius:10px;font:inherit;font-size:.95rem;color:inherit;background:#fff;
+  transition:border-color .15s,box-shadow .15s}
+.ss-input.has-peek{padding-right:48px}
+.ss-input::placeholder{color:var(--ss-muted)}
+.ss-input:focus{outline:none;border-color:var(--ss-slate);box-shadow:0 0 0 3px rgba(51,65,85,.2)}
+.ss-peek{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;border-radius:6px;background:none;cursor:pointer;color:var(--ss-muted);padding:6px;display:flex}
+.ss-peek:hover,.ss-peek[aria-pressed="true"]{color:var(--ss-slate)}
+.ss-peek svg{width:19px;height:19px;fill:currentColor}
+.ss-peek .ss-off,.ss-peek[aria-pressed="true"] .ss-on{display:none}
+.ss-peek[aria-pressed="true"] .ss-off{display:block}
+.ss-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:.87rem;margin-bottom:24px}
+.ss-check{display:flex;gap:7px;align-items:center;font-weight:500;color:#475569;cursor:pointer}
+.ss-check input{width:16px;height:16px;margin:0;accent-color:var(--ss-ink)}
+.ss a{color:var(--ss-ink);font-weight:600;text-decoration:none;border-radius:3px}
+.ss a:hover{text-decoration:underline}
+.ss-go{width:100%;padding:13px;border:0;border-radius:10px;background:var(--ss-ink);color:#fff;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;transition:background-color .15s}
+.ss-go:hover{background:#1e293b}
+.ss-sso{width:100%;margin-top:12px;padding:12px;border:1px solid var(--ss-line);border-radius:10px;background:#fff;color:inherit;font:inherit;font-weight:600;font-size:.92rem;
+  cursor:pointer;transition:background-color .15s}
+.ss-sso:hover{background:#f8fafc}
+.ss-foot{margin-top:26px!important;font-size:.9rem;color:var(--ss-muted)}
+.ss-foot a{font-weight:700}
+.ss a:focus-visible,.ss-peek:focus-visible,.ss-go:focus-visible,.ss-sso:focus-visible,.ss-check input:focus-visible{outline:2px solid var(--ss-ink);outline-offset:2px}
+.ss-right{flex:1;display:none;flex-direction:column;justify-content:center;gap:34px;background:var(--ss-ink);color:#e2e8f0;padding:64px}
+.ss-stats{display:flex;gap:36px}
+.ss-stats b{display:block;font-size:1.9rem;color:#fff;letter-spacing:-.02em}
+.ss-stats span{font-size:.85rem;color:#94a3b8}
+.ss-right blockquote{font-size:1.15rem;line-height:1.6;color:#f1f5f9;max-width:44ch}
+.ss-who{display:flex;align-items:center;gap:12px;font-size:.9rem;color:#94a3b8}
+.ss-who i{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#38bdf8,#818cf8)}
+.ss-who b{color:#e2e8f0;display:block}
+@media (min-width:960px){.ss-right{display:flex}}
+@media (prefers-reduced-motion:reduce){.ss-input,.ss-go,.ss-sso{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="ss">
+  <main class="ss-left">
+    <div class="ss-logo"><i aria-hidden="true"></i>Meridian</div>
+    <h1>Log in to your account</h1>
+    <p class="ss-sub">Welcome back. Your dashboards missed you.</p>
+    <form action="#" method="post" onsubmit="event.preventDefault()">
+      <label class="ss-label" for="ss-email">Work email</label>
+      <div class="ss-field"><input class="ss-input" type="email" id="ss-email" name="email" placeholder="you@company.com" autocomplete="username" required></div>
+      <label class="ss-label" for="ss-password">Password</label>
+      <div class="ss-field">
+        <input class="ss-input has-peek" type="password" id="ss-password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+        <button type="button" class="ss-peek" data-peek aria-controls="ss-password" aria-pressed="false" aria-label="Show password"><svg class="ss-on" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg><svg class="ss-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.3 2 2 3.3l3.1 3.1C3.1 8.1 2 10.6 2 12c0 0 3 7 10 7 2 0 3.7-.6 5.1-1.4l3.6 3.6 1.3-1.3L3.3 2zM12 16.5A4.5 4.5 0 0 1 7.5 12c0-.8.2-1.5.6-2.2l1.5 1.5a2.5 2.5 0 0 0 3.1 3.1l1.5 1.5c-.7.4-1.4.6-2.2.6zm0-11.5c-1.3 0-2.5.2-3.5.6l1.7 1.7c.6-.2 1.2-.3 1.8-.3a4.5 4.5 0 0 1 4.5 4.5c0 .6-.1 1.2-.3 1.8l2.9 2.9C21.1 14.3 22 12 22 12s-3-7-10-7z"/></svg></button>
+      </div>
+      <div class="ss-row">
+        <label class="ss-check"><input type="checkbox" name="remember"> Keep me signed in</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button class="ss-go" type="submit">Sign in</button>
+      <button class="ss-sso" type="button">Sign in with SSO</button>
+    </form>
+    <p class="ss-foot">Don&rsquo;t have an account? <a href="#">Start a free trial</a></p>
+  </main>
+  <aside class="ss-right">
+    <div class="ss-stats">
+      <div><b>28k+</b><span>teams on board</span></div>
+      <div><b>99.99%</b><span>uptime last year</span></div>
+      <div><b>4.8/5</b><span>average rating</span></div>
+    </div>
+    <blockquote>&ldquo;We moved three tools into Meridian in a week. Reporting that used to take Fridays now takes minutes.&rdquo;</blockquote>
+    <div class="ss-who"><i aria-hidden="true"></i><span><b>Priya Natarajan</b>Head of Analytics, Corvid</span></div>
+  </aside>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Show / hide password. The button keeps one name ("Show password") and reports its state with aria-pressed.
+document.querySelectorAll('[data-peek]').forEach(function (btn) {
+  var input = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', function () {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', String(show));
+  });
+});
+</script>
+</body>
+</html>

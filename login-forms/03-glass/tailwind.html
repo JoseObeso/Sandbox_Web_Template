@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassmorphism Login (Tailwind CSS) — uiCookies</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss" data-snippet>
+@theme {
+  --color-gl-bg: #0b0f1e;
+  --color-gl-muted: #e2e5ef;
+  --animate-gl-drift: gl-drift 14s ease-in-out infinite alternate;
+  @keyframes gl-drift { to { transform: translate(60px, 40px) scale(1.15); } }
+}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="relative flex min-h-screen items-center justify-center overflow-hidden bg-gl-bg p-6 font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif] leading-[normal] text-[#eef0f6]">
+  <div class="pointer-events-none absolute -top-[120px] -left-20 size-[420px] rounded-full bg-[#6d28d9] opacity-55 blur-[90px] motion-safe:animate-gl-drift" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute -right-[60px] -bottom-[100px] size-[380px] rounded-full bg-[#0ea5e9] opacity-55 blur-[90px] motion-safe:animate-[gl-drift_17s_ease-in-out_infinite_alternate-reverse]" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute bottom-[20%] left-[12%] size-[260px] rounded-full bg-[#db2777] opacity-55 blur-[90px] motion-safe:animate-[gl-drift_21s_ease-in-out_infinite_alternate]" aria-hidden="true"></div>
+  <form class="relative z-10 w-full max-w-[380px] rounded-[22px] border border-white/16 bg-[#070d1e]/72 px-[38px] py-11 shadow-[0_24px_60px_rgba(0,0,0,.45)] backdrop-blur-[22px]" action="#" method="post" onsubmit="event.preventDefault()">
+    <h1 class="mb-1.5 text-center text-[1.55rem] font-bold tracking-[-.02em]">Sign in</h1>
+    <p class="mb-[30px] text-center text-[.9rem] text-gl-muted">Welcome back — we kept your seat warm.</p>
+    <label class="mb-[7px] block text-[.8rem] font-semibold text-[#c8cddd]" for="gl-email">Email</label>
+    <input class="mb-[18px] block w-full rounded-[11px] border border-white/42 bg-white/6 px-3.5 py-3 text-[.95rem] text-white transition-[border-color,background-color,box-shadow] duration-150 placeholder:text-[#c8cddd] focus:border-white/85 focus:bg-white/10 focus:shadow-[0_0_0_3px_rgba(255,255,255,.18)] focus:outline-none motion-reduce:transition-none" type="email" id="gl-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+    <label class="mb-[7px] block text-[.8rem] font-semibold text-[#c8cddd]" for="gl-password">Password</label>
+    <input class="mb-[18px] block w-full rounded-[11px] border border-white/42 bg-white/6 px-3.5 py-3 text-[.95rem] text-white transition-[border-color,background-color,box-shadow] duration-150 placeholder:text-[#c8cddd] focus:border-white/85 focus:bg-white/10 focus:shadow-[0_0_0_3px_rgba(255,255,255,.18)] focus:outline-none motion-reduce:transition-none" type="password" id="gl-password" name="password" placeholder="Your password" autocomplete="current-password" required>
+    <button class="mt-1.5 w-full cursor-pointer rounded-[11px] bg-linear-90 from-[#e0e7ff] to-white p-[13px] text-[.95rem] font-bold text-gl-bg transition-[transform,box-shadow] duration-150 hover:-translate-y-px hover:shadow-[0_10px_26px_rgba(255,255,255,.18)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0" type="submit">Enter dashboard</button>
+    <p class="mt-[22px] text-center text-[.85rem] text-gl-muted">First time here? <a class="rounded-[3px] border-b border-white/50 font-semibold text-white hover:border-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white" href="#">Create an account</a></p>
+  </form>
+</div>
+<!-- /snippet:html -->
+</body>
+</html>

@@ -1,0 +1,193 @@
+{
+  "pack": "login-forms",
+  "component": "login form",
+  "sets": [
+    {
+      "dir": "12-2fa",
+      "slug": "two-factor-authentication-code-form",
+      "name": "Two-Factor Code Form",
+      "title": "Two-Factor Code Form in CSS, Bootstrap & Tailwind",
+      "summary": "The second step of a sign-in that uses an authenticator app. A shield icon and a short line tell the person which account the code is for, then one large, centred, letter-spaced field takes the six digits, a checkbox offers to trust the device for 30 days with a warning about shared computers, and a single button verifies and signs in. Below a divider sit the escape routes people need when their phone is missing: a recovery-code link and a support link. Use it after a correct password when the account has app-based two-factor turned on. The field is a text input with inputmode=\"numeric\", pattern=\"[0-9]{6}\" and maxlength=\"6\" rather than type=\"number\", so leading zeros survive, mobile keyboards show digits and autocomplete=\"one-time-code\" lets iOS and Android offer a code from a text message or a password manager. The instruction line is tied to the field with aria-describedby, so the six-digit requirement is read out with the label. The Bootstrap version uses .card, .form-control, .form-check and .btn; the Tailwind version is utilities only.",
+      "features": [
+        "Single six-digit field with inputmode=\"numeric\" and autocomplete=\"one-time-code\"",
+        "Trust-this-device checkbox with a shared-computer warning",
+        "Recovery-code and support links for a lost phone",
+        "Instruction text linked to the field with aria-describedby",
+        "Input border darkened to #868c99 so the field edge reaches 3:1"
+      ],
+      "accessibility": "The code field has a visible label and is described by the instruction line, and the checkbox is labelled by its full sentence. Every control is reachable with Tab; the field shows a brand-coloured border and ring on focus, and buttons, links and the checkbox get a 2px outline. The field and button transitions are removed under prefers-reduced-motion.",
+      "customise": "Change --lf-brand, --lf-edge and --lf-bg on .lf (plain CSS and Bootstrap), or the --color-brand, --color-edge and --color-page theme colours (Tailwind). The letter spacing of the code lives on .lf-code or the tracking-[.5em] utility.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "13-passkey",
+      "slug": "passkey-sign-in-form",
+      "name": "Passkey Sign-In Form",
+      "title": "Passkey Sign-In Form in CSS, Bootstrap & Tailwind",
+      "summary": "A sign-in screen that leads with passkeys and keeps a password route one step away. A large filled button reads Continue with a passkey, with a line underneath explaining that the fingerprint, face or screen lock is checked on the device and never sent to the site. An or divider separates it from an email field and an outlined Sign in with a password instead button, and a footer link covers people without an account. Use it when your service already supports WebAuthn and you want most people to take the passwordless path while nobody is locked out. The markup is ready for both passkey flows: wire the button to navigator.credentials.get() for the explicit flow, and the email field carries autocomplete=\"username webauthn\" so the browser can list saved passkeys in the field's autofill once your script requests conditional mediation. No WebAuthn code is included, because it depends on your server's challenge. The Bootstrap version builds the same layout from .card, .form-control and two .btn variants; the Tailwind version uses utilities and a small theme.",
+      "features": [
+        "Primary passkey button with an explanatory line tied by aria-describedby",
+        "Email field with autocomplete=\"username webauthn\" for passkey autofill",
+        "Password fallback as a secondary outlined button",
+        "Or divider drawn with pseudo-elements, no extra markup",
+        "Press feedback that is removed under prefers-reduced-motion"
+      ],
+      "accessibility": "The passkey button has visible text and is described by the privacy line beneath it; the email field has a visible label. Tab moves through the passkey button, the email field, the fallback button and the footer link, each with a 2px outline or a focus ring. Transitions and the pressed scale effect switch off under prefers-reduced-motion.",
+      "customise": "Set --lf-brand and --lf-brand-dark on .lf for the passkey button (plain CSS and Bootstrap, where they also feed .btn-passkey), or edit --color-brand and --color-brand-dark in the Tailwind theme. Button height comes from its 16px padding.",
+      "browser_support": "All evergreen browsers for the layout. Passkey autofill needs WebAuthn conditional mediation (Chrome 108, Safari 16 and later). The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "14-two-step",
+      "slug": "identifier-first-login-form",
+      "name": "Identifier-First Login Form",
+      "title": "Identifier-First Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A two-panel login that asks for the email first and the password second, the pattern used when some accounts sign in through SSO or passkeys and the service has to know who is signing in before it knows how. Panel one holds an email field and a Next button. Panel two greets the person, shows the email in a pill with an initial avatar and a Change button, and asks for the password with a forgotten-password link below. A short script handles the swap: it copies the typed email into the pill and into a hidden username field in the second form, so password managers save and fill the right pair, hides one panel with the hidden attribute, shows the other and moves focus to the password field. Change reverses it and returns focus to the email. In a real product you would check the email with your server in the Next handler and choose the second step from the answer. The Bootstrap version uses .card, .form-control and .btn, and the Tailwind version is the same script with utility classes.",
+      "features": [
+        "Email and password on separate panels with one card",
+        "Email pill with avatar initial and a Change button",
+        "Hidden username field so password managers save the pair",
+        "Focus moves to the new panel's field on each step",
+        "About 20 lines of dependency-free JavaScript"
+      ],
+      "accessibility": "Both fields have visible labels and correct autocomplete tokens (username, current-password). When a panel changes, focus moves to the first field of the new panel, so keyboard and screen reader users are not left on hidden content. The Change button is named Change email address, and every control shows a focus outline or ring.",
+      "customise": "Colours are --lf-brand, --lf-ink, --lf-muted and --lf-edge on .lf (plain CSS and Bootstrap) or the --color-* theme values (Tailwind). The avatar colours are #ddd6fe and #5b21b6 on .lf-av or its utilities.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "15-sso",
+      "slug": "enterprise-sso-login-form",
+      "name": "Enterprise SSO Login Form",
+      "title": "Enterprise SSO Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A sign-in screen for team plans that authenticate through a company identity provider. The main field takes the workspace subdomain with a fixed .northwind.app suffix drawn inside the same box, followed by a Continue with SSO button. Under an or use divider, three provider buttons name Okta, Microsoft Entra ID and Google Workspace, each with a small coloured initial badge, and a footer link sends people without a team plan to password sign-in. Use it for B2B products where the workspace decides which identity provider to redirect to. The field and suffix are wrapped in one container that takes the border, and :focus-within moves the focus ring to the whole box, so the suffix reads as part of the input. The suffix is linked to the input with aria-describedby, so screen readers announce the full address format. The field turns off spellcheck and autocapitalisation, which would otherwise mangle subdomains. In Bootstrap the field is an .input-group with .input-group-text; in Tailwind it is a flex row with focus-within utilities.",
+      "features": [
+        "Workspace field with a fixed domain suffix inside the box",
+        "Focus ring on the whole field via :focus-within",
+        "Named provider buttons grouped under an accessible label",
+        "Spellcheck and autocapitalise off for subdomains",
+        "Suffix shrinks on screens under 400px wide"
+      ],
+      "accessibility": "The workspace field has a visible label and is described by the suffix text; the provider buttons sit in a group labelled by the or use divider and each has its provider's name as visible text. The whole field shows a brand ring on focus and every button and link has a 2px outline. Transitions are removed under prefers-reduced-motion.",
+      "customise": "Change the suffix text in the markup and its colour (#636a77, chosen for 4.5:1 on the grey band). Brand colour is --lf-brand (plain CSS, Bootstrap) or --color-brand (Tailwind). Provider badge colours are inline background values.",
+      "browser_support": "All evergreen browsers (:focus-within is Chrome 60, Safari 10.1, Firefox 52). The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "16-phone",
+      "slug": "phone-number-login-form",
+      "name": "Phone Number Login Form",
+      "title": "Phone Number Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A passwordless login that sends a one-time code by text message. The card asks for a mobile number in one combined field: a country calling-code select with flags on the left and the national number on the right, sharing a single border and focus ring. A small legal line about message rates links to the terms and privacy policy, a Send code button submits, and an or divider leads to a Sign in with email instead button. Use it for consumer apps where phone numbers are the primary identifier, or as the first half of a flow that continues with a one-time-code screen. Both halves carry autocomplete tokens, tel-country-code on the select and tel-national on the input, so browsers can fill them from a saved phone number, and the input uses type=\"tel\" for the phone keypad. The Bootstrap version builds the field from .input-group, .form-select and .form-control, with the focus ring moved to the group; the Tailwind version uses a flex row with focus-within utilities.",
+      "features": [
+        "Calling-code select and number joined into one field",
+        "autocomplete=\"tel-country-code\" and \"tel-national\"",
+        "type=\"tel\" for the numeric phone keypad",
+        "Legal line with terms and privacy links above the button",
+        "Email fallback button under an or divider"
+      ],
+      "accessibility": "The number input has the visible label Mobile number and the select is named Country calling code. The joined field shows a brand ring whenever either part has focus, and buttons and links get a 2px outline. Border and focus transitions are removed under prefers-reduced-motion.",
+      "customise": "Edit the option list for your countries. Colours are --lf-brand, --lf-edge and --lf-bg on .lf (plain CSS and Bootstrap) or the --color-* theme values (Tailwind); the select's width is capped at 118px.",
+      "browser_support": "All evergreen browsers. Flag emoji show as letter pairs on Windows. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "17-lock",
+      "slug": "session-lock-screen",
+      "name": "Session Lock Screen",
+      "title": "Session Lock Screen in CSS, Bootstrap & Tailwind",
+      "summary": "A lock screen for a known account that has been idle, the kind shown by admin panels and internal tools after a timeout. On a dark radial-gradient background it shows a gradient avatar with initials, the person's name and email, and a pill saying the session locked after 15 minutes idle. Below sit a labelled password field with a square arrow button that submits, and two links: use a passkey, or sign in as someone else. Use it when you know who was signed in and only need them to confirm with their password. A hidden username input carries the email, so password managers pick the matching saved password instead of offering every account. The layout is a single centred column with no card, which keeps it readable on small phones. In Bootstrap the page uses the dark colour mode with .form-control and .btn restyled through their variables; the Tailwind version uses the white opacity utilities and a small theme.",
+      "features": [
+        "Avatar, name, email and idle notice for a known account",
+        "Hidden username field so password managers fill the right password",
+        "Password field with an icon-only submit button named Unlock",
+        "Field border raised to 42% white so the edge reaches 3:1",
+        "Passkey and switch-account links"
+      ],
+      "accessibility": "The password field has a visible Password label (the original relied on the placeholder), and the arrow button is named Unlock. Focus shows a light indigo ring on the field and a 2px outline on the button and links, visible against the dark background. Transitions are removed under prefers-reduced-motion.",
+      "customise": "Change --lf-accent, --lf-soft and --lf-dim on .lf (plain CSS and Bootstrap) or the --color-accent, --color-soft and --color-dim theme values (Tailwind). The background is the radial-gradient on .lf or the bg-[radial-gradient(...)] utility.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "18-reset",
+      "slug": "password-reset-request-form",
+      "name": "Password Reset Request Form",
+      "title": "Password Reset Request Form in CSS, Bootstrap & Tailwind",
+      "summary": "The forgotten-password screen and the confirmation that follows it. The form has a back-to-sign-in link, a heading, an email field and a Send reset link button. When it is submitted, a short script hides the form and shows the confirmation: a green tick, Check your inbox, a note that the link works once and expires in 60 minutes, and a grey box explaining that the page never says whether an address is registered, because that would let anyone test which emails have accounts. Use it as the target of every Forgot password link. The confirmation wording is deliberately the same whether or not the address exists; keep your server's response identical too. The script moves focus to the confirmation heading, which has tabindex=\"-1\", so screen readers announce the new state instead of staying on a form that has disappeared. The expiry time is copy; set it to whatever your server enforces. The Bootstrap version uses .card, .form-control and .btn, and the Tailwind version the same markup with utilities.",
+      "features": [
+        "Request form and sent confirmation in one card",
+        "Wording that does not reveal whether an account exists",
+        "Focus moves to the confirmation heading after submit",
+        "Back to sign in link with an arrow icon",
+        "Native email validation before the swap runs"
+      ],
+      "accessibility": "The email field has a visible label and autocomplete=\"email\". The confirmation is swapped in with the hidden attribute and receives focus on its heading, so the change is announced. Links, the field and the button show a 2px outline or a brand ring on focus, and transitions switch off under prefers-reduced-motion.",
+      "customise": "Colours are --lf-brand, --lf-ok, --lf-edge and --lf-bg on .lf (plain CSS and Bootstrap) or --color-brand, --color-ok and the other theme values (Tailwind). Edit the expiry sentence to match your token lifetime.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "19-validation",
+      "slug": "login-form-error-states",
+      "name": "Login Form with Error States",
+      "title": "Login Form with Error States in CSS, Bootstrap & Tailwind",
+      "summary": "A sign-in card that shows the three errors a login form has to handle. At the top, a red form-level alert reports a failed attempt and how many tries are left before a 15-minute lock; that one comes from your server. Under the email field, a field-level message explains what is wrong with the address, with the input marked aria-invalid and a red border. Under the password field, a Caps Lock warning appears while Caps Lock is on, because it is the most common reason a correct password fails. A short script makes the field error live: typing a valid address clears it, and submitting with an invalid one brings it back and returns focus to the field. The check asks for a dot in the domain, since type=\"email\" alone accepts name@host. The Caps Lock check uses getModifierState and never reads what was typed. In Bootstrap the states map to .alert-danger, .is-invalid with .invalid-feedback and .form-check; Tailwind uses the aria-invalid variant.",
+      "features": [
+        "Form-level alert with role=\"alert\"",
+        "Field error linked by aria-describedby and aria-invalid",
+        "Error clears as soon as the address becomes valid",
+        "Caps Lock warning in a polite live region",
+        "Remember-me checkbox and forgotten-password link"
+      ],
+      "accessibility": "The email error is tied to the field with aria-describedby and the field carries aria-invalid, so screen readers read the message with the label. The Caps Lock notice is a role=\"status\" region that the password field also references. On a failed submit focus returns to the invalid field; all controls show a focus ring or outline, and transitions switch off under prefers-reduced-motion.",
+      "customise": "The error red is --lf-bad (plain CSS), --bs-form-invalid-color (Bootstrap) or --color-bad (Tailwind); the alert and Caps Lock colours are the pink and amber values on .lf-alert and .lf-caps or their utilities.",
+      "browser_support": "All evergreen browsers. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "20-photo",
+      "slug": "background-image-login-form",
+      "name": "Background Image Login Form",
+      "title": "Background Image Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A login card floating over a full-bleed background, for brands that want a photograph or illustration on the sign-in page. The wrapper paints two layers behind the content: a backdrop, here three coloured radial gradients over a deep blue so the file stays self-contained, and a dark top-to-bottom scrim that keeps white text readable whatever image you swap in. The card itself is translucent navy with an 18px backdrop blur, a thin white border and a large soft shadow. Inside are the email and password fields, a remember-me checkbox with a forgotten-password link, a white Sign in button that lifts slightly on hover, and a create-account link. A caption under the card tells developers how to replace the gradient. Use it for consumer products, events and portfolios where the background carries the brand. To use a photo, set background-image on the ::before layer and keep the ::after scrim. The Bootstrap version uses a translucent .card in dark colour mode; the Tailwind version draws both layers with before: and after: utilities.",
+      "features": [
+        "Backdrop and scrim as two pseudo-element layers",
+        "Translucent card with an 18px backdrop blur",
+        "Field borders raised to 45% white for a visible edge",
+        "White checkbox and focus outlines that show on dark glass",
+        "Hover lift removed under prefers-reduced-motion"
+      ],
+      "accessibility": "Both fields have visible labels and username and current-password autocomplete tokens; the short Forgot link is named Forgot password. Focus shows a white outline or a white ring, chosen to stand out on the dark card. The scrim keeps text contrast independent of the image, and the button lift and transitions stop under prefers-reduced-motion.",
+      "customise": "Replace the gradient on .lf::before (plain CSS, Bootstrap) or the before:bg-[...] utility (Tailwind) with your image, and tune the scrim alpha on ::after. Card tint and blur are the rgba background and backdrop-filter values on the card.",
+      "browser_support": "All evergreen browsers; backdrop-filter needs Chrome 76, Safari 9 (prefixed) or Firefox 103, and older browsers show the card without blur. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "21-modal",
+      "slug": "session-expired-login-modal",
+      "name": "Session Expired Login Modal",
+      "title": "Session Expired Login Modal in CSS, Bootstrap & Tailwind",
+      "summary": "A sign-in dialog that opens over the application when a session expires, so people can re-authenticate without losing their place. The dialog shows a Session expired tag, a heading, a line saying the work is saved, the account email as a read-only field, a password field that receives focus, an Unlock button and a quieter Sign in as someone else button. Behind it the app is dimmed and blurred. In plain CSS and Tailwind it is a native dialog element opened with showModal(), which makes the rest of the page inert, traps focus inside and paints the ::backdrop that does the dimming and blur. Escape is blocked with closedby=\"none\" and a cancel handler, because closing would show an expired session; signing in or switching account are the ways out. The Bootstrap version uses the .modal component and bundle JavaScript with the backdrop and keyboard close switched off, and moves focus to the password field once shown. The blurred dashboard in the demo is a stand-in for your own app and is not part of the snippet.",
+      "features": [
+        "Native dialog with showModal(), inert background and focus trap",
+        "Backdrop dims and blurs whatever page sits behind",
+        "Escape cannot dismiss an expired-session prompt",
+        "Read-only account email with the password field focused",
+        "Bootstrap version built on .modal with a static setup"
+      ],
+      "accessibility": "The dialog is labelled by its heading and described by the saved-work line. Focus starts in the password field and stays inside the dialog; Tab reaches Unlock and Sign in as someone else, both with a 2px outline, and the fields show a brand ring. The page behind is inert while the dialog is open, and transitions are removed under prefers-reduced-motion.",
+      "customise": "Change --lf-brand, --lf-muted and --lf-edge on .lf-dialog (plain CSS) or .lf-modal (Bootstrap), or the --color-* theme values (Tailwind). The dim and blur are the ::backdrop rule, the .lf-modal background, or the backdrop: utilities.",
+      "browser_support": "dialog and showModal(): Chrome 37, Safari 15.4, Firefox 98. closedby is Chrome 134; other browsers rely on the cancel handler. The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    },
+    {
+      "dir": "22-dark",
+      "slug": "theme-aware-dark-mode-login-form",
+      "name": "Theme-Aware Login Form",
+      "title": "Theme-Aware Login Form in CSS, Bootstrap & Tailwind",
+      "summary": "A login card with light and dark themes that follows the operating system until the person picks one. It holds a brand mark, email and password fields, a remember-me checkbox, a forgotten-password link, a Sign in button and a sign-up link, with a small square toggle in the top-right corner that shows a moon in light mode and a sun in dark mode. In plain CSS every colour is a custom property on :root; prefers-color-scheme swaps the set, and a data-theme attribute that the toggle writes on the html element overrides the media query, so the page follows the OS with JavaScript turned off. color-scheme is set too, so native checkboxes and autofill match. The Tailwind version redefines the dark variant to honour the same attribute and media query. Bootstrap's colour modes are attribute-driven, so its version runs a few lines in the head that set data-bs-theme from the OS before first paint, then let the toggle override it. The choice lasts for the visit; add storage if you want it remembered.",
+      "features": [
+        "Light and dark themes from prefers-color-scheme",
+        "Toggle with aria-pressed that overrides the OS setting",
+        "Dark indigo and link colours tuned for 4.5:1 text contrast",
+        "color-scheme set so native controls match the theme",
+        "Bootstrap data-bs-theme and a custom Tailwind dark variant"
+      ],
+      "accessibility": "The toggle is a button named Dark theme with aria-pressed reflecting the current state, and its icons are hidden from assistive technology. Fields have visible labels and username and current-password autocomplete. Focus outlines switch to a light indigo in dark mode so they stay visible, and colour transitions are removed under prefers-reduced-motion.",
+      "customise": "Edit the --lf-* tokens in the :root and dark blocks (plain CSS), the --lf-* values under .lf and [data-bs-theme=dark] .lf (Bootstrap), or the paired --color-* and --color-*-night theme values (Tailwind).",
+      "browser_support": "All evergreen browsers (prefers-color-scheme: Chrome 76, Safari 12.1, Firefox 67). The Tailwind CSS 4 version needs Chrome 111, Safari 16.4 or Firefox 128."
+    }
+  ]
+}

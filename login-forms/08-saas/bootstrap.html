@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS Login (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .form-control, .form-check and two .btn styles, with the proof panel shown from 960px. */
+.ss{--ss-ink:#0f172a;--ss-slate:#334155;
+  --bs-body-color:#0f172a;--bs-secondary-color:#64748b;--bs-border-color:#8a94a6;
+  --bs-body-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;background:#fff;color:var(--bs-body-color);font-family:var(--bs-body-font-family);line-height:normal}
+.ss-left{flex:1;padding:48px;max-width:560px}
+.ss-logo{font-weight:800;font-size:1.05rem;margin-bottom:44px}
+.ss-logo i{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--ss-slate),var(--ss-ink))}
+.ss h1{font-size:1.7rem;letter-spacing:-.02em;font-weight:700;margin-bottom:6px}
+.ss-sub{font-size:.95rem;margin-bottom:30px}
+.ss .form-label{font-size:.85rem;font-weight:600;margin-bottom:6px}
+.ss-field{margin-bottom:18px}
+.ss .form-control{padding:12px 14px;border-radius:10px;font-size:.95rem;line-height:1.2}
+.ss .form-control.has-peek{padding-right:48px}
+.ss .form-control::placeholder{color:var(--bs-secondary-color)}
+.ss .form-control:focus{border-color:var(--ss-slate);box-shadow:0 0 0 3px rgba(51,65,85,.2)}
+.ss-peek{top:50%;right:8px;transform:translateY(-50%);--bs-btn-padding-x:6px;--bs-btn-padding-y:6px;--bs-btn-border-width:0;--bs-btn-border-radius:6px;
+  --bs-btn-color:var(--bs-secondary-color);--bs-btn-hover-color:var(--ss-slate);--bs-btn-active-color:var(--ss-slate);--bs-btn-focus-box-shadow:none;line-height:0}
+.ss-peek[aria-pressed="true"]{color:var(--ss-slate)}
+.ss-peek svg{width:19px;height:19px;fill:currentColor}
+.ss-peek .ss-off,.ss-peek[aria-pressed="true"] .ss-on{display:none}
+.ss-peek[aria-pressed="true"] .ss-off{display:block}
+.ss-row{font-size:.87rem;margin-bottom:24px}
+.ss .form-check{min-height:0}
+.ss .form-check-input{width:16px;height:16px;margin-top:0;border-color:#767676}
+.ss .form-check-input:checked{background-color:var(--ss-ink);border-color:var(--ss-ink)}
+.ss .form-check-input:focus{box-shadow:none;border-color:#767676}
+.ss .form-check-label{color:#475569}
+.ss a{color:var(--ss-ink);font-weight:600;text-decoration:none;border-radius:3px}
+.ss a:hover{text-decoration:underline}
+.ss .btn-ss,.ss .btn-sso{--bs-btn-border-radius:10px;--bs-btn-line-height:1.2;--bs-btn-focus-box-shadow:none}
+.ss .btn-ss{--bs-btn-bg:var(--ss-ink);--bs-btn-border-color:var(--ss-ink);--bs-btn-color:#fff;--bs-btn-hover-bg:#1e293b;--bs-btn-hover-border-color:#1e293b;
+  --bs-btn-hover-color:#fff;--bs-btn-active-bg:#1e293b;--bs-btn-active-border-color:#1e293b;--bs-btn-active-color:#fff;--bs-btn-padding-y:13px;
+  --bs-btn-font-size:.95rem;--bs-btn-font-weight:700}
+.ss .btn-sso{--bs-btn-bg:#fff;--bs-btn-border-color:#8a94a6;--bs-btn-color:var(--ss-ink);--bs-btn-hover-bg:#f8fafc;--bs-btn-hover-border-color:#8a94a6;
+  --bs-btn-hover-color:var(--ss-ink);--bs-btn-active-bg:#f8fafc;--bs-btn-active-border-color:#8a94a6;--bs-btn-active-color:var(--ss-ink);
+  --bs-btn-padding-y:12px;--bs-btn-font-size:.92rem;--bs-btn-font-weight:600;margin-top:12px}
+.ss-foot{margin-top:26px;font-size:.9rem}
+.ss-foot a{font-weight:700}
+.ss a:focus-visible,.ss .btn:focus-visible,.ss .form-check-input:focus-visible{outline:2px solid var(--ss-ink);outline-offset:2px}
+.ss-right{flex:1;gap:34px;background:var(--ss-ink);color:#e2e8f0;padding:64px}
+.ss-stats{gap:36px}
+.ss-stats b{display:block;font-size:1.9rem;color:#fff;letter-spacing:-.02em}
+.ss-stats span{font-size:.85rem;color:#94a3b8}
+.ss-right blockquote{font-size:1.15rem;line-height:1.6;color:#f1f5f9;max-width:44ch}
+.ss-who{font-size:.9rem;color:#94a3b8}
+.ss-who i{width:40px;height:40px;background:linear-gradient(135deg,#38bdf8,#818cf8)}
+.ss-who b{color:#e2e8f0}
+@media (min-width:960px){.ss-right{display:flex!important}}
+@media (prefers-reduced-motion:reduce){.ss .form-control,.ss .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="ss d-flex">
+  <main class="ss-left d-flex flex-column justify-content-center mx-auto">
+    <div class="ss-logo d-flex align-items-center gap-2"><i class="d-inline-block" aria-hidden="true"></i>Meridian</div>
+    <h1>Log in to your account</h1>
+    <p class="ss-sub text-body-secondary">Welcome back. Your dashboards missed you.</p>
+    <form action="#" method="post" onsubmit="event.preventDefault()">
+      <label class="form-label" for="ss-email">Work email</label>
+      <div class="ss-field"><input class="form-control" type="email" id="ss-email" name="email" placeholder="you@company.com" autocomplete="username" required></div>
+      <label class="form-label" for="ss-password">Password</label>
+      <div class="ss-field position-relative">
+        <input class="form-control has-peek" type="password" id="ss-password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+        <button type="button" class="btn ss-peek position-absolute" data-peek aria-controls="ss-password" aria-pressed="false" aria-label="Show password"><svg class="ss-on" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg><svg class="ss-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.3 2 2 3.3l3.1 3.1C3.1 8.1 2 10.6 2 12c0 0 3 7 10 7 2 0 3.7-.6 5.1-1.4l3.6 3.6 1.3-1.3L3.3 2zM12 16.5A4.5 4.5 0 0 1 7.5 12c0-.8.2-1.5.6-2.2l1.5 1.5a2.5 2.5 0 0 0 3.1 3.1l1.5 1.5c-.7.4-1.4.6-2.2.6zm0-11.5c-1.3 0-2.5.2-3.5.6l1.7 1.7c.6-.2 1.2-.3 1.8-.3a4.5 4.5 0 0 1 4.5 4.5c0 .6-.1 1.2-.3 1.8l2.9 2.9C21.1 14.3 22 12 22 12s-3-7-10-7z"/></svg></button>
+      </div>
+      <div class="ss-row d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="form-check d-flex align-items-center gap-2 ps-0 mb-0">
+          <input class="form-check-input m-0" type="checkbox" id="ss-remember" name="remember">
+          <label class="form-check-label fw-medium" for="ss-remember">Keep me signed in</label>
+        </div>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button class="btn btn-ss w-100" type="submit">Sign in</button>
+      <button class="btn btn-sso w-100" type="button">Sign in with SSO</button>
+    </form>
+    <p class="ss-foot text-body-secondary mb-0">Don&rsquo;t have an account? <a href="#">Start a free trial</a></p>
+  </main>
+  <aside class="ss-right d-none flex-column justify-content-center">
+    <div class="ss-stats d-flex">
+      <div><b>28k+</b><span>teams on board</span></div>
+      <div><b>99.99%</b><span>uptime last year</span></div>
+      <div><b>4.8/5</b><span>average rating</span></div>
+    </div>
+    <blockquote class="mb-0">&ldquo;We moved three tools into Meridian in a week. Reporting that used to take Fridays now takes minutes.&rdquo;</blockquote>
+    <div class="ss-who d-flex align-items-center gap-3"><i class="rounded-circle" aria-hidden="true"></i><span><b class="d-block">Priya Natarajan</b>Head of Analytics, Corvid</span></div>
+  </aside>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Show / hide password. The button keeps one name ("Show password") and reports its state with aria-pressed.
+document.querySelectorAll('[data-peek]').forEach(function (btn) {
+  var input = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', function () {
+    var show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', String(show));
+  });
+});
+</script>
+</body>
+</html>

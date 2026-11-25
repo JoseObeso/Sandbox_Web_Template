@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login with Error States — uiCookies</title>
+<style data-demo>
+body{margin:0}
+</style>
+<style data-snippet>
+/* Login with three kinds of error: a form-level alert (for a failed sign-in your server reports), a field error
+   tied to the input with aria-invalid and aria-describedby, and a Caps Lock warning in a polite live region. */
+.lf{--lf-brand:#4f46e5;--lf-brand-dark:#4338ca;--lf-ink:#111827;--lf-muted:#6b7280;--lf-line:#e5e7eb;--lf-edge:#868c99;--lf-bg:#f5f6fa;--lf-bad:#dc2626;
+  min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px;
+  background:var(--lf-bg);color:var(--lf-ink);line-height:normal;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.lf,.lf *,.lf *::before,.lf *::after{box-sizing:border-box}
+.lf :where(h1,p,form){margin:0}
+.lf :where(input,button){font:inherit}
+.lf [hidden]{display:none!important}
+.lf a{color:var(--lf-brand);text-decoration:none;font-weight:600}
+.lf a:hover{text-decoration:underline}
+.lf :focus-visible{outline:2px solid var(--lf-brand);outline-offset:2px}
+.lf-box{width:100%;max-width:410px;background:#fff;border:1px solid var(--lf-line);border-radius:16px;
+  padding:38px 34px;box-shadow:0 10px 34px rgba(17,24,39,.06)}
+.lf-mark{width:42px;height:42px;border-radius:12px;background:var(--lf-brand);display:grid;place-items:center;
+  color:#fff;font-weight:800;margin-bottom:22px}
+.lf h1{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:7px}
+.lf-sub{color:var(--lf-muted);font-size:.93rem;line-height:1.6;margin-bottom:20px}
+.lf-alert{display:flex;gap:11px;background:#fef2f2;border:1px solid #fecaca;border-radius:11px;
+  padding:13px 15px;margin-bottom:24px;font-size:.88rem;color:#991b1b;line-height:1.55}
+.lf-alert svg{width:18px;height:18px;stroke:var(--lf-bad);fill:none;stroke-width:2.2;flex-shrink:0;margin-top:1px}
+.lf-alert strong{display:block;margin-bottom:2px}
+.lf-grp{margin-bottom:18px}
+.lf-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.lf-field{width:100%;padding:12px 14px;border:1px solid var(--lf-edge);border-radius:10px;font-size:.95rem;
+  background:#fff;color:inherit;transition:border-color .15s,box-shadow .15s}
+.lf-field::placeholder{color:var(--lf-muted)}
+.lf-field:focus{outline:none;border-color:var(--lf-brand);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+.lf-field[aria-invalid="true"]{border-color:var(--lf-bad);background:#fffafa}
+.lf-field[aria-invalid="true"]:focus{box-shadow:0 0 0 3px rgba(220,38,38,.14)}
+.lf-err{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--lf-bad);margin-top:7px;font-weight:600}
+.lf-err svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;flex-shrink:0}
+.lf-caps{font-size:.82rem;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;
+  padding:7px 11px;margin-top:7px}
+.lf-caps:empty{display:none}
+.lf-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;font-size:.86rem}
+.lf-check{display:flex;align-items:center;gap:7px;font-weight:500;color:var(--lf-muted);cursor:pointer}
+.lf-check input{margin:0;accent-color:var(--lf-brand)}
+.lf-btn{width:100%;padding:13px;border:0;border-radius:10px;background:var(--lf-brand);color:#fff;
+  font-size:.97rem;font-weight:700;cursor:pointer;transition:background .15s}
+.lf-btn:hover{background:var(--lf-brand-dark)}
+@media (prefers-reduced-motion:reduce){.lf-field,.lf-btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="lf">
+<main class="lf-box">
+  <div class="lf-mark" aria-hidden="true">N</div>
+  <h1>Sign in</h1>
+  <p class="lf-sub">Welcome back to Northwind.</p>
+  <div class="lf-alert" role="alert">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+    <span><strong>That combination didn't work.</strong>You have 3 attempts left before the account
+      is locked for 15 minutes.</span>
+  </div>
+  <form id="lf-form" novalidate>
+    <div class="lf-grp">
+      <label class="lf-label" for="vmail">Email address</label>
+      <input class="lf-field" id="vmail" name="username" type="email" value="dana@northwind" autocomplete="username"
+             aria-invalid="true" aria-describedby="vmail-err" required>
+      <p class="lf-err" id="vmail-err">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        Enter a complete email address, like dana@northwind.co.</p>
+    </div>
+    <div class="lf-grp">
+      <label class="lf-label" for="vpw">Password</label>
+      <input class="lf-field" id="vpw" name="password" type="password" autocomplete="current-password" placeholder="••••••••"
+             aria-describedby="caps" required>
+      <p class="lf-caps" id="caps" role="status"></p>
+    </div>
+    <div class="lf-row">
+      <label class="lf-check"><input type="checkbox" name="remember"> Keep me signed in</label>
+      <a href="#">Forgot password?</a>
+    </div>
+    <button class="lf-btn" type="submit">Sign in</button>
+  </form>
+</main>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+(() => {
+  const form = document.getElementById('lf-form'), mail = document.getElementById('vmail');
+  const err = document.getElementById('vmail-err'), pw = document.getElementById('vpw'), caps = document.getElementById('caps');
+  if (!form || !mail || !pw) return;
+  // type="email" accepts "name@host", so ask for a dot in the domain as well.
+  const ok = () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim());
+  const show = bad => { mail.setAttribute('aria-invalid', String(bad)); err.hidden = !bad; };
+  mail.addEventListener('input', () => { if (ok()) show(false); });
+  form.addEventListener('submit', e => {
+    e.preventDefault(); // demo: remove this line once the form posts to your server
+    if (!ok()) { show(true); mail.focus(); return; }
+    if (!pw.value) { pw.focus(); }
+  });
+  // Caps Lock is the most common cause of a "wrong password" that is not wrong.
+  // getModifierState reports it without reading what was typed.
+  const check = e => { caps.textContent = e.getModifierState && e.getModifierState('CapsLock') ? 'Caps Lock is on.' : ''; };
+  pw.addEventListener('keyup', check);
+  pw.addEventListener('keydown', check);
+  pw.addEventListener('blur', () => { caps.textContent = ''; });
+})();
+</script>
+</body>
+</html>

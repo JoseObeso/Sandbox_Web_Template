@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login &amp; Register Tabs (Bootstrap 5) — uiCookies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<style data-snippet>
+/* Bootstrap .card with .nav-pills as an ARIA tablist, .form-control fields and .form-text for the password rule. */
+.tb{--tb-teal:#0f766e;--tb-teal-dark:#115e59;
+  --bs-body-color:#134e4a;--bs-secondary-color:#5f7470;--bs-border-color:#8e9694;
+  --bs-body-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100vh;padding:24px;background:linear-gradient(160deg,#134e4a,#0f766e 55%,#115e59);color:var(--bs-body-color);
+  font-family:var(--bs-body-font-family);line-height:normal}
+.tb [hidden]{display:none!important}
+.tb .card{--bs-card-border-width:0;--bs-card-border-radius:18px;--bs-card-color:#134e4a;max-width:400px;padding:36px 34px 40px;box-shadow:0 26px 60px -18px rgba(0,0,0,.45)}
+.tb .nav-pills{--bs-nav-pills-border-radius:9px;--bs-nav-pills-link-active-bg:var(--tb-teal);--bs-nav-pills-link-active-color:#fff;--bs-nav-link-padding-y:10px;
+  --bs-nav-link-font-size:.9rem;--bs-nav-link-font-weight:700;--bs-nav-link-color:var(--tb-teal);--bs-nav-link-hover-color:var(--tb-teal);
+  background:#f0fdfa;border:1px solid #ccfbf1;border-radius:12px;padding:5px;margin-bottom:28px}
+.tb .nav-pills .nav-link{width:100%;line-height:1.2}
+.tb .nav-pills .nav-link[aria-selected="true"]{background:var(--tb-teal);color:#fff;box-shadow:0 4px 12px -4px rgba(15,118,110,.5)}
+.tb .nav-pills .nav-link:focus-visible{box-shadow:none;outline:2px solid var(--tb-teal);outline-offset:2px}
+.tb h1{font-size:1.4rem;letter-spacing:-.02em;font-weight:700;margin-bottom:4px}
+.tb-sub{font-size:.9rem;margin-bottom:24px}
+.tb .form-label{font-size:.83rem;font-weight:700;margin-bottom:6px}
+.tb .form-control{padding:12px 14px;border-radius:10px;font-size:.94rem;line-height:1.2;margin-bottom:16px}
+.tb .form-control[aria-describedby]{margin-bottom:6px}
+.tb .form-control::placeholder{color:var(--bs-secondary-color)}
+.tb .form-control:focus{border-color:var(--tb-teal);box-shadow:0 0 0 3px rgba(15,118,110,.22)}
+.tb .form-text{font-size:.8rem;margin:0 0 16px}
+.tb .btn-tb{--bs-btn-bg:var(--tb-teal);--bs-btn-border-color:var(--tb-teal);--bs-btn-color:#fff;--bs-btn-hover-bg:var(--tb-teal-dark);--bs-btn-hover-border-color:var(--tb-teal-dark);
+  --bs-btn-hover-color:#fff;--bs-btn-active-bg:var(--tb-teal-dark);--bs-btn-active-border-color:var(--tb-teal-dark);--bs-btn-active-color:#fff;
+  --bs-btn-padding-y:13px;--bs-btn-font-size:.95rem;--bs-btn-font-weight:800;--bs-btn-border-radius:10px;--bs-btn-line-height:1.2;--bs-btn-focus-box-shadow:none;margin-top:4px}
+.tb-small{margin-top:18px;font-size:.82rem}
+.tb-small a{color:var(--tb-teal);font-weight:700;text-decoration:none;border-radius:3px}
+.tb-small a:hover{text-decoration:underline}
+.tb a:focus-visible,.tb .btn-tb:focus-visible{outline:2px solid var(--tb-teal);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.tb .nav-link,.tb .form-control,.tb .btn{transition:none}}
+</style>
+</head>
+<body>
+<!-- snippet:html -->
+<div class="tb d-flex align-items-center justify-content-center">
+  <div class="card w-100">
+    <div class="nav nav-pills nav-fill flex-nowrap" role="tablist" aria-label="Log in or create an account">
+      <button class="nav-link" type="button" role="tab" id="tb-tab-login" aria-selected="true" aria-controls="tb-panel-login">Log in</button>
+      <button class="nav-link" type="button" role="tab" id="tb-tab-signup" aria-selected="false" aria-controls="tb-panel-signup" tabindex="-1">Create account</button>
+    </div>
+    <section role="tabpanel" id="tb-panel-login" aria-labelledby="tb-tab-login">
+      <h1>Welcome back</h1>
+      <p class="tb-sub text-body-secondary">Log in to manage your projects.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="form-label" for="tb-li-email">Email</label>
+        <input class="form-control" type="email" id="tb-li-email" name="email" placeholder="you@example.com" autocomplete="username" required>
+        <label class="form-label" for="tb-li-password">Password</label>
+        <input class="form-control" type="password" id="tb-li-password" name="password" autocomplete="current-password" required>
+        <button class="btn btn-tb w-100" type="submit">Log in</button>
+      </form>
+      <p class="tb-small text-center mb-0"><a href="#">Forgot your password?</a></p>
+    </section>
+    <section role="tabpanel" id="tb-panel-signup" aria-labelledby="tb-tab-signup" hidden>
+      <h1>Create your account</h1>
+      <p class="tb-sub text-body-secondary">Free for 14 days. No credit card needed.</p>
+      <form action="#" method="post" onsubmit="event.preventDefault()">
+        <label class="form-label" for="tb-su-name">Full name</label>
+        <input class="form-control" type="text" id="tb-su-name" name="name" placeholder="Ada Lovelace" autocomplete="name" required>
+        <label class="form-label" for="tb-su-email">Email</label>
+        <input class="form-control" type="email" id="tb-su-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <label class="form-label" for="tb-su-password">Password</label>
+        <input class="form-control" type="password" id="tb-su-password" name="new-password" autocomplete="new-password" minlength="8" aria-describedby="tb-su-help" required>
+        <p class="form-text" id="tb-su-help">At least 8 characters.</p>
+        <button class="btn btn-tb w-100" type="submit">Create account</button>
+      </form>
+      <p class="tb-small text-center text-body-secondary mb-0">By signing up you agree to the <a href="#">Terms</a>.</p>
+    </section>
+  </div>
+</div>
+<!-- /snippet:html -->
+<script data-snippet>
+// Accessible tabs: click or use Left / Right / Home / End. Only the selected tab is in the Tab order.
+document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(tabs[(next + tabs.length) % tabs.length], true);
+    });
+  });
+});
+</script>
+</body>
+</html>
