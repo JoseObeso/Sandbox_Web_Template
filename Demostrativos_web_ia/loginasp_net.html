@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#101a35">
+	<title>Iniciar sesión | Atlas</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root{--ink:#17213d;--muted:#78829a;--brand:#6558e8}
+		*{box-sizing:border-box}
+		body{min-height:100vh;margin:0;color:var(--ink);font-family:"DM Sans",sans-serif;background:#f4f6fb}
+		.login-shell{min-height:100vh;display:grid;grid-template-columns:minmax(320px,.92fr) 1.08fr}
+		.form-side{display:flex;flex-direction:column;justify-content:center;padding:42px clamp(26px,8vw,112px);background:#fff}
+		.brand{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none;font:800 1.1rem "Manrope",sans-serif;letter-spacing:-.04em}
+		.brand-mark{display:grid;place-items:center;width:38px;height:38px;color:#fff;border-radius:12px;background:linear-gradient(145deg,#8173ff,#5143d4);box-shadow:0 7px 16px #6558e83b}
+		.form-wrap{width:100%;max-width:410px;margin:58px auto 42px}
+		h1{margin:0 0 10px;font:800 clamp(1.9rem,3vw,2.45rem) "Manrope",sans-serif;letter-spacing:-.055em}
+		.intro{margin-bottom:32px;color:var(--muted);font-size:.98rem}
+		.form-label{margin-bottom:8px;color:#303b58;font-size:.88rem;font-weight:600}
+		.form-control{min-height:51px;border:1px solid #e1e5ef;border-radius:10px;padding:12px 15px;color:var(--ink);font-size:.94rem;box-shadow:none}
+		.form-control::placeholder{color:#a4acbd}.form-control:focus{border-color:#9289f2;box-shadow:0 0 0 4px #6558e81a}
+		.password-wrap{position:relative}.password-wrap .form-control{padding-right:65px}
+		.toggle-password{position:absolute;top:50%;right:12px;padding:5px 7px;transform:translateY(-50%);border:0;background:transparent;color:#79839a;font-size:.8rem;font-weight:600}
+		.form-check-input{border-color:#cbd1df}.form-check-input:checked{background-color:var(--brand);border-color:var(--brand)}
+		.form-check-label{color:#59647c;font-size:.86rem}.text-link{color:var(--brand);font-size:.86rem;font-weight:600;text-decoration:none}
+		.text-link:hover{color:#493bc4;text-decoration:underline}
+		.btn-login{min-height:51px;border:0;border-radius:10px;background:linear-gradient(100deg,#7164ef,#5547d3);color:#fff;font-weight:700;box-shadow:0 9px 18px #6558e82b;transition:transform .18s,box-shadow .18s}
+		.btn-login:hover{color:#fff;transform:translateY(-1px);box-shadow:0 12px 22px #6558e83b}
+		.signup{margin-top:25px;color:var(--muted);text-align:center;font-size:.9rem}.side-note{color:#9aa3b6;text-align:center;font-size:.78rem}
+		.visual-side{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:50px;color:#fff;background:radial-gradient(ellipse at 70% 18%,#5265bc 0,transparent 38%),linear-gradient(145deg,#152448 0%,#11182f 70%,#211c53 100%)}
+		.visual-side:before,.visual-side:after{position:absolute;content:"";border:1px solid #ffffff14;border-radius:50%}
+		.visual-side:before{width:570px;height:570px;right:-170px;top:-190px}.visual-side:after{width:390px;height:390px;left:-180px;bottom:-180px}
+		.visual-content{position:relative;z-index:1;width:min(100%,560px)}
+		.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid #ffffff26;border-radius:30px;background:#ffffff0d;color:#d3d8ff;font-size:.78rem}
+		.eyebrow span{width:7px;height:7px;border-radius:50%;background:#a99eff;box-shadow:0 0 10px #a99eff}
+		.visual-content h2{max-width:490px;margin:25px 0 15px;font:800 clamp(2.2rem,4vw,3.5rem)/1.12 "Manrope",sans-serif;letter-spacing:-.06em}
+		.visual-content>p{max-width:430px;margin:0;color:#bbc4df;font-size:1rem;line-height:1.75}
+		.dashboard{margin-top:54px;padding:20px;border:1px solid #ffffff24;border-radius:17px;background:linear-gradient(135deg,#ffffff15,#ffffff08);box-shadow:0 25px 70px #080d2038;backdrop-filter:blur(12px);transform:rotate(-2deg)}
+		.dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;color:#e4e8f7;font-size:.78rem}
+		.dash-dots{display:flex;gap:5px}.dash-dots i{width:6px;height:6px;border-radius:50%;background:#ffffff70}
+		.dash-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}.dash-card{min-height:90px;padding:14px;border:1px solid #ffffff16;border-radius:11px;background:#ffffff0b}
+		.dash-card span{display:block;color:#bac3df;font-size:.69rem}.dash-card strong{display:block;margin-top:10px;color:#fff;font:700 1.3rem "Manrope",sans-serif}
+		.bars{display:flex;align-items:end;gap:6px;height:41px;margin-top:8px}.bars i{flex:1;border-radius:4px 4px 1px 1px;background:linear-gradient(#a69cff,#6558e8)}
+		.bars i:nth-child(1){height:45%}.bars i:nth-child(2){height:72%}.bars i:nth-child(3){height:55%}.bars i:nth-child(4){height:88%}.bars i:nth-child(5){height:65%}.bars i:nth-child(6){height:100%}
+		@media(max-width:850px){.login-shell{grid-template-columns:1fr}.form-side{min-height:100vh;padding:32px clamp(24px,8vw,80px)}.form-wrap{margin-top:48px}.visual-side{display:none}}
+		@media(max-width:420px){.form-side{padding-inline:22px}.form-wrap{margin-top:38px}}
+		@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+	</style>
+</head>
+<body>
+	<main class="login-shell">
+		<section class="form-side" aria-labelledby="login-title">
+			<a class="brand" href="#" aria-label="Atlas, inicio">
+				<span class="brand-mark" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M5 16.5 12 4l7 12.5h-5.2L12 12.8l-1.8 3.7H5Z" fill="currentColor"/><path d="m8 20 4-7 4 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+				<span>Atlas</span>
+			</a>
+			<div class="form-wrap">
+				<h1 id="login-title">Bienvenido de nuevo</h1>
+				<p class="intro">Inicia sesión para continuar a tu espacio de trabajo.</p>
+				<!-- Ajusta la ruta y agrega @Html.AntiForgeryToken() al integrar en una vista Razor. -->
+				<form action="/Account/Login" method="post" autocomplete="on">
+					<div class="mb-3">
+						<label class="form-label" for="email">Correo electrónico</label>
+						<input class="form-control" id="email" name="Email" type="email" placeholder="nombre@empresa.com" autocomplete="username" required>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="password">Contraseña</label>
+						<div class="password-wrap">
+							<input class="form-control" id="password" name="Password" type="password" placeholder="Introduce tu contraseña" autocomplete="current-password" required>
+							<button class="toggle-password" type="button" aria-label="Mostrar contraseña" aria-pressed="false">Mostrar</button>
+						</div>
+					</div>
+					<div class="d-flex align-items-center justify-content-between mb-4">
+						<div class="form-check"><input class="form-check-input" id="rememberMe" name="RememberMe" type="checkbox" value="true"><label class="form-check-label" for="rememberMe">Recordarme</label></div>
+						<a class="text-link" href="/Account/ForgotPassword">¿Olvidaste tu contraseña?</a>
+					</div>
+					<button class="btn btn-login w-100" type="submit">Iniciar sesión</button>
+				</form>
+				<p class="signup">¿Aún no tienes cuenta? <a class="text-link" href="/Account/Register">Crear cuenta</a></p>
+			</div>
+			<p class="side-note mb-0">© <span id="year"></span> Atlas. Todos los derechos reservados.</p>
+		</section>
+		<aside class="visual-side" aria-label="Presentación de la plataforma">
+			<div class="visual-content">
+				<span class="eyebrow"><span></span> Tu espacio, en un solo lugar</span>
+				<h2>Todo lo que necesitas para avanzar.</h2>
+				<p>Organiza tu trabajo, sigue tus proyectos y mantén a tu equipo conectado desde un espacio simple y seguro.</p>
+				<div class="dashboard" aria-hidden="true">
+					<div class="dash-top"><span>Resumen de actividad</span><span class="dash-dots"><i></i><i></i><i></i></span></div>
+					<div class="dash-grid"><div class="dash-card"><span>Proyectos activos</span><strong>12</strong></div><div class="dash-card"><span>Progreso semanal</span><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+				</div>
+			</div>
+		</aside>
+	</main>
+	<script>
+		const password = document.getElementById('password');
+		const toggle = document.querySelector('.toggle-password');
+		toggle.addEventListener('click', () => {
+			const showing = password.type === 'password';
+			password.type = showing ? 'text' : 'password';
+			toggle.textContent = showing ? 'Ocultar' : 'Mostrar';
+			toggle.setAttribute('aria-pressed', String(showing));
+			toggle.setAttribute('aria-label', showing ? 'Ocultar contraseña' : 'Mostrar contraseña');
+		});
+		document.getElementById('year').textContent = new Date().getFullYear();
+	</script>
+</body>
+</html>
